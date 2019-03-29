@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6732F280224DB2F500011710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F27F224DB2F500011710 /* AppDelegate.swift */; };
+		6732F282224DB2F500011710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F281224DB2F500011710 /* ViewController.swift */; };
+		6732F285224DB2F500011710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6732F283224DB2F500011710 /* Main.storyboard */; };
+		6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */; };
+		6732F28A224DB2F600011710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6732F289224DB2F600011710 /* Assets.xcassets */; };
+		6732F28D224DB2F600011710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6732F28B224DB2F600011710 /* LaunchScreen.storyboard */; };
+		6732F298224DB2F600011710 /* OshidoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F297224DB2F600011710 /* OshidoriTests.swift */; };
+		6732F2A3224DB2F600011710 /* OshidoriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F2A2224DB2F600011710 /* OshidoriUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6732F294224DB2F600011710 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6732F274224DB2F500011710 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6732F27B224DB2F500011710;
+			remoteInfo = Oshidori;
+		};
+		6732F29F224DB2F600011710 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6732F274224DB2F500011710 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6732F27B224DB2F500011710;
+			remoteInfo = Oshidori;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6732F27C224DB2F500011710 /* Oshidori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oshidori.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6732F27F224DB2F500011710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		6732F281224DB2F500011710 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		6732F284224DB2F500011710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6732F287224DB2F500011710 /* Oshidori.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Oshidori.xcdatamodel; sourceTree = "<group>"; };
+		6732F289224DB2F600011710 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6732F28C224DB2F600011710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		6732F28E224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6732F293224DB2F600011710 /* OshidoriTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OshidoriTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6732F297224DB2F600011710 /* OshidoriTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriTests.swift; sourceTree = "<group>"; };
+		6732F299224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6732F29E224DB2F600011710 /* OshidoriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OshidoriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6732F2A2224DB2F600011710 /* OshidoriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriUITests.swift; sourceTree = "<group>"; };
+		6732F2A4224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6732F279224DB2F500011710 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6732F290224DB2F600011710 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6732F29B224DB2F600011710 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6732F273224DB2F500011710 = {
+			isa = PBXGroup;
+			children = (
+				6732F27E224DB2F500011710 /* Oshidori */,
+				6732F296224DB2F600011710 /* OshidoriTests */,
+				6732F2A1224DB2F600011710 /* OshidoriUITests */,
+				6732F27D224DB2F500011710 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6732F27D224DB2F500011710 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6732F27C224DB2F500011710 /* Oshidori.app */,
+				6732F293224DB2F600011710 /* OshidoriTests.xctest */,
+				6732F29E224DB2F600011710 /* OshidoriUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6732F27E224DB2F500011710 /* Oshidori */ = {
+			isa = PBXGroup;
+			children = (
+				6732F27F224DB2F500011710 /* AppDelegate.swift */,
+				6732F281224DB2F500011710 /* ViewController.swift */,
+				6732F283224DB2F500011710 /* Main.storyboard */,
+				6732F289224DB2F600011710 /* Assets.xcassets */,
+				6732F28B224DB2F600011710 /* LaunchScreen.storyboard */,
+				6732F28E224DB2F600011710 /* Info.plist */,
+				6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */,
+			);
+			path = Oshidori;
+			sourceTree = "<group>";
+		};
+		6732F296224DB2F600011710 /* OshidoriTests */ = {
+			isa = PBXGroup;
+			children = (
+				6732F297224DB2F600011710 /* OshidoriTests.swift */,
+				6732F299224DB2F600011710 /* Info.plist */,
+			);
+			path = OshidoriTests;
+			sourceTree = "<group>";
+		};
+		6732F2A1224DB2F600011710 /* OshidoriUITests */ = {
+			isa = PBXGroup;
+			children = (
+				6732F2A2224DB2F600011710 /* OshidoriUITests.swift */,
+				6732F2A4224DB2F600011710 /* Info.plist */,
+			);
+			path = OshidoriUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6732F27B224DB2F500011710 /* Oshidori */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6732F2A7224DB2F600011710 /* Build configuration list for PBXNativeTarget "Oshidori" */;
+			buildPhases = (
+				6732F278224DB2F500011710 /* Sources */,
+				6732F279224DB2F500011710 /* Frameworks */,
+				6732F27A224DB2F500011710 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Oshidori;
+			productName = Oshidori;
+			productReference = 6732F27C224DB2F500011710 /* Oshidori.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6732F292224DB2F600011710 /* OshidoriTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6732F2AA224DB2F600011710 /* Build configuration list for PBXNativeTarget "OshidoriTests" */;
+			buildPhases = (
+				6732F28F224DB2F600011710 /* Sources */,
+				6732F290224DB2F600011710 /* Frameworks */,
+				6732F291224DB2F600011710 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6732F295224DB2F600011710 /* PBXTargetDependency */,
+			);
+			name = OshidoriTests;
+			productName = OshidoriTests;
+			productReference = 6732F293224DB2F600011710 /* OshidoriTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		6732F29D224DB2F600011710 /* OshidoriUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6732F2AD224DB2F600011710 /* Build configuration list for PBXNativeTarget "OshidoriUITests" */;
+			buildPhases = (
+				6732F29A224DB2F600011710 /* Sources */,
+				6732F29B224DB2F600011710 /* Frameworks */,
+				6732F29C224DB2F600011710 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6732F2A0224DB2F600011710 /* PBXTargetDependency */,
+			);
+			name = OshidoriUITests;
+			productName = OshidoriUITests;
+			productReference = 6732F29E224DB2F600011710 /* OshidoriUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6732F274224DB2F500011710 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = "山本竜也";
+				TargetAttributes = {
+					6732F27B224DB2F500011710 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					6732F292224DB2F600011710 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = 6732F27B224DB2F500011710;
+					};
+					6732F29D224DB2F600011710 = {
+						CreatedOnToolsVersion = 10.2;
+						TestTargetID = 6732F27B224DB2F500011710;
+					};
+				};
+			};
+			buildConfigurationList = 6732F277224DB2F500011710 /* Build configuration list for PBXProject "Oshidori" */;
+			compatibilityVersion = "Xcode 10.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6732F273224DB2F500011710;
+			productRefGroup = 6732F27D224DB2F500011710 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6732F27B224DB2F500011710 /* Oshidori */,
+				6732F292224DB2F600011710 /* OshidoriTests */,
+				6732F29D224DB2F600011710 /* OshidoriUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6732F27A224DB2F500011710 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6732F28D224DB2F600011710 /* LaunchScreen.storyboard in Resources */,
+				6732F28A224DB2F600011710 /* Assets.xcassets in Resources */,
+				6732F285224DB2F500011710 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6732F291224DB2F600011710 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6732F29C224DB2F600011710 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6732F278224DB2F500011710 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6732F282224DB2F500011710 /* ViewController.swift in Sources */,
+				6732F280224DB2F500011710 /* AppDelegate.swift in Sources */,
+				6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6732F28F224DB2F600011710 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6732F298224DB2F600011710 /* OshidoriTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6732F29A224DB2F600011710 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6732F2A3224DB2F600011710 /* OshidoriUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6732F295224DB2F600011710 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6732F27B224DB2F500011710 /* Oshidori */;
+			targetProxy = 6732F294224DB2F600011710 /* PBXContainerItemProxy */;
+		};
+		6732F2A0224DB2F600011710 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6732F27B224DB2F500011710 /* Oshidori */;
+			targetProxy = 6732F29F224DB2F600011710 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6732F283224DB2F500011710 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6732F284224DB2F500011710 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		6732F28B224DB2F600011710 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6732F28C224DB2F600011710 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6732F2A5224DB2F600011710 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		6732F2A6224DB2F600011710 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6732F2A8224DB2F600011710 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92S7PT7663;
+				INFOPLIST_FILE = Oshidori/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yamatatsu-tech.Oshidori";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6732F2A9224DB2F600011710 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92S7PT7663;
+				INFOPLIST_FILE = Oshidori/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yamatatsu-tech.Oshidori";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6732F2AB224DB2F600011710 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92S7PT7663;
+				INFOPLIST_FILE = OshidoriTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yamatatsu-tech.OshidoriTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Oshidori.app/Oshidori";
+			};
+			name = Debug;
+		};
+		6732F2AC224DB2F600011710 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92S7PT7663;
+				INFOPLIST_FILE = OshidoriTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yamatatsu-tech.OshidoriTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Oshidori.app/Oshidori";
+			};
+			name = Release;
+		};
+		6732F2AE224DB2F600011710 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92S7PT7663;
+				INFOPLIST_FILE = OshidoriUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yamatatsu-tech.OshidoriUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Oshidori;
+			};
+			name = Debug;
+		};
+		6732F2AF224DB2F600011710 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 92S7PT7663;
+				INFOPLIST_FILE = OshidoriUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yamatatsu-tech.OshidoriUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Oshidori;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6732F277224DB2F500011710 /* Build configuration list for PBXProject "Oshidori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6732F2A5224DB2F600011710 /* Debug */,
+				6732F2A6224DB2F600011710 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6732F2A7224DB2F600011710 /* Build configuration list for PBXNativeTarget "Oshidori" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6732F2A8224DB2F600011710 /* Debug */,
+				6732F2A9224DB2F600011710 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6732F2AA224DB2F600011710 /* Build configuration list for PBXNativeTarget "OshidoriTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6732F2AB224DB2F600011710 /* Debug */,
+				6732F2AC224DB2F600011710 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6732F2AD224DB2F600011710 /* Build configuration list for PBXNativeTarget "OshidoriUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6732F2AE224DB2F600011710 /* Debug */,
+				6732F2AF224DB2F600011710 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6732F287224DB2F500011710 /* Oshidori.xcdatamodel */,
+			);
+			currentVersion = 6732F287224DB2F500011710 /* Oshidori.xcdatamodel */;
+			path = Oshidori.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 6732F274224DB2F500011710 /* Project object */;
+}
