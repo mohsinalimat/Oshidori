@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66C73E8EF7E5DA251CF6CE5E /* Pods_Oshidori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549C64E89FB8F49CDD276DD4 /* Pods_Oshidori.framework */; };
 		6723DEA4224E176F00B3DF69 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6723DEA3224E176F00B3DF69 /* Login.storyboard */; };
 		6723DEA6224F098900B3DF69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6723DEA5224F098900B3DF69 /* GoogleService-Info.plist */; };
 		6732F280224DB2F500011710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F27F224DB2F500011710 /* AppDelegate.swift */; };
@@ -17,6 +18,8 @@
 		6732F28D224DB2F600011710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6732F28B224DB2F600011710 /* LaunchScreen.storyboard */; };
 		6732F298224DB2F600011710 /* OshidoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F297224DB2F600011710 /* OshidoriTests.swift */; };
 		6732F2A3224DB2F600011710 /* OshidoriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F2A2224DB2F600011710 /* OshidoriUITests.swift */; };
+		71F8B5DA7E61B3C10BA63779 /* Pods_OshidoriUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */; };
+		C74256F218E242436241BFE4 /* Pods_OshidoriTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2369E401E5EEF6AB5F998CEE /* Pods-OshidoriTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriTests/Pods-OshidoriTests.release.xcconfig"; sourceTree = "<group>"; };
+		269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OshidoriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F67F92A9913F9418DE25909 /* Pods-OshidoriUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriUITests/Pods-OshidoriUITests.release.xcconfig"; sourceTree = "<group>"; };
+		549C64E89FB8F49CDD276DD4 /* Pods_Oshidori.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Oshidori.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6723DEA3224E176F00B3DF69 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6723DEA5224F098900B3DF69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6732F27C224DB2F500011710 /* Oshidori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oshidori.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +60,11 @@
 		6732F29E224DB2F600011710 /* OshidoriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OshidoriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6732F2A2224DB2F600011710 /* OshidoriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriUITests.swift; sourceTree = "<group>"; };
 		6732F2A4224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OshidoriUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94F39C30B74CB220E1073109 /* Pods-Oshidori.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oshidori.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Oshidori/Pods-Oshidori.debug.xcconfig"; sourceTree = "<group>"; };
+		A484EA0957D17B99E82E6CB8 /* Pods-OshidoriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriTests/Pods-OshidoriTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E52C300833ED9195138F7411 /* Pods-OshidoriUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriUITests/Pods-OshidoriUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		FF072515068B5F54AC5B64AE /* Pods-Oshidori.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oshidori.release.xcconfig"; path = "Pods/Target Support Files/Pods-Oshidori/Pods-Oshidori.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66C73E8EF7E5DA251CF6CE5E /* Pods_Oshidori.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C74256F218E242436241BFE4 /* Pods_OshidoriTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,12 +88,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71F8B5DA7E61B3C10BA63779 /* Pods_OshidoriUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		23FC2DA2C79B5E52DCC3B6F3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				94F39C30B74CB220E1073109 /* Pods-Oshidori.debug.xcconfig */,
+				FF072515068B5F54AC5B64AE /* Pods-Oshidori.release.xcconfig */,
+				A484EA0957D17B99E82E6CB8 /* Pods-OshidoriTests.debug.xcconfig */,
+				2369E401E5EEF6AB5F998CEE /* Pods-OshidoriTests.release.xcconfig */,
+				E52C300833ED9195138F7411 /* Pods-OshidoriUITests.debug.xcconfig */,
+				3F67F92A9913F9418DE25909 /* Pods-OshidoriUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6732F273224DB2F500011710 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +115,8 @@
 				6732F296224DB2F600011710 /* OshidoriTests */,
 				6732F2A1224DB2F600011710 /* OshidoriUITests */,
 				6732F27D224DB2F500011710 /* Products */,
+				23FC2DA2C79B5E52DCC3B6F3 /* Pods */,
+				E07BC4EC061E887F5CAE56AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +164,16 @@
 			path = OshidoriUITests;
 			sourceTree = "<group>";
 		};
+		E07BC4EC061E887F5CAE56AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				549C64E89FB8F49CDD276DD4 /* Pods_Oshidori.framework */,
+				269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */,
+				7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6732F2A7224DB2F600011710 /* Build configuration list for PBXNativeTarget "Oshidori" */;
 			buildPhases = (
+				E909B8FA5A29ACFCD609D6C3 /* [CP] Check Pods Manifest.lock */,
 				6732F278224DB2F500011710 /* Sources */,
 				6732F279224DB2F500011710 /* Frameworks */,
 				6732F27A224DB2F500011710 /* Resources */,
+				7A14EC39A9F71E3BFB244BF6 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,6 +200,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6732F2AA224DB2F600011710 /* Build configuration list for PBXNativeTarget "OshidoriTests" */;
 			buildPhases = (
+				9E3F0E257B8B77214FA5EBD6 /* [CP] Check Pods Manifest.lock */,
 				6732F28F224DB2F600011710 /* Sources */,
 				6732F290224DB2F600011710 /* Frameworks */,
 				6732F291224DB2F600011710 /* Resources */,
@@ -176,6 +219,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6732F2AD224DB2F600011710 /* Build configuration list for PBXNativeTarget "OshidoriUITests" */;
 			buildPhases = (
+				B9B1AC9DF9E0F51AD12A0A99 /* [CP] Check Pods Manifest.lock */,
 				6732F29A224DB2F600011710 /* Sources */,
 				6732F29B224DB2F600011710 /* Frameworks */,
 				6732F29C224DB2F600011710 /* Resources */,
@@ -261,6 +305,111 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7A14EC39A9F71E3BFB244BF6 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Oshidori/Pods-Oshidori-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
+				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Oshidori/Pods-Oshidori-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E3F0E257B8B77214FA5EBD6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OshidoriTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9B1AC9DF9E0F51AD12A0A99 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OshidoriUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E909B8FA5A29ACFCD609D6C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Oshidori-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6732F278224DB2F500011710 /* Sources */ = {
@@ -442,6 +591,7 @@
 		};
 		6732F2A8224DB2F600011710 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94F39C30B74CB220E1073109 /* Pods-Oshidori.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -460,6 +610,7 @@
 		};
 		6732F2A9224DB2F600011710 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF072515068B5F54AC5B64AE /* Pods-Oshidori.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -478,6 +629,7 @@
 		};
 		6732F2AB224DB2F600011710 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A484EA0957D17B99E82E6CB8 /* Pods-OshidoriTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -499,6 +651,7 @@
 		};
 		6732F2AC224DB2F600011710 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2369E401E5EEF6AB5F998CEE /* Pods-OshidoriTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -520,6 +673,7 @@
 		};
 		6732F2AE224DB2F600011710 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E52C300833ED9195138F7411 /* Pods-OshidoriUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -540,6 +694,7 @@
 		};
 		6732F2AF224DB2F600011710 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F67F92A9913F9418DE25909 /* Pods-OshidoriUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
