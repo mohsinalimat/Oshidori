@@ -14,6 +14,7 @@
 		6723DEAC224F51C800B3DF69 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEAB224F51C800B3DF69 /* User.swift */; };
 		6723DEAE224F52BB00B3DF69 /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEAD224F52BB00B3DF69 /* Credential.swift */; };
 		6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEB422509BA100B3DF69 /* UIViewController.swift */; };
+		6723DEB82250AA7500B3DF69 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEB72250AA7500B3DF69 /* RegisterViewController.swift */; };
 		6732F280224DB2F500011710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F27F224DB2F500011710 /* AppDelegate.swift */; };
 		6732F282224DB2F500011710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F281224DB2F500011710 /* ViewController.swift */; };
 		6732F285224DB2F500011710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6732F283224DB2F500011710 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		6723DEAB224F51C800B3DF69 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6723DEAD224F52BB00B3DF69 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		6723DEB422509BA100B3DF69 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		6723DEB72250AA7500B3DF69 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		6732F27C224DB2F500011710 /* Oshidori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oshidori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6732F27F224DB2F500011710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6732F281224DB2F500011710 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				6732F281224DB2F500011710 /* ViewController.swift */,
 				6723DEA7224F10B600B3DF69 /* LoginViewController.swift */,
+				6723DEB72250AA7500B3DF69 /* RegisterViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -185,11 +188,11 @@
 		6732F27E224DB2F500011710 /* Oshidori */ = {
 			isa = PBXGroup;
 			children = (
+				6723DEAF224F740600B3DF69 /* Entities */,
 				6723DEB622509BAF00B3DF69 /* Extension */,
 				6723DEB2224F74CB00B3DF69 /* Controllers */,
 				6723DEB1224F74B100B3DF69 /* ViewControllers */,
 				6723DEB3224F74DD00B3DF69 /* Storyboards */,
-				6723DEAF224F740600B3DF69 /* Entities */,
 				6732F289224DB2F600011710 /* Assets.xcassets */,
 				6732F28E224DB2F600011710 /* Info.plist */,
 				6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */,
@@ -471,6 +474,7 @@
 				6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */,
 				6723DEA8224F10B600B3DF69 /* LoginViewController.swift in Sources */,
 				6732F282224DB2F500011710 /* ViewController.swift in Sources */,
+				6723DEB82250AA7500B3DF69 /* RegisterViewController.swift in Sources */,
 				6732F280224DB2F500011710 /* AppDelegate.swift in Sources */,
 				6723DEAC224F51C800B3DF69 /* User.swift in Sources */,
 				6723DEAE224F52BB00B3DF69 /* Credential.swift in Sources */,

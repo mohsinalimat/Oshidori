@@ -20,4 +20,30 @@ extension UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    // open 別モジュールから呼び出せる。継承やオーバーライドが可能
+    // デフォルトでは internalになる、overrideの宣言よりも強いアクセス修飾子になるため、openをつけなければいけない。
+    // internal    モジュール内ならアクセスできる。 何も書かないとコレになる。（デフォルト）
+    // キーボード以外をタップした時に、キーボードを消す
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    func moveTestPage() {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "TestStoryboard")
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func moveUserCreatePage() {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UserCreateStoryboard")
+        self.present(viewController, animated: true, completion: nil)
+    }
+    
+    func moveLoginPage() {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "LoginStoryboard")
+        self.present(viewController, animated: true, completion: nil)
+    }
 }

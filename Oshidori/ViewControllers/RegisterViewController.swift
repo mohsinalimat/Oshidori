@@ -1,37 +1,35 @@
 //
-//  LoginViewController.swift
+//  RegisterViewController.swift
 //  Oshidori
 //
-//  Created by 山本竜也 on 2019/3/30.
+//  Created by 山本竜也 on 2019/3/31.
 //  Copyright © 2019 山本竜也. All rights reserved.
 //
 
 import UIKit
 
-class LoginViewController: UIViewController, UserDelegate {
-    
+class RegisterViewController: UIViewController {
+
     // 書き方の省略のため
     let user = User.shared
-
+    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var moveLoginPageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        user.delegate = self
-        if user.isLogin() {
-            moveTestPage()
-        }
+
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func didTapSignInButton(_ sender: Any) {
+    
+    @IBAction func didTapRegisterButton(_ sender: Any) {
         if let credential = getCredential() {
+            user.create(credential: credential)
             user.login(credential: credential)
         }
-        
         if user.isLogin() {
             moveTestPage()
         } else {
@@ -39,8 +37,8 @@ class LoginViewController: UIViewController, UserDelegate {
         }
     }
     
-    @IBAction func didTapRegisterButton(_ sender: Any) {
-        moveUserCreatePage()
+    @IBAction func didTapMoveLoginPageButton(_ sender: Any) {
+        moveLoginPage()
     }
     
     func getCredential() -> Credential? {
@@ -54,24 +52,7 @@ class LoginViewController: UIViewController, UserDelegate {
         }
         return Credential(email: email, password: password)
     }
-    
-    // 作成後の処理
-    func didCreate(error: Error?) {
-        if let error = error {
-            self.alert("エラー", error.localizedDescription, nil)
-            return
-        }
-    }
-    
-    // ログイン後の処理
-    func didLogin(error: Error?) {
-        if let error = error {
-            self.alert("エラー", error.localizedDescription, nil)
-            return
-        }
-    }
-    
-    
+
     /*
     // MARK: - Navigation
 
