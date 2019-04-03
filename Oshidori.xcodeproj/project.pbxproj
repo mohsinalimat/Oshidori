@@ -16,6 +16,8 @@
 		6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEB422509BA100B3DF69 /* UIViewController.swift */; };
 		6723DEB82250AA7500B3DF69 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEB72250AA7500B3DF69 /* RegisterViewController.swift */; };
 		6723DEBC2253193500B3DF69 /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6723DEBB2253193500B3DF69 /* Message.storyboard */; };
+		6723DEBE2254396700B3DF69 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEBD2254396700B3DF69 /* Message.swift */; };
+		6723DEC02254415C00B3DF69 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEBF2254415C00B3DF69 /* ChatViewController.swift */; };
 		6732F280224DB2F500011710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F27F224DB2F500011710 /* AppDelegate.swift */; };
 		6732F282224DB2F500011710 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F281224DB2F500011710 /* ViewController.swift */; };
 		6732F285224DB2F500011710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6732F283224DB2F500011710 /* Main.storyboard */; };
@@ -24,6 +26,7 @@
 		6732F28D224DB2F600011710 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6732F28B224DB2F600011710 /* LaunchScreen.storyboard */; };
 		6732F298224DB2F600011710 /* OshidoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F297224DB2F600011710 /* OshidoriTests.swift */; };
 		6732F2A3224DB2F600011710 /* OshidoriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F2A2224DB2F600011710 /* OshidoriUITests.swift */; };
+		6736F1632254B45000E89952 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736F1622254B45000E89952 /* UserDefault.swift */; };
 		71F8B5DA7E61B3C10BA63779 /* Pods_OshidoriUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */; };
 		C74256F218E242436241BFE4 /* Pods_OshidoriTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +61,8 @@
 		6723DEB422509BA100B3DF69 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		6723DEB72250AA7500B3DF69 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		6723DEBB2253193500B3DF69 /* Message.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
+		6723DEBD2254396700B3DF69 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		6723DEBF2254415C00B3DF69 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		6732F27C224DB2F500011710 /* Oshidori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oshidori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6732F27F224DB2F500011710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6732F281224DB2F500011710 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +77,7 @@
 		6732F29E224DB2F600011710 /* OshidoriUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OshidoriUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6732F2A2224DB2F600011710 /* OshidoriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriUITests.swift; sourceTree = "<group>"; };
 		6732F2A4224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6736F1622254B45000E89952 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OshidoriUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F39C30B74CB220E1073109 /* Pods-Oshidori.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oshidori.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Oshidori/Pods-Oshidori.debug.xcconfig"; sourceTree = "<group>"; };
 		A484EA0957D17B99E82E6CB8 /* Pods-OshidoriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriTests/Pods-OshidoriTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 			children = (
 				6723DEAD224F52BB00B3DF69 /* Credential.swift */,
 				6723DEAB224F51C800B3DF69 /* User.swift */,
+				6723DEBD2254396700B3DF69 /* Message.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -135,6 +142,7 @@
 				6732F281224DB2F500011710 /* ViewController.swift */,
 				6723DEA7224F10B600B3DF69 /* LoginViewController.swift */,
 				6723DEB72250AA7500B3DF69 /* RegisterViewController.swift */,
+				6723DEBF2254415C00B3DF69 /* ChatViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -162,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				6723DEB422509BA100B3DF69 /* UIViewController.swift */,
+				6736F1622254B45000E89952 /* UserDefault.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -378,6 +387,8 @@
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageInputBar/MessageInputBar.framework",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
 				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
@@ -391,6 +402,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageInputBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
@@ -478,10 +491,13 @@
 				6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */,
 				6723DEA8224F10B600B3DF69 /* LoginViewController.swift in Sources */,
 				6732F282224DB2F500011710 /* ViewController.swift in Sources */,
+				6736F1632254B45000E89952 /* UserDefault.swift in Sources */,
+				6723DEBE2254396700B3DF69 /* Message.swift in Sources */,
 				6723DEB82250AA7500B3DF69 /* RegisterViewController.swift in Sources */,
 				6732F280224DB2F500011710 /* AppDelegate.swift in Sources */,
 				6723DEAC224F51C800B3DF69 /* User.swift in Sources */,
 				6723DEAE224F52BB00B3DF69 /* Credential.swift in Sources */,
+				6723DEC02254415C00B3DF69 /* ChatViewController.swift in Sources */,
 				6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

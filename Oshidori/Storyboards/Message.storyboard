@@ -44,7 +44,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGN-O5-1pi">
-                                <rect key="frame" x="295" y="538" width="60" height="60"/>
+                                <rect key="frame" x="295" y="498" width="60" height="60"/>
                                 <state key="normal" image="Write_icon"/>
                                 <connections>
                                     <segue destination="I6m-Qv-LBa" kind="show" id="aAV-vq-ydt"/>
@@ -61,7 +61,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Q9B-D1-wfh" firstAttribute="trailing" secondItem="dGN-O5-1pi" secondAttribute="trailing" constant="20" id="1O0-et-v6e"/>
-                            <constraint firstItem="Q9B-D1-wfh" firstAttribute="bottom" secondItem="dGN-O5-1pi" secondAttribute="bottom" constant="20" id="zFU-Lh-d9W"/>
+                            <constraint firstItem="Q9B-D1-wfh" firstAttribute="bottom" secondItem="dGN-O5-1pi" secondAttribute="bottom" constant="60" id="N2X-2G-We2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q9B-D1-wfh"/>
                     </view>
@@ -74,7 +74,7 @@
         <!--送信-->
         <scene sceneID="57w-cp-jr2">
             <objects>
-                <viewController title="送信" id="I6m-Qv-LBa" sceneMemberID="viewController">
+                <viewController title="送信" id="I6m-Qv-LBa" customClass="ChatViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UD4-lH-NVV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,6 +108,7 @@
         <scene sceneID="h1g-vv-v2C">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="G0h-bb-jEq" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="手紙" image="Message" selectedImage="Message" id="f8y-LJ-mU7"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="76T-Qr-vGO">
