@@ -11,6 +11,12 @@ import Foundation
 class Message {
     
     var id:String?
-    var text: String = ""
+    var content: String = ""
     
+    
+    func toDictionary() -> [String: Any] {
+        return [
+            "content": self.content
+        ]
+    }
 }

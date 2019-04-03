@@ -44,7 +44,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGN-O5-1pi">
-                                <rect key="frame" x="295" y="538" width="60" height="60"/>
+                                <rect key="frame" x="295" y="498" width="60" height="60"/>
                                 <state key="normal" image="Write_icon"/>
                                 <connections>
                                     <segue destination="I6m-Qv-LBa" kind="show" id="aAV-vq-ydt"/>
@@ -61,7 +61,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Q9B-D1-wfh" firstAttribute="trailing" secondItem="dGN-O5-1pi" secondAttribute="trailing" constant="20" id="1O0-et-v6e"/>
-                            <constraint firstItem="Q9B-D1-wfh" firstAttribute="bottom" secondItem="dGN-O5-1pi" secondAttribute="bottom" constant="20" id="zFU-Lh-d9W"/>
+                            <constraint firstItem="Q9B-D1-wfh" firstAttribute="bottom" secondItem="dGN-O5-1pi" secondAttribute="bottom" constant="60" id="N2X-2G-We2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q9B-D1-wfh"/>
                     </view>
@@ -74,7 +74,7 @@
         <!--送信-->
         <scene sceneID="57w-cp-jr2">
             <objects>
-                <viewController title="送信" id="I6m-Qv-LBa" sceneMemberID="viewController">
+                <viewController title="送信" id="I6m-Qv-LBa" customClass="ChatViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UD4-lH-NVV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,6 +90,9 @@
                                 <rect key="frame" x="164" y="310" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTapTestButton:" destination="I6m-Qv-LBa" eventType="touchUpInside" id="mWN-5g-VJo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="firebaseから持ってくるよ" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wa6-Zy-dHv">
                                 <rect key="frame" x="87" y="441" width="201" height="21"/>
@@ -102,6 +105,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="taZ-TK-r3D"/>
                     </view>
+                    <connections>
+                        <outlet property="testButton" destination="gik-Bm-Kql" id="Snx-30-kPq"/>
+                        <outlet property="testField" destination="2bZ-EZ-OLu" id="jE7-6Q-DjX"/>
+                        <outlet property="testLabel" destination="wa6-Zy-dHv" id="LwU-ew-hV7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xPZ-85-Jwe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
