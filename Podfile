@@ -22,4 +22,5 @@ target 'Oshidori' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'Firebase/DynamicLinks'
+  pod 'MessageKit'
 end
