@@ -15,6 +15,8 @@ struct Message: MessageType {
     var sender: Sender
     var sentDate: Date
     var content: String
+    // kind をfireStorageに入れると落ちる. kind は型が異なるようだ。Stringとして
+    // ただし、プロトコルにkind:MessageKind がいるので定義しておかなければエラーになる。
     var kind: MessageKind{
             return .text(content)
     }
@@ -25,23 +27,11 @@ struct Message: MessageType {
         self.messageId = messageId
         self.sentDate = date
     }
-//
-//    init(custom: Any?, sender: Sender, messageId: String, date: Date) {
-//        self.init(kind: .custom(custom), sender: sender, messageId: messageId, date: date)
-//    }
-    
+
     init(text: String, sender: Sender, messageId: String, date: Date) {
         self.init(content: text, sender: sender, messageId: messageId, date: date)
     }
-    
-//    init(attributedText: NSAttributedString, sender: Sender, messageId: String, date: Date) {
-//        self.init(kind: .attributedText(attributedText), sender: sender, messageId: messageId, date: date)
-//    }
-//
-//    init(emoji: String, sender: Sender, messageId: String, date: Date) {
-//        self.init(kind: .emoji(emoji), sender: sender, messageId: messageId, date: date)
-//    }
-    
+
 }
 
 
