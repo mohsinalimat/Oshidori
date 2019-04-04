@@ -38,7 +38,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     // おしどりが話す内容
     enum oshidoriContent: String {
         case firstContent = "おしどりに預けたいメッセージを書いてね！"
-        case afterWroteMessage = "このメッセージを預けますか？/n行いたいアクションのメッセージをタップするか、入力してください！"
+        case afterWroteMessage = "このメッセージを預けますか？ 行いたいアクションのメッセージをタップするか、入力してください！"
         case LastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！画面が遷移するよ！"
     }
     
