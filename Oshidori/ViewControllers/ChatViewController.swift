@@ -16,11 +16,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     
     func currentSender() -> Sender {
+        // TODO: firebase の uid にする
         return Sender(id: "my_unique_id", displayName: "やまたつ")
     }
     
-    func otherSender() -> Sender {
-        return Sender(id: "other_unique_id", displayName: "おしどり")
+    func oshidoriSender() -> Sender {
+        return Sender(id: "Oshidori", displayName: "おしどり")
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -37,8 +38,31 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     // おしどりが話す内容
     enum oshidoriContent: String {
         case firstContent = "おしどりに預けたいメッセージを書いてね！"
-        case afterWroteMessage = "このメッセージを預けますか？"
+        case afterWroteMessage = "このメッセージを預けますか？/n行いたいアクションのメッセージをタップするか、入力してください！"
         case LastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！画面が遷移するよ！"
+    }
+    
+    // chatのstatusフラグ
+    var chatStatusFlag :chatStatus?
+    
+    // chatのstatus
+    enum chatStatus{
+        case selectContentType
+        case afterWroteMessage
+        case selectSendType
+    }
+    
+    func isAfterWroteMessage() -> Bool{
+        if chatStatusFlag == chatStatus.afterWroteMessage {
+            return true
+        }
+        return false
+    }
+    
+    // ボタン
+    enum selectButtonContent: String {
+        case edit = "編集"
+        case keep = "預ける"
     }
     
     // 日付をフォーマットするために必要
@@ -49,16 +73,20 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }()
     
     override func viewDidLoad() {
+      
         super.viewDidLoad()
         
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
-            self.messageList = self.getOshidoriMessages()
+            self.messageList.append(self.getOshidoriMessages())
             // messagesCollectionViewをリロードして
             self.messagesCollectionView.reloadData()
             // 一番下までスクロールする
             self.messagesCollectionView.scrollToBottom()
         }
+        
+        // 初期化
+        chatStatusFlag = chatStatus.selectContentType
         
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -66,23 +94,26 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         messageInputBar.delegate = self
     }
     
-    // おしどりから放たれる最初の言葉
-    func getOshidoriMessages() -> [Message] {
+    // おしどりから放たれる言葉
+    func getOshidoriMessages() -> Message {
         var str = ""
-        if messageList.isEmpty {
+        if chatStatusFlag == chatStatus.selectContentType {
             str = oshidoriContent.firstContent.rawValue
         }
-        let message = Message(text: str, sender: otherSender(), messageId: UUID().uuidString, date: Date())
-        return [
-            message
-        ]
+        if chatStatusFlag == chatStatus.afterWroteMessage {
+            str = oshidoriContent.afterWroteMessage.rawValue
+        }
+        if chatStatusFlag == chatStatus.selectSendType {
+            str = oshidoriContent.LastMessage.rawValue
+        }
+        let message = Message(text: str, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
+        return message
     }
     
-    // Creating Messages
+    // メッセージを作成して、表示している.
+    // 初期表示以外はここを通さなければ表示されない。
     private func insertNewMessage(_ message: Message) {
-
         messageList.append(message)
-        
         messagesCollectionView.performBatchUpdates({
             messagesCollectionView.insertSections([messageList.count - 1])
             if messageList.count >= 2 {
@@ -106,14 +137,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    
     private func getColletionRef() -> CollectionReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
         return db.collection("users").document(uid).collection("messages")
     }
-    
     func save(_ message: Message) {
         print("Firestoreへセーブ")
         let collectionRef = getColletionRef()
@@ -127,12 +156,22 @@ extension ChatViewController: MessageInputBarDelegate {
     
     // メッセージを入力するMessageInputBarの送信ボタンを押したときに発生するファンクション
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        
         for component in inputBar.inputTextView.components {
             if let str = component as? String {
                 let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                
                 insertNewMessage(message)
-                save(message)
+                chatStatusFlag = chatStatus.afterWroteMessage
+                
+                
+                if chatStatusFlag == chatStatus.afterWroteMessage {
+                    insertNewMessage(getOshidoriMessages())
+                    let editMessage = Message(text: selectButtonContent.edit.rawValue, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                    let keepMessage = Message(text: selectButtonContent.keep.rawValue, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                    insertNewMessage(editMessage)
+                    insertNewMessage(keepMessage)
+                }
+                //save(message)
             }
         }
         // 送信したら、空っぽにする
@@ -148,11 +187,13 @@ extension ChatViewController{
     
     // メッセージの色を変更（デフォルトは自分：白、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        // TODO:ボタンの時は色を変えたい。
         return isFromCurrentSender(message: message) ? .white : .darkText
     }
     
     // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        
         return isFromCurrentSender(message: message) ?
             UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) :
             UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
@@ -167,10 +208,11 @@ extension ChatViewController{
     // アイコンをセット
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         // message.senderで送信者を判断できる！
-        if message.sender == otherSender() {
+        if message.sender == oshidoriSender() {
             let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "O")
             avatarView.set(avatar: avatar)
         } else {
+            // TODO: 名前からinitial作っても面白いかも
             let avatar = Avatar(image: UIImage(named: ""), initials: "Y")
             avatarView.set(avatar: avatar)
         }
@@ -191,6 +233,9 @@ extension ChatViewController{
     // メッセージの上に文字を表示（名前）
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         let name = message.sender.displayName
+        if isAfterWroteMessage() {
+            return NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+        }
         return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
     }
     
@@ -216,3 +261,5 @@ extension ChatViewController{
     }
     
 }
+
+
