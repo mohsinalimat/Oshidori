@@ -60,10 +60,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     // サンプル用に適当なメッセージ
     func getFirstMessages() -> [Message] {
         let str = "おしどりに預けたいメッセージを書いてね！"
-        let attributedText = NSAttributedString(string: str, attributes: [.font: UIFont.systemFont(ofSize: 15),
-                                                                          .foregroundColor: UIColor.white])
-        //let message = Message(text: str, sender: otherSender(), messageId: UUID().uuidString, date: Date())
-        let message = Message(attributedText: attributedText, sender: otherSender(), messageId: UUID().uuidString, date: Date())
+        //let attributedText = NSAttributedString(string: str, attributes: [.font: UIFont.systemFont(ofSize: 15),                                                                          .foregroundColor: UIColor.black])
+        let message = Message(text: str, sender: otherSender(), messageId: UUID().uuidString, date: Date())
+        // let message = Message(attributedText: attributedText, sender: otherSender(), messageId: UUID().uuidString, date: Date())
         //insertNewMessage(message)
         return [
             message
@@ -126,15 +125,15 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     func save(_ message: Message) {
         print("Firestoreへセーブ")
         let collectionRef = getColletionRef()
-        
-//        if let id = message.id { // データがある場合
+//        if let id = message.messageId{ // データがある場合
 //            let documentRef = collectionRef.document(id)
 //            // データの上書きを行なっている
 //            documentRef.setData(message.toDictionary())
 //        } else { // データがない場合
-//            // データを追加している
-//            let documentRef = collectionRef.addDocument(data: message.toDictionary())
-//            message.id = documentRef.documentID
+            // データを追加している
+            //let documentRef =
+                collectionRef.addDocument(data: message.representation)
+            //message.id = documentRef.documentID
 //        }
     }
     
@@ -148,11 +147,13 @@ extension ChatViewController: MessageInputBarDelegate {
         
         for component in inputBar.inputTextView.components {
             if let str = component as? String {
-                let attributedText = NSAttributedString(string: str, attributes: [.font: UIFont.systemFont(ofSize: 15),
-                                                                                   .foregroundColor: UIColor.white])
+                //let attributedText = NSAttributedString(string: str, attributes: [.font: UIFont.systemFont(ofSize: 15),                                                                                   .foregroundColor: UIColor.white])
                 //let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                let message = Message(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+//                let message = Message(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 insertNewMessage(message)
+                //落ちた。
+                save(message)
             }
         }
         // 空っぽにする
