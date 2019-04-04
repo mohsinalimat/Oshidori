@@ -16,7 +16,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     
     func currentSender() -> Sender {
-        return Sender(id: "any_unique_id", displayName: "やまたつ")
+        return Sender(id: "my_unique_id", displayName: "やまたつ")
     }
     
     func otherSender() -> Sender {
@@ -31,7 +31,15 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         return messageList[indexPath.section]
     }
     
+    // 会話の中身を記録する用　MessageKitで使うために必要
     var messageList: [Message] = []
+    
+    // おしどりが話す内容
+    enum oshidoriContent: String {
+        case firstContent = "おしどりに預けたいメッセージを書いてね！"
+        case afterWroteMessage = "このメッセージを預けますか？"
+        case LastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！画面が遷移するよ！"
+    }
     
     // 日付をフォーマットするために必要
     lazy var formatter: DateFormatter = {
@@ -45,7 +53,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
-            self.messageList = self.getFirstMessages()
+            self.messageList = self.getOshidoriMessages()
             // messagesCollectionViewをリロードして
             self.messagesCollectionView.reloadData()
             // 一番下までスクロールする
@@ -59,8 +67,11 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     // おしどりから放たれる最初の言葉
-    func getFirstMessages() -> [Message] {
-        let str = "おしどりに預けたいメッセージを書いてね！"
+    func getOshidoriMessages() -> [Message] {
+        var str = ""
+        if messageList.isEmpty {
+            str = oshidoriContent.firstContent.rawValue
+        }
         let message = Message(text: str, sender: otherSender(), messageId: UUID().uuidString, date: Date())
         return [
             message
