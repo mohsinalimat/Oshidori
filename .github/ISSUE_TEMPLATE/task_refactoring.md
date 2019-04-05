@@ -3,7 +3,7 @@ name: Task_Refactoring
 about: タスクやリファクタリングのissueを作成するときのテンプレート
 title: ''
 labels: ''
-assignees: ''
+assignees: 'YamaTatsu10969'
 
 ---
 
