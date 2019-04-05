@@ -13,15 +13,19 @@ import MessageKit
 import MessageInputBar
 
 class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
-
+    
     // 会話の中身を記録する用　MessageKitで使うために必要
     var messageList: [Message] = []
+    
+    // 最終的に送る内容
+    var sendTempMessage: Message?
     
     // おしどりが話す内容
     enum oshidoriContent: String {
         case firstContent = "おしどりに預けたいメッセージを書いてね！"
-        case afterWroteMessage = "このメッセージを預けますか？ 行いたいアクションのメッセージをタップするか、入力してください！"
-        case LastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！画面が遷移するよ！"
+        case afterWroteMessage = "このメッセージを預けますか？ 預ける場合は「預ける」か「1」を、編集する場合は「編集」か「2」を入力してください！"
+        case lastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！"
+        case continueMessage = "もう一度メッセージを書きますか？書く場合は、「書く」または「1」を入力してください！"
     }
     
     // chatのstatusフラグ
@@ -32,6 +36,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         case selectContentType
         case afterWroteMessage
         case selectSendType
+        case enterError
     }
     
     // 状態の判断
@@ -52,12 +57,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             return true
         }
         return false
-    }
-    
-    // ボタン
-    enum selectButtonContent: String {
-        case edit = "編集"
-        case keep = "預ける"
     }
     
     // 日付をフォーマットするために必要
@@ -97,19 +96,11 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         case chatStatus.afterWroteMessage:
             str = oshidoriContent.afterWroteMessage.rawValue
         case chatStatus.selectSendType:
-            str = oshidoriContent.LastMessage.rawValue
+            str = oshidoriContent.lastMessage.rawValue
         default:
             str = "正しい値を入力してください！"
         }
-//        if chatStatusFlag == chatStatus.selectContentType {
-//            str = oshidoriContent.firstContent.rawValue
-//        }
-//        if chatStatusFlag == chatStatus.afterWroteMessage {
-//            str = oshidoriContent.afterWroteMessage.rawValue
-//        }
-//        if chatStatusFlag == chatStatus.selectSendType {
-//            str = oshidoriContent.LastMessage.rawValue
-//        }
+        
         let message = Message(text: str, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
         return message
     }
@@ -156,17 +147,17 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     // TODO: タップの検知
     // タップを検知するため。反応なし。
-//    func didTapMessage(in cell: MessageCollectionViewCell) {
-//        if !isAfterWroteMessage() {
-//            return
-//        }
-//        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
-//        guard let messagesDataSource = messagesCollectionView.messagesDataSource else { return }
-//        let tapMessage = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
-//        print(tapMessage)
-//        print("🌞🌞🌞🌞🌞🌞🌞🌞🌞")
-//        let pre = tapMessage.kind
-//    }
+    //    func didTapMessage(in cell: MessageCollectionViewCell) {
+    //        if !isAfterWroteMessage() {
+    //            return
+    //        }
+    //        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
+    //        guard let messagesDataSource = messagesCollectionView.messagesDataSource else { return }
+    //        let tapMessage = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+    //        print(tapMessage)
+    //        print("🌞🌞🌞🌞🌞🌞🌞🌞🌞")
+    //        let pre = tapMessage.kind
+    //    }
     
     
     // firebase 関連
@@ -192,25 +183,65 @@ extension ChatViewController: MessageInputBarDelegate {
     
     // メッセージを入力するMessageInputBarの送信ボタンを押したときに発生するファンクション
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        var editFlag = false
         for component in inputBar.inputTextView.components {
             if let str = component as? String {
                 let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date())
                 
-                insertNewMessage(message)
-                chatStatusFlag = chatStatus.afterWroteMessage
-                // おしどりからの返答を書いているロジック。
-                if chatStatusFlag == chatStatus.afterWroteMessage {
+                switch  chatStatusFlag! {
+                case chatStatus.selectContentType:
+                    // ユーザが送ったメッセージを保存
+                    sendTempMessage = message
+                    // メッセージを送信して状態を変化
+                    insertNewMessage(message)
+                    chatStatusFlag = chatStatus.afterWroteMessage
                     insertNewMessage(getOshidoriMessages())
-                    let editMessage = Message(text: selectButtonContent.edit.rawValue, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                    let keepMessage = Message(text: selectButtonContent.keep.rawValue, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                    insertNewMessage(editMessage)
-                    insertNewMessage(keepMessage)
+                    
+                case chatStatus.afterWroteMessage:
+                    insertNewMessage(message)
+                    guard let sendMessage = sendTempMessage else {
+                        // TODO:エラー処理
+                        return
+                    }
+                    // 預ける場合
+                    if message.content == "預ける" || message.content == "1"{
+                        save(sendMessage)
+                        sendTempMessage = nil
+                        chatStatusFlag = chatStatus.selectSendType
+                        insertNewMessage(getOshidoriMessages())
+                    // 編集する場合
+                    } else if message.content == "編集" || message.content == "2" {
+                        editFlag = true
+                        chatStatusFlag = chatStatus.selectContentType
+                        insertNewMessage(getOshidoriMessages())
+                    // 入力が無効だったとき
+                    } else {
+                        chatStatusFlag = chatStatus.enterError
+                        insertNewMessage(getOshidoriMessages())
+                        chatStatusFlag = chatStatus.afterWroteMessage
+                        insertNewMessage(getOshidoriMessages())
+                    }
+
+                case chatStatus.selectSendType:
+                    insertNewMessage(getOshidoriMessages())
+                    
+                default :
+                    chatStatusFlag = chatStatus.enterError
+                    insertNewMessage(getOshidoriMessages())
+                    chatStatusFlag = chatStatus.selectContentType
+                    insertNewMessage(getOshidoriMessages())
+
                 }
-                //save(message)
             }
         }
-        // 送信したら、空っぽにする
-        inputBar.inputTextView.text = String()
+        if editFlag == true {
+            inputBar.inputTextView.text = sendTempMessage?.content
+        } else {
+            // 送信したら、空っぽにする
+            inputBar.inputTextView.text = String()
+        }
+        
+        
         // 一番下にスクロールする。アニメーション付き
         messagesCollectionView.scrollToBottom(animated: true)
     }

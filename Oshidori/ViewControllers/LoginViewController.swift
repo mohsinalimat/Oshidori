@@ -22,9 +22,15 @@ class LoginViewController: UIViewController, UserDelegate {
         super.viewDidLoad()
         user.delegate = self
         if user.isLogin() {
-            moveTestPage()
+            moveMessagePage()
         }
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if user.isLogin() {
+            moveMessagePage()
+        }
     }
     
     @IBAction func didTapSignInButton(_ sender: Any) {
@@ -33,7 +39,7 @@ class LoginViewController: UIViewController, UserDelegate {
         }
         
         if user.isLogin() {
-            moveTestPage()
+            moveMessagePage()
         } else {
             self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
         }

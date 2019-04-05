@@ -46,4 +46,9 @@ extension UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "LoginStoryboard")
         self.present(viewController, animated: true, completion: nil)
     }
+    func moveMessagePage() {
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MessageStoryboard")
+        self.present(viewController, animated: true, completion: nil)
+    }
 }
