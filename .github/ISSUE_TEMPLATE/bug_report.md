@@ -2,8 +2,8 @@
 name: Bug report
 about: バグレポートの時のテンプレート
 title: ''
-labels: ''
-assignees: ''
+labels: 'enhancement'
+assignees: 'YamaTatsu10969'
 
 ---
 
