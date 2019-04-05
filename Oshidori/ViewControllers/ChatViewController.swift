@@ -73,7 +73,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }()
     
     override func viewDidLoad() {
-      
+        
         super.viewDidLoad()
         
         DispatchQueue.main.async {
@@ -97,15 +97,27 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     // おしどりから放たれる言葉
     func getOshidoriMessages() -> Message {
         var str = ""
-        if chatStatusFlag == chatStatus.selectContentType {
+        
+        // Q.オプショナルバインディングは必要ではない？
+        switch chatStatusFlag! {
+        case chatStatus.selectContentType:
             str = oshidoriContent.firstContent.rawValue
-        }
-        if chatStatusFlag == chatStatus.afterWroteMessage {
+        case chatStatus.afterWroteMessage:
             str = oshidoriContent.afterWroteMessage.rawValue
-        }
-        if chatStatusFlag == chatStatus.selectSendType {
+        case chatStatus.selectSendType:
             str = oshidoriContent.LastMessage.rawValue
+        default:
+            str = "error"
         }
+//        if chatStatusFlag == chatStatus.selectContentType {
+//            str = oshidoriContent.firstContent.rawValue
+//        }
+//        if chatStatusFlag == chatStatus.afterWroteMessage {
+//            str = oshidoriContent.afterWroteMessage.rawValue
+//        }
+//        if chatStatusFlag == chatStatus.selectSendType {
+//            str = oshidoriContent.LastMessage.rawValue
+//        }
         let message = Message(text: str, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
         return message
     }
@@ -131,9 +143,23 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
         return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
     }
-
+    
+    // TODO: タップの検知
+    // タップを検知するため。反応なし。
+//    func didTapMessage(in cell: MessageCollectionViewCell) {
+//        if !isAfterWroteMessage() {
+//            return
+//        }
+//        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
+//        guard let messagesDataSource = messagesCollectionView.messagesDataSource else { return }
+//        let tapMessage = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+//        print(tapMessage)
+//        print("🌞🌞🌞🌞🌞🌞🌞🌞🌞")
+//        let pre = tapMessage.kind
+//    }
     
     
+    // firebase 関連
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
@@ -149,7 +175,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         collectionRef.addDocument(data: message.representation)
     }
     
-   
+    
 }
 
 extension ChatViewController: MessageInputBarDelegate {
