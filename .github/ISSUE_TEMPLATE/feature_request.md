@@ -2,8 +2,8 @@
 name: Feature request
 about: 開発する機能
 title: ''
-labels: ''
-assignees: ''
+labels: 'enhancement(機能)'
+assignees: 'YamaTatsu10969'
 
 ---
 
