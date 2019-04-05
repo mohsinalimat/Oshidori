@@ -2,7 +2,7 @@
 name: Bug report
 about: バグレポートの時のテンプレート
 title: ''
-labels: 'bug'
+labels: 'bug(不具合)'
 assignees: 'YamaTatsu10969'
 
 ---
