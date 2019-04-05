@@ -13,25 +13,7 @@ import MessageKit
 import MessageInputBar
 
 class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
-    
-    
-    func currentSender() -> Sender {
-        // TODO: firebase の uid にする
-        return Sender(id: "my_unique_id", displayName: "やまたつ")
-    }
-    
-    func oshidoriSender() -> Sender {
-        return Sender(id: "Oshidori", displayName: "おしどり")
-    }
-    
-    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
-        return messageList.count
-    }
-    
-    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
-        return messageList[indexPath.section]
-    }
-    
+
     // 会話の中身を記録する用　MessageKitで使うために必要
     var messageList: [Message] = []
     
@@ -52,8 +34,21 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         case selectSendType
     }
     
+    // 状態の判断
+    func isSelectContentType() -> Bool{
+        if chatStatusFlag == chatStatus.selectContentType {
+            return true
+        }
+        return false
+    }
     func isAfterWroteMessage() -> Bool{
         if chatStatusFlag == chatStatus.afterWroteMessage {
+            return true
+        }
+        return false
+    }
+    func isSelectSendType() -> Bool{
+        if chatStatusFlag == chatStatus.selectSendType {
             return true
         }
         return false
@@ -73,9 +68,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }()
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
             self.messageList.append(self.getOshidoriMessages())
@@ -85,7 +78,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             self.messagesCollectionView.scrollToBottom()
         }
         
-        // 初期化
+        // 初期ステータスを入れる
         chatStatusFlag = chatStatus.selectContentType
         
         messagesCollectionView.messagesDataSource = self
@@ -94,10 +87,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         messageInputBar.delegate = self
     }
     
-    // おしどりから放たれる言葉
+    // おしどりから放たれる言葉を状態によって変更する
     func getOshidoriMessages() -> Message {
         var str = ""
-        
         // Q.オプショナルバインディングは必要ではない？
         switch chatStatusFlag! {
         case chatStatus.selectContentType:
@@ -107,7 +99,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         case chatStatus.selectSendType:
             str = oshidoriContent.LastMessage.rawValue
         default:
-            str = "error"
+            str = "正しい値を入力してください！"
         }
 //        if chatStatusFlag == chatStatus.selectContentType {
 //            str = oshidoriContent.firstContent.rawValue
@@ -138,10 +130,28 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         })
     }
     
+    // メッセージを見えるようにしている
     func isLastSectionVisible() -> Bool {
         guard !messageList.isEmpty else { return false }
         let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
         return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
+    }
+    
+    func currentSender() -> Sender {
+        // TODO: firebase の uid にする
+        return Sender(id: "my_unique_id", displayName: "やまたつ")
+    }
+    
+    func oshidoriSender() -> Sender {
+        return Sender(id: "Oshidori", displayName: "おしどり")
+    }
+    
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messageList.count
+    }
+    
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        return messageList[indexPath.section]
     }
     
     // TODO: タップの検知
@@ -188,8 +198,7 @@ extension ChatViewController: MessageInputBarDelegate {
                 
                 insertNewMessage(message)
                 chatStatusFlag = chatStatus.afterWroteMessage
-                
-                
+                // おしどりからの返答を書いているロジック。
                 if chatStatusFlag == chatStatus.afterWroteMessage {
                     insertNewMessage(getOshidoriMessages())
                     let editMessage = Message(text: selectButtonContent.edit.rawValue, sender: currentSender(), messageId: UUID().uuidString, date: Date())
