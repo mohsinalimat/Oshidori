@@ -241,7 +241,6 @@ extension ChatViewController: MessageInputBarDelegate {
             inputBar.inputTextView.text = String()
         }
         
-        
         // 一番下にスクロールする。アニメーション付き
         messagesCollectionView.scrollToBottom(animated: true)
     }
@@ -250,6 +249,19 @@ extension ChatViewController: MessageInputBarDelegate {
 
 // メッセージのdelegate
 extension ChatViewController{
+    
+//    func didTapMessage(in cell: MessageCollectionViewCell) {
+//        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
+//        guard let messagesDataSource = messagesCollectionView.messagesDataSource else { return }
+//        let _ = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+//
+//        switch message.kind {
+//        case .text(let textMessage):
+//            _ = textMessage
+//        default:
+//            break
+//        }
+//    }
     
     // メッセージの色を変更（デフォルトは自分：白、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
