@@ -21,13 +21,10 @@ class LoginViewController: UIViewController, UserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         user.delegate = self
-        if user.isLogin() {
-            moveMessagePage()
-        }
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if user.isLogin() {
             moveMessagePage()
         }
