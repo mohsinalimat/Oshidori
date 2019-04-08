@@ -90,9 +90,6 @@
                         <viewLayoutGuide key="safeArea" id="Q9B-D1-wfh"/>
                     </view>
                     <navigationItem key="navigationItem" title="手紙" id="aA6-HB-BbP"/>
-                    <connections>
-                        <outlet property="messageTableView" destination="fMW-fG-UxW" id="1ts-g5-h88"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cyT-Sk-Cm1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

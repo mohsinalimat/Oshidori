@@ -13,13 +13,11 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     let test = ["牛乳を買う", "掃除をする", "アプリ開発の勉強をする"]
     
     
-    @IBOutlet weak var messageTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messageTableView.delegate = self
-        messageTableView.dataSource = self
+        
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
