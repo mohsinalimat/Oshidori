@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		66C73E8EF7E5DA251CF6CE5E /* Pods_Oshidori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549C64E89FB8F49CDD276DD4 /* Pods_Oshidori.framework */; };
+		6707E0AC225ADB4E00C12A5A /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707E0AB225ADB4E00C12A5A /* MessageViewController.swift */; };
 		6723DEA4224E176F00B3DF69 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6723DEA3224E176F00B3DF69 /* Login.storyboard */; };
 		6723DEA8224F10B600B3DF69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEA7224F10B600B3DF69 /* LoginViewController.swift */; };
 		6723DEAA224F4A5700B3DF69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6723DEA9224F4A5700B3DF69 /* GoogleService-Info.plist */; };
@@ -53,6 +54,7 @@
 		269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OshidoriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F67F92A9913F9418DE25909 /* Pods-OshidoriUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriUITests/Pods-OshidoriUITests.release.xcconfig"; sourceTree = "<group>"; };
 		549C64E89FB8F49CDD276DD4 /* Pods_Oshidori.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Oshidori.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6707E0AB225ADB4E00C12A5A /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		6723DEA3224E176F00B3DF69 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6723DEA7224F10B600B3DF69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6723DEA9224F4A5700B3DF69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				6723DEA7224F10B600B3DF69 /* LoginViewController.swift */,
 				6723DEB72250AA7500B3DF69 /* RegisterViewController.swift */,
 				6723DEBF2254415C00B3DF69 /* ChatViewController.swift */,
+				6707E0AB225ADB4E00C12A5A /* MessageViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				6723DEAC224F51C800B3DF69 /* User.swift in Sources */,
 				6723DEAE224F52BB00B3DF69 /* Credential.swift in Sources */,
 				6723DEC02254415C00B3DF69 /* ChatViewController.swift in Sources */,
+				6707E0AC225ADB4E00C12A5A /* MessageViewController.swift in Sources */,
 				6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
