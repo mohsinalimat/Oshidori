@@ -10,14 +10,18 @@ import UIKit
 
 class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let test = ["牛乳を買う", "掃除をする", "アプリ開発の勉強をする"]
+    let messages:[(content:String, date:String)] = [(content:"ありがと", date : "2019/10/28"), (content:"content2", date: "2019/10/04")]
     
+    @IBOutlet weak var receiveTableView: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // 登録をすることで、カスタムセルを利用できるようになる。
+        // nibファイルはxibファイルの作成と同時に作られるらしい。
+        // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
+        self.receiveTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,12 +38,16 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return test.count
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = test[indexPath.row]
+        
+        // as! ReceiveMessageTableViewCell をつけないと、ReceiveMessageTableViewCell.swiftのパーツをいじることができない。
+        let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
+        cell.contentLabel.text = messages[indexPath.row].content
+        cell.dateLabel.text = messages[indexPath.row].date
+
         return cell
     }
     

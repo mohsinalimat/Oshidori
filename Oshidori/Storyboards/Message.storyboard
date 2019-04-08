@@ -52,23 +52,13 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fMW-fG-UxW">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="zBU-2h-ipl">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zBU-2h-ipl" id="ZQ8-1a-w2g">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="Bm1-H2-11X" id="Nh2-09-HUK"/>
                                     <outlet property="delegate" destination="Bm1-H2-11X" id="5rv-Kx-SYh"/>
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGN-O5-1pi">
-                                <rect key="frame" x="339" y="536" width="16" height="22"/>
+                                <rect key="frame" x="295" y="498" width="60" height="60"/>
                                 <state key="normal" image="Write_icon"/>
                                 <connections>
                                     <segue destination="I6m-Qv-LBa" kind="show" id="aAV-vq-ydt"/>
@@ -90,6 +80,9 @@
                         <viewLayoutGuide key="safeArea" id="Q9B-D1-wfh"/>
                     </view>
                     <navigationItem key="navigationItem" title="手紙" id="aA6-HB-BbP"/>
+                    <connections>
+                        <outlet property="receiveTableView" destination="fMW-fG-UxW" id="dBN-26-Dxv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cyT-Sk-Cm1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
