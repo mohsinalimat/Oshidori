@@ -32,39 +32,23 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        // firestoreからデータを持ってくる
-        let collectionRef = getColletionRef()
-        collectionRef.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    if let content = document.get("content"){
-                        if let date = document.get("created"){
-                            print(date) // -> FIRTimestamp: seconds=1554548323 nanoseconds=622850000>
-                            // TODO: FIRTimestamp -> String へのコンバートができていない。
-                            //self.messages.append((content: content as! String, sendDate: self.convertTimeStampToString(timestampDate: date as! TimeInterval)))
-                            self.messages.append((content: content as! String, sendDate: "2019/10/28"))
-                            
-                        }
-                    }
-                }
-                // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
-                self.receiveTableView.reloadData()
-            }
-        }
+        // getMessageDataFromFirestore_createTableView()
+        
     }
     
-    // TODO: convertができるようにする
-//        func convertTimeStampToString(timestampDate: TimeInterval) -> String {
-//            let date = NSDate(timeIntervalSince1970: timestampDate / 1000)
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
-//            let stringDate = dateFormatter.string(from: date as Date)
-//            return stringDate
-//        }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        // messages の初期化
+        messages.removeAll()
+        // firestoreからデータを取って、テーブルビューに反映
+        getMessageDataFromFirestore_createTableView()
+    }
+
+    func convertDateToString(timestampDate: NSDate) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let stringDate = dateFormatter.string(from: timestampDate as Date)
+        return stringDate
+    }
     
     // MARK: - Table view data source
     
@@ -78,12 +62,10 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         // as! ReceiveMessageTableViewCell をつけないと、ReceiveMessageTableViewCell.swiftのパーツをいじることができない。
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
         cell.contentLabel.text = messages[indexPath.row].content
         cell.dateLabel.text = messages[indexPath.row].sendDate
-        
         return cell
     }
     
@@ -98,9 +80,29 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         return db.collection("users").document(uid).collection("messages")
     }
     
-    
-    
-    
+    func getMessageDataFromFirestore_createTableView() {
+        // firestoreからデータを持ってくる
+        let collectionRef = getColletionRef()
+        collectionRef.getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                    if let content = document.get("content"){
+                        if let date = document.get("created"){
+                            let dateTimestamp = date as! Timestamp
+                            print(dateTimestamp.dateValue())
+                            let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
+                            self.messages.append((content: content as! String, sendDate: dateString))
+                        }
+                    }
+                }
+                // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
+                self.receiveTableView.reloadData()
+            }
+        }
+    }
     
     //    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     //        // #warning Incomplete implementation, return the number of rows
