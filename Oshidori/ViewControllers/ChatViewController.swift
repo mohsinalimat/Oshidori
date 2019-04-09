@@ -20,6 +20,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     // 最終的に送る内容
     var sendTempMessage: Message?
     
+    // contentTypeを保存しておく場所
+    var tmpStoreContentType: String?
+    
     // おしどりが話す内容
     enum oshidoriContent: String {
         case firstContent = "おしどりに預けたいメッセージを書いてね！"
