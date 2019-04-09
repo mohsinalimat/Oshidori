@@ -34,6 +34,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     // chatのstatus
     enum chatStatus{
         case selectContentType
+        case beforewriteMessage
         case afterWroteMessage
         case selectSendType
         case enterError
@@ -136,7 +137,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     func currentSender() -> Sender {
         // TODO: firebase の uid にする
-        return Sender(id: "my_unique_id", displayName: "やまたつ")
+        return Sender(id: getUid(), displayName: "やまたつ")
     }
     
     func oshidoriSender() -> Sender {
@@ -161,6 +162,14 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         }
         return db.collection("users").document(uid).collection("messages")
     }
+    private func getUid() -> String {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+            return ""
+        }
+        return uid
+    }
+    
     
     func save(_ message: Message) {
         // falseだったら実行されるようだ。guardは条件に一致なかった場合に、処理を中断させるための構文
