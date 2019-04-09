@@ -221,7 +221,10 @@ extension ChatViewController: MessageInputBarDelegate{
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         for component in inputBar.inputTextView.components {
             if let str = component as? String {
-                let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+                guard let contentType = tmpStoreContentType else {
+                    return
+                }
+                let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date(),contentType: contentType)
                 
                 switch  chatStatusFlag! {
                     
@@ -237,32 +240,12 @@ extension ChatViewController: MessageInputBarDelegate{
                     
                     // 「編集」「預ける」をボタンの代わりに送る
                     // TODO: 画像で、ボタンのようにしたい。その時は、画像の名前になるのか？比較要素が。
-                    createAndInsertMessageFromeUser("書き直す")
-                    createAndInsertMessageFromeUser("預ける")
+                    createAndInsertMessageFromeUser(REWRITE)
+                    createAndInsertMessageFromeUser(KEEP)
                     
                     cleanTextBoxAndScroll(inputBar: inputBar)
                 case chatStatus.afterWroteMessage:
-                    insertNewMessage(message)
-                    // 預ける場合
-                    if message.content == "預ける" || message.content == "1"{
-                        if let sendMessage = sendTempMessage {
-                            selectKeepAction(sendMessage: sendMessage)
-                        }
-                        cleanTextBoxAndScroll(inputBar: inputBar)
-                        // 編集する場合
-                    } else if message.content == "編集" || message.content == "2" {
-                        selectEditAction()
-                        inputBar.inputTextView.text = sendTempMessage?.content
-                        // 入力が無効だったとき
-                    } else if message.content == "書き直す" || message.content == "3" {
-                        selectResetAction()
-                    } else {
-                        chatStatusFlag = chatStatus.enterError
-                        insertNewMessage(getOshidoriMessages())
-                        chatStatusFlag = chatStatus.afterWroteMessage
-                        insertNewMessage(getOshidoriMessages())
-                        cleanTextBoxAndScroll(inputBar: inputBar)
-                    }
+                    reactionWhenSelectSendType(textMessage: str)
                     
                 case chatStatus.selectSendType:
                     insertNewMessage(getOshidoriMessages())
@@ -302,15 +285,15 @@ extension ChatViewController: MessageInputBarDelegate{
     }
     
     func reactionWhenSelectSendType(textMessage: String) {
-        if textMessage == "編集" {
+        if textMessage == EDIT {
             createAndInsertMessageFromeUser(textMessage)
             selectEditAction()
-        } else if textMessage == "預ける"{
+        } else if textMessage == KEEP {
             createAndInsertMessageFromeUser(textMessage)
             if let sendMessage = sendTempMessage {
                 selectKeepAction(sendMessage: sendMessage)
             }
-        } else if textMessage == "書き直す" {
+        } else if textMessage == REWRITE {
             createAndInsertMessageFromeUser(textMessage)
             selectResetAction()
         } else {
@@ -323,12 +306,14 @@ extension ChatViewController: MessageInputBarDelegate{
         tmpStoreContentType = storeText
         chatStatusFlag = chatStatus.beforeWriteMessage
         insertNewMessage(getOshidoriMessages())
+        messagesCollectionView.scrollToBottom(animated: true)
     }
     
     func pushContentType() {
         createAndInsertMessageFromeUser(THANKYOU)
         createAndInsertMessageFromeUser(SORRY)
         createAndInsertMessageFromeUser(LISTEN)
+        messagesCollectionView.scrollToBottom(animated: true)
     }
     
     func selectKeepAction(sendMessage: Message) {
@@ -342,17 +327,17 @@ extension ChatViewController: MessageInputBarDelegate{
     }
     
     func selectEditAction() {
-        chatStatusFlag = chatStatus.selectContentType
+        chatStatusFlag = chatStatus.beforeWriteMessage
         insertNewMessage(getOshidoriMessages())
-        chatStatusFlag = chatStatus.selectContentType
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
     func selectResetAction() {
+        tmpStoreContentType = nil
         sendTempMessage = nil
         chatStatusFlag = chatStatus.selectContentType
         insertNewMessage(getOshidoriMessages())
-        chatStatusFlag = chatStatus.selectContentType
+        pushContentType()
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
@@ -391,7 +376,6 @@ extension ChatViewController{
     
     // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        
         return isFromCurrentSender(message: message) ?
             UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) :
             UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
