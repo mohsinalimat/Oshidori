@@ -200,8 +200,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         }
         return uid
     }
-    
-    
+
     func save(_ message: Message) {
         // falseだったら実行されるようだ。guardは条件に一致なかった場合に、処理を中断させるための構文
         guard isAfterWroteMessage() else {
@@ -211,7 +210,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         let collectionRef = getColletionRef()
         collectionRef.addDocument(data: message.representation)
     }
-    
     
 }
 
@@ -258,12 +256,6 @@ extension ChatViewController: MessageInputBarDelegate{
                 }
             }
         }
-    }
-    
-    func inputBarFillWhenEditAction() {
-        //        MessageInputBar.clearTextInputContextIdentifier("できるかな")
-        //        // messageInputBar.delegate.
-        //        MessageInputBarDelegate.messageInputBar(へ)
     }
     
     func cleanTextBoxAndScroll(inputBar: MessageInputBar) {
