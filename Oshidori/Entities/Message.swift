@@ -16,6 +16,9 @@ struct Message: MessageType {
     var sentDate: Date
     var content: String
     var contentType: String
+    // contentTypeの選択肢
+    var contentTypes: [String] = ["ありがとう","ごめんね","あのね"]
+
     // kind をfireStorageに入れると落ちる. kind は型が異なるようだ。Stringとして
     // ただし、プロトコルにkind:MessageKind がいるので定義しておかなければエラーになる。
     var kind: MessageKind{
