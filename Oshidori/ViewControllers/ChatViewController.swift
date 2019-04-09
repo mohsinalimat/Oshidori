@@ -25,8 +25,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     // おしどりが話す内容
     enum oshidoriContent: String {
-        case firstContent = "おしどりに預けたいメッセージを書いてね！"
-        case afterWroteMessage = "このメッセージを預けますか？ メッセージをタップして選択してください！編集する場合は、「編集」のメッセージを送ってね！"
+        case firstContent = "お手紙の種類を選んでね！"
+        case beforeWriteMessage = "おしどりに預けたいメッセージを書いてね！"
+        case afterWroteMessage = "この手紙を預けますか？ メッセージをタップして選択してください！編集する場合は、「編集」のメッセージを送ってね！"
         case lastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！"
         case continueMessage = "もう一度メッセージを書きますか？書く場合は、「書く」または「1」を入力してください！"
     }
@@ -72,15 +73,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DispatchQueue.main.async {
-            // messageListにメッセージの配列をいれて
-            self.messageList.append(self.getOshidoriMessages())
-            // messagesCollectionViewをリロードして
-            self.messagesCollectionView.reloadData()
-            // 一番下までスクロールする
-            self.messagesCollectionView.scrollToBottom()
-        }
-        
+
         // 初期ステータスを入れる
         chatStatusFlag = chatStatus.selectContentType
         
@@ -89,6 +82,19 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         messagesCollectionView.messagesDisplayDelegate = self
         messageInputBar.delegate = self
         messagesCollectionView.messageCellDelegate = self
+        
+        DispatchQueue.main.async {
+            // messageListにメッセージの配列をいれて
+            self.messageList.append(self.getOshidoriMessages())
+            // messagesCollectionViewをリロードして
+            self.messagesCollectionView.reloadData()
+            // 一番下までスクロールする
+            self.messagesCollectionView.scrollToBottom()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        selectContentType()
     }
     
     // おしどりから放たれる言葉を状態によって変更する
@@ -98,6 +104,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         switch chatStatusFlag! {
         case chatStatus.selectContentType:
             str = oshidoriContent.firstContent.rawValue
+        case chatStatus.beforewriteMessage:
+            str = oshidoriContent.beforeWriteMessage.rawValue
         case chatStatus.afterWroteMessage:
             str = oshidoriContent.afterWroteMessage.rawValue
         case chatStatus.selectSendType:
@@ -139,8 +147,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     func currentSender() -> Sender {
-        // TODO: firebase の uid にする
-        return Sender(id: getUid(), displayName: "やまたつ")
+        return Sender(id: getUid(), displayName: "")
     }
     
     func oshidoriSender() -> Sender {
@@ -247,9 +254,9 @@ extension ChatViewController: MessageInputBarDelegate{
     }
     
     func inputBarFillWhenEditAction() {
-//        MessageInputBar.clearTextInputContextIdentifier("できるかな")
-//        // messageInputBar.delegate.
-//        MessageInputBarDelegate.messageInputBar(へ)
+        //        MessageInputBar.clearTextInputContextIdentifier("できるかな")
+        //        // messageInputBar.delegate.
+        //        MessageInputBarDelegate.messageInputBar(へ)
     }
     
     func cleanTextBoxAndScroll(inputBar: MessageInputBar) {
@@ -257,6 +264,12 @@ extension ChatViewController: MessageInputBarDelegate{
         inputBar.inputTextView.text = String()
         // 一番下にスクロールする。アニメーション付き
         messagesCollectionView.scrollToBottom(animated: true)
+    }
+    
+    func selectContentType() {
+        createAndInsertMessage("ありがとう")
+        createAndInsertMessage("ごめんね")
+        createAndInsertMessage("あのね")
     }
     
     func selectKeepAction(sendMessage: Message) {
