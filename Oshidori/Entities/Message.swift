@@ -15,28 +15,24 @@ struct Message: MessageType {
     var sender: Sender
     var sentDate: Date
     var content: String
+    var contentType: String
     // kind をfireStorageに入れると落ちる. kind は型が異なるようだ。Stringとして
     // ただし、プロトコルにkind:MessageKind がいるので定義しておかなければエラーになる。
     var kind: MessageKind{
         return .text(content)
     }
     
-    private init(content: String, sender: Sender, messageId: String, date: Date) {
+    private init(content: String, sender: Sender, messageId: String, date: Date, contentType: String) {
         self.content = content
         self.sender = sender
         self.messageId = messageId
         self.sentDate = date
+        self.contentType = contentType
     }
 
-    init(text: String, sender: Sender, messageId: String, date: Date) {
-        self.init(content: text, sender: sender, messageId: messageId, date: date)
+    init(text: String, sender: Sender, messageId: String, date: Date, contentType: String) {
+        self.init(content: text, sender: sender, messageId: messageId, date: date, contentType: contentType)
     }
-    
-    // tap検出時、比較用
-    init(kind: MessageKind, sender: Sender, messageId: String, date: Date) {
-        self.init(kind: kind, sender: sender, messageId: messageId, date: date)
-    } 
-    
 
 }
 
@@ -49,7 +45,8 @@ var representation: [String : Any] {
         "created": sentDate,
         "senderID": sender.id,
         "senderName": sender.displayName,
-        "content": content
+        "content": content,
+        "contentType": contentType
     ]
     
     return rep
