@@ -20,20 +20,10 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // 登録をすることで、カスタムセルを利用できるようになる。
         // nibファイルはxibファイルの作成と同時に作られるらしい。
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
-        self.receiveTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        // getMessageDataFromFirestore_createTableView()
-        
+        receiveTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,8 +54,8 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // as! ReceiveMessageTableViewCell をつけないと、ReceiveMessageTableViewCell.swiftのパーツをいじることができない。
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
-        cell.contentLabel.text = messages[indexPath.row].content
-        cell.dateLabel.text = messages[indexPath.row].sendDate
+        cell.setContentLabel(content: messages[indexPath.row].content)
+        cell.setDataLabel(date: messages[indexPath.row].sendDate)
         return cell
     }
     
@@ -84,23 +74,18 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         // firestoreからデータを持ってくる
         let collectionRef = getColletionRef()
         collectionRef.getDocuments() { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
-                    if let content = document.get("content"){
-                        if let date = document.get("created"){
-                            let dateTimestamp = date as! Timestamp
-                            print(dateTimestamp.dateValue())
-                            let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
-                            self.messages.append((content: content as! String, sendDate: dateString))
-                        }
-                    }
-                }
-                // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
-                self.receiveTableView.reloadData()
+            // エラーだったらリターンするよ
+            guard err == nil else { return }
+            for document in querySnapshot!.documents {
+                guard let content = document.get("content") else { return }
+                guard let date = document.get("created") else { return }
+                let dateTimestamp = date as! Timestamp
+                print(dateTimestamp.dateValue())
+                let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
+                self.messages.append((content: content as! String, sendDate: dateString))
             }
+            // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
+            self.receiveTableView.reloadData()
         }
     }
     
