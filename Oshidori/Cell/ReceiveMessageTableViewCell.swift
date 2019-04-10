@@ -10,8 +10,8 @@ import UIKit
 
 class ReceiveMessageTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var contentLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +23,14 @@ class ReceiveMessageTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setContentLabel(content: String) {
+        contentLabel.text = content
+    }
+    
+    func setDataLabel(date: String) {
+        dateLabel.text = date
+    }
+
     
 }
