@@ -10,6 +10,9 @@ import UIKit
 
 class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
 
+    @IBOutlet private weak var contentLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +22,14 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setContentLabel(content: String) {
+        contentLabel.text = content
+    }
+    
+    func setDataLabel(date: String) {
+        dateLabel.text = date
     }
     
 }
