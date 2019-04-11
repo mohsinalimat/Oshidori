@@ -187,11 +187,17 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    private func getColletionRef() -> CollectionReference {
+    private func getUserColletionRef() -> CollectionReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
         return db.collection("users").document(uid).collection("messages")
+    }
+    private func getTimelineColletionRef() -> CollectionReference {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("timelineMessages")
     }
     private func getUid() -> String {
         guard let uid = User.shared.getUid() else {
@@ -207,8 +213,10 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             return
         }
         print("Firestoreへセーブ")
-        let collectionRef = getColletionRef()
-        collectionRef.addDocument(data: message.representation)
+        let userCollectionRef = getUserColletionRef()
+        userCollectionRef.addDocument(data: message.representation)
+        let timelineMessagesCollectionRef = getTimelineColletionRef()
+        timelineMessagesCollectionRef.addDocument(data: message.representation)
     }
     
 }
