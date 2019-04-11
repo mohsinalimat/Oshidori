@@ -51,4 +51,11 @@ extension UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "TabbarStoryboard")
         self.present(viewController, animated: true, completion: nil)
     }
+    
+    func convertDateToString(timestampDate: NSDate) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let stringDate = dateFormatter.string(from: timestampDate as Date)
+        return stringDate
+    }
 }
