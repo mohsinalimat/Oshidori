@@ -13,8 +13,7 @@
         <!--タイムライン-->
         <scene sceneID="akl-eK-RYp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rWp-mX-tRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="04n-Po-db9" sceneMemberID="viewController">
+                <viewController id="04n-Po-db9" customClass="TimelineViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0JV-k7-uhm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,6 +27,10 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oVa-Jq-7Xa">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="04n-Po-db9" id="Qpb-fG-0CG"/>
+                                    <outlet property="delegate" destination="04n-Po-db9" id="fmw-1r-Vhu"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -43,7 +46,11 @@
                         <viewLayoutGuide key="safeArea" id="jzG-S4-mdj"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="タイムライン" image="tabBarItem:pgT-aT-KZ5:image" selectedImage="tabBarItem:pgT-aT-KZ5:image" id="pgT-aT-KZ5"/>
+                    <connections>
+                        <outlet property="timelineTableView" destination="oVa-Jq-7Xa" id="Xjs-2m-Qbj"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWp-mX-tRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="29.600000000000001" y="28.335832083958024"/>
         </scene>
