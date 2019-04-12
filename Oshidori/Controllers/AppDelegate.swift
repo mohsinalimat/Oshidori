@@ -20,13 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
+        // 全てのNavigation Barの色を変更する
         // Navigation Bar の背景色の変更
         UINavigationBar.appearance().barTintColor = UIColor.lightColor()
         // Navigation Bar の文字色の変更
         UINavigationBar.appearance().tintColor = UIColor.darkColor()
         // Navigation Bar のタイトルの文字色の変更
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkColor()]
-
         return true
     }
 
