@@ -21,6 +21,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineTableView.register (UINib(nibName: "TimelineMessageTableViewCellTableViewCell", bundle: nil),forCellReuseIdentifier:"TimelineMessageCell")
         
         // セルの高さを自動設定
+        timelineTableView.estimatedRowHeight = 50 //予想のセルの高さ //入れないとワーニングが出る
         timelineTableView.rowHeight = UITableView.automaticDimension
     }
     
