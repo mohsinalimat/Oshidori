@@ -74,7 +74,6 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 guard let content = document.get("content") else { return }
                 guard let date = document.get("created") else { return }
                 let dateTimestamp = date as! Timestamp
-                print(dateTimestamp.dateValue())
                 let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
                 self.messages.append((content: content as! String, sendDate: dateString))
             }
