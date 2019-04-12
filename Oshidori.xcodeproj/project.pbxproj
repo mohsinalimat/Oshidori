@@ -33,6 +33,8 @@
 		67C9E04C225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */; };
 		67C9E04D225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E04B225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib */; };
 		67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04E225EC22E00516B3D /* TimelineViewController.swift */; };
+		67C9E0512260131700516B3D /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E0502260131700516B3D /* UIColor.swift */; };
+		67C9E053226017B200516B3D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E052226017B200516B3D /* TabBarController.swift */; };
 		71F8B5DA7E61B3C10BA63779 /* Pods_OshidoriUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */; };
 		C74256F218E242436241BFE4 /* Pods_OshidoriTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */; };
 /* End PBXBuildFile section */
@@ -90,6 +92,8 @@
 		67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineMessageTableViewCellTableViewCell.swift; sourceTree = "<group>"; };
 		67C9E04B225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineMessageTableViewCellTableViewCell.xib; sourceTree = "<group>"; };
 		67C9E04E225EC22E00516B3D /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
+		67C9E0502260131700516B3D /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		67C9E052226017B200516B3D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OshidoriUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F39C30B74CB220E1073109 /* Pods-Oshidori.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oshidori.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Oshidori/Pods-Oshidori.debug.xcconfig"; sourceTree = "<group>"; };
 		A484EA0957D17B99E82E6CB8 /* Pods-OshidoriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriTests/Pods-OshidoriTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				6732F27F224DB2F500011710 /* AppDelegate.swift */,
+				67C9E052226017B200516B3D /* TabBarController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -196,6 +201,7 @@
 			children = (
 				6723DEB422509BA100B3DF69 /* UIViewController.swift */,
 				6736F1622254B45000E89952 /* UserDefault.swift */,
+				67C9E0502260131700516B3D /* UIColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -518,9 +524,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */,
+				67C9E053226017B200516B3D /* TabBarController.swift in Sources */,
 				6723DEA8224F10B600B3DF69 /* LoginViewController.swift in Sources */,
 				6736F1632254B45000E89952 /* UserDefault.swift in Sources */,
 				6723DEBE2254396700B3DF69 /* Message.swift in Sources */,
+				67C9E0512260131700516B3D /* UIColor.swift in Sources */,
 				6723DEB82250AA7500B3DF69 /* RegisterViewController.swift in Sources */,
 				6732F280224DB2F500011710 /* AppDelegate.swift in Sources */,
 				6723DEAC224F51C800B3DF69 /* User.swift in Sources */,

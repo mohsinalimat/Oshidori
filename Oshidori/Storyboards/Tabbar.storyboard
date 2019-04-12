@@ -12,8 +12,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="HYI-Fh-FUp">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2ri-3J-yEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tabBarController storyboardIdentifier="TabbarStoryboard" id="iiR-in-8hj" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabbarStoryboard" id="iiR-in-8hj" customClass="TabBarController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XFH-FO-RCH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -24,6 +23,7 @@
                         <segue destination="0lT-hk-dY0" kind="relationship" relationship="viewControllers" id="q5F-z3-u2g"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ri-3J-yEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-646" y="-151"/>
         </scene>
