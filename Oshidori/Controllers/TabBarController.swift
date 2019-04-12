@@ -13,11 +13,10 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // カスタマイズ
         // アイコンの色
-        UITabBar.appearance().tintColor = UIColor.darkColor()
+        UITabBar.appearance().tintColor = OshidoriColor.dark
         // 背景色
-        UITabBar.appearance().barTintColor = UIColor.lightColor()
+        UITabBar.appearance().barTintColor = OshidoriColor.light
     }
     
 

@@ -22,11 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 全てのNavigation Barの色を変更する
         // Navigation Bar の背景色の変更
-        UINavigationBar.appearance().barTintColor = UIColor.lightColor()
+        UINavigationBar.appearance().barTintColor = OshidoriColor.light
         // Navigation Bar の文字色の変更
-        UINavigationBar.appearance().tintColor = UIColor.darkColor()
+        UINavigationBar.appearance().tintColor = OshidoriColor.dark
         // Navigation Bar のタイトルの文字色の変更
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.darkColor()]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: OshidoriColor.dark]
         return true
     }
 
