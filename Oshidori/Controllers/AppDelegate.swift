@@ -19,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
+        
+        // 全てのNavigation Barの色を変更する
+        // Navigation Bar の背景色の変更
+        UINavigationBar.appearance().barTintColor = OshidoriColor.light
+        // Navigation Bar の文字色の変更
+        UINavigationBar.appearance().tintColor = OshidoriColor.dark
+        // Navigation Bar のタイトルの文字色の変更
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor: OshidoriColor.dark]
         return true
     }
 
