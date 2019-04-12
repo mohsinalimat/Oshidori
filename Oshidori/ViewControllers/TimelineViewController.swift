@@ -19,6 +19,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
         timelineTableView.register (UINib(nibName: "TimelineMessageTableViewCellTableViewCell", bundle: nil),forCellReuseIdentifier:"TimelineMessageCell")
+        
+        // セルの高さを自動設定
+        timelineTableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {

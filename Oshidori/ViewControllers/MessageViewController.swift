@@ -23,6 +23,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         // nibファイルはxibファイルの作成と同時に作られるらしい。
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
         receiveTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
+        
+        // セルの高さを自動設定
+        receiveTableView.rowHeight = UITableView.automaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool) {
