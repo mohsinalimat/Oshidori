@@ -24,7 +24,8 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
         receiveTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
         
-        // セルの高さを自動設定
+        // セルの高さを内容によって可変にする
+        receiveTableView.estimatedRowHeight = 50 //予想のセルの高さ //入れないとワーニングが出る
         receiveTableView.rowHeight = UITableView.automaticDimension
     }
     
