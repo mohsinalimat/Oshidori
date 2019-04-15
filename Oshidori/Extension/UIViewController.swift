@@ -52,6 +52,12 @@ extension UIViewController {
         self.present(viewController, animated: true, completion: nil)
     }
     
+    func moveQRcodePage() {
+        let storyboard = UIStoryboard(name: "QRcode", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "QRcodeStoryboard")
+        self.present(VC, animated: true, completion: nil)
+    }
+    
     func convertDateToString(timestampDate: NSDate) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
