@@ -40,6 +40,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         moveQRcodePage()
     }
     
+    @IBAction func didTapMoveUserEditButton(_ sender: Any) {
+        moveUserEditPage()
+    }
     
     // MARK: - Table view data source
     

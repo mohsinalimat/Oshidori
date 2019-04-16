@@ -55,11 +55,18 @@
                         <viewLayoutGuide key="safeArea" id="Q9B-D1-wfh"/>
                     </view>
                     <navigationItem key="navigationItem" title="手紙" id="aA6-HB-BbP">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="sjf-Ad-yDX">
-                            <connections>
-                                <action selector="moveQRcode:" destination="Bm1-H2-11X" id="uJn-1A-B8e"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem title="QR" id="sjf-Ad-yDX">
+                                <connections>
+                                    <action selector="moveQRcode:" destination="Bm1-H2-11X" id="uJn-1A-B8e"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="User" id="6PC-KR-5JS">
+                                <connections>
+                                    <action selector="didTapMoveUserEditButton:" destination="Bm1-H2-11X" id="xS5-Mp-nJ3"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="receiveTableView" destination="fMW-fG-UxW" id="dBN-26-Dxv"/>
