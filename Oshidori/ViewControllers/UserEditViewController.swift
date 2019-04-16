@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import Firebase
 
 class UserEditViewController: UIViewController {
 
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var birthdayDatePicker: UIDatePicker!
+    @IBOutlet weak var saveButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -20,14 +25,43 @@ class UserEditViewController: UIViewController {
         moveMessagePage()
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    // firebase 関連
+    private let db = Firestore.firestore()
+    private var reference: CollectionReference?
+    private let storage = Storage.storage().reference()
+    private func getColletionRef() -> CollectionReference {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("users").document(uid).collection("name")
     }
-    */
-
+    
+    @IBAction func didTopSendButton(_ sender: Any) {
+        guard let name = nameField.text else {
+            alert("error", "ニックネームを入力してください!", nil)
+            return
+        }
+        if name ==  "" {
+            alert("error", "ニックネームを入力してください!", nil)
+            return
+        }
+        
+        let birthday = birthdayDatePicker.date
+        let created = Date()
+        let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
+        
+        save(userInfo)
+        
+    }
+    
+    func save(_ userInfo: UserInformation) {
+        
+        print("Firestoreへセーブ")
+        let userCollectionRef = getColletionRef()
+        userCollectionRef.addDocument(data: userInfo.representation)
+        
+    }
+    
+    
+    
 }

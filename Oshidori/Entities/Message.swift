@@ -61,19 +61,17 @@ struct Message: MessageType {
 
 // firestorageに保存する用
 extension Message {
-// 結局保存されているのはここだけなんか。
-var representation: [String : Any] {
-    
-    let rep: [String : Any] = [
-        "created": sentDate,
-        "senderID": sender.id,
-        "senderName": sender.displayName,
-        "content": content,
-        "contentType": getContentType()
-    ]
-    
-    return rep
-}
-
+    // 結局保存されているのはここだけなんか。
+    var representation: [String : Any] {
+        
+        let rep: [String : Any] = [
+            "created": sentDate,
+            "senderID": sender.id,
+            "senderName": sender.displayName,
+            "content": content,
+            "contentType": getContentType()
+        ]
+        return rep
+    }
 }
 

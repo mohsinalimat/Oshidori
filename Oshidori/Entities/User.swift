@@ -30,6 +30,7 @@ class User {
     
     weak var delegate: UserDelegate?
     
+    
     // ユーザ作成
     func create (credential: Credential) {
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in
@@ -72,5 +73,7 @@ class User {
     func getUid () -> String? {
         return user?.uid
     }
-    
+
 }
+
+

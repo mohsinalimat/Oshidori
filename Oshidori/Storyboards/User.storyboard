@@ -113,17 +113,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="誕生日" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GkD-al-FvG">
-                                <rect key="frame" x="82" y="188" width="210" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="f5y-DP-wXW">
+                                <rect key="frame" x="0.0" y="162" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="577103539.947137">
+                                    <!--2019-04-16 10:32:19 +0000-->
+                                </date>
+                            </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xrd-e5-fZT">
-                                <rect key="frame" x="172" y="265" width="31" height="30"/>
+                                <rect key="frame" x="172" y="402" width="31" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="送信"/>
+                                <connections>
+                                    <action selector="didTopSendButton:" destination="Ps4-Sl-keb" eventType="touchUpInside" id="yiE-G3-QR9"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -136,6 +139,11 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="birthdayDatePicker" destination="f5y-DP-wXW" id="BDO-p5-QqO"/>
+                        <outlet property="nameField" destination="dc6-qb-4YW" id="8Iw-jp-cfD"/>
+                        <outlet property="saveButton" destination="Xrd-e5-fZT" id="gvg-KU-Cj8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nah-In-wt4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
