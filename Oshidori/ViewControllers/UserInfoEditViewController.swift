@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class UserEditViewController: UIViewController {
+class UserInfoEditViewController: UIViewController {
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var birthdayDatePicker: UIDatePicker!
