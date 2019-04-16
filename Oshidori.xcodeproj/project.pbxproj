@@ -199,8 +199,8 @@
 				67C9E048225EB7D200516B3D /* Tabbar.storyboard */,
 				6723DEBB2253193500B3DF69 /* Message.storyboard */,
 				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
-				6732F28B224DB2F600011710 /* LaunchScreen.storyboard */,
 				67920DB422643E8500127083 /* QRcode.storyboard */,
+				6732F28B224DB2F600011710 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";

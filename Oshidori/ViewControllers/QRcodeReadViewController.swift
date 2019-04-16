@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class QRcodeReadViewController: UIViewController, AVCapturePhotoCaptureDelegate, AVCaptureMetadataOutputObjectsDelegate {
+class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
     
     // カメラやマイクの入出力を管理するオブジェクトを生成
@@ -23,8 +23,6 @@ class QRcodeReadViewController: UIViewController, AVCapturePhotoCaptureDelegate,
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
                                                                 mediaType: .video,
                                                                 position: .back)
-        
-        
         
         // ワイドアングルカメラ・ビデオ・背面カメラに該当するデバイスを取得
         let devices = discoverySession.devices
@@ -62,13 +60,6 @@ class QRcodeReadViewController: UIViewController, AVCapturePhotoCaptureDelegate,
             }
         }
     }
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings) {
-        print("☀️☀️☀️☀️☀️☀️☀️")
-    }
-    
-
-
 
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
@@ -78,40 +69,16 @@ class QRcodeReadViewController: UIViewController, AVCapturePhotoCaptureDelegate,
             // QRコードの内容が空かどうかの確認
             if metadata.stringValue == nil { continue }
 
-            /*
-             このあたりで取得したQRコードを使ってゴニョゴニョする
-             読み取りの終了・再開のタイミングは用途によって制御が異なるので注意
-             以下はQRコードに紐づくWebサイトをSafariで開く例
-             */
-
             print("QRコードを読み取りました！🌞🌞🌞🌞🌞🌞🌞")
-
-            // URLかどうかの確認
-            if let url = URL(string: metadata.stringValue!) {
+            
+            print(metadata.stringValue!)
+            
+            if let partnerId = metadata.stringValue {
                 // 読み取り終了
                 self.session.stopRunning()
-                // QRコードに紐付いたURLをSafariで開く
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-
-                break
+                // test
+                moveTestPage()
             }
         }
     }
-//
-//    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-//        session.stopRunning()
-//
-//        if let metadataObject = metadataObjects.first {
-//            guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
-//            guard let stringValue = readableObject.stringValue else { return }
-//            AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-//            found(code: stringValue)
-//        }
-//
-//        dismiss(animated: true)
-//    }
-//
-//    func found(code: String) {
-//        print(code)
-//    }
 }
