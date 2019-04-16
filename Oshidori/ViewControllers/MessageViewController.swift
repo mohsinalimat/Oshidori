@@ -36,6 +36,9 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         getMessageDataFromFirestore_createTableView()
     }
 
+    @IBAction func testQRcode(_ sender: Any) {
+        moveQRcodePage()
+    }
     
     
     // MARK: - Table view data source
@@ -56,6 +59,11 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.setDataLabel(date: messages[indexPath.row].sendDate)
         return cell
     }
+    
+    @IBAction func moveQRcode(_ sender: Any) {
+        moveQRcodePage()
+    }
+    
     
     // firebase 関連
     private let db = Firestore.firestore()

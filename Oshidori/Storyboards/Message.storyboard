@@ -33,7 +33,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dGN-O5-1pi">
-                                <rect key="frame" x="339" y="585" width="16" height="22"/>
+                                <rect key="frame" x="295" y="547" width="60" height="60"/>
                                 <state key="normal" image="Write_icon"/>
                                 <connections>
                                     <segue destination="I6m-Qv-LBa" kind="show" id="aAV-vq-ydt"/>
@@ -54,7 +54,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Q9B-D1-wfh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="手紙" id="aA6-HB-BbP"/>
+                    <navigationItem key="navigationItem" title="手紙" id="aA6-HB-BbP">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="sjf-Ad-yDX">
+                            <connections>
+                                <action selector="moveQRcode:" destination="Bm1-H2-11X" id="uJn-1A-B8e"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="receiveTableView" destination="fMW-fG-UxW" id="dBN-26-Dxv"/>
                     </connections>
