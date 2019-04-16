@@ -36,7 +36,7 @@ extension UIViewController {
     }
     
     func moveUserCreatePage() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserCreateStoryboard")
         self.present(viewController, animated: true, completion: nil)
     }

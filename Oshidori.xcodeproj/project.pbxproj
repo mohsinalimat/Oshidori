@@ -38,6 +38,7 @@
 		67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04E225EC22E00516B3D /* TimelineViewController.swift */; };
 		67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E0502260131700516B3D /* OshidoriColor.swift */; };
 		67C9E053226017B200516B3D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E052226017B200516B3D /* TabBarController.swift */; };
+		67EE40CD2265947C00E2F2C5 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67EE40CC2265947C00E2F2C5 /* User.storyboard */; };
 		71F8B5DA7E61B3C10BA63779 /* Pods_OshidoriUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */; };
 		C74256F218E242436241BFE4 /* Pods_OshidoriTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */; };
 /* End PBXBuildFile section */
@@ -100,6 +101,7 @@
 		67C9E04E225EC22E00516B3D /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		67C9E0502260131700516B3D /* OshidoriColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriColor.swift; sourceTree = "<group>"; };
 		67C9E052226017B200516B3D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		67EE40CC2265947C00E2F2C5 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		7700FA585812734E8D2C9BA0 /* Pods_OshidoriUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OshidoriUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94F39C30B74CB220E1073109 /* Pods-Oshidori.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Oshidori.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Oshidori/Pods-Oshidori.debug.xcconfig"; sourceTree = "<group>"; };
 		A484EA0957D17B99E82E6CB8 /* Pods-OshidoriTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriTests/Pods-OshidoriTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				6723DEA3224E176F00B3DF69 /* Login.storyboard */,
+				67EE40CC2265947C00E2F2C5 /* User.storyboard */,
 				67C9E048225EB7D200516B3D /* Tabbar.storyboard */,
 				6723DEBB2253193500B3DF69 /* Message.storyboard */,
 				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
@@ -407,6 +410,7 @@
 				67C9E049225EB7D200516B3D /* Tabbar.storyboard in Resources */,
 				6732F28A224DB2F600011710 /* Assets.xcassets in Resources */,
 				6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */,
+				67EE40CD2265947C00E2F2C5 /* User.storyboard in Resources */,
 				6723DEBC2253193500B3DF69 /* Message.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

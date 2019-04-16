@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Register View Controller-->
+        <scene sceneID="zFo-AV-sf8">
+            <objects>
+                <viewController storyboardIdentifier="UserCreateStoryboard" id="MQ2-bq-x3U" customClass="RegisterViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jNR-o1-p9R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIu-ZI-u3V">
+                                <rect key="frame" x="30" y="547" width="315" height="50"/>
+                                <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Lrk-fM-bp2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="新規登録">
+                                    <color key="titleColor" red="0.98039215690000003" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapRegisterButton:" destination="MQ2-bq-x3U" eventType="touchUpInside" id="XaT-97-htp"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="N27-0y-EQC">
+                                <rect key="frame" x="30" y="377" width="315" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2zb-T8-Vqg">
+                                <rect key="frame" x="30" y="457" width="315" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Ijl-GC-Zli">
+                                <rect key="frame" x="60" y="120" width="255" height="127"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-dV-EeY">
+                                <rect key="frame" x="117.5" y="257" width="140" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="TkJ-t6-zGF"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qhl-8H-Qk0">
+                                <rect key="frame" x="133.5" y="617" width="108" height="30"/>
+                                <state key="normal" title="ログイン画面へ"/>
+                                <connections>
+                                    <action selector="didTapMoveLoginPageButton:" destination="MQ2-bq-x3U" eventType="touchUpInside" id="ucu-up-N1B"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <constraints>
+                            <constraint firstItem="2zb-T8-Vqg" firstAttribute="top" secondItem="N27-0y-EQC" secondAttribute="bottom" constant="50" id="5zZ-cs-7Ic"/>
+                            <constraint firstItem="ggZ-dV-EeY" firstAttribute="top" secondItem="Ijl-GC-Zli" secondAttribute="bottom" constant="10" id="8HC-ld-PIJ"/>
+                            <constraint firstItem="N27-0y-EQC" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="BLV-3h-YJC"/>
+                            <constraint firstItem="ggZ-dV-EeY" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="EHh-Qe-vBd"/>
+                            <constraint firstItem="Ijl-GC-Zli" firstAttribute="leading" secondItem="oXb-Pm-4Yh" secondAttribute="leading" constant="60" id="G2h-Yh-bHD"/>
+                            <constraint firstItem="oXb-Pm-4Yh" firstAttribute="trailing" secondItem="Ijl-GC-Zli" secondAttribute="trailing" constant="60" id="Gz7-Bl-Dop"/>
+                            <constraint firstItem="2zb-T8-Vqg" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="KRp-J8-XSd"/>
+                            <constraint firstItem="Ijl-GC-Zli" firstAttribute="top" secondItem="oXb-Pm-4Yh" secondAttribute="top" constant="100" id="ODb-bS-Qd0"/>
+                            <constraint firstItem="oIu-ZI-u3V" firstAttribute="top" secondItem="2zb-T8-Vqg" secondAttribute="bottom" constant="60" id="ZDS-bp-y2N"/>
+                            <constraint firstItem="oIu-ZI-u3V" firstAttribute="leading" secondItem="oXb-Pm-4Yh" secondAttribute="leading" constant="30" id="Zy4-e1-Kak"/>
+                            <constraint firstItem="N27-0y-EQC" firstAttribute="leading" secondItem="oXb-Pm-4Yh" secondAttribute="leading" constant="30" id="ayA-mr-2ni"/>
+                            <constraint firstItem="oXb-Pm-4Yh" firstAttribute="trailing" secondItem="N27-0y-EQC" secondAttribute="trailing" constant="30" id="cAm-JK-rUH"/>
+                            <constraint firstItem="qhl-8H-Qk0" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="cWR-5B-53n"/>
+                            <constraint firstItem="oXb-Pm-4Yh" firstAttribute="bottom" secondItem="oIu-ZI-u3V" secondAttribute="bottom" constant="70" id="cqG-kH-V06"/>
+                            <constraint firstItem="oXb-Pm-4Yh" firstAttribute="bottom" secondItem="qhl-8H-Qk0" secondAttribute="bottom" constant="20" id="eWs-Do-3mi"/>
+                            <constraint firstItem="oXb-Pm-4Yh" firstAttribute="trailing" secondItem="oIu-ZI-u3V" secondAttribute="trailing" constant="30" id="lcz-1t-NTq"/>
+                            <constraint firstItem="oXb-Pm-4Yh" firstAttribute="trailing" secondItem="2zb-T8-Vqg" secondAttribute="trailing" constant="30" id="mfN-Be-yZH"/>
+                            <constraint firstItem="oIu-ZI-u3V" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="nvA-8t-8db"/>
+                            <constraint firstItem="2zb-T8-Vqg" firstAttribute="leading" secondItem="oXb-Pm-4Yh" secondAttribute="leading" constant="30" id="qQI-gS-eLn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="oXb-Pm-4Yh"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailField" destination="N27-0y-EQC" id="dsh-k9-p2M"/>
+                        <outlet property="moveLoginPageButton" destination="qhl-8H-Qk0" id="uXa-hC-HBI"/>
+                        <outlet property="passwordField" destination="2zb-T8-Vqg" id="oqa-uo-hqB"/>
+                        <outlet property="registerButton" destination="oIu-ZI-u3V" id="hnL-9j-sGy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ckM-Xy-SHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-390" y="-3"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Oshidori_icon" width="135" height="127"/>
+        <image name="Oshidori_logo" width="141" height="28"/>
+    </resources>
+</document>
