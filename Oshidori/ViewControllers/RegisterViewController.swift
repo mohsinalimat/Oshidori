@@ -31,7 +31,7 @@ class RegisterViewController: UIViewController {
             user.login(credential: credential)
         }
         if user.isLogin() {
-            moveTestPage()
+            moveUserRegistPage()
         } else {
             self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
         }

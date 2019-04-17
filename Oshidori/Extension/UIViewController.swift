@@ -64,6 +64,12 @@ extension UIViewController {
         self.present(VC, animated: true, completion: nil)
     }
     
+    func moveUserRegistPage() {
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "registerUserInformationStoryboard")
+        self.present(VC, animated: true, completion: nil)
+    }
+    
     func convertDateToString(timestampDate: NSDate) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"

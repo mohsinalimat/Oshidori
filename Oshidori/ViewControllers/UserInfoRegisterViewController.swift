@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class UserInfoRegisterViewController: UIViewController {
 
@@ -21,19 +22,44 @@ class UserInfoRegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // firebase 関連
+    private let db = Firestore.firestore()
+    private var reference: CollectionReference?
+    private let storage = Storage.storage().reference()
+    private func getColletionRef() -> CollectionReference {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("users").document(uid).collection("name")
+    }
+    
     @IBAction func didTapSaveButton(_ sender: Any) {
+        guard let name = nameField.text else {
+            alert("error", "ニックネームを入力してください!", nil)
+            return
+        }
+        if name ==  "" {
+            alert("error", "ニックネームを入力してください!", nil)
+            return
+        }
         
+        let birthday = birthdayDatePicker.date
+        let created = Date()
+        let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
+        
+        save(userInfo)
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func save(_ userInfo: UserInformation) {
+        print("Firestoreへセーブ")
+        let userCollectionRef = getColletionRef()
+        userCollectionRef.addDocument(data: userInfo.representation, completion: { (err) in
+            if let err = err {
+                debugPrint("Error adding document: \(err)")
+            } else {
+                self.moveMessagePage()
+            }
+        })
     }
-    */
 
 }

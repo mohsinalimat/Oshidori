@@ -96,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckM-Xy-SHE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-390" y="-3"/>
+            <point key="canvasLocation" x="1732" y="445"/>
         </scene>
         <!--ユーザ情報編集-->
         <scene sceneID="dvM-jU-9hp">
@@ -195,7 +195,6 @@
                                 <state key="normal" title="送信"/>
                                 <connections>
                                     <action selector="didTapSaveButton:" destination="7j7-b7-iD4" eventType="touchUpInside" id="eZm-h5-ZZO"/>
-                                    <action selector="didTopSendButton:" destination="7j7-b7-iD4" eventType="touchUpInside" id="EIJ-1g-6yT"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -216,7 +215,7 @@
         <!--Navigation Controller-->
         <scene sceneID="kkV-eI-ozy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dQU-xv-pkf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="registerUserInformationStoryboard" automaticallyAdjustsScrollViewInsets="NO" id="dQU-xv-pkf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pmf-7X-duj">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
