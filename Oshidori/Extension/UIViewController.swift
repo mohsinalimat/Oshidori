@@ -36,7 +36,7 @@ extension UIViewController {
     }
     
     func moveUserCreatePage() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserCreateStoryboard")
         self.present(viewController, animated: true, completion: nil)
     }
@@ -55,6 +55,18 @@ extension UIViewController {
     func moveQRcodePage() {
         let storyboard = UIStoryboard(name: "QRcode", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "QRcodeStoryboard")
+        self.present(VC, animated: true, completion: nil)
+    }
+    
+    func moveUserEditPage() {
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "editUserInformationStoryboard")
+        self.present(VC, animated: true, completion: nil)
+    }
+    
+    func moveUserRegistPage() {
+        let storyboard = UIStoryboard(name: "User", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "registerUserInformationStoryboard")
         self.present(VC, animated: true, completion: nil)
     }
     
