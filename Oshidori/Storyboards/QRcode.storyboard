@@ -38,7 +38,7 @@
                                 </constraints>
                                 <state key="normal" title="パートナーのQRコードを読み取る"/>
                                 <connections>
-                                    <segue destination="Zdp-OL-Hmu" kind="presentation" id="LSk-7b-V4x"/>
+                                    <action selector="moveQRcodeReadPage:" destination="yUc-28-Opx" eventType="touchUpInside" id="tCN-zf-kDt"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -63,21 +63,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wMw-xK-A22" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="37.600000000000001" y="89.505247376311857"/>
-        </scene>
-        <!--Rcode Read View Controller-->
-        <scene sceneID="HkX-63-Bs8">
-            <objects>
-                <viewController id="Zdp-OL-Hmu" customClass="QRcodeReadViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PD4-bb-OH7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="QVb-2j-vuP"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zl8-Ay-uwd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1080.8" y="89.505247376311857"/>
         </scene>
     </scenes>
 </document>
