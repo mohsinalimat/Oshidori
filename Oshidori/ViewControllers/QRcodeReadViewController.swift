@@ -90,24 +90,42 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    private func getColletionRef() -> DocumentReference {
+    private func getMyDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
     
+    private func getPartnerDocumentRef(partnerId: String) -> DocumentReference {
+        
+        return db.collection("users").document(partnerId).collection("info").document(partnerId)
+    }
+    
     func save(_ partnerId: String) {
         print("Firestoreへセーブ")
-        let userCollectionRef = getColletionRef()
-        userCollectionRef.updateData(["partnerId":partnerId]){ err in
+        let userDocumentRef = getMyDocumentRef()
+        let partnerDocumentRef = getPartnerDocumentRef(partnerId: partnerId)
+        userDocumentRef.updateData(["partnerId": partnerId]){ err in
             if let err = err {
                 debugPrint("Error updating document: \(err)")
                 
             } else {
-                debugPrint("Document successfully updated")
+                debugPrint("my partnerId updated!!!")
                 self.alert("Success", "アップデート成功しました！", nil)
+                guard let uid = User.shared.getUid() else {
+                    return
+                }
+                partnerDocumentRef.updateData(["partnerId": uid]){ err in
+                    if let err = err {
+                        debugPrint("Error updating document: \(err)")
+                        
+                    } else {
+                        debugPrint("partnerId updated!!!")
+                    }
+                }
             }
         }
+        
     }
 }
