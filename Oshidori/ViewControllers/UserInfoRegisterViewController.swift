@@ -47,25 +47,20 @@ class UserInfoRegisterViewController: UIViewController {
         let created = Date()
         let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
         
-        save(userInfo,completion: nil!)
+        save(userInfo)
     }
     
-    func save(_ userInfo: UserInformation,completion: (Error?) -> Void) {
+    func save(_ userInfo: UserInformation) {
         print("Firestoreへセーブ")
         let userDocumentRef = getDocumentRef()
         // userDocumentRef.setData(userInfo.representation)
-        userDocumentRef.setData(userInfo.representation)
+        //userDocumentRef.setData(userInfo.representation)
+        userDocumentRef.setData(userInfo.representation) { err in
+            if let err = err {
+                debugPrint("error...")
+            } else {
+                self.moveMessagePage()
+            }
+        }
     }
-    
-    //let cl: (Error?) -> Void = ({ err in
-        //            if let err = err {
-        //                print("Error updating document: \(err)")
-        //            } else {
-        //                print("Document successfully updated")
-        //
-        //            }
-        //        })
-        //        userCollectionRef.updateData(["partnerId":partnerId], completion: cl)
-    //}
-
 }

@@ -27,13 +27,23 @@ class RegisterViewController: UIViewController {
     
     @IBAction func didTapRegisterButton(_ sender: Any) {
         if let credential = getCredential() {
-            user.create(credential: credential)
-            user.login(credential: credential)
-        }
-        if user.isLogin() {
-            moveUserRegistPage()
-        } else {
-            self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
+            
+            user.create(credential: credential, completion: { [weak self] in
+                
+                guard let self = self else {
+                    return
+                }
+                
+                self.user.login(credential: credential, completion: {
+                    
+                    // TODO: login の後に、この処理を走らせたい。どうやっていいかわからない。。。
+                    if self.user.isLogin() {
+                        self.moveUserRegistPage()
+                    } else {
+                        self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
+                    }
+                })
+            })
         }
     }
     
