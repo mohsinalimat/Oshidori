@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
 
@@ -76,9 +77,53 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
             if let partnerId = metadata.stringValue {
                 // 読み取り終了
                 self.session.stopRunning()
-                // test
-                moveTestPage()
+                // ユーザ情報をsetする
+                save(partnerId)
+                //
+                moveMessagePage()
             }
         }
+    }
+    
+    // firebase 関連
+    private let db = Firestore.firestore()
+    private var reference: CollectionReference?
+    private let storage = Storage.storage().reference()
+    private func getColletionRef() -> DocumentReference {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("users").document(uid).collection("info").document(uid)
+    }
+    
+    func save(_ partnerId: String) {
+        print("Firestoreへセーブ")
+        let userCollectionRef = getColletionRef()
+        userCollectionRef.updateData(["partnerId":partnerId]){ err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+                self.alert("Success", "アップデート成功しました！", nil)
+            }
+        }
+//        userCollectionRef.updateData(["partnerId":partnerId], completion: { err in
+//            if let err = err {
+//                print("Error updating document: \(err)")
+//            } else {
+//                print("Document successfully updated")
+//
+//            }
+//        })
+//
+//        let cl: (Error?) -> Void = ({ err in
+//            if let err = err {
+//                print("Error updating document: \(err)")
+//            } else {
+//                print("Document successfully updated")
+//
+//            }
+//        })
+//        userCollectionRef.updateData(["partnerId":partnerId], completion: cl)
     }
 }

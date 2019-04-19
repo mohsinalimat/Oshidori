@@ -26,11 +26,11 @@ class UserInfoRegisterViewController: UIViewController {
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    private func getColletionRef() -> CollectionReference {
+    private func getDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
-        return db.collection("users").document(uid).collection("name")
+        return db.collection("users").document(uid).collection("info").document(uid)
     }
     
     @IBAction func didTapSaveButton(_ sender: Any) {
@@ -47,19 +47,25 @@ class UserInfoRegisterViewController: UIViewController {
         let created = Date()
         let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
         
-        save(userInfo)
+        save(userInfo,completion: nil!)
     }
     
-    func save(_ userInfo: UserInformation) {
+    func save(_ userInfo: UserInformation,completion: (Error?) -> Void) {
         print("Firestoreへセーブ")
-        let userCollectionRef = getColletionRef()
-        userCollectionRef.addDocument(data: userInfo.representation, completion: { (err) in
-            if let err = err {
-                debugPrint("Error adding document: \(err)")
-            } else {
-                self.moveMessagePage()
-            }
-        })
+        let userDocumentRef = getDocumentRef()
+        // userDocumentRef.setData(userInfo.representation)
+        userDocumentRef.setData(userInfo.representation)
     }
+    
+    //let cl: (Error?) -> Void = ({ err in
+        //            if let err = err {
+        //                print("Error updating document: \(err)")
+        //            } else {
+        //                print("Document successfully updated")
+        //
+        //            }
+        //        })
+        //        userCollectionRef.updateData(["partnerId":partnerId], completion: cl)
+    //}
 
 }
