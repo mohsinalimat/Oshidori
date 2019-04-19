@@ -30,6 +30,9 @@ class QRcodeViewController: UIViewController {
         QRcode.image = QRimage
     }
     
+}
+
+extension QRcodeViewController {
     func generateQRCode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
@@ -49,5 +52,5 @@ class QRcodeViewController: UIViewController {
         self.present(VC, animated: true, completion: nil)
     }
 }
-
+    
 

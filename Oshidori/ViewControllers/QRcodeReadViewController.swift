@@ -11,7 +11,7 @@ import AVFoundation
 import Firebase
 
 class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-
+    
     
     // カメラやマイクの入出力を管理するオブジェクトを生成
     private let session = AVCaptureSession()
@@ -61,27 +61,28 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
             }
         }
     }
-
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
             // QRコードのデータかどうかの確認
             if metadata.type != .qr { continue }
-
             // QRコードの内容が空かどうかの確認
             if metadata.stringValue == nil { continue }
-
-            print("QRコードを読み取りました！🌞🌞🌞🌞🌞🌞🌞")
-            
-            print(metadata.stringValue!)
-            
-            if let partnerId = metadata.stringValue {
-                // 読み取り終了
-                self.session.stopRunning()
-                // ユーザ情報をsetする
-                save(partnerId)
-                //
-                moveMessagePage()
+            // partnerIdを読み取る
+            guard let partnerId = metadata.stringValue else {
+                return
             }
+            guard !(partnerId == User.shared.getUid()) else {
+                alert("エラー","それは自分のQRコードだよ😱", nil)
+                return
+            }
+            // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
+            
+            // 読み取り終了
+            self.session.stopRunning()
+            // ユーザ情報をsetする
+            save(partnerId)
+            moveMessagePage()
         }
     }
     
@@ -101,29 +102,12 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
         let userCollectionRef = getColletionRef()
         userCollectionRef.updateData(["partnerId":partnerId]){ err in
             if let err = err {
-                print("Error updating document: \(err)")
+                debugPrint("Error updating document: \(err)")
+                
             } else {
-                print("Document successfully updated")
+                debugPrint("Document successfully updated")
                 self.alert("Success", "アップデート成功しました！", nil)
             }
         }
-//        userCollectionRef.updateData(["partnerId":partnerId], completion: { err in
-//            if let err = err {
-//                print("Error updating document: \(err)")
-//            } else {
-//                print("Document successfully updated")
-//
-//            }
-//        })
-//
-//        let cl: (Error?) -> Void = ({ err in
-//            if let err = err {
-//                print("Error updating document: \(err)")
-//            } else {
-//                print("Document successfully updated")
-//
-//            }
-//        })
-//        userCollectionRef.updateData(["partnerId":partnerId], completion: cl)
     }
 }
