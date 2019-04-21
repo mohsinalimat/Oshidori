@@ -12,6 +12,14 @@ import FirebaseFirestore
 
 class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // firebase関連
+    let db = Firestore.firestore()
+    
+    @IBOutlet weak var moveSendMessageButton: UIButton!
+    
+    // userInfo を入れておく場所
+    var userInformation : UserInformation?
+    
     // let messages:[(content:String, date:String)] = [(content:"ありがと", date : "2019/10/28"), (content:"content2", date: "2019/10/04")]
     var  messages:[(content:String, sendDate:String)] = []
     
@@ -19,6 +27,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        moveSendMessageButton.isHidden = true
         // 登録をすることで、カスタムセルを利用できるようになる。
         // nibファイルはxibファイルの作成と同時に作られるらしい。
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
@@ -32,8 +41,27 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         // messages の初期化
         messages.removeAll()
-        // firestoreからデータを取って、テーブルビューに反映
-        getMessageDataFromFirestore_createTableView()
+        // userInformaitonの初期化。情報を持ってくる
+        getUserInformationRef().getDocument{ (document, error) in
+            if let userInformation = document.flatMap({
+                $0.data().flatMap({ (data) in
+                    return UserInformation(data: data)
+                })
+            }) {
+                self.userInformation = userInformation
+                debugPrint("🌞City: \(userInformation.name)")
+                if !(userInformation.roomId.isEmpty) {
+                    self.moveSendMessageButton.isHidden = false
+                }
+                // firestoreからデータを取って、テーブルビューに反映
+                self.getMessageDataFromFirestore_createTableView()
+            } else {
+                debugPrint("Document does not exist")
+            }
+        }
+        
+        
+        
     }
 
     @IBAction func testQRcode(_ sender: Any) {
@@ -43,6 +71,14 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBAction func didTapMoveUserEditButton(_ sender: Any) {
         moveUserEditPage()
     }
+    
+    @IBAction func didTapMoveSendMessageButton(_ sender: Any) {
+        // chatStoryboard
+        let storyboard = UIStoryboard(name: "Message", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "ChatStoryboard")
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
     
     // MARK: - Table view data source
     
@@ -71,23 +107,29 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         User.shared.logout()
         moveLoginPage()
     }
+}
+
+extension MessageViewController {
     
-    
-    
-    // firebase 関連
-    private let db = Firestore.firestore()
-    private var reference: CollectionReference?
-    private let storage = Storage.storage().reference()
-    private func getColletionRef() -> CollectionReference {
+    private func getUserInformationRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
-        return db.collection("users").document(uid).collection("messages")
+        return db.collection("users").document(uid).collection("info").document(uid)
+    }
+    
+    private func getRoomMessagesCollectionRef() -> CollectionReference? {
+        guard let roomId = userInformation?.roomId else {
+            return nil
+        }
+        return db.collection("rooms").document(roomId).collection("messages")
     }
     
     func getMessageDataFromFirestore_createTableView() {
         // firestoreからデータを持ってくる
-        let collectionRef = getColletionRef()
+        guard  let collectionRef = getRoomMessagesCollectionRef() else {
+            return
+        }
         collectionRef.getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
@@ -102,5 +144,5 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
             self.receiveTableView.reloadData()
         }
     }
-    
 }
+

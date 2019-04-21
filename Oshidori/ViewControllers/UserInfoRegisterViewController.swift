@@ -24,8 +24,6 @@ class UserInfoRegisterViewController: UIViewController {
     
     // firebase 関連
     private let db = Firestore.firestore()
-    private var reference: CollectionReference?
-    private let storage = Storage.storage().reference()
     private func getDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
