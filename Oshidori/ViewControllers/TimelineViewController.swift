@@ -63,7 +63,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func getMessageDataFromFirestore_createTableView() {
         // firestoreからデータを持ってくる
         let collectionRef = getTimelineColletionRef()
-        collectionRef.getDocuments() { (querySnapshot, err) in
+        collectionRef.order(by: "created", descending: true).getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
             for document in querySnapshot!.documents {

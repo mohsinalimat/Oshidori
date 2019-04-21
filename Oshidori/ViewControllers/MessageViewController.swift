@@ -130,7 +130,7 @@ extension MessageViewController {
         guard  let collectionRef = getRoomMessagesCollectionRef() else {
             return
         }
-        collectionRef.getDocuments() { (querySnapshot, err) in
+        collectionRef.order(by: "created", descending: true).getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
             for document in querySnapshot!.documents {
