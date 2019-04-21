@@ -107,10 +107,11 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
     }
     
     func save(_ partnerId: String) {
+        // TODO: PKHUDでぐるぐるをつける
         print("Firestoreへセーブ")
-        let userDocumentRef = getMyDocumentRef()
+        let myDocumentRef = getMyDocumentRef()
         let partnerDocumentRef = getPartnerDocumentRef(partnerId: partnerId)
-        userDocumentRef.updateData(["partnerId": partnerId]){ err in
+        myDocumentRef.updateData(["partnerId": partnerId]){ err in
             if let err = err {
                 debugPrint("Error updating document: \(err)")
                 
@@ -128,36 +129,22 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
                     } else {
                         debugPrint("partnerId updated!!!")
                         
-                        // roomIdを作成し、roomを作成している。
+                        // roomIdを作成し、roomを作成し、userIDを登録している。
                         let roomRef = self.getRoomCollectionRef().document()
+                        let roomId = roomRef.documentID
                         roomRef.setData([
                             "firstUser": uid ,
                             "secondUser": partnerId ,
-                            "roomId" :  roomRef.documentID ,
+                            "roomId" :  roomId ,
                         ]) { err in
                             if let err = err {
                                 debugPrint("Error adding document: \(err)")
                             } else {
-                                // TODO: 二人のroomIDを作成しに行こう！！！
-                                // getMy, getPartner... etc
+                                // roomIdをuserInfoに登録しにいっている。
+                                myDocumentRef.updateData(["roomId": roomId])
+                                partnerDocumentRef.updateData(["roomId": roomId])
                             }
                         }
-
-                        
-                        
-//                        let roomRef = self.getRoomCollectionRef().addDocument(data: [
-//                            "firstUser": uid ,
-//                            "secondUser": partnerId ,
-//                            "roomId" :  "" ,
-//                        ]) { err in
-//                            if let err = err {
-//                                debugPrint("Error adding document: \(err)")
-//                            } else {
-//                                roomRe
-//                                roomRef!.documentID
-//                            }
-//                        }
-                        
                     }
                 }
             }
