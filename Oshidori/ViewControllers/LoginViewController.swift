@@ -27,7 +27,6 @@ class LoginViewController: UIViewController, UserDelegate {
     override func viewDidAppear(_ animated: Bool) {
         if user.isLogin() {
             moveMessagePage()
-            user.getUid()
         }
     }
     
