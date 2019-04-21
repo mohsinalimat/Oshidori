@@ -23,6 +23,9 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     // contentTypeを保存しておく場所
     var tmpStoreContentType: String?
     
+    // userInfo を入れておく場所
+    var userInformation : UserInformation?
+    
     // contentTypeに使用する言葉
     let THANKYOU = "ありがとう"
     let SORRY = "ごめんね"
@@ -89,6 +92,19 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // userInformaitonの初期化。情報を持ってくる
+        getUserInformationRef().getDocument{ (document, error) in
+            if let userInformation = document.flatMap({
+                $0.data().flatMap({ (data) in
+                    return UserInformation(data: data)
+                })
+            }) {
+                debugPrint("🌞City: \(userInformation.name)")
+            } else {
+                debugPrint("Document does not exist")
+            }
+        }
 
         // 初期ステータスを入れる
         chatStatusFlag = chatStatus.selectContentType
@@ -193,11 +209,20 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         }
         return db.collection("users").document(uid).collection("messages")
     }
+    private func getRoomCollectionRef() -> CollectionReference {
+        guard let roomId = userInformation?.roomId else {
+            fatalError("roomIdを取得できませんでした。")
+        }
+        return db.collection("rooms").document(roomId).collection("messages")
+    }
     private func getTimelineColletionRef() -> CollectionReference {
+        return db.collection("timelineMessages")
+    }
+    private func getUserInformationRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
-        return db.collection("timelineMessages")
+        return db.collection("users").document(uid).collection("info").document(uid)
     }
     private func getUid() -> String {
         guard let uid = User.shared.getUid() else {
@@ -213,8 +238,10 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             return
         }
         print("Firestoreへセーブ")
-        let userCollectionRef = getUserColletionRef()
-        userCollectionRef.addDocument(data: message.representation)
+//        let userCollectionRef = getUserColletionRef()
+//        userCollectionRef.addDocument(data: message.representation)
+        let roomCollectionref = getRoomCollectionRef()
+        roomCollectionref.addDocument(data: message.representation)
         let timelineMessagesCollectionRef = getTimelineColletionRef()
         timelineMessagesCollectionRef.addDocument(data: message.representation)
     }
