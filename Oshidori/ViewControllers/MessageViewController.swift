@@ -67,6 +67,12 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         moveQRcodePage()
     }
     
+    @IBAction func didTopLogoutButton(_ sender: Any) {
+        User.shared.logout()
+        moveLoginPage()
+    }
+    
+    
     
     // firebase 関連
     private let db = Firestore.firestore()
