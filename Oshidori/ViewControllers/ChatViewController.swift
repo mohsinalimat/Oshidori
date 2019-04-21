@@ -100,6 +100,8 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                     return UserInformation(data: data)
                 })
             }) {
+                // 上記で得た内容を保存する
+                self.userInformation = userInformation
                 debugPrint("🌞City: \(userInformation.name)")
             } else {
                 debugPrint("Document does not exist")
@@ -203,13 +205,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    private func getUserColletionRef() -> CollectionReference {
-        guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
-        }
-        return db.collection("users").document(uid).collection("messages")
-    }
-    private func getRoomCollectionRef() -> CollectionReference {
+    private func getRoomMessagesCollectionRef() -> CollectionReference {
         guard let roomId = userInformation?.roomId else {
             fatalError("roomIdを取得できませんでした。")
         }
@@ -238,9 +234,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             return
         }
         print("Firestoreへセーブ")
-//        let userCollectionRef = getUserColletionRef()
-//        userCollectionRef.addDocument(data: message.representation)
-        let roomCollectionref = getRoomCollectionRef()
+        let roomCollectionref = getRoomMessagesCollectionRef()
         roomCollectionref.addDocument(data: message.representation)
         let timelineMessagesCollectionRef = getTimelineColletionRef()
         timelineMessagesCollectionRef.addDocument(data: message.representation)

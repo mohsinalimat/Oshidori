@@ -36,7 +36,7 @@
                                 <rect key="frame" x="295" y="547" width="60" height="60"/>
                                 <state key="normal" image="Write_icon"/>
                                 <connections>
-                                    <segue destination="I6m-Qv-LBa" kind="show" id="aAV-vq-ydt"/>
+                                    <action selector="didTapMoveSendMessageButton:" destination="Bm1-H2-11X" eventType="touchUpInside" id="bNX-7k-z5D"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -74,6 +74,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="moveSendMessageButton" destination="dGN-O5-1pi" id="qMT-is-sOP"/>
                         <outlet property="receiveTableView" destination="fMW-fG-UxW" id="dBN-26-Dxv"/>
                     </connections>
                 </viewController>
@@ -84,7 +85,7 @@
         <!--送信-->
         <scene sceneID="57w-cp-jr2">
             <objects>
-                <viewController title="送信" id="I6m-Qv-LBa" customClass="ChatViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatStoryboard" title="送信" id="I6m-Qv-LBa" customClass="ChatViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UD4-lH-NVV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
