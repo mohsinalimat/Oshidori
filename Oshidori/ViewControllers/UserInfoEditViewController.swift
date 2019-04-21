@@ -29,11 +29,11 @@ class UserInfoEditViewController: UIViewController {
     private let db = Firestore.firestore()
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
-    private func getColletionRef() -> CollectionReference {
+    private func getDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
-        return db.collection("users").document(uid).collection("name")
+        return db.collection("users").document(uid).collection("info").document(uid)
     }
     
     @IBAction func didTopSendButton(_ sender: Any) {
@@ -55,13 +55,8 @@ class UserInfoEditViewController: UIViewController {
     }
     
     func save(_ userInfo: UserInformation) {
-        
         print("Firestoreへセーブ")
-        let userCollectionRef = getColletionRef()
-        userCollectionRef.addDocument(data: userInfo.representation)
-        
+        let userDocumentRef = getDocumentRef()
+        userDocumentRef.updateData(userInfo.representation)
     }
-    
-    
-    
 }

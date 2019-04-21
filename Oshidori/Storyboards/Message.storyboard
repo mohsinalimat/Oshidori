@@ -67,6 +67,11 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="cuh-4Q-6ru">
+                            <connections>
+                                <action selector="didTopLogoutButton:" destination="Bm1-H2-11X" id="Gbr-RL-aAG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="receiveTableView" destination="fMW-fG-UxW" id="dBN-26-Dxv"/>

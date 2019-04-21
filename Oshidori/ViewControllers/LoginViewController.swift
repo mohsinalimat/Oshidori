@@ -32,14 +32,20 @@ class LoginViewController: UIViewController, UserDelegate {
     
     @IBAction func didTapSignInButton(_ sender: Any) {
         if let credential = getCredential() {
-            user.login(credential: credential)
+            user.login(credential: credential, completion: {[weak self] in
+                guard let self = self else {
+                    return
+                }
+                
+                if self.user.isLogin() {
+                    self.moveMessagePage()
+                } else {
+                    self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
+                }
+                
+            })
         }
         
-        if user.isLogin() {
-            moveMessagePage()
-        } else {
-            self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
-        }
     }
     
     @IBAction func didTapRegisterButton(_ sender: Any) {

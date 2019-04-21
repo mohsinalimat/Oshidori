@@ -8,9 +8,10 @@
 
 import UIKit
 import AVFoundation
+import Firebase
 
 class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-
+    
     
     // カメラやマイクの入出力を管理するオブジェクトを生成
     private let session = AVCaptureSession()
@@ -60,25 +61,94 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
             }
         }
     }
-
+    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         for metadata in metadataObjects as! [AVMetadataMachineReadableCodeObject] {
             // QRコードのデータかどうかの確認
             if metadata.type != .qr { continue }
-
             // QRコードの内容が空かどうかの確認
             if metadata.stringValue == nil { continue }
-
-            print("QRコードを読み取りました！🌞🌞🌞🌞🌞🌞🌞")
+            // partnerIdを読み取る
+            guard let partnerId = metadata.stringValue else {
+                return
+            }
+            guard !(partnerId == User.shared.getUid()) else {
+                alert("エラー","それは自分のQRコードだよ😱", nil)
+                return
+            }
+            // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
             
-            print(metadata.stringValue!)
-            
-            if let partnerId = metadata.stringValue {
-                // 読み取り終了
-                self.session.stopRunning()
-                // test
-                moveTestPage()
+            // 読み取り終了
+            self.session.stopRunning()
+            // ユーザ情報をsetする
+            save(partnerId)
+            moveMessagePage()
+        }
+    }
+    
+    // firebase 関連
+    private let db = Firestore.firestore()
+    private var reference: CollectionReference?
+    private let storage = Storage.storage().reference()
+    private func getMyDocumentRef() -> DocumentReference {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("users").document(uid).collection("info").document(uid)
+    }
+    private func getPartnerDocumentRef(partnerId: String) -> DocumentReference {
+        return db.collection("users").document(partnerId).collection("info").document(partnerId)
+    }
+    private func getRoomCollectionRef() -> CollectionReference {
+        guard let _ = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("rooms")
+    }
+    
+    func save(_ partnerId: String) {
+        // TODO: PKHUDでぐるぐるをつける
+        print("Firestoreへセーブ")
+        let myDocumentRef = getMyDocumentRef()
+        let partnerDocumentRef = getPartnerDocumentRef(partnerId: partnerId)
+        myDocumentRef.updateData(["partnerId": partnerId]){ err in
+            if let err = err {
+                debugPrint("Error updating document: \(err)")
+                
+            } else {
+                debugPrint("my partnerId updated!!!")
+                
+                guard let uid = User.shared.getUid() else {
+                    return
+                }
+                
+                partnerDocumentRef.updateData(["partnerId": uid]){ err in
+                    if let err = err {
+                        debugPrint("Error updating document: \(err)")
+                        
+                    } else {
+                        debugPrint("partnerId updated!!!")
+                        
+                        // roomIdを作成し、roomを作成し、userIDを登録している。
+                        let roomRef = self.getRoomCollectionRef().document()
+                        let roomId = roomRef.documentID
+                        roomRef.setData([
+                            "firstUser": uid ,
+                            "secondUser": partnerId ,
+                            "roomId" :  roomId ,
+                        ]) { err in
+                            if let err = err {
+                                debugPrint("Error adding document: \(err)")
+                            } else {
+                                // roomIdをuserInfoに登録しにいっている。
+                                myDocumentRef.updateData(["roomId": roomId])
+                                partnerDocumentRef.updateData(["roomId": roomId])
+                            }
+                        }
+                    }
+                }
             }
         }
+        
     }
 }

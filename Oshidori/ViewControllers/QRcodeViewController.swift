@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class QRcodeViewController: UIViewController {
-
+    
     
     @IBOutlet weak var QRcode: UIImageView!
     
@@ -30,6 +30,9 @@ class QRcodeViewController: UIViewController {
         QRcode.image = QRimage
     }
     
+}
+
+extension QRcodeViewController {
     func generateQRCode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
@@ -42,7 +45,12 @@ class QRcodeViewController: UIViewController {
         }
         return nil
     }
-
+    
+    @IBAction func moveQRcodeReadPage(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "QRcodeRead", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "QRcodeReadStoryboard")
+        self.navigationController?.pushViewController(VC, animated: false)
+    }
 }
-
+    
 

@@ -32,7 +32,7 @@ class User {
     
     
     // ユーザ作成
-    func create (credential: Credential) {
+    func create (credential: Credential, completion: @escaping () -> Void) {
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in
             if let error = error {
                 // error をはかせる
@@ -41,12 +41,13 @@ class User {
             } else {
                 print("🌞ユーザー作成成功")
             }
-            self.delegate?.didLogin(error: error)
+            self.delegate?.didCreate(error: error)
+            completion()
         }
     }
     
     // ログイン
-    func login (credential: Credential) {
+    func login (credential: Credential, completion: @escaping () -> Void) {
         Auth.auth().signIn(withEmail: credential.email, password: credential.password) { (result, error) in
             if let error = error {
                 print ("👿")
@@ -54,6 +55,8 @@ class User {
             } else {
                 print("🌞ログイン成功")
             }
+            self.delegate?.didLogin(error: error)
+            completion()
         }
     }
     
