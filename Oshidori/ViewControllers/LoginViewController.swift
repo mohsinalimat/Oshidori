@@ -24,10 +24,8 @@ class LoginViewController: UIViewController, UserDelegate {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if user.isLogin() {
-            moveMessagePage()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     @IBAction func didTapSignInButton(_ sender: Any) {

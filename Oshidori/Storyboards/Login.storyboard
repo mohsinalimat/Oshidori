@@ -38,22 +38,13 @@
                                     <constraint firstAttribute="width" constant="140" id="GsS-Si-tMz"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaZ-id-nhv">
-                                <rect key="frame" x="126" y="338" width="123" height="30"/>
-                                <state key="normal" title="新規登録はこちら">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="didTapRegisterButton:" destination="pbY-dy-WiX" eventType="touchUpInside" id="GX2-Nw-76X"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecF-sK-r3S">
                                 <rect key="frame" x="30" y="258" width="315" height="50"/>
                                 <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jkb-CG-TxX"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="ログイン">
                                     <color key="titleColor" red="0.98039215690000003" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -74,16 +65,13 @@
                             <constraint firstItem="ecF-sK-r3S" firstAttribute="centerX" secondItem="NUe-ss-P1B" secondAttribute="centerX" id="g7E-Le-Kef"/>
                             <constraint firstItem="Hva-qs-GJS" firstAttribute="top" secondItem="sJu-d3-FVN" secondAttribute="bottom" constant="30" id="kPi-jZ-t5e"/>
                             <constraint firstItem="AOa-6m-n6p" firstAttribute="trailing" secondItem="Hva-qs-GJS" secondAttribute="trailing" constant="30" id="m3y-kQ-CKe"/>
-                            <constraint firstItem="OaZ-id-nhv" firstAttribute="top" secondItem="ecF-sK-r3S" secondAttribute="bottom" constant="30" id="nxK-Vl-ttv"/>
                             <constraint firstItem="Hva-qs-GJS" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="30" id="ofj-cO-NIJ"/>
-                            <constraint firstItem="OaZ-id-nhv" firstAttribute="centerX" secondItem="NUe-ss-P1B" secondAttribute="centerX" id="r4U-1X-Gn6"/>
                             <constraint firstItem="1Wj-au-FBU" firstAttribute="top" secondItem="AOa-6m-n6p" secondAttribute="top" constant="30" id="u9g-uH-qZ9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AOa-6m-n6p"/>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="sJu-d3-FVN" id="pyc-Xn-EoF"/>
-                        <outlet property="moveRegisterPageButton" destination="OaZ-id-nhv" id="My3-QV-yp2"/>
                         <outlet property="passwordField" destination="Hva-qs-GJS" id="BBD-EO-gZQ"/>
                         <outlet property="signInButton" destination="ecF-sK-r3S" id="HGQ-J0-CwX"/>
                     </connections>

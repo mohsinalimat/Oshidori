@@ -29,23 +29,24 @@ extension UIViewController {
         self.view.endEditing(true)
     }
     
-    func moveTestPage() {
-        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "TestStoryboard")
+    func moveSelectRegisterOrLoginPage() {
+        let storyboard = UIStoryboard(name: "SelectRegisterOrLogin", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SelectRegisterOrLoginStoryboard")
         self.present(viewController, animated: true, completion: nil)
     }
     
     func moveUserCreatePage() {
         let storyboard = UIStoryboard(name: "User", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "UserCreateStoryboard")
-        self.present(viewController, animated: true, completion: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "UserCreateStoryboard")
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func moveLoginPage() {
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "LoginStoryboard")
-        self.present(viewController, animated: true, completion: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "LoginStoryboard")
+        self.navigationController?.pushViewController(VC, animated: true)
     }
+    
     func moveMessagePage() {
         let storyboard = UIStoryboard(name: "Tabbar", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "TabbarStoryboard")

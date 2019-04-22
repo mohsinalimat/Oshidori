@@ -20,7 +20,6 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     // userInfo を入れておく場所
     var userInformation : UserInformation?
     
-    // let messages:[(content:String, date:String)] = [(content:"ありがと", date : "2019/10/28"), (content:"content2", date: "2019/10/04")]
     var  messages:[(content:String, sendDate:String)] = []
     
     @IBOutlet weak var receiveTableView: UITableView!
@@ -28,6 +27,10 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         moveSendMessageButton.isHidden = true
+        
+        // TODO: uidなどが取れなかったら、最初の画面に遷移するようにする？
+        
+        
         // 登録をすることで、カスタムセルを利用できるようになる。
         // nibファイルはxibファイルの作成と同時に作られるらしい。
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
@@ -106,7 +109,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func didTopLogoutButton(_ sender: Any) {
         User.shared.logout()
-        moveLoginPage()
+        moveSelectRegisterOrLoginPage()
     }
 }
 
