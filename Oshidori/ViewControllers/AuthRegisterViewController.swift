@@ -22,6 +22,7 @@ class AuthRegisterViewController: UIViewController {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         registerButton.backgroundColor = OshidoriColor.primary
+        emailField.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }

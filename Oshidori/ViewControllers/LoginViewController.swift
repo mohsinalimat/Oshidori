@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, UserDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         user.delegate = self
+        emailField.becomeFirstResponder()
         // Do any additional setup after loading the view.
     }
     
