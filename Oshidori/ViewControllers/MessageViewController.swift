@@ -52,9 +52,10 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 debugPrint("🌞City: \(userInformation.name)")
                 if !(userInformation.roomId.isEmpty) {
                     self.moveSendMessageButton.isHidden = false
+                    // firestoreからデータを取って、テーブルビューに反映
+                    self.getMessageDataFromFirestore_createTableView()
                 }
-                // firestoreからデータを取って、テーブルビューに反映
-                self.getMessageDataFromFirestore_createTableView()
+                
             } else {
                 debugPrint("Document does not exist")
             }
