@@ -17,11 +17,13 @@ target 'Oshidori' do
     # Pods for testing
   end
 
-  pod 'Firebase/Core'
-  pod 'Firebase/Auth'
-  pod 'Firebase/Firestore'
-  pod 'Firebase/Storage'
-  pod 'Firebase/DynamicLinks'
-  pod 'MessageKit'
-  pod 'MessageInputBar'
+pod 'Firebase/Core'
+pod 'Firebase/Auth'
+pod 'Firebase/Firestore'
+pod 'Firebase/Storage'
+pod 'Firebase/DynamicLinks'
+pod 'MessageKit'
+pod 'MessageInputBar'
+pod 'PKHUD', '~> 5.0'
+
 end

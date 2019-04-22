@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Firebase
+import PKHUD
 
 class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
@@ -18,6 +19,7 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.isHidden = true
         // Do any additional setup after loading the view, typically from a nib.
         
         // カメラやマイクのデバイスそのものを管理するオブジェクトを生成（ここではワイドアングルカメラ・ビデオ・背面カメラを指定）
@@ -108,13 +110,14 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
     
     func save(_ partnerId: String) {
         // TODO: PKHUDでぐるぐるをつける
+        HUD.show(.progress)
         print("Firestoreへセーブ")
         let myDocumentRef = getMyDocumentRef()
         let partnerDocumentRef = getPartnerDocumentRef(partnerId: partnerId)
         myDocumentRef.updateData(["partnerId": partnerId]){ err in
             if let err = err {
                 debugPrint("Error updating document: \(err)")
-                
+                HUD.hide()
             } else {
                 debugPrint("my partnerId updated!!!")
                 
@@ -125,7 +128,7 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
                 partnerDocumentRef.updateData(["partnerId": uid]){ err in
                     if let err = err {
                         debugPrint("Error updating document: \(err)")
-                        
+                        HUD.hide()
                     } else {
                         debugPrint("partnerId updated!!!")
                         
@@ -138,11 +141,22 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
                             "roomId" :  roomId ,
                         ]) { err in
                             if let err = err {
+                                HUD.hide()
                                 debugPrint("Error adding document: \(err)")
                             } else {
                                 // roomIdをuserInfoに登録しにいっている。
-                                myDocumentRef.updateData(["roomId": roomId])
-                                partnerDocumentRef.updateData(["roomId": roomId])
+                                myDocumentRef.updateData(["roomId": roomId]) { err in
+                                    if let err = err {
+                                        debugPrint("Error updating document: \(err)")
+                                    }
+                                    HUD.hide()
+                                }
+                                partnerDocumentRef.updateData(["roomId": roomId]) { err in
+                                    if let err = err {
+                                        debugPrint("Error updating document: \(err)")
+                                    }
+                                    HUD.hide()
+                                }
                             }
                         }
                     }

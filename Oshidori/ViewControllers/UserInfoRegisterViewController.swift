@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class UserInfoRegisterViewController: UIViewController {
 
@@ -49,16 +50,16 @@ class UserInfoRegisterViewController: UIViewController {
     }
     
     func save(_ userInfo: UserInformation) {
-        print("Firestoreへセーブ")
+        debugPrint("Firestoreへセーブ")
+        HUD.show(.progress)
         let userDocumentRef = getDocumentRef()
-        // userDocumentRef.setData(userInfo.representation)
-        //userDocumentRef.setData(userInfo.representation)
         userDocumentRef.setData(userInfo.representation) { err in
             if let err = err {
-                debugPrint("error...")
+                debugPrint("error...\(err)")
             } else {
                 self.moveMessagePage()
             }
+            HUD.hide()
         }
     }
 }
