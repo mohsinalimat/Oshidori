@@ -17,6 +17,8 @@ class TabBarController: UITabBarController {
         UITabBar.appearance().tintColor = OshidoriColor.dark
         // 背景色
         UITabBar.appearance().barTintColor = OshidoriColor.primary
+        // 少し色が濃いのを変更
+        UITabBar.appearance().isTranslucent = false
     }
     
 
