@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "貼り付けた画像_2019_03_29_11_02.png",
+      "filename" : "oshidori_normal.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "oshidori_normal-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "oshidori_normal-2.png",
       "scale" : "3x"
     }
   ],

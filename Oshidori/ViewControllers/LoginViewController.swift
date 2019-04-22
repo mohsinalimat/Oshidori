@@ -16,7 +16,7 @@ class LoginViewController: UIViewController, UserDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var moveRegisterPageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()

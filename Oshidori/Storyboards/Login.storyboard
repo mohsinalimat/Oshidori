@@ -18,8 +18,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sJu-d3-FVN">
+                                <rect key="frame" x="30" y="108" width="315" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hva-qs-GJS">
+                                <rect key="frame" x="30" y="168" width="315" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-au-FBU">
+                                <rect key="frame" x="117.5" y="50" width="140" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="GsS-Si-tMz"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaZ-id-nhv">
+                                <rect key="frame" x="126" y="338" width="123" height="30"/>
+                                <state key="normal" title="新規登録はこちら">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapRegisterButton:" destination="pbY-dy-WiX" eventType="touchUpInside" id="GX2-Nw-76X"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ecF-sK-r3S">
-                                <rect key="frame" x="30" y="547" width="315" height="50"/>
+                                <rect key="frame" x="30" y="258" width="315" height="50"/>
                                 <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="jkb-CG-TxX"/>
@@ -32,63 +61,30 @@
                                     <action selector="didTapSignInButton:" destination="pbY-dy-WiX" eventType="touchUpInside" id="JQb-Ij-Q2l"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sJu-d3-FVN">
-                                <rect key="frame" x="30" y="377" width="315" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="パスワード" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hva-qs-GJS">
-                                <rect key="frame" x="30" y="457" width="315" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                            </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_icon" translatesAutoresizingMaskIntoConstraints="NO" id="fOX-aZ-9dW">
-                                <rect key="frame" x="60" y="120" width="255" height="127"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="1Wj-au-FBU">
-                                <rect key="frame" x="117.5" y="257" width="140" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="GsS-Si-tMz"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OaZ-id-nhv">
-                                <rect key="frame" x="133.5" y="617" width="108" height="30"/>
-                                <state key="normal" title="新規登録画面へ"/>
-                                <connections>
-                                    <action selector="didTapRegisterButton:" destination="pbY-dy-WiX" eventType="touchUpInside" id="GX2-Nw-76X"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AOa-6m-n6p" firstAttribute="trailing" secondItem="sJu-d3-FVN" secondAttribute="trailing" constant="30" id="LNq-RN-i7J"/>
                             <constraint firstItem="ecF-sK-r3S" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="30" id="MiM-qD-PiN"/>
                             <constraint firstItem="sJu-d3-FVN" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="30" id="SxE-QM-eqf"/>
-                            <constraint firstItem="AOa-6m-n6p" firstAttribute="bottom" secondItem="ecF-sK-r3S" secondAttribute="bottom" constant="70" id="VgH-8q-kst"/>
-                            <constraint firstItem="AOa-6m-n6p" firstAttribute="trailing" secondItem="fOX-aZ-9dW" secondAttribute="trailing" constant="60" id="XDk-wH-AW0"/>
-                            <constraint firstItem="fOX-aZ-9dW" firstAttribute="top" secondItem="AOa-6m-n6p" secondAttribute="top" constant="100" id="Zhn-VN-rkM"/>
+                            <constraint firstItem="sJu-d3-FVN" firstAttribute="top" secondItem="1Wj-au-FBU" secondAttribute="bottom" constant="30" id="XDu-CD-ada"/>
                             <constraint firstItem="1Wj-au-FBU" firstAttribute="centerX" secondItem="NUe-ss-P1B" secondAttribute="centerX" id="cBO-iW-Png"/>
                             <constraint firstItem="ecF-sK-r3S" firstAttribute="top" secondItem="Hva-qs-GJS" secondAttribute="bottom" constant="60" id="f7Z-nk-K6q"/>
                             <constraint firstItem="AOa-6m-n6p" firstAttribute="trailing" secondItem="ecF-sK-r3S" secondAttribute="trailing" constant="30" id="fZZ-MA-zFu"/>
                             <constraint firstItem="ecF-sK-r3S" firstAttribute="centerX" secondItem="NUe-ss-P1B" secondAttribute="centerX" id="g7E-Le-Kef"/>
-                            <constraint firstItem="1Wj-au-FBU" firstAttribute="top" secondItem="fOX-aZ-9dW" secondAttribute="bottom" constant="10" id="h0N-mH-viY"/>
-                            <constraint firstItem="fOX-aZ-9dW" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="60" id="irM-Xx-a0p"/>
-                            <constraint firstItem="Hva-qs-GJS" firstAttribute="top" secondItem="sJu-d3-FVN" secondAttribute="bottom" constant="50" id="kPi-jZ-t5e"/>
+                            <constraint firstItem="Hva-qs-GJS" firstAttribute="top" secondItem="sJu-d3-FVN" secondAttribute="bottom" constant="30" id="kPi-jZ-t5e"/>
                             <constraint firstItem="AOa-6m-n6p" firstAttribute="trailing" secondItem="Hva-qs-GJS" secondAttribute="trailing" constant="30" id="m3y-kQ-CKe"/>
+                            <constraint firstItem="OaZ-id-nhv" firstAttribute="top" secondItem="ecF-sK-r3S" secondAttribute="bottom" constant="30" id="nxK-Vl-ttv"/>
                             <constraint firstItem="Hva-qs-GJS" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="30" id="ofj-cO-NIJ"/>
                             <constraint firstItem="OaZ-id-nhv" firstAttribute="centerX" secondItem="NUe-ss-P1B" secondAttribute="centerX" id="r4U-1X-Gn6"/>
-                            <constraint firstItem="AOa-6m-n6p" firstAttribute="bottom" secondItem="OaZ-id-nhv" secondAttribute="bottom" constant="20" id="w0C-Hf-qYK"/>
+                            <constraint firstItem="1Wj-au-FBU" firstAttribute="top" secondItem="AOa-6m-n6p" secondAttribute="top" constant="30" id="u9g-uH-qZ9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AOa-6m-n6p"/>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="sJu-d3-FVN" id="pyc-Xn-EoF"/>
+                        <outlet property="moveRegisterPageButton" destination="OaZ-id-nhv" id="My3-QV-yp2"/>
                         <outlet property="passwordField" destination="Hva-qs-GJS" id="BBD-EO-gZQ"/>
-                        <outlet property="registerButton" destination="OaZ-id-nhv" id="My3-QV-yp2"/>
                         <outlet property="signInButton" destination="ecF-sK-r3S" id="HGQ-J0-CwX"/>
                     </connections>
                 </viewController>
@@ -122,7 +118,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Oshidori_icon" width="135" height="127"/>
         <image name="Oshidori_logo" width="141" height="28"/>
     </resources>
 </document>
