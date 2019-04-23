@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y31-Vt-7Mz">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,33 +15,33 @@
             <objects>
                 <viewController id="otX-ll-A3u" customClass="SelectRegisterOrLoginViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="z6C-yh-TUW">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="u3w-I2-1aC">
+                                <rect key="frame" x="137" y="74" width="140" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="3FY-2r-TYx"/>
+                                </constraints>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_icon" translatesAutoresizingMaskIntoConstraints="NO" id="OYh-xu-dUC">
-                                <rect key="frame" x="94" y="96" width="187" height="134.5"/>
+                                <rect key="frame" x="113.66666666666669" y="132" width="187" height="134.66666666666663"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187" id="OOu-FP-pI7"/>
                                     <constraint firstAttribute="height" constant="134.5" id="dWb-ap-EH0"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="u3w-I2-1aC">
-                                <rect key="frame" x="117.5" y="50" width="140" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="140" id="3FY-2r-TYx"/>
-                                </constraints>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-kV-3Gw">
-                                <rect key="frame" x="30" y="269.5" width="315" height="128"/>
+                                <rect key="frame" x="30" y="296.66666666666669" width="354" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パートナーとの「いま」を大事にしよう" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdU-KN-0fh">
-                                        <rect key="frame" x="1.5" y="0.0" width="312.5" height="67"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パートナーとの「いま」を大事にしよう" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdU-KN-0fh">
+                                        <rect key="frame" x="6.6666666666666572" y="0.0" width="340.66666666666674" height="67"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAQ-PI-ptC">
-                                        <rect key="frame" x="20" y="92" width="275" height="36"/>
+                                        <rect key="frame" x="20" y="92" width="314" height="36"/>
                                         <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="アカウントを作成">
@@ -58,16 +58,16 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-XP-jZt">
-                                <rect key="frame" x="37" y="587" width="301" height="30"/>
+                                <rect key="frame" x="56.666666666666657" y="782" width="300.66666666666674" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウントをお持ちの方は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-JC-73c">
-                                        <rect key="frame" x="0.0" y="0.0" width="147.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="147.33333333333334" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkk-KB-Hek">
-                                        <rect key="frame" x="168.5" y="0.0" width="62" height="30"/>
+                                        <rect key="frame" x="168.33333333333334" y="0.0" width="62" height="30"/>
                                         <state key="normal" title="ログイン">
                                             <color key="titleColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
@@ -76,7 +76,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="してね！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nq7-WL-8w0">
-                                        <rect key="frame" x="251.5" y="0.0" width="49.5" height="30"/>
+                                        <rect key="frame" x="251.33333333333334" y="0.0" width="49.333333333333343" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -87,19 +87,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="3Mf-QU-tVb" firstAttribute="bottom" secondItem="tbI-XP-jZt" secondAttribute="bottom" constant="50" id="2YT-hN-EYb"/>
-                            <constraint firstItem="jiM-kV-3Gw" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="HoY-I1-jWx"/>
                             <constraint firstItem="OYh-xu-dUC" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="Hrb-1Q-wGO"/>
                             <constraint firstItem="3Mf-QU-tVb" firstAttribute="trailing" secondItem="jiM-kV-3Gw" secondAttribute="trailing" constant="30" id="PTb-Qg-vgc"/>
-                            <constraint firstItem="u3w-I2-1aC" firstAttribute="top" secondItem="3Mf-QU-tVb" secondAttribute="top" constant="30" id="QLr-tO-I6x"/>
                             <constraint firstItem="u3w-I2-1aC" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="bkH-de-qN3"/>
-                            <constraint firstItem="jiM-kV-3Gw" firstAttribute="centerY" secondItem="z6C-yh-TUW" secondAttribute="centerY" id="k0u-j7-bLB"/>
-                            <constraint firstItem="OYh-xu-dUC" firstAttribute="top" secondItem="u3w-I2-1aC" secondAttribute="bottom" constant="30" id="lpj-ma-Wv5"/>
+                            <constraint firstItem="OYh-xu-dUC" firstAttribute="top" secondItem="u3w-I2-1aC" secondAttribute="bottom" constant="30" id="em6-c0-Vt0"/>
+                            <constraint firstItem="u3w-I2-1aC" firstAttribute="top" secondItem="3Mf-QU-tVb" secondAttribute="top" constant="30" id="flD-2q-NKl"/>
+                            <constraint firstItem="jiM-kV-3Gw" firstAttribute="top" secondItem="OYh-xu-dUC" secondAttribute="bottom" constant="30" id="i2J-Vm-j7V"/>
                             <constraint firstItem="jiM-kV-3Gw" firstAttribute="leading" secondItem="3Mf-QU-tVb" secondAttribute="leading" constant="30" id="oYb-2x-OVm"/>
                             <constraint firstItem="tbI-XP-jZt" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="v1e-Fy-NoT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Mf-QU-tVb"/>
                     </view>
                     <navigationItem key="navigationItem" id="uER-uB-cAb"/>
+                    <connections>
+                        <outlet property="moveUserCreateButton" destination="jAQ-PI-ptC" id="fGv-F3-IMi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7H1-42-KnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -127,7 +129,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Oshidori_icon" width="187" height="134.5"/>
+        <image name="Oshidori_icon" width="124.66666412353516" height="89.666664123535156"/>
         <image name="Oshidori_logo" width="141" height="28"/>
     </resources>
 </document>

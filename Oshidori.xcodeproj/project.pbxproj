@@ -218,7 +218,6 @@
 				67EE40CC2265947C00E2F2C5 /* User.storyboard */,
 				67C9E048225EB7D200516B3D /* Tabbar.storyboard */,
 				6723DEBB2253193500B3DF69 /* Message.storyboard */,
-				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
 				67920DB422643E8500127083 /* QRcode.storyboard */,
 				67DD01D322686DEC00583BF6 /* QRcodeRead.storyboard */,
 				6732F28B224DB2F600011710 /* LaunchScreen.storyboard */,
@@ -268,9 +267,10 @@
 				6723DEB1224F74B100B3DF69 /* ViewControllers */,
 				6723DEB3224F74DD00B3DF69 /* Storyboards */,
 				6732F289224DB2F600011710 /* Assets.xcassets */,
-				6732F28E224DB2F600011710 /* Info.plist */,
 				6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */,
+				6732F28E224DB2F600011710 /* Info.plist */,
 				6723DEA9224F4A5700B3DF69 /* GoogleService-Info.plist */,
+				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
@@ -758,7 +758,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92S7PT7663;
-				INFOPLIST_FILE = Oshidori/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Oshidori/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -777,7 +777,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92S7PT7663;
-				INFOPLIST_FILE = Oshidori/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Oshidori/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

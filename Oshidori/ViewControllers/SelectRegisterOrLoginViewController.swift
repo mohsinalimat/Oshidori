@@ -10,8 +10,11 @@ import UIKit
 
 class SelectRegisterOrLoginViewController: UIViewController {
 
+    @IBOutlet weak var moveUserCreateButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        moveUserCreateButton.layer.cornerRadius = 8
         // Do any additional setup after loading the view.
     }
     

@@ -93,6 +93,15 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // カスタマイズ
+        messageInputBar.inputTextView.placeholder = "メッセージを入力してね！"
+        messageInputBar.sendButton.image = UIImage(named: "Send_icon")
+        messageInputBar.sendButton.title = nil
+        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+            // ここで自分のアイコンをzeroにしている！
+            layout.setMessageOutgoingAvatarSize(.zero)
+        }
+        
         // userInformaitonの初期化。情報を持ってくる
         getUserInformationRef().getDocument{ (document, error) in
             if let userInformation = document.flatMap({
@@ -416,22 +425,25 @@ extension ChatViewController{
             avatarView.set(avatar: avatar)
         } else {
             // TODO: 名前からinitial作っても面白いかも
-            let avatar = Avatar(image: UIImage(named: ""), initials: "Y")
-            avatarView.set(avatar: avatar)
+            // let avatar = Avatar(image: UIImage(named: ""), initials: "？")
+            // avatarView.set(avatar: avatar)
+            
+            // avatarView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+            avatarView.isHidden = true
         }
     }
     
     // メッセージの上に文字を表示
-    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        if indexPath.section % 3 == 0 {
-            return NSAttributedString(
-                string: MessageKitDateFormatter.shared.string(from: message.sentDate),
-                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
-                             NSAttributedString.Key.foregroundColor: UIColor.darkGray]
-            )
-        }
-        return nil
-    }
+//    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+//        if indexPath.section % 3 == 0 {
+//            return NSAttributedString(
+//                string: MessageKitDateFormatter.shared.string(from: message.sentDate),
+//                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
+//                             NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+//            )
+//        }
+//        return nil
+//    }
     
     // メッセージの上に文字を表示（名前）
     func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
@@ -443,24 +455,24 @@ extension ChatViewController{
     }
     
     // メッセージの下に文字を表示（日付）
-    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        let dateString = formatter.string(from: message.sentDate)
-        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
-    }
+//    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+//        let dateString = formatter.string(from: message.sentDate)
+//        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
+//    }
     
     
     // 各ラベルの高さを設定（デフォルト0なので必須）
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        if indexPath.section % 3 == 0 { return 10 }
+        if indexPath.section % 3 == 0 { return 6 }
         return 0
     }
     
     func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 16
+        return 13
     }
     
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
-        return 16
+        return 0
     }
     
 }
