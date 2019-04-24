@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PKHUD
 
 class UserInfoEditViewController: UIViewController {
 
@@ -55,8 +56,16 @@ class UserInfoEditViewController: UIViewController {
     }
     
     func save(_ userInfo: UserInformation) {
+        HUD.show(.progress)
         print("Firestoreへセーブ")
         let userDocumentRef = getDocumentRef()
-        userDocumentRef.updateData(userInfo.representation)
+        userDocumentRef.updateData(userInfo.representation){ err in
+            if let err = err {
+                debugPrint("error...\(err)")
+            } else {
+                self.dismiss(animated: true, completion: nil)
+            }
+            HUD.hide()
+        }
     }
 }

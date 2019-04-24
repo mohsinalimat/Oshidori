@@ -23,13 +23,15 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         // セルの高さを自動設定
         timelineTableView.estimatedRowHeight = 50 //予想のセルの高さ //入れないとワーニングが出る
         timelineTableView.rowHeight = UITableView.automaticDimension
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         // timelineMessages の初期化
         timelineMessages.removeAll()
         // firestoreからデータを取って、テーブルビューに反映
         getMessageDataFromFirestore_createTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

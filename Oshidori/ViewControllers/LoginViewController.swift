@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class LoginViewController: UIViewController, UserDelegate {
     
@@ -16,22 +17,23 @@ class LoginViewController: UIViewController, UserDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var moveRegisterPageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         user.delegate = self
+        emailField.becomeFirstResponder()
+        signInButton.layer.cornerRadius = 8.0
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        if user.isLogin() {
-            moveMessagePage()
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     @IBAction func didTapSignInButton(_ sender: Any) {
         if let credential = getCredential() {
+            HUD.show(.progress)
             user.login(credential: credential, completion: {[weak self] in
                 guard let self = self else {
                     return
@@ -42,7 +44,7 @@ class LoginViewController: UIViewController, UserDelegate {
                 } else {
                     self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
                 }
-                
+                HUD.hide()
             })
         }
         
