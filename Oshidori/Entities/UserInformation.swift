@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import PKHUD
 
 class UserInformation {
     
@@ -61,3 +62,4 @@ extension UserInformation {
         return rep
     }
 }
+

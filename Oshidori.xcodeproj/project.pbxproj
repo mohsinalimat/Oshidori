@@ -30,6 +30,8 @@
 		6732F298224DB2F600011710 /* OshidoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F297224DB2F600011710 /* OshidoriTests.swift */; };
 		6732F2A3224DB2F600011710 /* OshidoriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F2A2224DB2F600011710 /* OshidoriUITests.swift */; };
 		6736F1632254B45000E89952 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736F1622254B45000E89952 /* UserDefault.swift */; };
+		677AB2FF2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */; };
+		677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB3012270238400DBCD62 /* UserInfoService.swift */; };
 		677D6BD92265F06700C5E069 /* UserInfoRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6BD82265F06700C5E069 /* UserInfoRegisterViewController.swift */; };
 		67920DB522643E8500127083 /* QRcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67920DB422643E8500127083 /* QRcode.storyboard */; };
 		67920DB72264409900127083 /* QRcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67920DB62264409900127083 /* QRcodeViewController.swift */; };
@@ -99,6 +101,8 @@
 		6732F2A2224DB2F600011710 /* OshidoriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriUITests.swift; sourceTree = "<group>"; };
 		6732F2A4224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6736F1622254B45000E89952 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserInfomaitonRepository.swift; sourceTree = "<group>"; };
+		677AB3012270238400DBCD62 /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		677D6BD82265F06700C5E069 /* UserInfoRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoRegisterViewController.swift; sourceTree = "<group>"; };
 		67920DB422643E8500127083 /* QRcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QRcode.storyboard; sourceTree = "<group>"; };
 		67920DB62264409900127083 /* QRcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRcodeViewController.swift; sourceTree = "<group>"; };
@@ -259,6 +263,8 @@
 		6732F27E224DB2F500011710 /* Oshidori */ = {
 			isa = PBXGroup;
 			children = (
+				677AB3032270238A00DBCD62 /* Services */,
+				677AB3002270228100DBCD62 /* Repository */,
 				6723DEAF224F740600B3DF69 /* Entities */,
 				6707D3DB225AE7CC007529FA /* Cell */,
 				6739F08A22607B7700584603 /* Inheritance */,
@@ -299,6 +305,22 @@
 				67C9E0502260131700516B3D /* OshidoriColor.swift */,
 			);
 			path = Inheritance;
+			sourceTree = "<group>";
+		};
+		677AB3002270228100DBCD62 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		677AB3032270238A00DBCD62 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				677AB3012270238400DBCD62 /* UserInfoService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		E07BC4EC061E887F5CAE56AD /* Frameworks */ = {
@@ -579,6 +601,7 @@
 				6723DEBE2254396700B3DF69 /* Message.swift in Sources */,
 				67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */,
 				6723DEB82250AA7500B3DF69 /* AuthRegisterViewController.swift in Sources */,
+				677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */,
 				6732F280224DB2F500011710 /* AppDelegate.swift in Sources */,
 				6723DEAC224F51C800B3DF69 /* User.swift in Sources */,
 				6723DEAE224F52BB00B3DF69 /* Credential.swift in Sources */,
@@ -589,6 +612,7 @@
 				67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */,
 				67C9E04C225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift in Sources */,
 				6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */,
+				677AB2FF2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
