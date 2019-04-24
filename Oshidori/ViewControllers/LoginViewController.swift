@@ -23,6 +23,7 @@ class LoginViewController: UIViewController, UserDelegate {
         super.viewDidLoad()
         user.delegate = self
         emailField.becomeFirstResponder()
+        signInButton.layer.cornerRadius = 8.0
         // Do any additional setup after loading the view.
     }
     

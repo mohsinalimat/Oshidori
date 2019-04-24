@@ -11,13 +11,10 @@ import Firebase
 
 class QRcodeViewController: UIViewController {
     
-    
     @IBOutlet weak var QRcode: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,8 +34,7 @@ extension QRcodeViewController {
         let data = string.data(using: String.Encoding.ascii)
         if let filter = CIFilter(name: "CIQRCodeGenerator") {
             filter.setValue(data, forKey: "inputMessage")
-            let transform = CGAffineTransform(scaleX: 6, y: 6)
-            
+            let transform = CGAffineTransform(scaleX: 10, y: 10)
             if let output = filter.outputImage?.transformed(by: transform) {
                 return UIImage(ciImage: output)
             }

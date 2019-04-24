@@ -42,6 +42,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
         // messages の初期化
         messages.removeAll()
         // userInformaitonの初期化。情報を持ってくる

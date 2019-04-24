@@ -13,15 +13,13 @@ import PKHUD
 
 class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
-    
     // カメラやマイクの入出力を管理するオブジェクトを生成
     private let session = AVCaptureSession()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
-        // Do any additional setup after loading the view, typically from a nib.
-        
+
         // カメラやマイクのデバイスそのものを管理するオブジェクトを生成（ここではワイドアングルカメラ・ビデオ・背面カメラを指定）
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
                                                                 mediaType: .video,
