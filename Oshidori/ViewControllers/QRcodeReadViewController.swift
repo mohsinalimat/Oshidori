@@ -154,6 +154,7 @@ class QRcodeReadViewController: UIViewController, AVCaptureMetadataOutputObjects
                                         debugPrint("Error updating document: \(err)")
                                     }
                                     HUD.hide()
+                                    self.alert("成功", "パートナーができました！", nil)
                                 }
                             }
                         }
