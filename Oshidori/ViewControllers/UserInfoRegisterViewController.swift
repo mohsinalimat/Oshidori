@@ -10,7 +10,9 @@ import UIKit
 import Firebase
 import PKHUD
 
-class UserInfoRegisterViewController: UIViewController {
+class UserInfoRegisterViewController: UIViewController, UITextFieldDelegate {
+    
+    // TODO: ここから離脱した人のことを考える。Authは登録したけど、Userは登録していない人
 
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
@@ -22,6 +24,9 @@ class UserInfoRegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         nameField.becomeFirstResponder()
+        
+        nameField.delegate = self
+        birthdayField.delegate = self
         // Do any additional setup after loading the view.
         //datepicker上のtoolbarのdoneボタン
         
@@ -39,11 +44,9 @@ class UserInfoRegisterViewController: UIViewController {
         datePickerView.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
     }
     
-    // 入力開始
-    func textFieldDidBeginEditing(textField: UITextField) {
-        if textField == birthdayField {
-            
-        }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     //datepickerが選択されたらtextfieldに表示

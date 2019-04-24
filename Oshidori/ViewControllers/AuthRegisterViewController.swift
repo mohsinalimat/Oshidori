@@ -27,6 +27,9 @@ class AuthRegisterViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        registerButton.layer.cornerRadius = 8.0
+    }
     
     @IBAction func didTapRegisterButton(_ sender: Any) {
         if let credential = getCredential() {

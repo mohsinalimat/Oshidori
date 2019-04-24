@@ -18,6 +18,7 @@ class QRcodeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
         guard let uid = User.shared.getUid() else {
             return
         }

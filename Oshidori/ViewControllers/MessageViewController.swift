@@ -39,10 +39,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         // セルの高さを内容によって可変にする
         receiveTableView.estimatedRowHeight = 50 //予想のセルの高さ //入れないとワーニングが出る
         receiveTableView.rowHeight = UITableView.automaticDimension
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        tabBarController?.tabBar.isHidden = false
+        
         // messages の初期化
         messages.removeAll()
         // userInformaitonの初期化。情報を持ってくる
@@ -64,8 +61,10 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
                 debugPrint("Document does not exist")
             }
         }
-        
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
         
     }
 
