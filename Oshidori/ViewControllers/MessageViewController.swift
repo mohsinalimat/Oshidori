@@ -100,6 +100,11 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
         cell.setContentLabel(content: messages[indexPath.row].content)
         cell.setDataLabel(date: messages[indexPath.row].sendDate)
+        cell.setContentTypeImage(contentType: messages[indexPath.row].content)
+        cell.setNameLabel(name: "やまたつ")
+        // TODO: viewの角を丸くする
+        cell.messageView.layer.cornerRadius = 0.8
+        cell.messageView.backgroundColor = OshidoriColor.light
         return cell
     }
     

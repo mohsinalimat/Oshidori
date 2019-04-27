@@ -195,7 +195,10 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     func currentSender() -> Sender {
-        return Sender(id: getUid(), displayName: "")
+        guard let name = userInformation?.name else {
+            return Sender(id: getUid(), displayName: "")
+        }
+        return Sender(id: getUid(), displayName: name)
     }
     
     func oshidoriSender() -> Sender {
