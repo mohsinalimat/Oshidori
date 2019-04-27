@@ -76,6 +76,7 @@ class UserInfoRegisterViewController: UIViewController, UITextFieldDelegate {
             return
         }
         let created = Date()
+        // 初期のデータを保存するため、partnerIdとroomIdは"" で良い。
         let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
         HUD.show(.progress)
         UserInfoService.shared.save(userInfo)

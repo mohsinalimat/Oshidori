@@ -16,8 +16,25 @@ class UserInfoEditViewController: UIViewController {
     @IBOutlet weak var birthdayDatePicker: UIDatePicker!
     @IBOutlet weak var saveButton: UIButton!
     
+    var userInformation: UserInformation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+            
+        // userInformaitonの初期化。情報を持ってくる
+        getUserInformationRef().getDocument{ (document, error) in
+            if let userInformation = document.flatMap({
+                $0.data().flatMap({ (data) in
+                    return UserInformation(data: data)
+                })
+            }) {
+                // 上記で得た内容を保存する
+                self.userInformation = userInformation
+                debugPrint("🌞City: \(userInformation.name)")
+            } else {
+                debugPrint("Document does not exist")
+            }
+        }
         
         // Do any additional setup after loading the view.
     }
@@ -36,6 +53,12 @@ class UserInfoEditViewController: UIViewController {
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
+    private func getUserInformationRef() -> DocumentReference {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("users").document(uid).collection("info").document(uid)
+    }
     
     @IBAction func didTopSendButton(_ sender: Any) {
         guard let name = nameField.text else {
@@ -47,9 +70,15 @@ class UserInfoEditViewController: UIViewController {
             return
         }
         
+        
         let birthday = birthdayDatePicker.date
-        let created = Date()
-        let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
+        
+        guard let created = userInformation.created else {
+            return
+        }
+        
+        let userInfo = UserInformation(name: name, birthday: birthday, partnerId: userInformation.partnerId,
+                                       roomId: userInformation.roomId, created: created)
         
         save(userInfo)
         
@@ -59,7 +88,7 @@ class UserInfoEditViewController: UIViewController {
         HUD.show(.progress)
         print("Firestoreへセーブ")
         let userDocumentRef = getDocumentRef()
-        userDocumentRef.updateData(userInfo.representation){ err in
+        userDocumentRef.updateData(userInfo.editRepresentation){ err in
             if let err = err {
                 debugPrint("error...\(err)")
             } else {

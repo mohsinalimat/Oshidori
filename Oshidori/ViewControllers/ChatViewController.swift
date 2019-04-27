@@ -90,8 +90,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         return formatter
     }()
     
+    weak var delegate: MessageViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         // カスタマイズ
         messageInputBar.inputTextView.placeholder = "メッセージを入力してね！"
@@ -247,9 +251,23 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         }
         print("Firestoreへセーブ")
         let roomCollectionref = getRoomMessagesCollectionRef()
-        roomCollectionref.addDocument(data: message.representation)
+        roomCollectionref.addDocument(data: message.representation){ error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            self.delegate?.reloadDate()
+        }
         let timelineMessagesCollectionRef = getTimelineColletionRef()
-        timelineMessagesCollectionRef.addDocument(data: message.representation)
+//        timelineMessagesCollectionRef.addDocument(data: message.representation)
+        timelineMessagesCollectionRef.addDocument(data: message.representation) { error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            self.delegate?.reloadDate()
+        }
+        
     }
     
 }
@@ -376,6 +394,12 @@ extension ChatViewController: MessageInputBarDelegate{
     
 }
 
+extension ChatViewController: MessageViewControllerDelegate {
+    func reloadDate() {
+        
+    }
+}
+
 extension ChatViewController: MessageCellDelegate {
     // メッセージのセルがタップされた時を検知するため。反応なし。
     func didTapMessage(in cell: MessageCollectionViewCell) {
@@ -449,20 +473,19 @@ extension ChatViewController{
 //    }
     
     // メッセージの上に文字を表示（名前）
-    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        let name = message.sender.displayName
-        if isAfterWroteMessage() {
-            return NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-        }
-        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-    }
+//    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+//        let name = message.sender.displayName
+//        if isAfterWroteMessage() {
+//            return NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+//        }
+//        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+//    }
     
     // メッセージの下に文字を表示（日付）
 //    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
 //        let dateString = formatter.string(from: message.sentDate)
 //        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
 //    }
-    
     
     // 各ラベルの高さを設定（デフォルト0なので必須）
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
