@@ -95,8 +95,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         // カスタマイズ
         messageInputBar.inputTextView.placeholder = "メッセージを入力してね！"
         messageInputBar.sendButton.image = UIImage(named: "Send_icon")
