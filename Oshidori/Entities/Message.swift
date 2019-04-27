@@ -8,6 +8,7 @@
 
 import Foundation
 import MessageKit
+import Firebase
 
 struct Message: MessageType {
     
@@ -74,4 +75,5 @@ extension Message {
         return rep
     }
 }
+
 

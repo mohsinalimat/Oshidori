@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import Firebase
 import PKHUD
 
 class UserInfoRegisterViewController: UIViewController, UITextFieldDelegate {
+    
     
     // TODO: ここから離脱した人のことを考える。Authは登録したけど、Userは登録していない人
 
@@ -21,9 +21,13 @@ class UserInfoRegisterViewController: UIViewController, UITextFieldDelegate {
     var toolBar: UIToolbar!
     var birthday: Date!
     
+    let userInfoService = UserInfoService.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nameField.becomeFirstResponder()
+        
+        userInfoService.delegate = self
         
         nameField.delegate = self
         birthdayField.delegate = self
@@ -62,15 +66,6 @@ class UserInfoRegisterViewController: UIViewController, UITextFieldDelegate {
         birthdayField.resignFirstResponder()
     }
     
-    // firebase 関連
-    private let db = Firestore.firestore()
-    private func getDocumentRef() -> DocumentReference {
-        guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
-        }
-        return db.collection("users").document(uid).collection("info").document(uid)
-    }
-    
     @IBAction func didTapSaveButton(_ sender: Any) {
         guard let name = nameField.text, let birthday = birthday else {
             alert("error", "ニックネームか誕生日を入力してください!", nil)
@@ -82,20 +77,19 @@ class UserInfoRegisterViewController: UIViewController, UITextFieldDelegate {
         }
         let created = Date()
         let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
-        save(userInfo)
+        HUD.show(.progress)
+        UserInfoService.shared.save(userInfo)
     }
     
-    func save(_ userInfo: UserInformation) {
-        debugPrint("Firestoreへセーブ")
-        HUD.show(.progress)
-        let userDocumentRef = getDocumentRef()
-        userDocumentRef.setData(userInfo.representation) { err in
-            if let err = err {
-                debugPrint("error...\(err)")
-            } else {
-                self.moveMessagePage()
-            }
-            HUD.hide()
-        }
+}
+
+extension UserInfoRegisterViewController: UserInfoServiceDelegate {
+    func saved() {
+        HUD.hide()
+        moveMessagePage()
     }
+    
+    func loaded() {
+        
+    }    
 }
