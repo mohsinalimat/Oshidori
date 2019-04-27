@@ -57,32 +57,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         case enterError
     }
     
-    // 状態の判断
-    func isSelectContentType() -> Bool{
-        if chatStatusFlag == chatStatus.selectContentType {
-            return true
-        }
-        return false
-    }
-    func isBeforeWriteMessage() -> Bool{
-        if chatStatusFlag == chatStatus.beforeWriteMessage {
-            return true
-        }
-        return false
-    }
-    func isAfterWroteMessage() -> Bool{
-        if chatStatusFlag == chatStatus.afterWroteMessage {
-            return true
-        }
-        return false
-    }
-    func isSelectSendType() -> Bool{
-        if chatStatusFlag == chatStatus.selectSendType {
-            return true
-        }
-        return false
-    }
-    
     // 日付をフォーマットするために必要
     lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -94,16 +68,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // カスタマイズ
-        messageInputBar.inputTextView.placeholder = "メッセージを入力してね！"
-        messageInputBar.sendButton.image = UIImage(named: "Send_icon")
-        messageInputBar.sendButton.title = nil
-        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
-            // ここで自分のアイコンをzeroにしている！
-            layout.setMessageOutgoingAvatarSize(.zero)
-        }
-        
+        // MessageKitで作られる画面の構成をカスタマイズする
+        customizeMessageKit()
+        // delegateを入れる
+        insertDelegate()
+        // 初期ステータスを入れる
+        chatStatusFlag = chatStatus.selectContentType
         // userInformaitonの初期化。情報を持ってくる
         getUserInformationRef().getDocument{ (document, error) in
             if let userInformation = document.flatMap({
@@ -118,15 +88,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
                 debugPrint("Document does not exist")
             }
         }
-
-        // 初期ステータスを入れる
-        chatStatusFlag = chatStatus.selectContentType
-        
-        messagesCollectionView.messagesDataSource = self
-        messagesCollectionView.messagesLayoutDelegate = self
-        messagesCollectionView.messagesDisplayDelegate = self
-        messageInputBar.delegate = self
-        messagesCollectionView.messageCellDelegate = self
         
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
@@ -139,7 +100,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        pushContentType()
+        insertContentTypeToUserMessage()
     }
     
     // おしどりから放たれる言葉を状態によって変更する
@@ -160,40 +121,6 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         }
         
         return Message(text: str, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
-    }
-    
-    // メッセージを作成して、表示している.
-    // 初期表示以外はここを通さなければ表示されない。
-    private func insertNewMessage(_ message: Message) {
-        messageList.append(message)
-        messagesCollectionView.performBatchUpdates({
-            messagesCollectionView.insertSections([messageList.count - 1])
-            if messageList.count >= 2 {
-                messagesCollectionView.reloadSections([messageList.count - 2])
-            }
-        }, completion: { [weak self] _ in
-            if self?.isLastSectionVisible() == true {
-                self?.messagesCollectionView.scrollToBottom(animated: true)
-            }
-        })
-    }
-    
-    // create and insertNewMessage
-    func createAndInsertMessageFromeUser(_ text: String) {
-        let message = Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-        insertNewMessage(message)
-    }
-    
-    func createAndInsertMessageFromeOshidori(_ text: String) {
-        let message = Message(text: text, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
-        insertNewMessage(message)
-    }
-    
-    // メッセージを見えるようにしている
-    func isLastSectionVisible() -> Bool {
-        guard !messageList.isEmpty else { return false }
-        let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
-        return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
     }
     
     func currentSender() -> Sender {
@@ -247,7 +174,12 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
         guard isAfterWroteMessage() else {
             return
         }
-        print("Firestoreへセーブ")
+        debugPrint("Firestoreへmessageをセーブ（roomとtimeline）")
+        saveToRoomMessges(message)
+        saveToTimelineMessages(message)
+    }
+    
+    func saveToRoomMessges(_ message: Message) {
         let roomCollectionref = getRoomMessagesCollectionRef()
         roomCollectionref.addDocument(data: message.representation){ error in
             if let error = error {
@@ -256,18 +188,106 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
             }
             self.delegate?.reloadDate()
         }
+    }
+    
+    func saveToTimelineMessages(_ message: Message) {
         let timelineMessagesCollectionRef = getTimelineColletionRef()
-//        timelineMessagesCollectionRef.addDocument(data: message.representation)
         timelineMessagesCollectionRef.addDocument(data: message.representation) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
-            self.delegate?.reloadDate()
         }
-        
+    }
+}
+
+// メッセージを作成,表示
+extension ChatViewController {
+    // 初期表示以外はここを通さなければ表示されない。
+    private func insertNewMessage(_ message: Message) {
+        messageList.append(message)
+        messagesCollectionView.performBatchUpdates({
+            messagesCollectionView.insertSections([messageList.count - 1])
+            if messageList.count >= 2 {
+                messagesCollectionView.reloadSections([messageList.count - 2])
+            }
+        }, completion: { [weak self] _ in
+            if self?.isLastSectionVisible() == true {
+                self?.messagesCollectionView.scrollToBottom(animated: true)
+            }
+        })
     }
     
+    // create and insertNewMessage
+    func createAndInsertMessageFromeUser(_ text: String) {
+        let message = Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+        insertNewMessage(message)
+    }
+    
+    func createAndInsertMessageFromOshidori(_ text: String) {
+        let message = Message(text: text, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
+        insertNewMessage(message)
+    }
+    
+    // メッセージを見えるようにしている
+    func isLastSectionVisible() -> Bool {
+        guard !messageList.isEmpty else { return false }
+        let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
+        return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
+    }
+}
+
+// 状態の判断
+extension ChatViewController {
+    
+    func isSelectContentType() -> Bool{
+        if chatStatusFlag == chatStatus.selectContentType {
+            return true
+        }
+        return false
+    }
+    func isBeforeWriteMessage() -> Bool{
+        if chatStatusFlag == chatStatus.beforeWriteMessage {
+            return true
+        }
+        return false
+    }
+    func isAfterWroteMessage() -> Bool{
+        if chatStatusFlag == chatStatus.afterWroteMessage {
+            return true
+        }
+        return false
+    }
+    func isSelectSendType() -> Bool{
+        if chatStatusFlag == chatStatus.selectSendType {
+            return true
+        }
+        return false
+    }
+}
+
+extension ChatViewController {
+    
+    func customizeMessageKit() {
+        // カスタマイズ
+        messageInputBar.inputTextView.placeholder = "メッセージを入力してね！"
+        messageInputBar.sendButton.image = UIImage(named: "Send_icon")
+        messageInputBar.sendButton.title = nil
+        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+            // ここで自分のアイコンをzeroにしている！
+            layout.setMessageOutgoingAvatarSize(.zero)
+        }
+    }
+}
+
+extension ChatViewController {
+    func insertDelegate() {
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+        messageInputBar.delegate = self
+        messagesCollectionView.messageCellDelegate = self
+    }
 }
 
 extension ChatViewController: MessageInputBarDelegate{
@@ -351,14 +371,14 @@ extension ChatViewController: MessageInputBarDelegate{
     }
     
     func storeContentType_changeStatus(storeText: String) {
-        createAndInsertMessageFromeOshidori("「" + storeText + "」だね！")
+        createAndInsertMessageFromOshidori("「" + storeText + "」だね！")
         tmpStoreContentType = storeText
         chatStatusFlag = chatStatus.beforeWriteMessage
         insertNewMessage(getOshidoriMessages())
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
-    func pushContentType() {
+    func insertContentTypeToUserMessage() {
         createAndInsertMessageFromeUser(THANKYOU)
         createAndInsertMessageFromeUser(SORRY)
         createAndInsertMessageFromeUser(LISTEN)
@@ -386,16 +406,10 @@ extension ChatViewController: MessageInputBarDelegate{
         sendTempMessage = nil
         chatStatusFlag = chatStatus.selectContentType
         insertNewMessage(getOshidoriMessages())
-        pushContentType()
+        insertContentTypeToUserMessage()
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
-}
-
-extension ChatViewController: MessageViewControllerDelegate {
-    func reloadDate() {
-        
-    }
 }
 
 extension ChatViewController: MessageCellDelegate {
