@@ -224,6 +224,7 @@
 				6723DEBB2253193500B3DF69 /* Message.storyboard */,
 				67920DB422643E8500127083 /* QRcode.storyboard */,
 				67DD01D322686DEC00583BF6 /* QRcodeRead.storyboard */,
+				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
 				6732F28B224DB2F600011710 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -276,7 +277,6 @@
 				6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */,
 				6732F28E224DB2F600011710 /* Info.plist */,
 				6723DEA9224F4A5700B3DF69 /* GoogleService-Info.plist */,
-				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
