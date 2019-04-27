@@ -12,6 +12,7 @@ class ReceiveMessageTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,10 @@ class ReceiveMessageTableViewCell: UITableViewCell {
     
     func setDataLabel(date: String) {
         dateLabel.text = date
+    }
+    
+    func setNameLabel(name: String) {
+        nameLabel.text = name
     }
 
     
