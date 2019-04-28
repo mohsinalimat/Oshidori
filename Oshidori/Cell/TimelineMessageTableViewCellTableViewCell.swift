@@ -12,16 +12,28 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet weak var courageView: UIView!
+    @IBOutlet weak var supportView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        changeLayerForView(courageView)
+        changeLayerForView(supportView)
+    }
+    
+    func changeLayerForView(_ view: UIView) {
+        view.layer.cornerRadius = 10
+        view.layer.borderWidth = 1
+        view.layer.borderColor = OshidoriColor.background.cgColor
+        view.backgroundColor = OshidoriColor.light
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowRadius = 10
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 2, height: 2)
     }
     
     func setContentLabel(content: String) {
