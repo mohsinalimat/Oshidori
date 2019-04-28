@@ -17,6 +17,7 @@ protocol MessageViewControllerDelegate: AnyObject {
 class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MessageViewControllerDelegate {
     
     func reloadDate() {
+        messages.removeAll()
         getMessageDataFromFirestore_createTableView()
     }
     

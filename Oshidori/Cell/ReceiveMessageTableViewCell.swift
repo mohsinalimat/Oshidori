@@ -19,14 +19,22 @@ class ReceiveMessageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        changeLayerForView(messageView)
     }
+    
+    func changeLayerForView(_ view: UIView) {
+        view.layer.cornerRadius = 15
+        view.backgroundColor = OshidoriColor.light
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowRadius = 15
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOffset = CGSize(width: 1, height: 1)
+    }
+
     
     func setContentLabel(content: String) {
         contentLabel.text = content

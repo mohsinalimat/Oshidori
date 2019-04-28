@@ -462,13 +462,6 @@ extension ChatViewController{
         if message.sender == oshidoriSender() {
             let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "O")
             avatarView.set(avatar: avatar)
-        } else {
-            // TODO: 名前からinitial作っても面白いかも
-            // let avatar = Avatar(image: UIImage(named: ""), initials: "？")
-            // avatarView.set(avatar: avatar)
-            
-            // avatarView.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-            avatarView.isHidden = true
         }
     }
     

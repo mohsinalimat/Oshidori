@@ -35,10 +35,10 @@
                                     <constraint firstAttribute="width" constant="120" id="kTh-HV-4Fe"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yyyy/mm/dd 10:28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-oO-lYK">
-                                <rect key="frame" x="200.5" y="0.0" width="104.5" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yyyy/mm/dd 10:28" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-oO-lYK">
+                                <rect key="frame" x="200.5" y="0.0" width="104.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -46,7 +46,7 @@
                             <constraint firstItem="bUm-Cu-nrO" firstAttribute="centerY" secondItem="RzN-BN-ek3" secondAttribute="centerY" id="b63-x9-EoM"/>
                             <constraint firstItem="bUm-Cu-nrO" firstAttribute="leading" secondItem="RzN-BN-ek3" secondAttribute="trailing" constant="5" id="guy-m5-oTw"/>
                             <constraint firstAttribute="trailing" secondItem="cJg-oO-lYK" secondAttribute="trailing" constant="5" id="hxc-Op-1eM"/>
-                            <constraint firstItem="cJg-oO-lYK" firstAttribute="centerY" secondItem="RzN-BN-ek3" secondAttribute="centerY" id="yte-mh-wg0"/>
+                            <constraint firstItem="cJg-oO-lYK" firstAttribute="top" secondItem="5hK-Nf-tVG" secondAttribute="top" id="qrQ-j7-sNs"/>
                         </constraints>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="メッセージの本文が入ります。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBV-pB-YLC">
