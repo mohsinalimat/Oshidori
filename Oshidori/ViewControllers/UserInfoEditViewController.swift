@@ -72,10 +72,7 @@ class UserInfoEditViewController: UIViewController {
         
         
         let birthday = birthdayDatePicker.date
-        
-        guard let created = userInformation.created else {
-            return
-        }
+        let created = Date()
         
         let userInfo = UserInformation(name: name, birthday: birthday, partnerId: userInformation.partnerId,
                                        roomId: userInformation.roomId, created: created)
