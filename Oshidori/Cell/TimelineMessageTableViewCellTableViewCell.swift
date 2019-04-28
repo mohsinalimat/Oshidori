@@ -12,6 +12,10 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var contentTypeImageByOshidori: UIImageView!
+    @IBOutlet weak var contentTypeImageByMessage: UIImageView!
+    
     @IBOutlet weak var courageView: UIView!
     @IBOutlet weak var supportView: UIView!
     
@@ -28,6 +32,7 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     func changeLayerForView(_ view: UIView) {
         view.layer.cornerRadius = 10
         view.layer.borderWidth = 1
+        // TODO: ボーダーの色いるかな？
         view.layer.borderColor = OshidoriColor.background.cgColor
         view.backgroundColor = OshidoriColor.light
         view.layer.shadowOpacity = 0.1
@@ -42,6 +47,23 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     
     func setDataLabel(date: String) {
         dateLabel.text = date
+    }
+    
+    func setContentTypeImage(contentType: String) {
+        switch contentType {
+        case "ありがとう":
+            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_thanks")
+            contentTypeImageByMessage.image  = UIImage(named: "Message_thanks")
+        case "ごめんね":
+            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_sorry")
+            contentTypeImageByMessage.image  = UIImage(named: "Message_sorry")
+        case "あのね":
+            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_anone")
+            contentTypeImageByMessage.image  = UIImage(named: "Message_anone")
+        default:
+            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_normal")
+            contentTypeImageByMessage.image  = UIImage(named: "Message_thanks")
+        }
     }
     
 }

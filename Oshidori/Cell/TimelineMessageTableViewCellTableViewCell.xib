@@ -148,6 +148,8 @@
             <viewLayoutGuide key="safeArea" id="1e4-Oa-zWd"/>
             <connections>
                 <outlet property="contentLabel" destination="CBV-pB-YLC" id="qlz-Tp-aRQ"/>
+                <outlet property="contentTypeImageByMessage" destination="bUm-Cu-nrO" id="s9W-jO-G52"/>
+                <outlet property="contentTypeImageByOshidori" destination="RzN-BN-ek3" id="eQL-UH-dEz"/>
                 <outlet property="courageView" destination="hgv-f0-yPx" id="91g-S0-zyq"/>
                 <outlet property="dateLabel" destination="cJg-oO-lYK" id="EVR-r9-uAP"/>
                 <outlet property="supportView" destination="FNF-SP-ob7" id="0SS-2v-bx9"/>
