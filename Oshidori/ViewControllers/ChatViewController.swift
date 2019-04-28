@@ -38,7 +38,7 @@ class ChatViewController: MessagesViewController, MessagesDataSource, MessagesLa
     
     // おしどりが話す内容
     enum oshidoriContent: String {
-        case firstContent = "お手紙の種類を選んでね！"
+        case firstContent = "お手紙の種類をタップして選んでね！"
         case beforeWriteMessage = "おしどりに預けたいメッセージを書いてね！"
         case afterWroteMessage = "この手紙を預けますか？ メッセージをタップして選択してください！編集する場合は、「編集」のメッセージを送ってね！"
         case lastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！"
@@ -355,15 +355,12 @@ extension ChatViewController: MessageInputBarDelegate{
     
     func reactionWhenSelectSendType(textMessage: String) {
         if textMessage == EDIT {
-            createAndInsertMessageFromeUser(textMessage)
             selectEditAction()
         } else if textMessage == KEEP {
-            createAndInsertMessageFromeUser(textMessage)
             if let sendMessage = sendTempMessage {
                 selectKeepAction(sendMessage: sendMessage)
             }
         } else if textMessage == REWRITE {
-            createAndInsertMessageFromeUser(textMessage)
             selectResetAction()
         } else {
             //タップしても反応しないようにする
