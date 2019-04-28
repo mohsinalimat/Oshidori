@@ -10,7 +10,16 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
-class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+protocol MessageViewControllerDelegate: AnyObject {
+    func reloadDate()
+}
+
+class MessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MessageViewControllerDelegate {
+    
+    func reloadDate() {
+        messages.removeAll()
+        getMessageDataFromFirestore_createTableView()
+    }
     
     // firebase関連
     let db = Firestore.firestore()
@@ -20,7 +29,7 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     // userInfo を入れておく場所
     var userInformation : UserInformation?
     
-    var  messages:[(content:String, sendDate:String)] = []
+    var messages:[(content:String, sendDate:String, name:String, contentType:String)] = []
     
     @IBOutlet weak var receiveTableView: UITableView!
     
@@ -74,12 +83,14 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
     
     @IBAction func didTapMoveUserEditButton(_ sender: Any) {
         moveUserEditPage()
+        
     }
     
     @IBAction func didTapMoveSendMessageButton(_ sender: Any) {
         // chatStoryboard
         let storyboard = UIStoryboard(name: "Message", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "ChatStoryboard")
+        guard let VC = storyboard.instantiateViewController(withIdentifier: "ChatStoryboard") as? ChatViewController else { return }
+        VC.delegate = self
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
@@ -100,6 +111,12 @@ class MessageViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
         cell.setContentLabel(content: messages[indexPath.row].content)
         cell.setDataLabel(date: messages[indexPath.row].sendDate)
+        cell.setContentTypeImage(contentType: messages[indexPath.row].content)
+        cell.setNameLabel(name: messages[indexPath.row].name)
+        cell.setContentTypeImage(contentType: messages[indexPath.row].contentType)
+        // TODO: viewの角を丸くする
+        cell.messageView.layer.cornerRadius = 0.8
+        cell.messageView.backgroundColor = OshidoriColor.light
         return cell
     }
     
@@ -140,13 +157,24 @@ extension MessageViewController {
             for document in querySnapshot!.documents {
                 guard let content = document.get("content") else { return }
                 guard let date = document.get("created") else { return }
+                guard let name = document.get("senderName") else { return }
+                guard let contentType = document.get("contentType") else { return }
                 let dateTimestamp = date as! Timestamp
                 let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
-                self.messages.append((content: content as! String, sendDate: dateString))
+                self.messages.append((content: content as! String, sendDate: dateString,
+                                      name: name as! String, contentType: contentType as! String))
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
         }
     }
+    
+//    func updateMessages() {
+//        guard let roomId = userInformation?.roomId else {
+//            return
+//        }
+//        let messagesRef = db.collection("rooms").document(roomId).collection("messages")
+//        messagesRef.ons
+//    }
 }
 

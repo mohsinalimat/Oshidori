@@ -11,10 +11,13 @@ import PKHUD
 
 class UserInformation {
     
+    // シングルトン実装
+    static var shared = UserInformation()
+    
     var name: String = ""
     var birthday: Date?
     var partnerId: String = ""
-     var roomId: String = ""
+    var roomId: String = ""
     var created: Date?
     
     init() {}
@@ -58,6 +61,18 @@ extension UserInformation {
             "partnerId": partnerId,
             "roomId": roomId,
             "created": created!,
+        ]
+        return rep
+    }
+}
+
+// firestorageに保存する用
+extension UserInformation {
+    var editRepresentation: [String : Any] {
+        
+        let rep: [String : Any] = [
+            "name": name,
+            "birthday": birthday!,
         ]
         return rep
     }

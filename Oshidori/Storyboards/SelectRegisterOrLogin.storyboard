@@ -34,8 +34,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-kV-3Gw">
                                 <rect key="frame" x="30" y="296.66666666666669" width="354" height="128"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パートナーとの「いま」を大事にしよう" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdU-KN-0fh">
-                                        <rect key="frame" x="6.6666666666666572" y="0.0" width="340.66666666666674" height="67"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パートナーに「すなお」な気持ちを伝えよう" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdU-KN-0fh">
+                                        <rect key="frame" x="20" y="0.0" width="314" height="67"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -53,8 +53,10 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="tdU-KN-0fh" firstAttribute="leading" secondItem="jiM-kV-3Gw" secondAttribute="leading" constant="20" id="OYL-Wn-zbX"/>
                                     <constraint firstAttribute="trailing" secondItem="jAQ-PI-ptC" secondAttribute="trailing" constant="20" id="SOK-UC-abs"/>
                                     <constraint firstItem="jAQ-PI-ptC" firstAttribute="leading" secondItem="jiM-kV-3Gw" secondAttribute="leading" constant="20" id="cTW-P6-1fi"/>
+                                    <constraint firstAttribute="trailing" secondItem="tdU-KN-0fh" secondAttribute="trailing" constant="20" id="kq9-s7-UnA"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-XP-jZt">

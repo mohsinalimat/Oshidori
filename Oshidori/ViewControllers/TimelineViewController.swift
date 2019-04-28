@@ -13,7 +13,7 @@ import FirebaseFirestore
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var timelineTableView: UITableView!
-    var  timelineMessages:[(content:String, sendDate:String)] = []
+    var  timelineMessages:[(content:String, sendDate:String, contentType:String)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -47,6 +46,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineMessageCell", for: indexPath) as! TimelineMessageTableViewCellTableViewCell
         cell.setContentLabel(content: timelineMessages[indexPath.row].content)
         cell.setDataLabel(date: timelineMessages[indexPath.row].sendDate)
+        cell.setContentTypeImage(contentType: timelineMessages[indexPath.row].contentType)
         return cell
     }
     
@@ -71,25 +71,15 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             for document in querySnapshot!.documents {
                 guard let content = document.get("content") else { return }
                 guard let date = document.get("created") else { return }
+                guard let contentType = document.get("contentType") else { return }
                 let dateTimestamp = date as! Timestamp
                 print(dateTimestamp.dateValue())
                 let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
-                self.timelineMessages.append((content: content as! String, sendDate: dateString))
+                self.timelineMessages.append((content: content as! String, sendDate: dateString, contentType: contentType as! String))
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.timelineTableView.reloadData()
         }
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
