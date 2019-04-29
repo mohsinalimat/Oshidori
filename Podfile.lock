@@ -122,6 +122,7 @@ PODS:
   - nanopb/encode (0.3.901)
   - PKHUD (5.2.1)
   - Protobuf (3.7.0)
+  - TextFieldEffects (1.5.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -132,6 +133,7 @@ DEPENDENCIES:
   - MessageInputBar
   - MessageKit
   - PKHUD (~> 5.0)
+  - TextFieldEffects
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -157,6 +159,7 @@ SPEC REPOS:
     - nanopb
     - PKHUD
     - Protobuf
+    - TextFieldEffects
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: 2a230d9cd93e7ce39916044f645cebb31f37dde6
@@ -181,7 +184,8 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   PKHUD: 4e6162c4c39ac367c6934e9855c6b4762ee16256
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
+  TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: fb5ada04a274527bf6182ebd433a80328022355c
+PODFILE CHECKSUM: e381bb75b43cf25459ff7151353110a819b7b95e
 
 COCOAPODS: 1.6.1

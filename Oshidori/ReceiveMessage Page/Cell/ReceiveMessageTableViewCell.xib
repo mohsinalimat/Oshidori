@@ -26,7 +26,7 @@
                                 <rect key="frame" x="5" y="5" width="79" height="30"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_thanks" translatesAutoresizingMaskIntoConstraints="NO" id="mFh-Xh-G1d">
-                                        <rect key="frame" x="0.0" y="0.0" width="40.000000000000057" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="73t-Nw-0Je"/>
                                             <constraint firstAttribute="width" constant="40" id="Lq7-T9-13o"/>
