@@ -13,7 +13,7 @@ class EditInformationViewController: FormViewController {
     
     let editContentArray:[String] = ["ニックネーム","誕生日"]
     var editContent:String?
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let content = editContent else {
@@ -23,7 +23,7 @@ class EditInformationViewController: FormViewController {
         
         switch content {
         case "ニックネーム":
-            form +++ Section("Section1")
+            form +++ Section("編集")
                 <<< TextRow(){ row in
                     row.title = "ニックネーム"
                     row.placeholder = "入力してね！"
@@ -37,7 +37,7 @@ class EditInformationViewController: FormViewController {
             }
             
         default:
-            break
+            self.dismiss(animated: false)
         }
         
         
