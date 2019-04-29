@@ -30,6 +30,4 @@ class MyImageAndNameTableViewCell: UITableViewCell {
         userImage.layer.cornerRadius = self.frame.height / 3.0 // 3.0にしたら丸になった
     }
     
-    
-    
 }

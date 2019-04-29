@@ -77,7 +77,7 @@ extension UIViewController {
     func moveUserEditPage() {
         let storyboard = UIStoryboard(name: "EditUserInfo", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "EditUserInfoStoryboard")
-        self.present(VC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func moveUserRegistPage() {
