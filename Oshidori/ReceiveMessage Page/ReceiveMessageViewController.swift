@@ -35,7 +35,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        moveSendMessageButton.isHidden = true
+//        moveSendMessageButton.isHidden = true
         
         // TODO: uidなどが取れなかったら、最初の画面に遷移するようにする？
         
@@ -52,24 +52,24 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         // messages の初期化
         messages.removeAll()
         // userInformaitonの初期化。情報を持ってくる
-        getUserInformationRef().getDocument{ (document, error) in
-            if let userInformation = document.flatMap({
-                $0.data().flatMap({ (data) in
-                    return UserInformation(data: data)
-                })
-            }) {
-                self.userInformation = userInformation
-                debugPrint("🌞City: \(userInformation.name)")
-                if !(userInformation.roomId.isEmpty) {
-                    self.moveSendMessageButton.isHidden = false
-                    // firestoreからデータを取って、テーブルビューに反映
-                    self.getMessageDataFromFirestore_createTableView()
-                }
-                
-            } else {
-                debugPrint("Document does not exist")
-            }
-        }
+//        getUserInformationRef().getDocument{ (document, error) in
+//            if let userInformation = document.flatMap({
+//                $0.data().flatMap({ (data) in
+//                    return UserInformation(data: data)
+//                })
+//            }) {
+//                self.userInformation = userInformation
+//                debugPrint("🌞City: \(userInformation.name)")
+//                if !(userInformation.roomId.isEmpty) {
+//                    self.moveSendMessageButton.isHidden = false
+//                    // firestoreからデータを取って、テーブルビューに反映
+//                    self.getMessageDataFromFirestore_createTableView()
+//                }
+//
+//            } else {
+//                debugPrint("Document does not exist")
+//            }
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,17 +103,18 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        //return messages.count
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // as! ReceiveMessageTableViewCell をつけないと、ReceiveMessageTableViewCell.swiftのパーツをいじることができない。
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
-        cell.setContentLabel(content: messages[indexPath.row].content)
-        cell.setDataLabel(date: messages[indexPath.row].sendDate)
-        cell.setContentTypeImage(contentType: messages[indexPath.row].content)
-        cell.setNameLabel(name: messages[indexPath.row].name)
-        cell.setContentTypeImage(contentType: messages[indexPath.row].contentType)
+//        cell.setContentLabel(content: messages[indexPath.row].content)
+//        cell.setDataLabel(date: messages[indexPath.row].sendDate)
+//        cell.setContentTypeImage(contentType: messages[indexPath.row].content)
+//        cell.setNameLabel(name: messages[indexPath.row].name)
+//        cell.setContentTypeImage(contentType: messages[indexPath.row].contentType)
         // TODO: viewの角を丸くする
         cell.messageView.layer.cornerRadius = 0.8
         cell.messageView.backgroundColor = OshidoriColor.light

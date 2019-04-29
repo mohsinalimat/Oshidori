@@ -75,19 +75,19 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         // 初期ステータスを入れる
         chatStatusFlag = chatStatus.selectContentType
         // userInformaitonの初期化。情報を持ってくる
-        getUserInformationRef().getDocument{ (document, error) in
-            if let userInformation = document.flatMap({
-                $0.data().flatMap({ (data) in
-                    return UserInformation(data: data)
-                })
-            }) {
-                // 上記で得た内容を保存する
-                self.userInformation = userInformation
-                debugPrint("🌞City: \(userInformation.name)")
-            } else {
-                debugPrint("Document does not exist")
-            }
-        }
+//        getUserInformationRef().getDocument{ (document, error) in
+//            if let userInformation = document.flatMap({
+//                $0.data().flatMap({ (data) in
+//                    return UserInformation(data: data)
+//                })
+//            }) {
+//                // 上記で得た内容を保存する
+//                self.userInformation = userInformation
+//                debugPrint("🌞City: \(userInformation.name)")
+//            } else {
+//                debugPrint("Document does not exist")
+//            }
+//        }
         
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
@@ -175,8 +175,8 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
             return
         }
         debugPrint("Firestoreへmessageをセーブ（roomとtimeline）")
-        saveToRoomMessges(message)
-        saveToTimelineMessages(message)
+//        saveToRoomMessges(message)
+//        saveToTimelineMessages(message)
     }
     
     func saveToRoomMessges(_ message: Message) {
