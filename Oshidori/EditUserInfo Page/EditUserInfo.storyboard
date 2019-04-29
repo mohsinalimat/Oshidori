@@ -13,12 +13,7 @@
         <scene sceneID="Qq6-1A-VXZ">
             <objects>
                 <viewController storyboardIdentifier="EditUserInfoStoryboard" id="FtU-Pc-os6" customClass="EditUserInfoViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="ユーザ情報編集" id="EV3-7Z-XV4">
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="9Tx-u0-QQL"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="saveButton" destination="9Tx-u0-QQL" id="PfI-A3-rxA"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="ユーザ情報編集" id="EV3-7Z-XV4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nF-bs-TEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

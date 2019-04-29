@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Edit Information View Controller-->
+        <!--編集-->
         <scene sceneID="1d0-AS-vye">
             <objects>
                 <viewController storyboardIdentifier="EditInformationStoryboard" id="etQ-N6-Pxk" customClass="EditInformationViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +20,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="A8h-zR-euW"/>
                     </view>
-                    <navigationItem key="navigationItem" id="IHv-Bf-Obf"/>
+                    <navigationItem key="navigationItem" title="編集" id="IHv-Bf-Obf">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="sEb-y1-YcU"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="sEb-y1-YcU" id="e2U-Pw-kyb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6xX-bl-pMD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

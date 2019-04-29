@@ -21,6 +21,8 @@ class EditUserInfoViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        
         form +++ Section("ユーザー")
             <<< LabelRow(){ row in
                 row.title = "ニックネーム"
