@@ -30,8 +30,6 @@ extension MypageViewController {
     func initialSettingForCell() {
         mypageTableView.register (UINib(nibName: "MessageReportTableViewCell", bundle: nil),forCellReuseIdentifier:"MessageReportCell")
         mypageTableView.register (UINib(nibName: "MyImageAndNameTableViewCell", bundle: nil),forCellReuseIdentifier:"MyImageAndNameCell")
-        // こいつは違うぞ
-        mypageTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
         // セルの高さを内容によって可変にする
         mypageTableView.estimatedRowHeight = 50 //予想のセルの高さ //入れないとワーニングが出る
         mypageTableView.rowHeight = UITableView.automaticDimension
@@ -67,7 +65,9 @@ extension MypageViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
+            cell.setUserImage()
+            
             return cell
 
         case 1:

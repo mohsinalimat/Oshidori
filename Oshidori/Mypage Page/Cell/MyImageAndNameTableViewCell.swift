@@ -10,6 +10,8 @@ import UIKit
 
 class MyImageAndNameTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +21,13 @@ class MyImageAndNameTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setUserImage() {
+        userImage.image = UIImage(named: "TestImage")
+        userImage.contentMode = .scaleAspectFill
+        userImage.clipsToBounds = true
+        userImage.layer.cornerRadius = self.frame.height / 3.0 // 3.0にしたら丸になった
     }
     
     
