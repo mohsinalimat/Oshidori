@@ -340,8 +340,8 @@
 		67A2D5A422767AA200755F0B /* SendMessage Page */ = {
 			isa = PBXGroup;
 			children = (
-				6723DEBB2253193500B3DF69 /* SendMessage.storyboard */,
 				6723DEBF2254415C00B3DF69 /* SendMessageViewController.swift */,
+				6723DEBB2253193500B3DF69 /* SendMessage.storyboard */,
 			);
 			path = "SendMessage Page";
 			sourceTree = "<group>";
