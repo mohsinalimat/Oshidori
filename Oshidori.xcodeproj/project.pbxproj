@@ -437,8 +437,8 @@
 			isa = PBXGroup;
 			children = (
 				67A2D5C02276BFDD00755F0B /* Cell */,
-				67A2D5B82276BEE100755F0B /* MyImageAndNameTableViewCell.swift */,
-				67A2D5B92276BEE100755F0B /* MyImageAndNameTableViewCell.xib */,
+				67A2D5B52276A89300755F0B /* Mypage.storyboard */,
+				67A2D5B32276A88500755F0B /* MypageViewController.swift */,
 			);
 			path = "Mypage Page";
 			sourceTree = "<group>";
@@ -446,8 +446,8 @@
 		67A2D5C02276BFDD00755F0B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				67A2D5B32276A88500755F0B /* MypageViewController.swift */,
-				67A2D5B52276A89300755F0B /* Mypage.storyboard */,
+				67A2D5B82276BEE100755F0B /* MyImageAndNameTableViewCell.swift */,
+				67A2D5B92276BEE100755F0B /* MyImageAndNameTableViewCell.xib */,
 				67A2D5BC2276BFD400755F0B /* MessageReportTableViewCell.swift */,
 				67A2D5BD2276BFD400755F0B /* MessageReportTableViewCell.xib */,
 			);
