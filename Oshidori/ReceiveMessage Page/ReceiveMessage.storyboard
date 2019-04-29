@@ -82,12 +82,12 @@
             </objects>
             <point key="canvasLocation" x="1064.8" y="-439.43028485757122"/>
         </scene>
-        <!--手紙-->
+        <!--Navigation Controller-->
         <scene sceneID="i8b-4o-gfK">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uq4-6O-JFN" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <tabBarItem key="tabBarItem" title="手紙" image="Message" selectedImage="Message" id="HDE-Vc-4Qf"/>
+                    <tabBarItem key="tabBarItem" title="" image="Message" selectedImage="Message" id="HDE-Vc-4Qf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zaN-kY-wSZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
