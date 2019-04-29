@@ -16,19 +16,16 @@ class RegistAuthUserViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var registerButton: UIButton!
+    @IBOutlet weak var registButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        registerButton.backgroundColor = OshidoriColor.primary
+        registButton.backgroundColor = OshidoriColor.primary
+        registButton.layer.cornerRadius = 8.0
         emailField.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        registerButton.layer.cornerRadius = 8.0
     }
     
     @IBAction func didTapRegisterButton(_ sender: Any) {

@@ -15,11 +15,7 @@ class RegistUserInfoViewController: UIViewController, UITextFieldDelegate {
     // TODO: ここから離脱した人のことを考える。Authは登録したけど、Userは登録していない人
 
     @IBOutlet weak var nameField: UITextField!
-    @IBOutlet weak var saveButton: UIButton!
-    
-    @IBOutlet weak var birthdayField: UITextField!
-    var toolBar: UIToolbar!
-    var birthday: Date!
+    @IBOutlet weak var registButton: UIButton!
     
     let userInfoService = UserInfoService.shared
     
@@ -28,24 +24,11 @@ class RegistUserInfoViewController: UIViewController, UITextFieldDelegate {
         nameField.becomeFirstResponder()
         
         userInfoService.delegate = self
-        
         nameField.delegate = self
-        birthdayField.delegate = self
-        // Do any additional setup after loading the view.
-        //datepicker上のtoolbarのdoneボタン
         
-        toolBar = UIToolbar()
-        toolBar.sizeToFit()
-        let toolBarBtn = UIBarButtonItem(title: "決定", style: .plain, target: self, action: #selector(doneBtn))
-        toolBar.items = [toolBarBtn]
-        birthdayField.inputAccessoryView = toolBar
-    }
-    
-    @IBAction func birthdayFIeldEditing(_ sender: UITextField) {
-        let datePickerView:UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePicker.Mode.date
-        sender.inputView = datePickerView
-        datePickerView.addTarget(self, action: #selector(datePickerValueChanged), for: UIControl.Event.valueChanged)
+        registButton.backgroundColor = OshidoriColor.primary
+        registButton.layer.cornerRadius = 8.0
+       
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
@@ -53,21 +36,8 @@ class RegistUserInfoViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    //datepickerが選択されたらtextfieldに表示
-    @objc func datePickerValueChanged(sender:UIDatePicker) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat  = "yyyy/MM/dd";
-        birthdayField.text = dateFormatter.string(from: sender.date)
-        birthday = sender.date
-    }
-    
-    //toolbarのdoneボタン
-    @objc func doneBtn(){
-        birthdayField.resignFirstResponder()
-    }
-    
     @IBAction func didTapSaveButton(_ sender: Any) {
-        guard let name = nameField.text, let birthday = birthday else {
+        guard let name = nameField.text else {
             alert("error", "ニックネームか誕生日を入力してください!", nil)
             return
         }
@@ -77,7 +47,8 @@ class RegistUserInfoViewController: UIViewController, UITextFieldDelegate {
         }
         let created = Date()
         // 初期のデータを保存するため、partnerIdとroomIdは"" で良い。
-        let userInfo = UserInformation(name: name, birthday: birthday, partnerId: "", roomId: "", created: created)
+        // TODO: nil が怖いので要注意 すでにクラッシュしてる
+        let userInfo = UserInformation(name: name, birthday: nil, partnerId: "", roomId: "", created: created)
         HUD.show(.progress)
         UserInfoService.shared.save(userInfo)
     }

@@ -21,7 +21,11 @@
                         <viewLayoutGuide key="safeArea" id="A8h-zR-euW"/>
                     </view>
                     <navigationItem key="navigationItem" title="編集" id="IHv-Bf-Obf">
-                        <barButtonItem key="rightBarButtonItem" title="保存" id="sEb-y1-YcU"/>
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="sEb-y1-YcU">
+                            <connections>
+                                <action selector="didTapSaveButton:" destination="etQ-N6-Pxk" id="oCx-in-gVD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="saveButton" destination="sEb-y1-YcU" id="e2U-Pw-kyb"/>
