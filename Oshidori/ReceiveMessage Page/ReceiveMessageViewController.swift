@@ -52,40 +52,29 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         // messages の初期化
         messages.removeAll()
         // userInformaitonの初期化。情報を持ってくる
-//        getUserInformationRef().getDocument{ (document, error) in
-//            if let userInformation = document.flatMap({
-//                $0.data().flatMap({ (data) in
-//                    return UserInformation(data: data)
-//                })
-//            }) {
-//                self.userInformation = userInformation
-//                debugPrint("🌞City: \(userInformation.name)")
-//                if !(userInformation.roomId.isEmpty) {
-//                    self.moveSendMessageButton.isHidden = false
-//                    // firestoreからデータを取って、テーブルビューに反映
-//                    self.getMessageDataFromFirestore_createTableView()
-//                }
-//
-//            } else {
-//                debugPrint("Document does not exist")
-//            }
-//        }
+        getUserInformationRef().getDocument{ (document, error) in
+            if let userInformation = document.flatMap({
+                $0.data().flatMap({ (data) in
+                    return UserInformation(data: data)
+                })
+            }) {
+                self.userInformation = userInformation
+                debugPrint("🌞City: \(userInformation.name)")
+                if !(userInformation.roomId.isEmpty) {
+                    self.moveSendMessageButton.isHidden = false
+                    // firestoreからデータを取って、テーブルビューに反映
+                    self.getMessageDataFromFirestore_createTableView()
+                }
+            } else {
+                debugPrint("Document does not exist")
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-        
     }
 
-    @IBAction func testQRcode(_ sender: Any) {
-        moveQRcodePage()
-    }
-    
-    @IBAction func didTapMoveUserEditButton(_ sender: Any) {
-        moveUserEditPage()
-        
-    }
-    
     @IBAction func didTapMoveSendMessageButton(_ sender: Any) {
         // chatStoryboard
         let storyboard = UIStoryboard(name: "SendMessage", bundle: nil)
@@ -104,30 +93,21 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //return messages.count
-        return 3
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // as! ReceiveMessageTableViewCell をつけないと、ReceiveMessageTableViewCell.swiftのパーツをいじることができない。
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
-//        cell.setContentLabel(content: messages[indexPath.row].content)
-//        cell.setDataLabel(date: messages[indexPath.row].sendDate)
-//        cell.setContentTypeImage(contentType: messages[indexPath.row].content)
-//        cell.setNameLabel(name: messages[indexPath.row].name)
-//        cell.setContentTypeImage(contentType: messages[indexPath.row].contentType)
+        cell.setContentLabel(content: messages[indexPath.row].content)
+        cell.setDataLabel(date: messages[indexPath.row].sendDate)
+        cell.setContentTypeImage(contentType: messages[indexPath.row].content)
+        cell.setNameLabel(name: messages[indexPath.row].name)
+        cell.setContentTypeImage(contentType: messages[indexPath.row].contentType)
         // TODO: viewの角を丸くする
         cell.messageView.layer.cornerRadius = 0.8
         cell.messageView.backgroundColor = OshidoriColor.light
         return cell
-    }
-    
-    @IBAction func moveQRcode(_ sender: Any) {
-        moveQRcodePage()
-    }
-    
-    @IBAction func didTopLogoutButton(_ sender: Any) {
-        User.shared.logout()
-        moveSelectRegisterOrLoginPage()
     }
 }
 
@@ -167,9 +147,11 @@ extension ReceiveMessageViewController {
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
+            
         }
     }
-    
+}
+
 //    func updateMessages() {
 //        guard let roomId = userInformation?.roomId else {
 //            return
@@ -177,5 +159,5 @@ extension ReceiveMessageViewController {
 //        let messagesRef = db.collection("rooms").document(roomId).collection("messages")
 //        messagesRef.ons
 //    }
-}
+
 

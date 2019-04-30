@@ -99,8 +99,8 @@ extension Message {
     }
 }
 
-extension UserInformation {
-    var editsupportCountRepresentation: [String : Any] {
+extension Message {
+    var editSupportCountRepresentation: [String : Any] {
         let rep: [String : Any] = [
             "supportCount": supportCount,
         ]

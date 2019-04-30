@@ -63,5 +63,5 @@ extension RegistUserInfoViewController: UserInfoServiceDelegate {
     
     func loaded() {
         
-    }    
+    }
 }

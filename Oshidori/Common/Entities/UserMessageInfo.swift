@@ -57,3 +57,15 @@ extension UserMessageInfo {
         return rep
     }
 }
+
+extension UserMessageInfo {
+    var firstRepresentation: [String : Any] {
+        let rep: [String : Any] = [
+            "courageCount": 0,
+            "supportCount": 0,
+            "messageIds": messageIds,
+            "messageCount": 0,
+        ]
+        return rep
+    }
+}
