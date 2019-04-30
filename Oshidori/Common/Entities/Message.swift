@@ -16,8 +16,8 @@ struct Message: MessageType {
     var sender: Sender
     var sentDate: Date
     var content: String
-    var contentType: String?
     
+    var contentType: String?
     
     var courageCount: Int?
     var supportCount: Int?
@@ -42,14 +42,6 @@ struct Message: MessageType {
         self.supportCount = supportCount
     }
     
-
-//    init(content: String, sender: Sender, messageId: String, date: Date, contentType: String,
-//         courageCount: Int, supportCount: Int) {
-//        self.init(content: content, sender: sender, messageId: messageId, date: date,
-//                  contentType: contentType, courageCount: courageCount, supportCount: supportCount)
-//    }
-    
-    // おしどり用
     private init(content: String, sender: Sender, messageId: String, date: Date) {
         self.content = content
         self.sender = sender

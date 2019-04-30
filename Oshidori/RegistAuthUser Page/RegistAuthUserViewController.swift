@@ -36,6 +36,11 @@ class RegistAuthUserViewController: UIViewController {
                     return
                 }
                 
+                // TODO: メールを送って、確認することができる！！！
+//                self.user.verificate(credential: credential, completion: {
+//                    //
+//                })
+                
                 self.user.login(credential: credential, completion: {
                     // TODO: login の後に、この処理を走らせたい。どうやっていいかわからない。。。
                     if self.user.isLogin() {
