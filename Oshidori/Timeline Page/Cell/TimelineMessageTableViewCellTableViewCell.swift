@@ -22,6 +22,9 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     @IBOutlet weak var courageButton: UIButton!
     @IBOutlet weak var supportButton: UIButton!
     
+    @IBOutlet weak var courageCountLabel: UILabel!
+    @IBOutlet weak var supportCountLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -35,11 +38,15 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     @IBAction func didTapCourageButton(_ sender: Any) {
         courageView.backgroundColor = OshidoriColor.primary
         courageButton.isEnabled = false
-        print(courageButton.tag)
-        print("🌞")
+        
         // TODO:カウントを増やす処理
-        
-        
+        guard let strCourageCount = courageCountLabel.text else {
+            return
+        }
+        if let intCourageCount = Int(strCourageCount) {
+            let count = intCourageCount + 1
+            courageCountLabel.text = String(count)
+        }
     }
     
     @IBAction func didTapSupportButton(_ sender: Any) {

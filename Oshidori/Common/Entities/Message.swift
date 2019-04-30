@@ -17,6 +17,13 @@ struct Message: MessageType {
     var sentDate: Date
     var content: String
     var contentType: String?
+    
+    /*
+    var courageCount: Int
+    var supportCount: Int
+    var messages:[Message]?
+    */
+    
     // contentTypeの選択肢
     var contentTypes: [String] = ["ありがとう","ごめんね","あのね"]
 

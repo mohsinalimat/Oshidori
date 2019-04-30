@@ -20,6 +20,14 @@ class UserInformation {
     var roomId: String = ""
     var created: Date?
     
+    /*
+     var courageCount: Int
+     var supportCount: Int
+     var partnerName: String?
+     
+     var messageIds: [String]?
+     */
+    
     init() {}
  
     init(name: String, birthday: Date?, partnerId: String, roomId: String, created: Date) {
