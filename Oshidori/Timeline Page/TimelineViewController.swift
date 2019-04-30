@@ -30,10 +30,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         getMessageDataFromFirestore_createTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -47,6 +43,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.setContentLabel(content: timelineMessages[indexPath.row].content)
         cell.setDataLabel(date: timelineMessages[indexPath.row].sendDate)
         cell.setContentTypeImage(contentType: timelineMessages[indexPath.row].contentType)
+        // いいねの実装に必要かも
+        cell.courageButton.tag = indexPath.row
+        cell.supportButton.tag = indexPath.row
         return cell
     }
     

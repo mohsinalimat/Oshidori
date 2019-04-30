@@ -88,12 +88,22 @@
                                             <constraint firstAttribute="bottom" secondItem="Usj-Or-wYd" secondAttribute="bottom" id="v1t-GV-8Cb"/>
                                         </constraints>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CFK-wp-C6z">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="94"/>
+                                        <connections>
+                                            <action selector="didTapCourageButton:" destination="eZX-PD-zo1" eventType="touchUpInside" id="5YY-W7-5HB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78039215689999997" green="0.99215686270000003" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
+                                    <constraint firstItem="CFK-wp-C6z" firstAttribute="leading" secondItem="hgv-f0-yPx" secondAttribute="leading" id="Fyp-xj-Grh"/>
+                                    <constraint firstAttribute="bottom" secondItem="CFK-wp-C6z" secondAttribute="bottom" id="GDp-jE-yZv"/>
                                     <constraint firstAttribute="trailing" secondItem="3pC-Dc-c2V" secondAttribute="trailing" constant="5" id="Hgs-58-cB0"/>
                                     <constraint firstItem="3pC-Dc-c2V" firstAttribute="top" secondItem="hgv-f0-yPx" secondAttribute="top" constant="5" id="MYk-aA-Bah"/>
                                     <constraint firstItem="3pC-Dc-c2V" firstAttribute="leading" secondItem="hgv-f0-yPx" secondAttribute="leading" constant="5" id="WIf-4R-f3Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="CFK-wp-C6z" secondAttribute="trailing" id="baj-Pr-rpD"/>
+                                    <constraint firstItem="CFK-wp-C6z" firstAttribute="top" secondItem="hgv-f0-yPx" secondAttribute="top" id="qiy-6Q-2xq"/>
                                     <constraint firstAttribute="bottom" secondItem="3pC-Dc-c2V" secondAttribute="bottom" constant="5" id="zpz-9o-sRS"/>
                                 </constraints>
                             </view>
@@ -121,11 +131,21 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.78049701859999998" green="0.99193829300000003" blue="0.94590571720000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQJ-gv-tC8">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="94"/>
+                                        <connections>
+                                            <action selector="didTapSupportButton:" destination="eZX-PD-zo1" eventType="touchUpInside" id="n9v-Kk-4Yr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.78049701859999998" green="0.99193829300000003" blue="0.94590571720000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Isd-6o-U1B" secondAttribute="trailing" constant="5" id="2el-fH-LVQ"/>
                                     <constraint firstItem="Isd-6o-U1B" firstAttribute="top" secondItem="FNF-SP-ob7" secondAttribute="top" constant="5" id="F2J-Yc-VcD"/>
+                                    <constraint firstItem="tQJ-gv-tC8" firstAttribute="leading" secondItem="FNF-SP-ob7" secondAttribute="leading" id="GSb-dl-8q9"/>
+                                    <constraint firstAttribute="bottom" secondItem="tQJ-gv-tC8" secondAttribute="bottom" id="RWO-V2-Pt0"/>
+                                    <constraint firstAttribute="trailing" secondItem="tQJ-gv-tC8" secondAttribute="trailing" id="f0l-0n-EUh"/>
+                                    <constraint firstItem="tQJ-gv-tC8" firstAttribute="top" secondItem="FNF-SP-ob7" secondAttribute="top" id="mFF-oZ-pS7"/>
                                     <constraint firstItem="Isd-6o-U1B" firstAttribute="leading" secondItem="FNF-SP-ob7" secondAttribute="leading" constant="5" id="yRM-0l-dUG"/>
                                     <constraint firstAttribute="bottom" secondItem="Isd-6o-U1B" secondAttribute="bottom" constant="5" id="zFG-td-pfl"/>
                                 </constraints>
@@ -150,8 +170,10 @@
                 <outlet property="contentLabel" destination="CBV-pB-YLC" id="qlz-Tp-aRQ"/>
                 <outlet property="contentTypeImageByMessage" destination="bUm-Cu-nrO" id="s9W-jO-G52"/>
                 <outlet property="contentTypeImageByOshidori" destination="RzN-BN-ek3" id="eQL-UH-dEz"/>
+                <outlet property="courageButton" destination="CFK-wp-C6z" id="GHW-ad-BEp"/>
                 <outlet property="courageView" destination="hgv-f0-yPx" id="91g-S0-zyq"/>
                 <outlet property="dateLabel" destination="cJg-oO-lYK" id="EVR-r9-uAP"/>
+                <outlet property="supportButton" destination="tQJ-gv-tC8" id="mhl-zY-KsM"/>
                 <outlet property="supportView" destination="FNF-SP-ob7" id="0SS-2v-bx9"/>
             </connections>
             <point key="canvasLocation" x="-188.40579710144928" y="83.370535714285708"/>

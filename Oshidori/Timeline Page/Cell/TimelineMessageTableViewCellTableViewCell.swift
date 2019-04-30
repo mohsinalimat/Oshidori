@@ -19,6 +19,9 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     @IBOutlet weak var courageView: UIView!
     @IBOutlet weak var supportView: UIView!
     
+    @IBOutlet weak var courageButton: UIButton!
+    @IBOutlet weak var supportButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -27,6 +30,24 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         changeLayerForView(courageView)
         changeLayerForView(supportView)
+    }
+    
+    @IBAction func didTapCourageButton(_ sender: Any) {
+        courageView.backgroundColor = OshidoriColor.primary
+        courageButton.isEnabled = false
+        print(courageButton.tag)
+        print("🌞")
+        // TODO:カウントを増やす処理
+        
+        
+    }
+    
+    @IBAction func didTapSupportButton(_ sender: Any) {
+        supportView.backgroundColor = OshidoriColor.primary
+        supportButton.isEnabled = false
+        print(supportButton.tag)
+        print("👿")
+        // TODO:カウントを増やす処理
     }
     
     func changeLayerForView(_ view: UIView) {
@@ -48,6 +69,8 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     func setDataLabel(date: String) {
         dateLabel.text = date
     }
+    
+    
     
     func setContentTypeImage(contentType: String) {
         switch contentType {

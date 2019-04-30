@@ -74,7 +74,5 @@ class EditInformationViewController: FormViewController {
             }
             // TODO: 保存する
         }
-        
-        debugPrint(birthday)
     }
 }
