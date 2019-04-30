@@ -17,7 +17,7 @@ class UserInfoService {
     
     static var shared = UserInfoService()
     
-    private var UserInformationRepository = FirestoreUserInformationRepository()
+    private var UserInformationRepository = UserInformationFirestoreRepository()
     
     weak var delegate: UserInfoServiceDelegate?
     

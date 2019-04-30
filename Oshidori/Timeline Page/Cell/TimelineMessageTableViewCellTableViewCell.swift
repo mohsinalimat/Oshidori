@@ -25,6 +25,8 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     @IBOutlet weak var courageCountLabel: UILabel!
     @IBOutlet weak var supportCountLabel: UILabel!
     
+    var messageId: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -48,7 +50,11 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
             courageCountLabel.text = String(count)
         }
         // messageIdを持っておけば探せるのでは？
-        
+        guard let messageId = messageId else {
+            debugPrint("👿messageIdを取り出せませんでした")
+            return
+        }
+        TimelineService.shared.updateCourageCountForMessage(messageId: messageId)
         
     }
     
@@ -95,6 +101,18 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
             contentTypeImageByOshidori.image = UIImage(named: "Oshidori_normal")
             contentTypeImageByMessage.image  = UIImage(named: "Message_thanks")
         }
+    }
+    
+    func setMessageId(messageId: String) {
+        self.messageId = messageId
+    }
+    
+    func setCourageCountLabel(courageCount: Int) {
+        courageCountLabel.text = String(courageCount)
+    }
+    
+    func setSupportCountLabel(supportCount: Int) {
+        supportCountLabel.text = String(supportCount)
     }
     
 }

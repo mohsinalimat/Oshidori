@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseFirestore
 
-class FirestoreUserInformationRepository {
+class UserInformationFirestoreRepository {
     // firebase 関連
     private let db = Firestore.firestore()
     func getUserInfoDocumentRef() -> DocumentReference {

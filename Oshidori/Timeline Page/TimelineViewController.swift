@@ -13,7 +13,8 @@ import FirebaseFirestore
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var timelineTableView: UITableView!
-    var  timelineMessages:[(content:String, sendDate:String, contentType:String)] = []
+    var  timelineMessages:[(content:String, sendDate:String, contentType:String,
+        messageId:String, courageCount:Int, supportCount:Int)] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.setContentLabel(content: timelineMessages[indexPath.row].content)
         cell.setDataLabel(date: timelineMessages[indexPath.row].sendDate)
         cell.setContentTypeImage(contentType: timelineMessages[indexPath.row].contentType)
+        cell.setMessageId(messageId: timelineMessages[indexPath.row].messageId)
+        cell.setCourageCountLabel(courageCount: timelineMessages[indexPath.row].courageCount)
+        cell.setSupportCountLabel(supportCount: timelineMessages[indexPath.row].supportCount)
         // いいねの実装に必要かも
         cell.courageButton.tag = indexPath.row
         cell.supportButton.tag = indexPath.row
@@ -71,10 +75,13 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 guard let content = document.get("content") else { return }
                 guard let date = document.get("created") else { return }
                 guard let contentType = document.get("contentType") else { return }
+                guard let messageId = document.get("messageId") else { return }
+                guard let courageCount = document.get("courageCount") else { return }
+                guard let supportCount = document.get("supportCount") else { return }
                 let dateTimestamp = date as! Timestamp
                 print(dateTimestamp.dateValue())
                 let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
-                self.timelineMessages.append((content: content as! String, sendDate: dateString, contentType: contentType as! String))
+                self.timelineMessages.append((content: content as! String, sendDate: dateString, contentType: contentType as! String, messageId: messageId as! String, courageCount:courageCount as! Int, supportCount:supportCount as! Int))
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.timelineTableView.reloadData()

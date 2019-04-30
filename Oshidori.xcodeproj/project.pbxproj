@@ -31,7 +31,9 @@
 		6732F2A3224DB2F600011710 /* OshidoriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F2A2224DB2F600011710 /* OshidoriUITests.swift */; };
 		6736F1632254B45000E89952 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736F1622254B45000E89952 /* UserDefault.swift */; };
 		67579D7122782132007AA6DA /* UserMessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67579D7022782132007AA6DA /* UserMessageInfo.swift */; };
-		677AB2FF2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */; };
+		67579D7922787F4D007AA6DA /* TimelineFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */; };
+		67579D7B22787FD2007AA6DA /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67579D7A22787FD2007AA6DA /* TimelineService.swift */; };
+		677AB2FF2270227B00DBCD62 /* UserInformationFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */; };
 		677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB3012270238400DBCD62 /* UserInfoService.swift */; };
 		677D6BD92265F06700C5E069 /* RegistUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */; };
 		67920DB522643E8500127083 /* ShowQRcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67920DB422643E8500127083 /* ShowQRcode.storyboard */; };
@@ -114,7 +116,9 @@
 		6732F2A4224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6736F1622254B45000E89952 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		67579D7022782132007AA6DA /* UserMessageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageInfo.swift; sourceTree = "<group>"; };
-		677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserInfomaitonRepository.swift; sourceTree = "<group>"; };
+		67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineFirestoreRepository.swift; sourceTree = "<group>"; };
+		67579D7A22787FD2007AA6DA /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
+		677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationFirestoreRepository.swift; sourceTree = "<group>"; };
 		677AB3012270238400DBCD62 /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfoViewController.swift; sourceTree = "<group>"; };
 		67920DB422643E8500127083 /* ShowQRcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowQRcode.storyboard; sourceTree = "<group>"; };
@@ -293,7 +297,7 @@
 		677AB3002270228100DBCD62 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */,
+				677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -438,6 +442,8 @@
 			children = (
 				67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */,
 				67C9E04B225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib */,
+				67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */,
+				67579D7A22787FD2007AA6DA /* TimelineService.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -741,6 +747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67A2D5B42276A88500755F0B /* MypageViewController.swift in Sources */,
+				67579D7922787F4D007AA6DA /* TimelineFirestoreRepository.swift in Sources */,
 				67920DDC2264730500127083 /* ReadQRcodeViewController.swift in Sources */,
 				67A2D5BA2276BEE100755F0B /* MyImageAndNameTableViewCell.swift in Sources */,
 				6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */,
@@ -764,11 +771,12 @@
 				6707E0AC225ADB4E00C12A5A /* ReceiveMessageViewController.swift in Sources */,
 				6707D3D9225AE7B0007529FA /* ReceiveMessageTableViewCell.swift in Sources */,
 				67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */,
+				67579D7B22787FD2007AA6DA /* TimelineService.swift in Sources */,
 				67C9E04C225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift in Sources */,
 				67A2D5C62277044600755F0B /* EditInformationViewController.swift in Sources */,
 				6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */,
 				67A2D5BE2276BFD400755F0B /* MessageReportTableViewCell.swift in Sources */,
-				677AB2FF2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift in Sources */,
+				677AB2FF2270227B00DBCD62 /* UserInformationFirestoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
