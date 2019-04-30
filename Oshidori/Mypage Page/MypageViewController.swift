@@ -21,8 +21,6 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mypageTableView.dataSource = self
         initialSettingForCell()
     }
-    
-
 }
 
 extension MypageViewController {

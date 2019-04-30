@@ -74,20 +74,10 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         insertDelegate()
         // 初期ステータスを入れる
         chatStatusFlag = chatStatus.selectContentType
-        // userInformaitonの初期化。情報を持ってくる
-//        getUserInformationRef().getDocument{ (document, error) in
-//            if let userInformation = document.flatMap({
-//                $0.data().flatMap({ (data) in
-//                    return UserInformation(data: data)
-//                })
-//            }) {
-//                // 上記で得た内容を保存する
-//                self.userInformation = userInformation
-//                debugPrint("🌞City: \(userInformation.name)")
-//            } else {
-//                debugPrint("Document does not exist")
-//            }
-//        }
+        
+        // Delete firebase
+        // プロパティのUserInfoに入れる。
+         getUserInfo()
         
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
@@ -168,6 +158,23 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         }
         return uid
     }
+    
+    func getUserInfo() {
+        // userInformaitonの初期化。情報を持ってくる
+        getUserInformationRef().getDocument{ (document, error) in
+            if let userInformation = document.flatMap({
+                $0.data().flatMap({ (data) in
+                    return UserInformation(data: data)
+                })
+            }) {
+                // 上記で得た内容を保存する
+                self.userInformation = userInformation
+                debugPrint("🌞City: \(userInformation.name)")
+            } else {
+                debugPrint("Document does not exist")
+            }
+        }
+    }
 
     func save(_ message: Message) {
         // falseだったら実行されるようだ。guardは条件に一致なかった場合に、処理を中断させるための構文
@@ -175,8 +182,10 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
             return
         }
         debugPrint("Firestoreへmessageをセーブ（roomとtimeline）")
-        //saveToRoomMessges(message)
-        saveToTimelineMessages(message)
+        
+        // Delete firebase
+         saveToRoomMessges(message)
+         saveToTimelineMessages(message)
     }
     
     func saveToRoomMessges(_ message: Message) {
@@ -436,7 +445,6 @@ extension SendMessageViewController{
     
     // メッセージの色を変更（デフォルトは自分：白、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        // TODO:ボタンの時は色を変えたい。
         return isFromCurrentSender(message: message) ? .white : .darkText
     }
     

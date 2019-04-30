@@ -54,25 +54,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7ux-or-BUb"/>
                     </view>
-                    <navigationItem key="navigationItem" title="手紙" id="dNr-K3-Iwx">
-                        <leftBarButtonItems>
-                            <barButtonItem title="QR" id="pAC-s8-fs6">
-                                <connections>
-                                    <action selector="moveQRcode:" destination="NLn-5q-vla" id="KM3-ho-hFp"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="User" id="QUs-hD-mWl">
-                                <connections>
-                                    <action selector="didTapMoveUserEditButton:" destination="NLn-5q-vla" id="2IE-j4-lcj"/>
-                                </connections>
-                            </barButtonItem>
-                        </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" title="Logout" id="0kf-h1-TKJ">
-                            <connections>
-                                <action selector="didTopLogoutButton:" destination="NLn-5q-vla" id="vJ9-18-9h7"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="手紙" id="dNr-K3-Iwx"/>
                     <connections>
                         <outlet property="moveSendMessageButton" destination="wkw-PU-qnn" id="x5z-u1-24v"/>
                         <outlet property="receiveTableView" destination="Dvy-et-dQh" id="TSU-gy-jnG"/>

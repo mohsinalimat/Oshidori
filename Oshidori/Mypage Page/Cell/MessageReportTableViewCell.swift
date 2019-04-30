@@ -10,6 +10,11 @@ import UIKit
 
 class MessageReportTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var messageCountLabel: UILabel!
+    @IBOutlet weak var courageCountLabel: UILabel!
+    @IBOutlet weak var supportCountLabel: UILabel!
+    @IBOutlet weak var messageReportView: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

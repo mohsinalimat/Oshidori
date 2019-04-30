@@ -42,7 +42,6 @@ class RegistAuthUserViewController: UIViewController {
 //                })
                 
                 self.user.login(credential: credential, completion: {
-                    // TODO: login の後に、この処理を走らせたい。どうやっていいかわからない。。。
                     if self.user.isLogin() {
                         self.moveUserRegistPage()
                     } else {

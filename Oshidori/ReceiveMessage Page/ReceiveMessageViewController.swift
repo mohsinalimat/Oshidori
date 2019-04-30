@@ -37,9 +37,6 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
 //        moveSendMessageButton.isHidden = true
         
-        // TODO: uidなどが取れなかったら、最初の画面に遷移するようにする？
-        
-        
         // 登録をすることで、カスタムセルを利用できるようになる。
         // nibファイルはxibファイルの作成と同時に作られるらしい。
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
