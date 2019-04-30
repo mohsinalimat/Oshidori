@@ -175,8 +175,8 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
             return
         }
         debugPrint("Firestoreへmessageをセーブ（roomとtimeline）")
-//        saveToRoomMessges(message)
-//        saveToTimelineMessages(message)
+        //saveToRoomMessges(message)
+        saveToTimelineMessages(message)
     }
     
     func saveToRoomMessges(_ message: Message) {
@@ -299,7 +299,7 @@ extension SendMessageViewController: MessageInputBarDelegate{
                 guard let contentType = tmpStoreContentType else {
                     return
                 }
-                let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date(),contentType: contentType)
+                let message = Message(content: str, sender: currentSender(), messageId: UUID().uuidString, date: Date(),contentType: contentType, courageCount: 0, supportCount: 0)
                 
                 switch  chatStatusFlag! {
                     

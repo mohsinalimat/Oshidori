@@ -17,16 +17,13 @@ class UserInformation {
     var name: String = ""
     var birthday: Date?
     var partnerId: String = ""
+    var partnerName: String = ""
     var roomId: String = ""
     var created: Date?
     
-    /*
-     var courageCount: Int
-     var supportCount: Int
-     var partnerName: String?
-     
-     var messageIds: [String]?
-     */
+    var courageCount: Int?
+    var supportCount: Int?
+    var messageIds: [String]?
     
     init() {}
  

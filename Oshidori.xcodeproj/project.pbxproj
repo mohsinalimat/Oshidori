@@ -30,6 +30,7 @@
 		6732F298224DB2F600011710 /* OshidoriTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F297224DB2F600011710 /* OshidoriTests.swift */; };
 		6732F2A3224DB2F600011710 /* OshidoriUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F2A2224DB2F600011710 /* OshidoriUITests.swift */; };
 		6736F1632254B45000E89952 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6736F1622254B45000E89952 /* UserDefault.swift */; };
+		67579D7122782132007AA6DA /* UserMessageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67579D7022782132007AA6DA /* UserMessageInfo.swift */; };
 		677AB2FF2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */; };
 		677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB3012270238400DBCD62 /* UserInfoService.swift */; };
 		677D6BD92265F06700C5E069 /* RegistUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */; };
@@ -112,6 +113,7 @@
 		6732F2A2224DB2F600011710 /* OshidoriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriUITests.swift; sourceTree = "<group>"; };
 		6732F2A4224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6736F1622254B45000E89952 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		67579D7022782132007AA6DA /* UserMessageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageInfo.swift; sourceTree = "<group>"; };
 		677AB2FE2270227B00DBCD62 /* FirestoreUserInfomaitonRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreUserInfomaitonRepository.swift; sourceTree = "<group>"; };
 		677AB3012270238400DBCD62 /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				6723DEAD224F52BB00B3DF69 /* Credential.swift */,
 				6723DEAB224F51C800B3DF69 /* User.swift */,
 				67EE40D02265D58800E2F2C5 /* UserInformation.swift */,
+				67579D7022782132007AA6DA /* UserMessageInfo.swift */,
 				6723DEBD2254396700B3DF69 /* Message.swift */,
 			);
 			path = Entities;
@@ -752,6 +755,7 @@
 				67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */,
 				6723DEB82250AA7500B3DF69 /* RegistAuthUserViewController.swift in Sources */,
 				677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */,
+				67579D7122782132007AA6DA /* UserMessageInfo.swift in Sources */,
 				6732F280224DB2F500011710 /* AppDelegate.swift in Sources */,
 				6723DEAC224F51C800B3DF69 /* User.swift in Sources */,
 				6723DEAE224F52BB00B3DF69 /* Credential.swift in Sources */,
