@@ -41,7 +41,6 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
         courageView.backgroundColor = OshidoriColor.primary
         courageButton.isEnabled = false
         
-        // TODO:カウントを増やす処理
         guard let strCourageCount = courageCountLabel.text else {
             return
         }
@@ -55,15 +54,25 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
             return
         }
         TimelineService.shared.updateCourageCountForMessage(messageId: messageId)
-        
     }
     
     @IBAction func didTapSupportButton(_ sender: Any) {
         supportView.backgroundColor = OshidoriColor.primary
         supportButton.isEnabled = false
-        print(supportButton.tag)
-        print("👿")
-        // TODO:カウントを増やす処理
+        
+        guard let strSupportCount = supportCountLabel.text else {
+            return
+        }
+        if let intSupportCount = Int(strSupportCount) {
+            let count = intSupportCount + 1
+            supportCountLabel.text = String(count)
+        }
+        guard let messageId = messageId else {
+            debugPrint("👿messageIdを取り出せませんでした")
+            return
+        }
+        TimelineService.shared.updateSupportCountForMessage(messageId: messageId)
+
     }
     
     func changeLayerForView(_ view: UIView) {

@@ -12,17 +12,9 @@ import FirebaseFirestore
 class TimelineFirestoreRepository {
     let db = Firestore.firestore()
     
-    
-    
-    func save(messageId: String) {
+    func updateCourageCount(messageId: String) {
         let timelineMessageRef = db.collection("timelineMessages").document(messageId)
         timelineMessageRef.getDocument { (Snapshot, Error) in
-//            debugPrint(Snapshot?.data())
-//            debugPrint(messageId)
-//            debugPrint(Snapshot?.get("courageCount"))
-//            debugPrint(Snapshot?.metadata)
-//            debugPrint(Snapshot.debugDescription)
-            
             var courageCount: Int = Snapshot?.get("courageCount") as! Int
             courageCount += 1
             let rep: [String : Any] = [
@@ -30,6 +22,18 @@ class TimelineFirestoreRepository {
             ]
             timelineMessageRef.updateData(rep)
         }
-        
     }
+    
+    func updateSupportCount(messageId: String) {
+        let timelineMessageRef = db.collection("timelineMessages").document(messageId)
+        timelineMessageRef.getDocument { (Snapshot, Error) in
+            var supportCount: Int = Snapshot?.get("supportCount") as! Int
+            supportCount += 1
+            let rep: [String : Any] = [
+                "supportCount": supportCount
+            ]
+            timelineMessageRef.updateData(rep)
+        }
+    }
+
 }

@@ -15,7 +15,11 @@ class TimelineService: TimelineFirestoreRepository {
     private let rep = TimelineFirestoreRepository()
     
     func updateCourageCountForMessage(messageId: String) {
-        rep.save(messageId: messageId)
+        rep.updateCourageCount(messageId: messageId)
+    }
+    
+    func updateSupportCountForMessage(messageId: String) {
+        rep.updateSupportCount(messageId: messageId)
     }
     
 }

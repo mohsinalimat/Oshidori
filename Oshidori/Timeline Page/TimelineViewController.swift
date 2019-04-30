@@ -86,6 +86,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.timelineTableView.reloadData()
         }
+        // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
+        self.timelineTableView.reloadData()
     }
     
 }
