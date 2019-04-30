@@ -47,6 +47,9 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
             let count = intCourageCount + 1
             courageCountLabel.text = String(count)
         }
+        // messageIdを持っておけば探せるのでは？
+        
+        
     }
     
     @IBAction func didTapSupportButton(_ sender: Any) {
@@ -76,8 +79,6 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     func setDataLabel(date: String) {
         dateLabel.text = date
     }
-    
-    
     
     func setContentTypeImage(contentType: String) {
         switch contentType {

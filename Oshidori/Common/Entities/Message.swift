@@ -77,6 +77,7 @@ extension Message {
             "contentType": getContentType(),
             "courageCount" : courageCount,
             "supportCount" : supportCount,
+            "messageId" : messageId,
         ]
         return rep
     }

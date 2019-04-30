@@ -77,7 +77,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         
         // Delete firebase
         // プロパティのUserInfoに入れる。
-         getUserInfo()
+        getUserInfo()
         
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
@@ -184,13 +184,19 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         debugPrint("Firestoreへmessageをセーブ（roomとtimeline）")
         
         // Delete firebase
-         saveToRoomMessges(message)
-         saveToTimelineMessages(message)
+        // messageIDを取っておいて、それをタイムラインとユーザのroomIdと紐づけて参照を行うようにしよう
+        let messageId = saveToTimelineMessages(message)
+        saveToRoomMessges(message: message, messageId: messageId)
+        
     }
-    
-    func saveToRoomMessges(_ message: Message) {
-        let roomCollectionref = getRoomMessagesCollectionRef()
-        roomCollectionref.addDocument(data: message.representation){ error in
+        
+    func saveToRoomMessges(message: Message, messageId: String) {
+        let roomMessageDocumentRef = getRoomMessagesCollectionRef().document(messageId)
+        
+        var sendMessage = message
+        sendMessage.messageId = messageId
+        
+        roomMessageDocumentRef.setData(sendMessage.representation){ error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -199,14 +205,18 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         }
     }
     
-    func saveToTimelineMessages(_ message: Message) {
-        let timelineMessagesCollectionRef = getTimelineColletionRef()
-        timelineMessagesCollectionRef.addDocument(data: message.representation) { error in
+    func saveToTimelineMessages(_ message: Message) -> String {
+        let timelineMessagesDocumentRef = getTimelineColletionRef().document()
+        let messageId  = timelineMessagesDocumentRef.documentID
+        var sendMessage = message
+        sendMessage.messageId = messageId
+        timelineMessagesDocumentRef.setData(sendMessage.representation) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
         }
+        return messageId
     }
 }
 
