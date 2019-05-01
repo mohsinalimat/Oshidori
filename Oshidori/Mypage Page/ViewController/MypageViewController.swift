@@ -10,6 +10,7 @@ import UIKit
 
 class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    let mypageService = MypageService.shared
     
     @IBOutlet weak var mypageTableView: UITableView!
     
@@ -19,6 +20,7 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         mypageTableView.delegate = self
         mypageTableView.dataSource = self
+        mypageService.delegate = self
         initialSettingForCell()
     }
 }
@@ -69,7 +71,13 @@ extension MypageViewController {
             return cell
 
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageReportCell", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MessageReportCell", for: indexPath) as! MessageReportTableViewCell
+            if let uid = User.shared.getUid() {
+                mypageService.getUserMessageInfo(uid: uid)
+                cell.setCourageCountLabel(courageCount: mypageService.getCourageCount())
+                cell.setSupportCountLabel(supportCount: mypageService.getSupportCount())
+                cell.setMessageCountLabel(messageCount: mypageService.getMessageCount())
+            }
             return cell
 
         case 2:
@@ -108,4 +116,16 @@ extension MypageViewController {
             break
         }
     }
+}
+
+extension MypageViewController: MypageServiceDelegate {
+    
+    func gotUserMessageInfo() {
+        
+    }
+    
+    func loaded() {
+        
+    }
+    
 }

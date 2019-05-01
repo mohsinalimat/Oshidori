@@ -17,7 +17,6 @@ class MessageReportTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,5 +24,19 @@ class MessageReportTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func setMessageCountLabel(messageCount: String) {
+        messageCountLabel.text = messageCount
+    }
+    
+    func setCourageCountLabel(courageCount: String) {
+        courageCountLabel.text = courageCount
+    }
+    
+    func setSupportCountLabel(supportCount: String) {
+        supportCountLabel.text = supportCount
+    }
+    
+    
     
 }

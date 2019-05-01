@@ -50,6 +50,8 @@
 		67A2D5BF2276BFD400755F0B /* MessageReportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5BD2276BFD400755F0B /* MessageReportTableViewCell.xib */; };
 		67A2D5C42277042D00755F0B /* EditInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5C32277042D00755F0B /* EditInformation.storyboard */; };
 		67A2D5C62277044600755F0B /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A2D5C52277044600755F0B /* EditInformationViewController.swift */; };
+		67C7ABA822795FF700344D6E /* MypageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7ABA722795FF700344D6E /* MypageService.swift */; };
+		67C7ABAC2279607100344D6E /* MypageFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */; };
 		67C9E047225EB6DD00516B3D /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E046225EB6DD00516B3D /* Timeline.storyboard */; };
 		67C9E049225EB7D200516B3D /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E048225EB7D200516B3D /* Tabbar.storyboard */; };
 		67C9E04C225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */; };
@@ -135,6 +137,8 @@
 		67A2D5BD2276BFD400755F0B /* MessageReportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageReportTableViewCell.xib; sourceTree = "<group>"; };
 		67A2D5C32277042D00755F0B /* EditInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditInformation.storyboard; sourceTree = "<group>"; };
 		67A2D5C52277044600755F0B /* EditInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
+		67C7ABA722795FF700344D6E /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
+		67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFirestoreRepository.swift; sourceTree = "<group>"; };
 		67C9E046225EB6DD00516B3D /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		67C9E048225EB7D200516B3D /* Tabbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabbar.storyboard; sourceTree = "<group>"; };
 		67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineMessageTableViewCellTableViewCell.swift; sourceTree = "<group>"; };
@@ -383,9 +387,10 @@
 		67A2D5A622767BAB00755F0B /* Timeline Page */ = {
 			isa = PBXGroup;
 			children = (
-				67A2D5B22276811200755F0B /* Cell */,
-				67C9E04E225EC22E00516B3D /* TimelineViewController.swift */,
-				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
+				67A2D5B22276811200755F0B /* View */,
+				67C7ABA92279601600344D6E /* ViewController */,
+				67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */,
+				67579D7A22787FD2007AA6DA /* TimelineService.swift */,
 			);
 			path = "Timeline Page";
 			sourceTree = "<group>";
@@ -437,28 +442,27 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		67A2D5B22276811200755F0B /* Cell */ = {
+		67A2D5B22276811200755F0B /* View */ = {
 			isa = PBXGroup;
 			children = (
 				67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */,
 				67C9E04B225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib */,
-				67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */,
-				67579D7A22787FD2007AA6DA /* TimelineService.swift */,
 			);
-			path = Cell;
+			path = View;
 			sourceTree = "<group>";
 		};
 		67A2D5B72276A89E00755F0B /* Mypage Page */ = {
 			isa = PBXGroup;
 			children = (
-				67A2D5C02276BFDD00755F0B /* Cell */,
-				67A2D5B52276A89300755F0B /* Mypage.storyboard */,
-				67A2D5B32276A88500755F0B /* MypageViewController.swift */,
+				67A2D5C02276BFDD00755F0B /* View */,
+				67C7ABAA2279605C00344D6E /* ViewController */,
+				67C7ABA722795FF700344D6E /* MypageService.swift */,
+				67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */,
 			);
 			path = "Mypage Page";
 			sourceTree = "<group>";
 		};
-		67A2D5C02276BFDD00755F0B /* Cell */ = {
+		67A2D5C02276BFDD00755F0B /* View */ = {
 			isa = PBXGroup;
 			children = (
 				67A2D5B82276BEE100755F0B /* MyImageAndNameTableViewCell.swift */,
@@ -466,7 +470,25 @@
 				67A2D5BC2276BFD400755F0B /* MessageReportTableViewCell.swift */,
 				67A2D5BD2276BFD400755F0B /* MessageReportTableViewCell.xib */,
 			);
-			path = Cell;
+			path = View;
+			sourceTree = "<group>";
+		};
+		67C7ABA92279601600344D6E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				67C9E04E225EC22E00516B3D /* TimelineViewController.swift */,
+				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		67C7ABAA2279605C00344D6E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5B52276A89300755F0B /* Mypage.storyboard */,
+				67A2D5B32276A88500755F0B /* MypageViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 		E07BC4EC061E887F5CAE56AD /* Frameworks */ = {
@@ -748,6 +770,8 @@
 			files = (
 				67A2D5B42276A88500755F0B /* MypageViewController.swift in Sources */,
 				67579D7922787F4D007AA6DA /* TimelineFirestoreRepository.swift in Sources */,
+				67C7ABA822795FF700344D6E /* MypageService.swift in Sources */,
+				67C7ABAC2279607100344D6E /* MypageFirestoreRepository.swift in Sources */,
 				67920DDC2264730500127083 /* ReadQRcodeViewController.swift in Sources */,
 				67A2D5BA2276BEE100755F0B /* MyImageAndNameTableViewCell.swift in Sources */,
 				6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */,
