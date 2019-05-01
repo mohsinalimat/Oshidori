@@ -8,7 +8,6 @@
 
 import Foundation
 import MessageKit
-import Firebase
 
 struct Message: MessageType {
     
@@ -68,7 +67,6 @@ struct Message: MessageType {
 extension Message {
     // 結局保存されているのはここだけなんか。
     var representation: [String : Any] {
-        
         let rep: [String : Any] = [
             "created": sentDate,
             "senderId": sender.id,

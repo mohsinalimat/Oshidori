@@ -60,10 +60,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     private var reference: CollectionReference?
     private let storage = Storage.storage().reference()
     private func getTimelineColletionRef() -> CollectionReference {
-        // ROM専も使えるようにしたいからUidで弾くことはしないでおこう。
-//        guard let uid = User.shared.getUid() else {
-//            fatalError("Uidを取得できませんでした。")
-//        }
         return db.collection("timelineMessages")
     }
     
@@ -89,8 +85,5 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.timelineTableView.reloadData()
         }
-        // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
-        self.timelineTableView.reloadData()
     }
-    
 }
