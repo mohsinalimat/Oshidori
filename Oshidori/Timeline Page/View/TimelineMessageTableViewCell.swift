@@ -11,7 +11,7 @@ import UIKit
 class TimelineMessageTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentLabel: UILabel!
-    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var sendDateLabel: UILabel!
     
     @IBOutlet weak var contentTypeImageByOshidori: UIImageView!
     @IBOutlet weak var contentTypeImageByMessage: UIImageView!
@@ -93,8 +93,8 @@ class TimelineMessageTableViewCell: UITableViewCell {
         contentLabel.text = content
     }
     
-    func setDataLabel(date: String) {
-        dateLabel.text = date
+    func setSendDataLabel(sendDate: String) {
+        sendDateLabel.text = sendDate
     }
     
     func setContentTypeImage(contentType: String) {

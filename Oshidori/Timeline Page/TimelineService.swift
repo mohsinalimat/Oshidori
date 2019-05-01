@@ -43,7 +43,22 @@ class TimelineService {
     func loadTimelineMessage() {
         timelineMessageRep.loadTimelineMessage { (messages) in
             self.timelineMessages = messages
+            self.delegate?.loaded()
         }
     }
+    
+    func timelineMessagesRemove() {
+        timelineMessages.removeAll()
+    }
+    
+    func getTimelineMessagesCount() -> Int {
+        return timelineMessages.count
+    }
+    
+    func getMessage(indexPathRow: Int) -> RepresentationMessage {
+        return timelineMessages[indexPathRow]
+    }
+    
+    
     
 }
