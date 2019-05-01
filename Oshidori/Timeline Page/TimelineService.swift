@@ -40,10 +40,9 @@ class TimelineService {
         userMessageInfoFirestoreRep.updateSupportCount(uid: uid)
     }
     
-    func loadTimelineMessage(completion: @escaping () -> Void) {
-        
-        timelineMessageRep.loadTimelineMessage { ([RepresentationMessage]) in
-            timelineMessages = RepresentationMessage
+    func loadTimelineMessage() {
+        timelineMessageRep.loadTimelineMessage { (messages) in
+            self.timelineMessages = messages
         }
     }
     
