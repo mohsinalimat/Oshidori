@@ -121,7 +121,7 @@ extension MypageViewController {
 extension MypageViewController: MypageServiceDelegate {
     
     func gotUserMessageInfo() {
-        
+        mypageTableView.reloadData()
     }
     
     func loaded() {
