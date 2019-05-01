@@ -54,7 +54,7 @@
 		67C7ABAC2279607100344D6E /* MypageFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */; };
 		67C9E047225EB6DD00516B3D /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E046225EB6DD00516B3D /* Timeline.storyboard */; };
 		67C9E049225EB7D200516B3D /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E048225EB7D200516B3D /* Tabbar.storyboard */; };
-		67C9E04C225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */; };
+		67C9E04C225EC20200516B3D /* TimelineMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04A225EC20200516B3D /* TimelineMessageTableViewCell.swift */; };
 		67C9E04D225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E04B225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib */; };
 		67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04E225EC22E00516B3D /* TimelineViewController.swift */; };
 		67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E0502260131700516B3D /* OshidoriColor.swift */; };
@@ -141,7 +141,7 @@
 		67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFirestoreRepository.swift; sourceTree = "<group>"; };
 		67C9E046225EB6DD00516B3D /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		67C9E048225EB7D200516B3D /* Tabbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabbar.storyboard; sourceTree = "<group>"; };
-		67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineMessageTableViewCellTableViewCell.swift; sourceTree = "<group>"; };
+		67C9E04A225EC20200516B3D /* TimelineMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineMessageTableViewCell.swift; sourceTree = "<group>"; };
 		67C9E04B225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineMessageTableViewCellTableViewCell.xib; sourceTree = "<group>"; };
 		67C9E04E225EC22E00516B3D /* TimelineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
 		67C9E0502260131700516B3D /* OshidoriColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriColor.swift; sourceTree = "<group>"; };
@@ -445,7 +445,7 @@
 		67A2D5B22276811200755F0B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				67C9E04A225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift */,
+				67C9E04A225EC20200516B3D /* TimelineMessageTableViewCell.swift */,
 				67C9E04B225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib */,
 			);
 			path = View;
@@ -796,7 +796,7 @@
 				6707D3D9225AE7B0007529FA /* ReceiveMessageTableViewCell.swift in Sources */,
 				67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */,
 				67579D7B22787FD2007AA6DA /* TimelineService.swift in Sources */,
-				67C9E04C225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.swift in Sources */,
+				67C9E04C225EC20200516B3D /* TimelineMessageTableViewCell.swift in Sources */,
 				67A2D5C62277044600755F0B /* EditInformationViewController.swift in Sources */,
 				6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */,
 				67A2D5BE2276BFD400755F0B /* MessageReportTableViewCell.swift in Sources */,

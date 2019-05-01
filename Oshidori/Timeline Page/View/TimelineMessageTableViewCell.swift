@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
+class TimelineMessageTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
@@ -50,11 +50,12 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
             courageCountLabel.text = String(count)
         }
         // messageIdを持っておけば探せるのでは？
-        guard let messageId = messageId else {
+        guard let messageId = messageId, let uid = uid else {
             debugPrint("👿messageIdを取り出せませんでした")
             return
         }
         TimelineService.shared.updateCourageCountForMessage(messageId: messageId)
+        TimelineService.shared.updateCourageCountForUser(uid: uid)
     }
     
     @IBAction func didTapSupportButton(_ sender: Any) {
@@ -68,12 +69,12 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
             let count = intSupportCount + 1
             supportCountLabel.text = String(count)
         }
-        guard let messageId = messageId else {
+        guard let messageId = messageId, let uid = uid else {
             debugPrint("👿messageIdを取り出せませんでした")
             return
         }
         TimelineService.shared.updateSupportCountForMessage(messageId: messageId)
-
+        TimelineService.shared.updateSupportCountForUser(uid: uid)
     }
     
     func changeLayerForView(_ view: UIView) {
@@ -115,6 +116,10 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     
     func setMessageId(messageId: String) {
         self.messageId = messageId
+    }
+    
+    func setSenderId(senderId uid: String) {
+        self.uid = uid
     }
     
     func setCourageCountLabel(courageCount: Int) {

@@ -22,6 +22,14 @@ class TimelineService: TimelineFirestoreRepository {
         rep.updateSupportCount(messageId: messageId)
     }
     
+    func updateCourageCountForUser(uid: String) {
+        rep.updateCourageCount(uid: uid)
+    }
+    
+    func updateSupportCountForUser(uid: String) {
+        rep.updateSupportCount(uid: uid)
+    }
+    
     
     
 }
