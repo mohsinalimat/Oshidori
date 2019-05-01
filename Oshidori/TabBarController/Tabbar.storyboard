@@ -21,6 +21,7 @@
                     <connections>
                         <segue destination="qFS-Na-OdB" kind="relationship" relationship="viewControllers" id="z7r-N7-fCp"/>
                         <segue destination="0lT-hk-dY0" kind="relationship" relationship="viewControllers" id="q5F-z3-u2g"/>
+                        <segue destination="eh0-71-2Db" kind="relationship" relationship="viewControllers" id="NAG-49-XSv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ri-3J-yEf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -35,7 +36,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pXd-Eo-OID" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-88" y="-321"/>
+            <point key="canvasLocation" x="143" y="-408"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="eXm-ES-l2y">
@@ -45,11 +46,22 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JpV-NI-Wd3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-85" y="22"/>
+            <point key="canvasLocation" x="142" y="-152"/>
+        </scene>
+        <!--Mypage-->
+        <scene sceneID="xL0-67-k1G">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Mypage" id="eh0-71-2Db" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Mypage _icon" id="BPW-e6-fKq"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mod-Y1-ikw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165" y="35"/>
         </scene>
     </scenes>
     <resources>
         <image name="Message" width="32" height="32"/>
+        <image name="Mypage _icon" width="32" height="32"/>
         <image name="Timeline" width="32" height="32"/>
     </resources>
 </document>

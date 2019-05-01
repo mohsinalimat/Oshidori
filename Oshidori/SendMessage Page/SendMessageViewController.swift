@@ -74,20 +74,10 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         insertDelegate()
         // 初期ステータスを入れる
         chatStatusFlag = chatStatus.selectContentType
-        // userInformaitonの初期化。情報を持ってくる
-        getUserInformationRef().getDocument{ (document, error) in
-            if let userInformation = document.flatMap({
-                $0.data().flatMap({ (data) in
-                    return UserInformation(data: data)
-                })
-            }) {
-                // 上記で得た内容を保存する
-                self.userInformation = userInformation
-                debugPrint("🌞City: \(userInformation.name)")
-            } else {
-                debugPrint("Document does not exist")
-            }
-        }
+        
+        // Delete firebase
+        // プロパティのUserInfoに入れる。
+        getUserInfo()
         
         DispatchQueue.main.async {
             // messageListにメッセージの配列をいれて
@@ -168,6 +158,23 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         }
         return uid
     }
+    
+    func getUserInfo() {
+        // userInformaitonの初期化。情報を持ってくる
+        getUserInformationRef().getDocument{ (document, error) in
+            if let userInformation = document.flatMap({
+                $0.data().flatMap({ (data) in
+                    return UserInformation(data: data)
+                })
+            }) {
+                // 上記で得た内容を保存する
+                self.userInformation = userInformation
+                debugPrint("🌞City: \(userInformation.name)")
+            } else {
+                debugPrint("Document does not exist")
+            }
+        }
+    }
 
     func save(_ message: Message) {
         // falseだったら実行されるようだ。guardは条件に一致なかった場合に、処理を中断させるための構文
@@ -175,13 +182,22 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
             return
         }
         debugPrint("Firestoreへmessageをセーブ（roomとtimeline）")
-        saveToRoomMessges(message)
-        saveToTimelineMessages(message)
+        
+        // Delete firebase
+        // messageIDを取っておいて、それをタイムラインとユーザのroomIdと紐づけて参照を行うようにしよう
+        let messageId = saveToTimelineMessages(message)
+        saveToRoomMessges(message: message, messageId: messageId)
+        let userMessageInfoRep = UserMessageInfoFirestoreRepository()
+        userMessageInfoRep.updateMessageCount(uid: message.sender.id)
     }
-    
-    func saveToRoomMessges(_ message: Message) {
-        let roomCollectionref = getRoomMessagesCollectionRef()
-        roomCollectionref.addDocument(data: message.representation){ error in
+        
+    func saveToRoomMessges(message: Message, messageId: String) {
+        let roomMessageDocumentRef = getRoomMessagesCollectionRef().document(messageId)
+        
+        var sendMessage = message
+        sendMessage.messageId = messageId
+        
+        roomMessageDocumentRef.setData(sendMessage.representation){ error in
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -190,14 +206,18 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         }
     }
     
-    func saveToTimelineMessages(_ message: Message) {
-        let timelineMessagesCollectionRef = getTimelineColletionRef()
-        timelineMessagesCollectionRef.addDocument(data: message.representation) { error in
+    func saveToTimelineMessages(_ message: Message) -> String {
+        let timelineMessagesDocumentRef = getTimelineColletionRef().document()
+        let messageId  = timelineMessagesDocumentRef.documentID
+        var sendMessage = message
+        sendMessage.messageId = messageId
+        timelineMessagesDocumentRef.setData(sendMessage.representation) { error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
         }
+        return messageId
     }
 }
 
@@ -299,7 +319,7 @@ extension SendMessageViewController: MessageInputBarDelegate{
                 guard let contentType = tmpStoreContentType else {
                     return
                 }
-                let message = Message(text: str, sender: currentSender(), messageId: UUID().uuidString, date: Date(),contentType: contentType)
+                let message = Message(content: str, sender: currentSender(), messageId: UUID().uuidString, date: Date(),contentType: contentType, courageCount: 0, supportCount: 0)
                 
                 switch  chatStatusFlag! {
                     
@@ -436,7 +456,6 @@ extension SendMessageViewController{
     
     // メッセージの色を変更（デフォルトは自分：白、相手：黒）
     func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        // TODO:ボタンの時は色を変えたい。
         return isFromCurrentSender(message: message) ? .white : .darkText
     }
     

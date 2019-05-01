@@ -107,7 +107,6 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     }
     
     func save(_ partnerId: String) {
-        // TODO: PKHUDでぐるぐるをつける
         HUD.show(.progress)
         print("Firestoreへセーブ")
         let myDocumentRef = getMyDocumentRef()

@@ -17,12 +17,17 @@ class UserInformation {
     var name: String = ""
     var birthday: Date?
     var partnerId: String = ""
+    var partnerName: String = ""
     var roomId: String = ""
     var created: Date?
     
+    var courageCount: Int?
+    var supportCount: Int?
+    var messageIds: [String]?
+    
     init() {}
  
-    init(name: String, birthday: Date, partnerId: String, roomId: String, created: Date) {
+    init(name: String, birthday: Date?, partnerId: String, roomId: String, created: Date) {
         self.name = name
         self.birthday = birthday
         self.partnerId = partnerId
@@ -54,10 +59,19 @@ class UserInformation {
 // firestorageに保存する用
 extension UserInformation {
     var representation: [String : Any] {
-        
+        if let birthday = birthday {
+            let rep: [String : Any] = [
+                "name": name,
+                "birthday": "",
+                "partnerId": partnerId,
+                "roomId": roomId,
+                "created": created!,
+            ]
+            return rep
+        }
         let rep: [String : Any] = [
             "name": name,
-            "birthday": birthday!,
+            "birthday": birthday,
             "partnerId": partnerId,
             "roomId": roomId,
             "created": created!,

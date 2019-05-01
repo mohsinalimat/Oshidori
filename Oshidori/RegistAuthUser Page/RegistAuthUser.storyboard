@@ -24,7 +24,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Lrk-fM-bp2"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="アカウント登録">
                                     <color key="titleColor" red="0.98039215690000003" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -76,7 +76,7 @@
                     <connections>
                         <outlet property="emailField" destination="N27-0y-EQC" id="dsh-k9-p2M"/>
                         <outlet property="passwordField" destination="2zb-T8-Vqg" id="oqa-uo-hqB"/>
-                        <outlet property="registerButton" destination="oIu-ZI-u3V" id="hnL-9j-sGy"/>
+                        <outlet property="registButton" destination="oIu-ZI-u3V" id="hnL-9j-sGy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckM-Xy-SHE" userLabel="First Responder" sceneMemberID="firstResponder"/>

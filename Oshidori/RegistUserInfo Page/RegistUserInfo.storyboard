@@ -18,40 +18,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ニックネーム" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HnJ-F6-XaO">
-                                <rect key="frame" x="82" y="124" width="210" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="誕生日" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RIB-zt-LNm">
-                                <rect key="frame" x="82" y="175" width="210" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFZ-kA-DEi">
+                                <rect key="frame" x="30" y="256" width="354" height="50"/>
+                                <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Nu2-HT-2ke"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="登録">
+                                    <color key="titleColor" red="0.98039215690000003" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="birthdayFIeldEditing:" destination="PIL-Kh-U5y" eventType="editingDidEnd" id="v0s-SN-dAE"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKW-vQ-xgk">
-                                <rect key="frame" x="172" y="275" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="送信"/>
-                                <connections>
-                                    <action selector="didTapSaveButton:" destination="PIL-Kh-U5y" eventType="touchUpInside" id="FN4-lc-EKb"/>
+                                    <action selector="didTapSaveButton:" destination="PIL-Kh-U5y" eventType="touchUpInside" id="cZB-Va-KjP"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="e4y-eq-wmA">
+                                <rect key="frame" x="137" y="118" width="140" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="XnM-Ql-WRG"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="YQG-2K-FBE"/>
+                                </constraints>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ニックネーム" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HnJ-F6-XaO">
+                                <rect key="frame" x="30" y="176" width="354" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HnJ-F6-XaO" firstAttribute="centerX" secondItem="VDn-S9-xXg" secondAttribute="centerX" id="9Cs-sP-GPs"/>
+                            <constraint firstItem="kFZ-kA-DEi" firstAttribute="centerX" secondItem="VDn-S9-xXg" secondAttribute="centerX" id="9WV-8g-VzW"/>
+                            <constraint firstItem="e4y-eq-wmA" firstAttribute="top" secondItem="Pfv-SG-Wdb" secondAttribute="top" constant="30" id="GEh-Bk-oLS"/>
+                            <constraint firstItem="Pfv-SG-Wdb" firstAttribute="trailing" secondItem="kFZ-kA-DEi" secondAttribute="trailing" constant="30" id="Lpj-fK-7N3"/>
+                            <constraint firstItem="e4y-eq-wmA" firstAttribute="centerX" secondItem="VDn-S9-xXg" secondAttribute="centerX" id="dFJ-bA-xbf"/>
+                            <constraint firstItem="HnJ-F6-XaO" firstAttribute="leading" secondItem="Pfv-SG-Wdb" secondAttribute="leading" constant="30" id="ilX-CB-n1m"/>
+                            <constraint firstItem="Pfv-SG-Wdb" firstAttribute="trailing" secondItem="HnJ-F6-XaO" secondAttribute="trailing" constant="30" id="jbj-b8-i5Q"/>
+                            <constraint firstItem="HnJ-F6-XaO" firstAttribute="top" secondItem="e4y-eq-wmA" secondAttribute="bottom" constant="30" id="ki9-7V-3aO"/>
+                            <constraint firstItem="kFZ-kA-DEi" firstAttribute="leading" secondItem="Pfv-SG-Wdb" secondAttribute="leading" constant="30" id="n0n-qg-vey"/>
+                            <constraint firstItem="kFZ-kA-DEi" firstAttribute="top" secondItem="HnJ-F6-XaO" secondAttribute="bottom" constant="50" id="nhd-0v-W1l"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Pfv-SG-Wdb"/>
                     </view>
                     <navigationItem key="navigationItem" title="ユーザ情報登録" id="oSp-0l-EXY"/>
                     <connections>
-                        <outlet property="birthdayField" destination="RIB-zt-LNm" id="y1Y-92-HM7"/>
                         <outlet property="nameField" destination="HnJ-F6-XaO" id="9th-oy-vvj"/>
-                        <outlet property="saveButton" destination="QKW-vQ-xgk" id="zud-jP-HYE"/>
+                        <outlet property="registButton" destination="kFZ-kA-DEi" id="Z98-y9-6Nh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X8L-US-yEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -77,4 +90,7 @@
             <point key="canvasLocation" x="4264.8000000000002" y="966.56671664167925"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Oshidori_logo" width="141" height="28"/>
+    </resources>
 </document>

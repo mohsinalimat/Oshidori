@@ -44,6 +44,16 @@ class User {
             self.delegate?.didCreate(error: error)
             completion()
         }
+        
+    }
+    
+    // メール認証
+    func verificate(credential: Credential, completion: @escaping () -> Void ){
+        Auth.auth().currentUser?.sendEmailVerification()
+    }
+    
+    func isCheckVelifyEmail() -> Bool {
+        return Auth.auth().currentUser?.isEmailVerified ?? false
     }
     
     // ログイン

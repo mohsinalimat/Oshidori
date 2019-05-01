@@ -9,19 +9,26 @@
 import Foundation
 import FirebaseFirestore
 
-class FirestoreUserInformationRepository {
+class UserInformationFirestoreRepository {
     // firebase 関連
     private let db = Firestore.firestore()
-    func getDocumentRef() -> DocumentReference {
+    func getUserInfoDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
     
+    func getMessageInfoDocumentRef() -> DocumentReference {
+        guard let uid = User.shared.getUid() else {
+            fatalError("Uidを取得できませんでした。")
+        }
+        return db.collection("usersMessagesInfo").document(uid)
+    }
+    
     func save(_ userInfo: UserInformation, completion: @escaping () -> Void )  {
         debugPrint("Firestoreへセーブ")
-        let userInfoDocumentRef = getDocumentRef()
+        let userInfoDocumentRef = getUserInfoDocumentRef()
         userInfoDocumentRef.setData(userInfo.representation) { err in
             if let err = err {
                 debugPrint("error...\(err)")
@@ -29,7 +36,14 @@ class FirestoreUserInformationRepository {
                 completion()
             }
         }
+        let messageInfoDocumentRef = getMessageInfoDocumentRef()
+        messageInfoDocumentRef.setData(UserMessageInfo.shared.firstRepresentation){ err in
+            if let err = err {
+                debugPrint("error...\(err)")
+            } else {
+                completion()
+            }
+        }
     }
-        
 }
 

@@ -13,11 +13,26 @@ extension UIViewController {
         let alert = UIAlertController(title:title, message: message, preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "閉じる", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) in
-            print("閉じる")
             if let closedHandler = closedHandler {
                 closedHandler()
             }
         }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func alertSelect(_ title: String, _ message: String, _ closedHandler: (()->Void)?) {
+        let alert = UIAlertController(title:title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "はい", style: UIAlertAction.Style.default, handler: {
+            (action: UIAlertAction!) in
+            if let closedHandler = closedHandler {
+                closedHandler()
+            }
+        }))
+        alert.addAction(UIAlertAction(title: "いいえ", style: UIAlertAction.Style.default, handler: {
+            (action: UIAlertAction!) in
+            
+        }))
+        
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -62,7 +77,7 @@ extension UIViewController {
     func moveUserEditPage() {
         let storyboard = UIStoryboard(name: "EditUserInfo", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "EditUserInfoStoryboard")
-        self.present(VC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func moveUserRegistPage() {

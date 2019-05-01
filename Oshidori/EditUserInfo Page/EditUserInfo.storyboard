@@ -6,56 +6,14 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--ユーザ情報編集-->
         <scene sceneID="Qq6-1A-VXZ">
             <objects>
-                <viewController id="FtU-Pc-os6" customClass="EditUserInfoViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ghI-IO-tPS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ニックネーム" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NLf-4f-Yfw">
-                                <rect key="frame" x="82" y="124" width="210" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JA9-1L-A35">
-                                <rect key="frame" x="0.0" y="162" width="414" height="216"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <date key="date" timeIntervalSinceReferenceDate="577103539.947137">
-                                    <!--2019-04-16 10:32:19 +0000-->
-                                </date>
-                            </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gvc-Gg-RlR">
-                                <rect key="frame" x="172" y="402" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="送信"/>
-                                <connections>
-                                    <action selector="didTopSendButton:" destination="FtU-Pc-os6" eventType="touchUpInside" id="O6f-6v-9BG"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Nid-av-CLn"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="ユーザ情報編集" id="EV3-7Z-XV4">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="sKs-IW-g3y">
-                            <connections>
-                                <action selector="didTapCancelButton:" destination="FtU-Pc-os6" id="Ena-6I-MJQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="birthdayDatePicker" destination="JA9-1L-A35" id="Ugj-WQ-LcR"/>
-                        <outlet property="nameField" destination="NLf-4f-Yfw" id="mbC-wk-KgL"/>
-                        <outlet property="saveButton" destination="gvc-Gg-RlR" id="1Lt-so-63Y"/>
-                    </connections>
+                <viewController storyboardIdentifier="EditUserInfoStoryboard" id="FtU-Pc-os6" customClass="EditUserInfoViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="ユーザ情報編集" id="EV3-7Z-XV4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0nF-bs-TEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,7 +22,8 @@
         <!--Navigation Controller-->
         <scene sceneID="gmA-8R-EAo">
             <objects>
-                <navigationController storyboardIdentifier="EditUserInfoStoryboard" automaticallyAdjustsScrollViewInsets="NO" id="lRo-em-QS6" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lXy-Gf-i21" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lRo-em-QS6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HVD-0n-lQL">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -75,7 +34,6 @@
                         <segue destination="FtU-Pc-os6" kind="relationship" relationship="rootViewController" id="FoK-hD-ava"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lXy-Gf-i21" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3928.8000000000002" y="13.043478260869566"/>
         </scene>

@@ -38,13 +38,14 @@ class LoginViewController: UIViewController, UserDelegate {
                 guard let self = self else {
                     return
                 }
-                
+
                 if self.user.isLogin() {
                     self.moveMessagePage()
                 } else {
                     self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
                 }
                 HUD.hide()
+                self.moveMessagePage()
             })
         }
         

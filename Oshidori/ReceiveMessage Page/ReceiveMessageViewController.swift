@@ -35,10 +35,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        moveSendMessageButton.isHidden = true
-        
-        // TODO: uidなどが取れなかったら、最初の画面に遷移するようにする？
-        
+//        moveSendMessageButton.isHidden = true
         
         // 登録をすることで、カスタムセルを利用できるようになる。
         // nibファイルはxibファイルの作成と同時に作られるらしい。
@@ -65,7 +62,6 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
                     // firestoreからデータを取って、テーブルビューに反映
                     self.getMessageDataFromFirestore_createTableView()
                 }
-                
             } else {
                 debugPrint("Document does not exist")
             }
@@ -74,18 +70,8 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
-        
     }
 
-    @IBAction func testQRcode(_ sender: Any) {
-        moveQRcodePage()
-    }
-    
-    @IBAction func didTapMoveUserEditButton(_ sender: Any) {
-        moveUserEditPage()
-        
-    }
-    
     @IBAction func didTapMoveSendMessageButton(_ sender: Any) {
         // chatStoryboard
         let storyboard = UIStoryboard(name: "SendMessage", bundle: nil)
@@ -103,6 +89,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //return messages.count
         return messages.count
     }
     
@@ -118,15 +105,6 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         cell.messageView.layer.cornerRadius = 0.8
         cell.messageView.backgroundColor = OshidoriColor.light
         return cell
-    }
-    
-    @IBAction func moveQRcode(_ sender: Any) {
-        moveQRcodePage()
-    }
-    
-    @IBAction func didTopLogoutButton(_ sender: Any) {
-        User.shared.logout()
-        moveSelectRegisterOrLoginPage()
     }
 }
 
@@ -166,9 +144,11 @@ extension ReceiveMessageViewController {
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
+            
         }
     }
-    
+}
+
 //    func updateMessages() {
 //        guard let roomId = userInformation?.roomId else {
 //            return
@@ -176,5 +156,5 @@ extension ReceiveMessageViewController {
 //        let messagesRef = db.collection("rooms").document(roomId).collection("messages")
 //        messagesRef.ons
 //    }
-}
+
 

@@ -25,5 +25,7 @@ pod 'Firebase/DynamicLinks'
 pod 'MessageKit'
 pod 'MessageInputBar'
 pod 'PKHUD', '~> 5.0'
+pod 'TextFieldEffects'
+pod 'Eureka'
 
 end

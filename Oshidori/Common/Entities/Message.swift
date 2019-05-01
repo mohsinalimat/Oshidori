@@ -16,7 +16,12 @@ struct Message: MessageType {
     var sender: Sender
     var sentDate: Date
     var content: String
+    
     var contentType: String?
+    
+    var courageCount: Int?
+    var supportCount: Int?
+    
     // contentTypeの選択肢
     var contentTypes: [String] = ["ありがとう","ごめんね","あのね"]
 
@@ -26,23 +31,22 @@ struct Message: MessageType {
         return .text(content)
     }
     
-    private init(content: String, sender: Sender, messageId: String, date: Date, contentType: String) {
+    init(content: String, sender: Sender, messageId: String,
+                 date: Date, contentType: String, courageCount: Int, supportCount: Int) {
         self.content = content
         self.sender = sender
         self.messageId = messageId
         self.sentDate = date
         self.contentType = contentType
+        self.courageCount = courageCount
+        self.supportCount = supportCount
     }
-    // おしどり用
+    
     private init(content: String, sender: Sender, messageId: String, date: Date) {
         self.content = content
         self.sender = sender
         self.messageId = messageId
         self.sentDate = date
-    }
-
-    init(text: String, sender: Sender, messageId: String, date: Date, contentType: String) {
-        self.init(content: text, sender: sender, messageId: messageId, date: date, contentType: contentType)
     }
     // おしどり用
     init(text: String, sender: Sender, messageId: String, date: Date) {
@@ -67,10 +71,31 @@ extension Message {
         
         let rep: [String : Any] = [
             "created": sentDate,
-            "senderID": sender.id,
+            "senderId": sender.id,
             "senderName": sender.displayName,
             "content": content,
-            "contentType": getContentType()
+            "contentType": getContentType(),
+            "courageCount" : courageCount,
+            "supportCount" : supportCount,
+            "messageId" : messageId,
+        ]
+        return rep
+    }
+}
+
+extension Message {
+    var editCourageCountRepresentation: [String : Any] {
+        let rep: [String : Any] = [
+            "courageCount": courageCount,
+        ]
+        return rep
+    }
+}
+
+extension Message {
+    var editSupportCountRepresentation: [String : Any] {
+        let rep: [String : Any] = [
+            "supportCount": supportCount,
         ]
         return rep
     }
