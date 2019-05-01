@@ -24,18 +24,6 @@ class TimelineFirestoreRepository {
         }
     }
     
-    func updateCourageCount(uid: String) {
-        let usersMessagesInfoRef = db.collection("usersMessagesInfo").document(uid)
-            usersMessagesInfoRef.getDocument { (Snapshot, Error) in
-            var courageCount: Int = Snapshot?.get("courageCount") as! Int
-            courageCount += 1
-            let rep: [String : Any] = [
-                "courageCount": courageCount
-            ]
-            usersMessagesInfoRef.updateData(rep)
-        }
-    }
-    
     func updateSupportCount(messageId: String) {
         let timelineMessageRef = db.collection("timelineMessages").document(messageId)
         timelineMessageRef.getDocument { (Snapshot, Error) in
@@ -47,18 +35,5 @@ class TimelineFirestoreRepository {
             timelineMessageRef.updateData(rep)
         }
     }
-    
-    func updateSupportCount(uid: String) {
-        let usersMessagesInfoRef = db.collection("usersMessagesInfo").document(uid)
-            usersMessagesInfoRef.getDocument { (Snapshot, Error) in
-            var supportCount: Int = Snapshot?.get("supportCount") as! Int
-            supportCount += 1
-            let rep: [String : Any] = [
-                "supportCount": supportCount
-            ]
-            usersMessagesInfoRef.updateData(rep)
-        }
-    }
-
 
 }

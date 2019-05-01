@@ -12,24 +12,24 @@ class TimelineService: TimelineFirestoreRepository {
     
     static let shared = TimelineService()
     
-    private let rep = TimelineFirestoreRepository()
+    private let timelineMessageRep = TimelineFirestoreRepository()
+    
+    private let userMessageInfoFirestoreRep = UserMessageInfoFirestoreRepository()
     
     func updateCourageCountForMessage(messageId: String) {
-        rep.updateCourageCount(messageId: messageId)
+        timelineMessageRep.updateCourageCount(messageId: messageId)
     }
     
     func updateSupportCountForMessage(messageId: String) {
-        rep.updateSupportCount(messageId: messageId)
+        timelineMessageRep.updateSupportCount(messageId: messageId)
     }
     
     func updateCourageCountForUser(uid: String) {
-        rep.updateCourageCount(uid: uid)
+        userMessageInfoFirestoreRep.updateCourageCount(uid: uid)
     }
     
     func updateSupportCountForUser(uid: String) {
-        rep.updateSupportCount(uid: uid)
+        userMessageInfoFirestoreRep.updateSupportCount(uid: uid)
     }
-    
-    
     
 }

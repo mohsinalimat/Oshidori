@@ -51,7 +51,7 @@
 		67A2D5C42277042D00755F0B /* EditInformation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5C32277042D00755F0B /* EditInformation.storyboard */; };
 		67A2D5C62277044600755F0B /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A2D5C52277044600755F0B /* EditInformationViewController.swift */; };
 		67C7ABA822795FF700344D6E /* MypageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7ABA722795FF700344D6E /* MypageService.swift */; };
-		67C7ABAC2279607100344D6E /* MypageFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */; };
+		67C7ABAC2279607100344D6E /* UserMessageInfoFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C7ABAB2279607100344D6E /* UserMessageInfoFirestoreRepository.swift */; };
 		67C9E047225EB6DD00516B3D /* Timeline.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E046225EB6DD00516B3D /* Timeline.storyboard */; };
 		67C9E049225EB7D200516B3D /* Tabbar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67C9E048225EB7D200516B3D /* Tabbar.storyboard */; };
 		67C9E04C225EC20200516B3D /* TimelineMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E04A225EC20200516B3D /* TimelineMessageTableViewCell.swift */; };
@@ -138,7 +138,7 @@
 		67A2D5C32277042D00755F0B /* EditInformation.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditInformation.storyboard; sourceTree = "<group>"; };
 		67A2D5C52277044600755F0B /* EditInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
 		67C7ABA722795FF700344D6E /* MypageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageService.swift; sourceTree = "<group>"; };
-		67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypageFirestoreRepository.swift; sourceTree = "<group>"; };
+		67C7ABAB2279607100344D6E /* UserMessageInfoFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageInfoFirestoreRepository.swift; sourceTree = "<group>"; };
 		67C9E046225EB6DD00516B3D /* Timeline.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Timeline.storyboard; sourceTree = "<group>"; };
 		67C9E048225EB7D200516B3D /* Tabbar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tabbar.storyboard; sourceTree = "<group>"; };
 		67C9E04A225EC20200516B3D /* TimelineMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineMessageTableViewCell.swift; sourceTree = "<group>"; };
@@ -302,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */,
+				67C7ABAB2279607100344D6E /* UserMessageInfoFirestoreRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -457,7 +458,6 @@
 				67A2D5C02276BFDD00755F0B /* View */,
 				67C7ABAA2279605C00344D6E /* ViewController */,
 				67C7ABA722795FF700344D6E /* MypageService.swift */,
-				67C7ABAB2279607100344D6E /* MypageFirestoreRepository.swift */,
 			);
 			path = "Mypage Page";
 			sourceTree = "<group>";
@@ -771,7 +771,7 @@
 				67A2D5B42276A88500755F0B /* MypageViewController.swift in Sources */,
 				67579D7922787F4D007AA6DA /* TimelineFirestoreRepository.swift in Sources */,
 				67C7ABA822795FF700344D6E /* MypageService.swift in Sources */,
-				67C7ABAC2279607100344D6E /* MypageFirestoreRepository.swift in Sources */,
+				67C7ABAC2279607100344D6E /* UserMessageInfoFirestoreRepository.swift in Sources */,
 				67920DDC2264730500127083 /* ReadQRcodeViewController.swift in Sources */,
 				67A2D5BA2276BEE100755F0B /* MyImageAndNameTableViewCell.swift in Sources */,
 				6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */,

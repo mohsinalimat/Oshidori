@@ -187,7 +187,8 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         // messageIDを取っておいて、それをタイムラインとユーザのroomIdと紐づけて参照を行うようにしよう
         let messageId = saveToTimelineMessages(message)
         saveToRoomMessges(message: message, messageId: messageId)
-        
+        let userMessageInfoRep = UserMessageInfoFirestoreRepository()
+        userMessageInfoRep.updateMessageCount(uid: message.sender.id)
     }
         
     func saveToRoomMessges(message: Message, messageId: String) {

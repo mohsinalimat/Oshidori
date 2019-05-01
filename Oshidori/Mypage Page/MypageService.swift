@@ -17,7 +17,7 @@ class MypageService {
     
     static var shared = MypageService()
     
-    private var mypageFirestoreRepository = MypageFirestoreRepository()
+    private var mypageFirestoreRepository = UserMessageInfoFirestoreRepository()
     
     private var userMessageInfo: UserMessageInfo?
     
