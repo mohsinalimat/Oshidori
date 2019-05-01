@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import MessageKit
-import MessageInputBar
+import InputBarAccessoryView
 
 class SendMessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     
@@ -113,15 +113,15 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         return Message(text: str, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
     }
     
-    func currentSender() -> Sender {
+    func currentSender() -> SenderType {
         guard let name = userInformation?.name else {
-            return Sender(id: getUid(), displayName: "")
+            return Sender(senderId: getUid(), displayName: "")
         }
-        return Sender(id: getUid(), displayName: name)
+        return Sender(senderId: getUid(), displayName: name)
     }
     
-    func oshidoriSender() -> Sender {
-        return Sender(id: "Oshidori", displayName: "おしどり")
+    func oshidoriSender() -> SenderType {
+        return Sender(senderId: "Oshidori", displayName: "おしどり")
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -188,7 +188,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         let messageId = saveToTimelineMessages(message)
         saveToRoomMessges(message: message, messageId: messageId)
         let userMessageInfoRep = UserMessageInfoFirestoreRepository()
-        userMessageInfoRep.updateMessageCount(uid: message.sender.id)
+        userMessageInfoRep.updateMessageCount(uid: message.sender.senderId)
     }
         
     func saveToRoomMessges(message: Message, messageId: String) {
@@ -310,10 +310,11 @@ extension SendMessageViewController {
     }
 }
 
-extension SendMessageViewController: MessageInputBarDelegate{
+extension SendMessageViewController: MessageInputBarDelegate {
     
     // メッセージを入力するMessageInputBarの送信ボタンを押したときに発生するファンクション
-    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+    
+    internal func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         for component in inputBar.inputTextView.components {
             if let str = component as? String {
                 guard let contentType = tmpStoreContentType else {
@@ -355,7 +356,7 @@ extension SendMessageViewController: MessageInputBarDelegate{
         }
     }
     
-    func cleanTextBoxAndScroll(inputBar: MessageInputBar) {
+    func cleanTextBoxAndScroll(inputBar: InputBarAccessoryView) {
         // 空っぽにする
         inputBar.inputTextView.text = String()
         // 一番下にスクロールする。アニメーション付き
@@ -475,7 +476,7 @@ extension SendMessageViewController{
     // アイコンをセット
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         // message.senderで送信者を判断できる！
-        if message.sender == oshidoriSender() {
+        if message.sender.senderId == oshidoriSender().senderId {
             let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "O")
             avatarView.set(avatar: avatar)
         }

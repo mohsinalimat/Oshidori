@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +19,7 @@
                         <rect key="frame" x="5" y="5" width="310" height="40"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_icon" translatesAutoresizingMaskIntoConstraints="NO" id="RzN-BN-ek3">
-                                <rect key="frame" x="0.0" y="0.0" width="40.000000000000028" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="FZu-oi-6JU"/>
                                     <constraint firstAttribute="height" constant="40" id="MgN-oD-st2"/>
@@ -173,7 +169,7 @@
                 <outlet property="courageButton" destination="CFK-wp-C6z" id="GHW-ad-BEp"/>
                 <outlet property="courageCountLabel" destination="4ip-Dc-2Tv" id="vD3-5f-Idv"/>
                 <outlet property="courageView" destination="hgv-f0-yPx" id="91g-S0-zyq"/>
-                <outlet property="dateLabel" destination="cJg-oO-lYK" id="EVR-r9-uAP"/>
+                <outlet property="sendDateLabel" destination="cJg-oO-lYK" id="EVR-r9-uAP"/>
                 <outlet property="supportButton" destination="tQJ-gv-tC8" id="mhl-zY-KsM"/>
                 <outlet property="supportCountLabel" destination="Bwv-xb-1gJ" id="Ny0-JD-ucL"/>
                 <outlet property="supportView" destination="FNF-SP-ob7" id="0SS-2v-bx9"/>

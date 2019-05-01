@@ -12,6 +12,10 @@ import FirebaseFirestore
 class TimelineFirestoreRepository {
     let db = Firestore.firestore()
     
+    private func getTimelineColletionRef() -> CollectionReference {
+        return db.collection("timelineMessages")
+    }
+    
     func updateCourageCount(messageId: String) {
         let timelineMessageRef = db.collection("timelineMessages").document(messageId)
         timelineMessageRef.getDocument { (Snapshot, Error) in
@@ -34,6 +38,30 @@ class TimelineFirestoreRepository {
             ]
             timelineMessageRef.updateData(rep)
         }
+    }
+    
+    func loadTimelineMessage(completion: @escaping (([RepresentationMessage]) -> Void)){
+        var timelineMessages: [RepresentationMessage] = []
+        let collectionRef = getTimelineColletionRef()
+        collectionRef.order(by: "created", descending: true).getDocuments() { (querySnapshot, err) in
+            // エラーだったらリターンするよ
+            guard err == nil else { return }
+            for document in querySnapshot!.documents {
+                let timelineMessage = RepresentationMessage(data: document.data())
+                timelineMessages.append(timelineMessage)
+            }
+            completion (timelineMessages)
+        }
+    }
+}
+
+extension TimelineFirestoreRepository {
+    
+    func convertDateToString(timestampDate: NSDate) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
+        let stringDate = dateFormatter.string(from: timestampDate as Date)
+        return stringDate
     }
 
 }

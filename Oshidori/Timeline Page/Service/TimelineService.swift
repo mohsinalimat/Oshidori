@@ -8,9 +8,17 @@
 
 import Foundation
 
-class TimelineService: TimelineFirestoreRepository {
+protocol TimelineServiceDelegate: class {
+    func loaded()
+}
+
+class TimelineService {
     
     static let shared = TimelineService()
+    
+    weak var delegate:TimelineServiceDelegate?
+    
+    private var timelineMessages: [RepresentationMessage] = []
     
     private let timelineMessageRep = TimelineFirestoreRepository()
     
@@ -31,5 +39,26 @@ class TimelineService: TimelineFirestoreRepository {
     func updateSupportCountForUser(uid: String) {
         userMessageInfoFirestoreRep.updateSupportCount(uid: uid)
     }
+    
+    func loadTimelineMessage() {
+        timelineMessageRep.loadTimelineMessage { (messages) in
+            self.timelineMessages = messages
+            self.delegate?.loaded()
+        }
+    }
+    
+    func timelineMessagesRemove() {
+        timelineMessages.removeAll()
+    }
+    
+    func getTimelineMessagesCount() -> Int {
+        return timelineMessages.count
+    }
+    
+    func getMessage(indexPathRow: Int) -> RepresentationMessage {
+        return timelineMessages[indexPathRow]
+    }
+    
+    
     
 }
