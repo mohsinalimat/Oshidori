@@ -301,11 +301,28 @@
 			path = OshidoriUITests;
 			sourceTree = "<group>";
 		};
+		673F94DC2279CBC200E293FE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				67C7ABA722795FF700344D6E /* MypageService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		673F94DD2279CBEE00E293FE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				67579D7A22787FD2007AA6DA /* TimelineService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		677AB3002270228100DBCD62 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
 				677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */,
 				67C7ABAB2279607100344D6E /* UserMessageInfoFirestoreRepository.swift */,
+				67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -393,8 +410,7 @@
 			children = (
 				67A2D5B22276811200755F0B /* View */,
 				67C7ABA92279601600344D6E /* ViewController */,
-				67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */,
-				67579D7A22787FD2007AA6DA /* TimelineService.swift */,
+				673F94DD2279CBEE00E293FE /* Service */,
 			);
 			path = "Timeline Page";
 			sourceTree = "<group>";
@@ -460,7 +476,7 @@
 			children = (
 				67A2D5C02276BFDD00755F0B /* View */,
 				67C7ABAA2279605C00344D6E /* ViewController */,
-				67C7ABA722795FF700344D6E /* MypageService.swift */,
+				673F94DC2279CBC200E293FE /* Service */,
 			);
 			path = "Mypage Page";
 			sourceTree = "<group>";
