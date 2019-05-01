@@ -26,6 +26,7 @@ class TimelineMessageTableViewCellTableViewCell: UITableViewCell {
     @IBOutlet weak var supportCountLabel: UILabel!
     
     var messageId: String?
+    var uid: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()

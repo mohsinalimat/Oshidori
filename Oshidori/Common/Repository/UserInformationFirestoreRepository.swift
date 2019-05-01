@@ -23,7 +23,7 @@ class UserInformationFirestoreRepository {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
-        return db.collection("users").document(uid).collection("messageInfo").document(uid)
+        return db.collection("usersMessagesInfo").document(uid)
     }
     
     func save(_ userInfo: UserInformation, completion: @escaping () -> Void )  {

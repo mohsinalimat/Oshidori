@@ -71,7 +71,7 @@ extension Message {
         
         let rep: [String : Any] = [
             "created": sentDate,
-            "senderID": sender.id,
+            "senderId": sender.id,
             "senderName": sender.displayName,
             "content": content,
             "contentType": getContentType(),

@@ -78,6 +78,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
                 guard let messageId = document.get("messageId") else { return }
                 guard let courageCount = document.get("courageCount") else { return }
                 guard let supportCount = document.get("supportCount") else { return }
+                guard let senderId = document.get("senderId") else { return }
                 let dateTimestamp = date as! Timestamp
                 print(dateTimestamp.dateValue())
                 let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
