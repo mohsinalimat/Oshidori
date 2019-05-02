@@ -8,6 +8,7 @@
 
 import UIKit
 import Eureka
+import ImageRow
 
 class EditInformationViewController: FormViewController {
     
@@ -15,6 +16,8 @@ class EditInformationViewController: FormViewController {
     var editContent:String?
     var birthday :Date?
     var name :String?
+
+    var selectedImg = UIImage()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +51,22 @@ class EditInformationViewController: FormViewController {
                     $0.onChange({ (DateRow) in
                         self.birthday = DateRow.value
                     })
+            }
+        case "プロフィール写真":
+            form +++ Section("プロフィール写真編集")
+                <<< ImageRow(){
+                    $0.title = "画像"
+                    $0.sourceTypes = [.PhotoLibrary]
+                    $0.clearAction = .no
+                    $0.onChange { [unowned self] row in
+                        if let value = row.value {
+                            self.selectedImg = value
+                        }
+                    }
+                    $0.cellUpdate { cell, row in
+                        cell.accessoryView?.layer.cornerRadius = 17
+                        cell.accessoryView?.frame = CGRect(x: 0, y: 0, width: 34, height: 34)
+                    }
             }
             
         default:

@@ -28,5 +28,6 @@ pod 'PKHUD'
 pod 'TextFieldEffects'
 pod 'Eureka'
 pod 'InputBarAccessoryView'
+pod 'ImageRow'
 
 end

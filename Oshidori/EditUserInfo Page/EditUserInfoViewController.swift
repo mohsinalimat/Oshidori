@@ -51,6 +51,20 @@ class EditUserInfoViewController: FormViewController {
                     LabelCell.accessoryType = .disclosureIndicator
                 })
             }
+            <<< LabelRow(){ row in
+                row.title = "プロフィール写真"
+                row.value = "未設定"
+                
+                row.onCellSelection({ (LabelCell, LabelRow) in
+                    guard let content = LabelRow.title else {
+                        return
+                    }
+                    self.moveEditInformationPage(content)
+                })
+                row.cellUpdate({ (LabelCell, LabelRow) in
+                    LabelCell.accessoryType = .disclosureIndicator
+                })
+            }
 
             +++ Section("パートナー")
             <<< LabelRow(){ row in
