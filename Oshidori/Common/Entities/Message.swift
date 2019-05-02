@@ -69,7 +69,7 @@ extension Message {
     // 結局保存されているのはここだけなんか。
     var representation: [String : Any] {
         let rep: [String : Any] = [
-            "created": sentDate,
+            "sentDate": sentDate,
             "senderId": sender.senderId,
             "senderName": sender.displayName,
             "content": content,

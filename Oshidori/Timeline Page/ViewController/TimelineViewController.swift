@@ -43,9 +43,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineMessageCell", for: indexPath) as? TimelineMessageTableViewCell else {
             return UITableViewCell()
         }
-        guard let message:RepresentationMessage = timelineService.getMessage(indexPathRow: indexPath.row) else {
-            return cell
-        }
+        let message:RepresentationMessage = timelineService.getMessage(indexPathRow: indexPath.row)
         cell.setContentLabel(content: message.content ?? "")
         if let date = message.sentDate {
             let sentDate = convertDateToString(timestampDate: date as NSDate)

@@ -45,5 +45,39 @@ class UserInformationFirestoreRepository {
             }
         }
     }
+    
+    func update(_ userInfo: UserInformation, completion: @escaping () -> Void )  {
+        debugPrint("Firestoreへセーブ")
+        let userInfoDocumentRef = getUserInfoDocumentRef()
+        userInfoDocumentRef.setData(userInfo.representation) { err in
+            if let err = err {
+                debugPrint("error...\(err)")
+            } else {
+                completion()
+            }
+        }
+//        let messageInfoDocumentRef = getMessageInfoDocumentRef()
+//        messageInfoDocumentRef.setData(UserMessageInfo.shared.firstRepresentation){ err in
+//            if let err = err {
+//                debugPrint("error...\(err)")
+//            } else {
+//                completion()
+//            }
+//        }
+    }
+    
+    func getUserInfo(completion: @escaping (UserInformation) -> Void ) {
+        let userInfoDocumentRef = getUserInfoDocumentRef()
+        userInfoDocumentRef.getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() else {
+                return
+            }
+            let userInfo = UserInformation(data: data)
+            completion(userInfo)
+        }
+    }
+    
+    
+    
 }
 

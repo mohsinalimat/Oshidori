@@ -8,6 +8,7 @@
 
 import Foundation
 import PKHUD
+import Firebase
 
 class UserInformation {
     
@@ -47,8 +48,8 @@ class UserInformation {
         if let roomId = data["roomId"] as? String {
             self.roomId = roomId
         }
-        if let created = data["created"] as? Date {
-            self.created = created
+        if let created = data["created"] as? Timestamp {
+            self.created = created.dateValue()
         }
         if let imageUrl = data["imageUrl"] as? String {
             self.imageUrl = imageUrl
@@ -60,13 +61,37 @@ class UserInformation {
 // firestorageに保存する用
 extension UserInformation {
     var representation: [String : Any] {
+        guard let created = created else {
+            if let birthday = birthday {
+                let rep: [String : Any] = [
+                    "name": name,
+                    "birthday": birthday,
+                    "partnerId": partnerId,
+                    "roomId": roomId,
+                    "created": "",
+                    "imageUrl": imageUrl,
+                ]
+                return rep
+            } else {
+                let rep: [String : Any] = [
+                    "name": name,
+                    "birthday": "",
+                    "partnerId": partnerId,
+                    "roomId": roomId,
+                    "created": "",
+                    "imageUrl": imageUrl,
+                ]
+                return rep
+            }
+            
+        }
         guard let birthday = birthday else {
             let rep: [String : Any] = [
                 "name": name,
                 "birthday": "",
                 "partnerId": partnerId,
                 "roomId": roomId,
-                "created": created!,
+                "created": created,
                 "imageUrl": imageUrl,
             ]
             return rep
@@ -76,7 +101,7 @@ extension UserInformation {
             "birthday": birthday,
             "partnerId": partnerId,
             "roomId": roomId,
-            "created": created!,
+            "created": created,
             "imageUrl": imageUrl,
         ]
         return rep

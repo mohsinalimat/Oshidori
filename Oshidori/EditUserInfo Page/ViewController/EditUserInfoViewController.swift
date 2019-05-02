@@ -137,7 +137,7 @@ class EditUserInfoViewController: FormViewController {
         HUD.show(.progress)
         print("Firestoreへセーブ")
         let userDocumentRef = getDocumentRef()
-        userDocumentRef.updateData(userInfo.editRepresentation){ err in
+        userDocumentRef.updateData(userInfo.editNameRepresentation){ err in
             if let err = err {
                 debugPrint("error...\(err)")
             } else {

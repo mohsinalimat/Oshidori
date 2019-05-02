@@ -23,9 +23,11 @@ class EditInformationViewController: FormViewController {
 
     var selectedImg = UIImage()
     
+    let editUserInfoService = EditUserInfoService.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setDelegate()
         
         guard let content = editContent else {
             moveUserEditPage()
@@ -74,7 +76,9 @@ class EditInformationViewController: FormViewController {
             }
             
         default:
-            self.dismiss(animated: false)
+            alert("エラー", "エラーが発生しました") {
+                self.dismiss(animated: false)
+            }
         }
     }
     
@@ -90,6 +94,7 @@ class EditInformationViewController: FormViewController {
                 return
             }
             // TODO: 保存する
+            editUserInfoService.updateName(name: name)
 
         case birthdayContent:
             guard let birthday = birthday else {
@@ -108,5 +113,20 @@ class EditInformationViewController: FormViewController {
         default:
             break
         }
+    }
+}
+
+extension EditInformationViewController: EditUserInfoServiceDelegate {
+    
+    func setDelegate() {
+        editUserInfoService.delegate = self
+    }
+    
+    func updated() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func loaded() {
+        
     }
 }
