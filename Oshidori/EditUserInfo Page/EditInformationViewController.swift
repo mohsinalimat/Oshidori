@@ -15,7 +15,11 @@ class EditInformationViewController: FormViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var editContent:String?
     var birthday :Date?
-    var name :String?
+    var nickName :String?
+    
+    let nickNameContent = "ニックネーム"
+    let birthdayContent = "誕生日"
+    let photoContent    = "プロフィール写真"
 
     var selectedImg = UIImage()
     
@@ -33,17 +37,17 @@ class EditInformationViewController: FormViewController {
     
     func setEditContent(_ content : String) {
         switch content {
-        case "ニックネーム":
+        case nickNameContent:
             form +++ Section("ニックネーム編集")
                 <<< TextRow(){ row in
                     row.title = "ニックネーム"
                     row.placeholder = "入力してね！"
                     row.onChange({ (TextRow) in
-                        self.name = TextRow.value
+                        self.nickName = TextRow.value
                     })
                     
             }
-        case "誕生日":
+        case birthdayContent:
             form +++ Section("誕生日編集")
                 <<< DateRow(){
                     $0.title = "誕生日"
@@ -52,7 +56,7 @@ class EditInformationViewController: FormViewController {
                         self.birthday = DateRow.value
                     })
             }
-        case "プロフィール写真":
+        case photoContent:
             form +++ Section("プロフィール写真編集")
                 <<< ImageRow(){
                     $0.title = "画像"
@@ -79,19 +83,30 @@ class EditInformationViewController: FormViewController {
             return
         }
         
-        if content == "ニックネーム" {
-            guard let name = name else {
+        switch content {
+        case nickNameContent:
+            guard let name = nickName else {
                 alert("エラー", "値を変更してください", nil)
                 return
             }
             // TODO: 保存する
-        }
-        if content == "誕生日" {
+
+        case birthdayContent:
             guard let birthday = birthday else {
                 alert("エラー", "値を変更してください", nil)
                 return
             }
             // TODO: 保存する
+
+        case photoContent:
+            guard let birthday = birthday else {
+                alert("エラー", "値を変更してください", nil)
+                return
+            }
+            // TODO: 保存する
+
+        default:
+            break
         }
     }
 }

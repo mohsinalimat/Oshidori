@@ -19,20 +19,18 @@ class UserInformation {
     var partnerId: String = ""
     var partnerName: String = ""
     var roomId: String = ""
+    var imageUrl: String = ""
     var created: Date?
-    
-    var courageCount: Int?
-    var supportCount: Int?
-    var messageIds: [String]?
     
     init() {}
  
-    init(name: String, birthday: Date?, partnerId: String, roomId: String, created: Date) {
+    init(name: String, birthday: Date?, partnerId: String, roomId: String, created: Date, imageUrl: String) {
         self.name = name
         self.birthday = birthday
         self.partnerId = partnerId
         self.roomId = roomId
         self.created = created
+        self.imageUrl = imageUrl
     }
     
     init(data: [String: Any]) {
@@ -52,6 +50,9 @@ class UserInformation {
         if let created = data["created"] as? Date {
             self.created = created
         }
+        if let imageUrl = data["imageUrl"] as? String {
+            self.imageUrl = imageUrl
+        }
     }
 
 }
@@ -59,13 +60,14 @@ class UserInformation {
 // firestorageに保存する用
 extension UserInformation {
     var representation: [String : Any] {
-        if let birthday = birthday {
+        guard let birthday = birthday else {
             let rep: [String : Any] = [
                 "name": name,
                 "birthday": "",
                 "partnerId": partnerId,
                 "roomId": roomId,
                 "created": created!,
+                "imageUrl": imageUrl,
             ]
             return rep
         }
@@ -75,6 +77,7 @@ extension UserInformation {
             "partnerId": partnerId,
             "roomId": roomId,
             "created": created!,
+            "imageUrl": imageUrl,
         ]
         return rep
     }
@@ -82,13 +85,34 @@ extension UserInformation {
 
 // firestorageに保存する用
 extension UserInformation {
-    var editRepresentation: [String : Any] {
-        
+    var editNameRepresentation: [String : Any] {
         let rep: [String : Any] = [
             "name": name,
-            "birthday": birthday!,
         ]
         return rep
     }
 }
 
+extension UserInformation {
+    var editBirthdayRepresentation: [String : Any] {
+        guard let birthday = birthday else {
+            let rep: [String : Any] = [
+                "birthday": "",
+            ]
+            return rep
+        }
+        let rep: [String : Any] = [
+            "birthday": birthday,
+        ]
+        return rep
+    }
+}
+
+extension UserInformation {
+    var editUserImageUrlRepresentation: [String : Any] {
+        let rep: [String : Any] = [
+            "userUrlImage": imageUrl,
+        ]
+        return rep
+    }
+}
