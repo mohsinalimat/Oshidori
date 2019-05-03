@@ -43,7 +43,7 @@ class TimelineFirestoreRepository {
     func loadTimelineMessage(completion: @escaping (([RepresentationMessage]) -> Void)){
         var timelineMessages: [RepresentationMessage] = []
         let collectionRef = getTimelineColletionRef()
-        collectionRef.order(by: "created", descending: true).getDocuments() { (querySnapshot, err) in
+        collectionRef.order(by: "sentDate", descending: true).getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
             for document in querySnapshot!.documents {

@@ -35,8 +35,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        moveSendMessageButton.isHidden = true
-        
+        moveSendMessageButton.isHidden = true
         // 登録をすることで、カスタムセルを利用できるようになる。
         // nibファイルはxibファイルの作成と同時に作られるらしい。
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
@@ -80,11 +79,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
-    
-    // MARK: - Table view data source
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -132,12 +127,12 @@ extension ReceiveMessageViewController {
         guard  let collectionRef = getRoomMessagesCollectionRef() else {
             return
         }
-        collectionRef.order(by: "created", descending: true).getDocuments() { (querySnapshot, err) in
+        collectionRef.order(by: "sentDate", descending: true).getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
             for document in querySnapshot!.documents {
                 guard let content = document.get("content") else { return }
-                guard let date = document.get("created") else { return }
+                guard let date = document.get("sentDate") else { return }
                 guard let name = document.get("senderName") else { return }
                 guard let contentType = document.get("contentType") else { return }
                 let dateTimestamp = date as! Timestamp
@@ -151,13 +146,3 @@ extension ReceiveMessageViewController {
         }
     }
 }
-
-//    func updateMessages() {
-//        guard let roomId = userInformation?.roomId else {
-//            return
-//        }
-//        let messagesRef = db.collection("rooms").document(roomId).collection("messages")
-//        messagesRef.ons
-//    }
-
-

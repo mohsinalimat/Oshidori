@@ -14,8 +14,6 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var mypageTableView: UITableView!
     
-    var reloadFlag = true
-    
     let settingTitleArray:[String] = ["パートナー設定", "ユーザー情報", "このアプリについて", "ログアウト"]
     
     override func viewDidLoad() {
@@ -24,6 +22,7 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mypageTableView.dataSource = self
         mypageService.delegate = self
         initialSettingForCell()
+        getUserMessageInfo()
     }
 }
 
@@ -75,13 +74,11 @@ extension MypageViewController {
 
         case 1:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MessageReportCell", for: indexPath) as! MessageReportTableViewCell
-            if let uid = User.shared.getUid() {
-                mypageService.getUserMessageInfo(uid: uid)
-                cell.setCourageCountLabel(courageCount: mypageService.getCourageCount())
-                cell.setSupportCountLabel(supportCount: mypageService.getSupportCount())
-                cell.setMessageCountLabel(messageCount: mypageService.getMessageCount())
-            }
-
+           
+            cell.setCourageCountLabel(courageCount: mypageService.getCourageCount())
+            cell.setSupportCountLabel(supportCount: mypageService.getSupportCount())
+            cell.setMessageCountLabel(messageCount: mypageService.getMessageCount())
+            
             return cell
 
         case 2:
@@ -122,13 +119,20 @@ extension MypageViewController {
     }
 }
 
+extension MypageViewController {
+    
+    func getUserMessageInfo() {
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        mypageService.getUserMessageInfo(uid: uid)
+    }
+}
+
 extension MypageViewController: MypageServiceDelegate {
     
     func gotUserMessageInfo() {
-        if reloadFlag == true {
-            reloadFlag = false
-            mypageTableView.reloadData()
-        }
+        mypageTableView.reloadData()
     }
     
     func loaded() {
