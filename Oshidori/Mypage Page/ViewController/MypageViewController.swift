@@ -49,7 +49,7 @@ extension MypageViewController {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return ""
+            return nil
             
         case 1:
             return "お手紙"
@@ -58,7 +58,7 @@ extension MypageViewController {
             return "設定"
             
         default:
-            return ""
+            return nil
         }
     }
     
@@ -78,6 +78,8 @@ extension MypageViewController {
                 cell.setSupportCountLabel(supportCount: mypageService.getSupportCount())
                 cell.setMessageCountLabel(messageCount: mypageService.getMessageCount())
             }
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
+//            cell.setUserImage()
             return cell
 
         case 2:
@@ -85,11 +87,11 @@ extension MypageViewController {
                                        reuseIdentifier: settingTitleArray[indexPath.row])
             cell.textLabel?.text = settingTitleArray[indexPath.row]
             cell.accessoryType = .disclosureIndicator
+            
             return cell
 
         default:
-            let cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle,
-                                       reuseIdentifier: "")
+            let cell = UITableViewCell()
             return cell
         }
     }

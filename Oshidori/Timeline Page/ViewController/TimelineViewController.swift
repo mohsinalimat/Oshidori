@@ -28,7 +28,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineService.timelineMessagesRemove()
         // firestoreからデータを取って、テーブルビューに反映
         timelineService.loadTimelineMessage()
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

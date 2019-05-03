@@ -320,7 +320,7 @@ extension SendMessageViewController: MessageInputBarDelegate {
                 guard let contentType = tmpStoreContentType else {
                     return
                 }
-                let message = Message(content: str, sender: currentSender(), messageId: UUID().uuidString, date: Date(),contentType: contentType, courageCount: 0, supportCount: 0)
+                let message = Message(content: str, sender: currentSender(), messageId: UUID().uuidString, sentDate: Date(),contentType: contentType, courageCount: 0, supportCount: 0)
                 
                 switch  chatStatusFlag! {
                     

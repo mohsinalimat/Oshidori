@@ -17,7 +17,6 @@ class LoginViewController: UIViewController, UserDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var moveRegisterPageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +44,10 @@ class LoginViewController: UIViewController, UserDelegate {
 //                    self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
 //                }
 //                HUD.hide()
-//                self.moveMessagePage()
 //            })
 //        }
-        self.moveMessagePage()
-    }
-    
-    @IBAction func didTapRegisterButton(_ sender: Any) {
-        moveUserCreatePage()
+        // デバッグ用
+         self.moveMessagePage()
     }
     
     func getCredential() -> Credential? {

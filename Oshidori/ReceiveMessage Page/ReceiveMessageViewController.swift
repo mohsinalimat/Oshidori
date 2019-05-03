@@ -112,7 +112,10 @@ extension ReceiveMessageViewController {
     
     private func getUserInformationRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
+            alert("エラー", "申し訳ありません。ユーザ情報が取得できませんでした。ログインし直してください。") {
+                self.moveLoginPage()
+            }
+            return db.collection("users").document() // 一応書いておかないとエラーになっちゃう
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }

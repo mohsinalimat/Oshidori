@@ -32,11 +32,11 @@ struct Message: MessageType {
     }
     
     init(content: String, sender: SenderType, messageId: String,
-                 date: Date, contentType: String, courageCount: Int, supportCount: Int) {
+                 sentDate: Date, contentType: String, courageCount: Int, supportCount: Int) {
         self.content = content
         self.sender = sender
         self.messageId = messageId
-        self.sentDate = date
+        self.sentDate = sentDate
         self.contentType = contentType
         self.courageCount = courageCount
         self.supportCount = supportCount
