@@ -24,6 +24,9 @@
 		6723DEBE2254396700B3DF69 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEBD2254396700B3DF69 /* Message.swift */; };
 		6723DEC02254415C00B3DF69 /* SendMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEBF2254415C00B3DF69 /* SendMessageViewController.swift */; };
 		6732EA53227AB35C00C4AF6C /* EditUserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732EA52227AB35C00C4AF6C /* EditUserInfoService.swift */; };
+		6732EA59227BEA6100C4AF6C /* RoomFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732EA58227BEA6100C4AF6C /* RoomFirestoreRepository.swift */; };
+		6732EA5B227BEAB700C4AF6C /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732EA5A227BEAB700C4AF6C /* Room.swift */; };
+		6732EA5D227BEF2C00C4AF6C /* ReadQRcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732EA5C227BEF2C00C4AF6C /* ReadQRcodeService.swift */; };
 		6732F280224DB2F500011710 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732F27F224DB2F500011710 /* AppDelegate.swift */; };
 		6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */; };
 		6732F28A224DB2F600011710 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6732F289224DB2F600011710 /* Assets.xcassets */; };
@@ -107,6 +110,9 @@
 		6723DEBD2254396700B3DF69 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		6723DEBF2254415C00B3DF69 /* SendMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageViewController.swift; sourceTree = "<group>"; };
 		6732EA52227AB35C00C4AF6C /* EditUserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoService.swift; sourceTree = "<group>"; };
+		6732EA58227BEA6100C4AF6C /* RoomFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomFirestoreRepository.swift; sourceTree = "<group>"; };
+		6732EA5A227BEAB700C4AF6C /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		6732EA5C227BEF2C00C4AF6C /* ReadQRcodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadQRcodeService.swift; sourceTree = "<group>"; };
 		6732F27C224DB2F500011710 /* Oshidori.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Oshidori.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6732F27F224DB2F500011710 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6732F287224DB2F500011710 /* Oshidori.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Oshidori.xcdatamodel; sourceTree = "<group>"; };
@@ -211,6 +217,7 @@
 				67579D7022782132007AA6DA /* UserMessageInfo.swift */,
 				6723DEBD2254396700B3DF69 /* Message.swift */,
 				67C7ABAD2279A04A00344D6E /* RepresentationMessage.swift */,
+				6732EA5A227BEAB700C4AF6C /* Room.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -336,6 +343,7 @@
 				677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */,
 				67C7ABAB2279607100344D6E /* UserMessageInfoFirestoreRepository.swift */,
 				67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */,
+				6732EA58227BEA6100C4AF6C /* RoomFirestoreRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -442,6 +450,7 @@
 			children = (
 				67920DDB2264730500127083 /* ReadQRcodeViewController.swift */,
 				67DD01D322686DEC00583BF6 /* ReadQRcode.storyboard */,
+				6732EA5C227BEF2C00C4AF6C /* ReadQRcodeService.swift */,
 			);
 			path = "ReadQRcode Page";
 			sourceTree = "<group>";
@@ -814,10 +823,13 @@
 				677D6BD92265F06700C5E069 /* RegistUserInfoViewController.swift in Sources */,
 				670A16AE226D7F9B006C8F47 /* SelectRegisterOrLoginViewController.swift in Sources */,
 				6723DEA8224F10B600B3DF69 /* LoginViewController.swift in Sources */,
+				6732EA5B227BEAB700C4AF6C /* Room.swift in Sources */,
+				6732EA5D227BEF2C00C4AF6C /* ReadQRcodeService.swift in Sources */,
 				67920DB72264409900127083 /* ShowQRcodeViewController.swift in Sources */,
 				67EE40D12265D58800E2F2C5 /* UserInformation.swift in Sources */,
 				6736F1632254B45000E89952 /* UserDefault.swift in Sources */,
 				67C7ABAE2279A04A00344D6E /* RepresentationMessage.swift in Sources */,
+				6732EA59227BEA6100C4AF6C /* RoomFirestoreRepository.swift in Sources */,
 				6723DEBE2254396700B3DF69 /* Message.swift in Sources */,
 				67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */,
 				6723DEB82250AA7500B3DF69 /* RegistAuthUserViewController.swift in Sources */,

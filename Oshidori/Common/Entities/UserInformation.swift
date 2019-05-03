@@ -25,10 +25,11 @@ class UserInformation {
     
     init() {}
  
-    init(name: String, birthday: Date?, partnerId: String, roomId: String, created: Date, imageUrl: String) {
+    init(name: String, birthday: Date?, partnerId: String, partnerName: String, roomId: String, created: Date, imageUrl: String) {
         self.name = name
         self.birthday = birthday
         self.partnerId = partnerId
+        self.partnerName = partnerName
         self.roomId = roomId
         self.created = created
         self.imageUrl = imageUrl
@@ -41,9 +42,11 @@ class UserInformation {
         if let birthday = data["birthday"] as? Date {
             self.birthday = birthday
         }
-        
         if let partnerId = data["partnerId"] as? String {
             self.partnerId = partnerId
+        }
+        if let partnerName = data["partnerName"] as? String {
+            self.partnerName = partnerName
         }
         if let roomId = data["roomId"] as? String {
             self.roomId = roomId
@@ -67,6 +70,7 @@ extension UserInformation {
                     "name": name,
                     "birthday": birthday,
                     "partnerId": partnerId,
+                    "partnerName": partnerName,
                     "roomId": roomId,
                     "created": "",
                     "imageUrl": imageUrl,
@@ -77,6 +81,7 @@ extension UserInformation {
                     "name": name,
                     "birthday": "",
                     "partnerId": partnerId,
+                    "partnerName": partnerName,
                     "roomId": roomId,
                     "created": "",
                     "imageUrl": imageUrl,
@@ -90,6 +95,7 @@ extension UserInformation {
                 "name": name,
                 "birthday": "",
                 "partnerId": partnerId,
+                "partnerName": partnerName,
                 "roomId": roomId,
                 "created": created,
                 "imageUrl": imageUrl,
@@ -100,6 +106,7 @@ extension UserInformation {
             "name": name,
             "birthday": birthday,
             "partnerId": partnerId,
+            "partnerName": partnerName,
             "roomId": roomId,
             "created": created,
             "imageUrl": imageUrl,
