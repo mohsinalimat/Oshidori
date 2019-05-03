@@ -29,5 +29,6 @@ pod 'TextFieldEffects'
 pod 'Eureka'
 pod 'InputBarAccessoryView'
 pod 'ImageRow'
+pod 'Nuke'
 
 end

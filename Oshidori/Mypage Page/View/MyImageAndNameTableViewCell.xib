@@ -27,7 +27,7 @@
                             <constraint firstAttribute="height" constant="150" id="pSQ-lF-2rC"/>
                         </constraints>
                     </imageView>
-                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="やまたつ" placeholder="ニックネーム" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRU-Sw-k0B" customClass="HoshiTextField" customModule="TextFieldEffects">
+                    <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="名前" placeholder="ニックネーム" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRU-Sw-k0B" customClass="HoshiTextField" customModule="TextFieldEffects">
                         <rect key="frame" x="30" y="175" width="337" height="26.5"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -47,6 +47,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="userImage" destination="ltF-JB-FXN" id="Nzf-cv-j7D"/>
+                <outlet property="userNameField" destination="rRU-Sw-k0B" id="P1a-op-TpZ"/>
             </connections>
             <point key="canvasLocation" x="193.47826086956522" y="146.65178571428569"/>
         </tableViewCell>

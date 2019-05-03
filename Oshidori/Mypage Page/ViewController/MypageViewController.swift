@@ -22,8 +22,14 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         mypageTableView.dataSource = self
         mypageService.delegate = self
         initialSettingForCell()
-        getUserMessageInfo()
+        getInformation()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        // mypageTableView.reloadData()
+    }
+
 }
 
 extension MypageViewController {
@@ -68,7 +74,10 @@ extension MypageViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
-            cell.setUserImage()
+            if let userInfo = MypageService.shared.userInfo {
+                cell.setUserImage(imageUrl: userInfo.imageUrl)
+                cell.setUserName(name: userInfo.name)
+            }
             
             return cell
 
@@ -121,15 +130,31 @@ extension MypageViewController {
 
 extension MypageViewController {
     
+    func getInformation() {
+        getUserMessageInfo()
+        getUserInfo()
+    }
+    
     func getUserMessageInfo() {
         guard let uid = User.shared.getUid() else {
             return
         }
         mypageService.getUserMessageInfo(uid: uid)
     }
+    
+    func getUserInfo() {
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        mypageService.getUserInfo()
+    }
 }
 
 extension MypageViewController: MypageServiceDelegate {
+    func gotUserInfo() {
+        mypageTableView.reloadData()
+    }
+    
     
     func gotUserMessageInfo() {
         mypageTableView.reloadData()
@@ -138,5 +163,4 @@ extension MypageViewController: MypageServiceDelegate {
     func loaded() {
         
     }
-    
 }

@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Nuke
+import TextFieldEffects
 
 class MyImageAndNameTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var userNameField: HoshiTextField!
     @IBOutlet weak var userImage: UIImageView!
-    
-    
+    var url :URL?
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,11 +27,23 @@ class MyImageAndNameTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setUserImage() {
-        userImage.image = UIImage(named: "TestImage")
+    func setUserImage(imageUrl :String?) {
+        if let strUrl = imageUrl {
+            url = URL(string: strUrl)
+            if let url = url {
+                Nuke.loadImage(with: url, into: userImage)
+            }
+            // Nuke.loadImage(with: URL(string: url) ?? default value, into: userImage)
+        } else {
+            userImage.image = UIImage(named: "Oshidori_null")
+        }
         userImage.contentMode = .scaleAspectFill
         userImage.clipsToBounds = true
         userImage.layer.cornerRadius = self.frame.height / 3.0 // 3.0にしたら丸になった
+    }
+    
+    func setUserName(name: String) {
+        userNameField.text = name
     }
     
 }

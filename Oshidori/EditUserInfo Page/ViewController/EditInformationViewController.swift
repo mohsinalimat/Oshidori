@@ -130,7 +130,12 @@ extension EditInformationViewController: EditUserInfoServiceDelegate {
     }
     
     func updated() {
-        self.navigationController?.popToRootViewController(animated: true)
+//        // self.navigationController?.popToRootViewController(animated: true)
+//
+//        self.navigationController?.popViewController(animated: true)
+        let storyboard = UIStoryboard(name: "Mypage", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "MypageStoryboard")
+        self.present(VC, animated: false, completion: nil)
     }
     
     func loaded() {

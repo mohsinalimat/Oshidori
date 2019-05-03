@@ -57,6 +57,4 @@ class EditUserInfoService {
         }
     }
     
-    // 流れは、saveを分けることかな〜。saveName()とかsaveBirthday()とか。
-    
 }

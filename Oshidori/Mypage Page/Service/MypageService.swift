@@ -10,6 +10,7 @@ import Foundation
 
 protocol MypageServiceDelegate:class {
     func gotUserMessageInfo()
+    func gotUserInfo()
     func loaded()
 }
 
@@ -20,6 +21,11 @@ class MypageService {
     private var mypageFirestoreRepository = UserMessageInfoFirestoreRepository()
     
     private var userMessageInfo: UserMessageInfo?
+    
+    private var userInfoRep = UserInformationFirestoreRepository()
+    
+    var userInfo: UserInformation?
+
     
     weak var delegate: MypageServiceDelegate?
 
@@ -54,5 +60,15 @@ class MypageService {
         return strCount
     }
     
+}
+
+extension MypageService {
+    
+    func getUserInfo() {
+        userInfoRep.getUserInfo { (receivedUserInfo) in
+            self.userInfo = receivedUserInfo
+            self.delegate?.gotUserInfo()
+        }
+    }
 }
 
