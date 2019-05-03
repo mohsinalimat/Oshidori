@@ -71,6 +71,7 @@ extension MypageViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
@@ -105,10 +106,11 @@ extension MypageViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // 色が変わらないようにする
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
         guard indexPath.section == 2 else {
             return
         }
-        //     let settingTitleArray:[String] = ["パートナー設定", "ユーザー情報", "このアプリについて"]
         switch indexPath.row {
         case 0:
             moveQRcodePage()

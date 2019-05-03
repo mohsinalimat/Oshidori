@@ -55,6 +55,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.setSupportCountLabel(supportCount: message.supportCount ?? 0)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }
 }
   
 extension TimelineViewController: TimelineServiceDelegate {

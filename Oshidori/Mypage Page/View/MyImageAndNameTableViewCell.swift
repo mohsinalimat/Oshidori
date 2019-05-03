@@ -28,18 +28,20 @@ class MyImageAndNameTableViewCell: UITableViewCell {
     }
     
     func setUserImage(imageUrl :String?) {
-        if let strUrl = imageUrl {
+        userImage.contentMode = .scaleAspectFill
+        userImage.clipsToBounds = true
+        userImage.layer.cornerRadius = self.frame.height / 3.0 // 3.0にしたら丸になった
+        guard let strUrl = imageUrl else {
+            return
+        }
+        if strUrl == "" {
+            userImage.image = UIImage(named: "Oshidori_null")
+        } else {
             url = URL(string: strUrl)
             if let url = url {
                 Nuke.loadImage(with: url, into: userImage)
             }
-            // Nuke.loadImage(with: URL(string: url) ?? default value, into: userImage)
-        } else {
-            userImage.image = UIImage(named: "Oshidori_null")
         }
-        userImage.contentMode = .scaleAspectFill
-        userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = self.frame.height / 3.0 // 3.0にしたら丸になった
     }
     
     func setUserName(name: String) {
