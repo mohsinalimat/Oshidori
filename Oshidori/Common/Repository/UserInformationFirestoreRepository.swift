@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 class UserInformationFirestoreRepository {
     // firebase 関連
@@ -97,7 +98,48 @@ class UserInformationFirestoreRepository {
         }
     }
     
-    
-    
+}
+
+extension UserInformationFirestoreRepository {
+    func saveImage(image: UIImage, completion: @escaping ((_ imageUrl: String?)->Void)) {
+        // まずは保存するところのパスをとる。
+        let storageRef = Storage.storage().reference()
+        // 被る確率を減らすために、名前に現在の時間をつける。
+        // 100%被らないようにするのはハイコストだけど、99%はいける
+        let currentTime = String(Int(floor(NSDate().timeIntervalSince1970 * 100000)))
+        // 次はどんな名前で保存すればいいかな〜と考える
+        // userのIDをつかえばいいのか？
+        
+        let metadata = StorageMetadata()
+        // コンテンツのタイプを、アップロード時にfirebaseに教えてあげる。教えないと、写真として保存されない。
+        // ダウンロードするときに写真として持ってこれない。
+        // サーバーは、コンテンツタイプを理解して、ダウンロードするかを決める。（処理をどうするかを決める）
+        metadata.contentType = "image/jpeg"
+        //画像を非同期にアップロード
+        let dataRef = storageRef.child("\(currentTime).jpg")
+        // 画像をJpegにする関数。数字は圧縮率。0.5がバランスが取れている。らしい。
+        let data = image.jpegData(compressionQuality: 0.5)
+        // firebase で決まっている関数。metadataも一緒に送っているよ。
+        dataRef.putData(data!, metadata: metadata) { (metadata, error) in
+            // error で比較しないんだ。firebaseのドキュメント読めばいいんだよ
+            guard let metadata = metadata else {
+                print (error.debugDescription)
+                completion(nil)
+                return
+            }
+            // ここは特に意味ない。
+            let size = metadata.size
+            print (size)
+            // ダウンロードURLを取得するよ。このURLを取れるようになったよ！！！
+            dataRef.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    print (error.debugDescription)
+                    completion(nil)
+                    return
+                }
+                completion(downloadURL.absoluteString)
+            }
+        }
+    }
 }
 

@@ -32,6 +32,24 @@ class EditUserInfoService {
         })
     }
     
+    func updateBirthday(birthday: Date) {
+        rep.getUserInfo(completion: { (userInfo) in
+            userInfo.birthday = birthday
+            self.rep.update(userInfo, completion: {
+                self.delegate?.updated()
+            })
+        })
+    }
+    
+    func updateImage(imageUrl: String) {
+        rep.getUserInfo(completion: { (userInfo) in
+            userInfo.imageUrl = imageUrl
+            self.rep.update(userInfo, completion: {
+                self.delegate?.updated()
+            })
+        })
+    }
+    
     func loadUserInfo() {
         rep.getUserInfo { (userInfo) in
             self.editUserInfo = userInfo

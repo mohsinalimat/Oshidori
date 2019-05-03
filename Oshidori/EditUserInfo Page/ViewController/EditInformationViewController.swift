@@ -93,7 +93,6 @@ class EditInformationViewController: FormViewController {
                 alert("エラー", "値を変更してください", nil)
                 return
             }
-            // TODO: 保存する
             editUserInfoService.updateName(name: name)
 
         case birthdayContent:
@@ -101,7 +100,7 @@ class EditInformationViewController: FormViewController {
                 alert("エラー", "値を変更してください", nil)
                 return
             }
-            // TODO: 保存する
+            editUserInfoService.updateBirthday(birthday: birthday)
 
         case photoContent:
             guard let birthday = birthday else {
@@ -109,6 +108,8 @@ class EditInformationViewController: FormViewController {
                 return
             }
             // TODO: 保存する
+            // editUserInfoService.updateImage(imageUrl: imageUrl)
+            
 
         default:
             break
@@ -123,7 +124,7 @@ extension EditInformationViewController: EditUserInfoServiceDelegate {
     }
     
     func updated() {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     func loaded() {
