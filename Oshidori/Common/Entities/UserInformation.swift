@@ -39,8 +39,8 @@ class UserInformation {
         if let name = data["name"] as? String {
             self.name = name
         }
-        if let birthday = data["birthday"] as? Date {
-            self.birthday = birthday
+        if let birthday = data["birthday"] as? Timestamp {
+            self.birthday = birthday.dateValue()
         }
         if let partnerId = data["partnerId"] as? String {
             self.partnerId = partnerId

@@ -18,6 +18,11 @@ class EditInformationViewController: FormViewController {
     var nickName :String?
     var image    :UIImage?
     
+    var tmpBirthday :Date?
+    var tmpNickName :String?
+    var tmpImageUrl :String?
+    var tmpURL      :URL?
+    
     let nickNameContent = "ニックネーム"
     let birthdayContent = "誕生日"
     let photoContent    = "プロフィール写真"
@@ -45,6 +50,9 @@ class EditInformationViewController: FormViewController {
                 <<< TextRow(){ row in
                     row.title = "ニックネーム"
                     row.placeholder = "入力してね！"
+                    if let name = tmpNickName {
+                        row.value = name
+                    }
                     row.onChange({ (TextRow) in
                         self.nickName = TextRow.value
                     })
@@ -54,7 +62,9 @@ class EditInformationViewController: FormViewController {
             form +++ Section("誕生日編集")
                 <<< DateRow(){
                     $0.title = "誕生日"
-                    $0.value = Date(timeIntervalSinceReferenceDate: 0)
+                    if let birthday = tmpBirthday {
+                        $0.value = birthday
+                    }
                     $0.onChange({ (DateRow) in
                         self.birthday = DateRow.value
                     })
@@ -130,9 +140,7 @@ extension EditInformationViewController: EditUserInfoServiceDelegate {
     }
     
     func updated() {
-//        // self.navigationController?.popToRootViewController(animated: true)
-//
-//        self.navigationController?.popViewController(animated: true)
+        // self.navigationController?.popToRootViewController(animated: true)
         let storyboard = UIStoryboard(name: "Mypage", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "MypageStoryboard")
         self.present(VC, animated: false, completion: nil)

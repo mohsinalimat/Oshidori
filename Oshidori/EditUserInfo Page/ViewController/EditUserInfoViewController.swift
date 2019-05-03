@@ -48,7 +48,9 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
                     guard let content = LabelRow.title else {
                         return
                     }
-                    self.moveEditInformationPage(content)
+                    if let name  = self.editUserInfoService.editUserInfo?.name {
+                        self.moveEditInformationPage(content, tmpNickName: name)
+                    }
                 })
                 row.cellUpdate({ (LabelCell, LabelRow) in
                     LabelCell.accessoryType = .disclosureIndicator
@@ -57,7 +59,7 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
             <<< LabelRow(){ row in
                 row.title = "誕生日"
                 if let birthday = editUserInfoService.editUserInfo?.birthday {
-                    let strBirthday = convertDateToString(timestampDate: birthday as NSDate)
+                    let strBirthday = convertDateToStringForBirthday(timestampDate: birthday as NSDate)
                     row.value = strBirthday
                 } else {
                     row.value = "未設定"
@@ -66,7 +68,9 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
                     guard let content = LabelRow.title else {
                         return
                     }
-                    self.moveEditInformationPage(content)
+                    if let birthday = self.editUserInfoService.editUserInfo?.birthday {
+                        self.moveEditInformationPage(content, birthday: birthday)
+                    }
                 })
                 row.cellUpdate({ (LabelCell, LabelRow) in
                     LabelCell.accessoryType = .disclosureIndicator
@@ -74,13 +78,11 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
             }
             <<< LabelRow(){ row in
                 row.title = "プロフィール写真"
-                row.value = "未設定"
-//                if let userPhoto = editUserInfoService.editUserInfo?.birthday {
-//                    let strBirthday = convertDateToString(timestampDate: birthday as NSDate)
-//                    row.value = strBirthday
-//                } else {
-//                    row.value = "未設定"
-//                }
+                if let _ = editUserInfoService.editUserInfo?.imageUrl {
+                    row.value = "設定済"
+                } else {
+                    row.value = "未設定"
+                }
                 
                 row.onCellSelection({ (LabelCell, LabelRow) in
                     guard let content = LabelRow.title else {
@@ -97,12 +99,27 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
             <<< LabelRow(){ row in
                 row.title = "ニックネーム"
                 row.value = editUserInfoService.editUserInfo?.partnerName ?? "未設定"
-                row.value = "ナッキー"
         }
     }
 }
 
 extension EditUserInfoViewController {
+    
+    func moveEditInformationPage(_ content: String, tmpNickName: String) {
+        let storyboard = UIStoryboard(name: "EditInformation", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "EditInformationStoryboard") as! EditInformationViewController
+        VC.editContent = content
+        VC.tmpNickName = tmpNickName
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    func moveEditInformationPage(_ content: String, birthday: Date) {
+        let storyboard = UIStoryboard(name: "EditInformation", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "EditInformationStoryboard") as! EditInformationViewController
+        VC.editContent = content
+        VC.tmpBirthday = birthday
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
     
     func moveEditInformationPage(_ content: String) {
         let storyboard = UIStoryboard(name: "EditInformation", bundle: nil)
@@ -111,4 +128,13 @@ extension EditUserInfoViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
+}
+
+extension EditUserInfoViewController {
+    func convertDateToStringForBirthday(timestampDate: NSDate) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let stringDate = dateFormatter.string(from: timestampDate as Date)
+        return stringDate
+    }
 }
