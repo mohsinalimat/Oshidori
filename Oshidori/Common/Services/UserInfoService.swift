@@ -49,10 +49,9 @@ class UserInfoService {
                 return
             }
             EditUserInfoService.shared.updateImage(imageUrl: url)
+            completion(imageUrl)
         }
-        
     }
-    
 }
 
 

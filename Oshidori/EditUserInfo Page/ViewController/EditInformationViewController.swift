@@ -16,6 +16,7 @@ class EditInformationViewController: FormViewController {
     var editContent:String?
     var birthday :Date?
     var nickName :String?
+    var image    :UIImage?
     
     let nickNameContent = "ニックネーム"
     let birthdayContent = "誕生日"
@@ -67,6 +68,7 @@ class EditInformationViewController: FormViewController {
                     $0.onChange { [unowned self] row in
                         if let value = row.value {
                             self.selectedImg = value
+                            self.image = value
                         }
                     }
                     $0.cellUpdate { cell, row in
@@ -103,13 +105,17 @@ class EditInformationViewController: FormViewController {
             editUserInfoService.updateBirthday(birthday: birthday)
 
         case photoContent:
-            guard let birthday = birthday else {
+            guard let image = image else {
                 alert("エラー", "値を変更してください", nil)
                 return
             }
             // TODO: 保存する
-            // editUserInfoService.updateImage(imageUrl: imageUrl)
-            
+            UserInfoService.shared.saveImage(image: image) { (imageUrl) in
+                guard let url = imageUrl else {
+                    return
+                }
+                self.editUserInfoService.updateImage(imageUrl: url)
+            }
 
         default:
             break
