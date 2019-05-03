@@ -14,6 +14,8 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var mypageTableView: UITableView!
     
+    var reloadFlag = true
+    
     let settingTitleArray:[String] = ["パートナー設定", "ユーザー情報", "このアプリについて", "ログアウト"]
     
     override func viewDidLoad() {
@@ -30,6 +32,7 @@ extension MypageViewController {
     func initialSettingForCell() {
         mypageTableView.register (UINib(nibName: "MessageReportTableViewCell", bundle: nil),forCellReuseIdentifier:"MessageReportCell")
         mypageTableView.register (UINib(nibName: "MyImageAndNameTableViewCell", bundle: nil),forCellReuseIdentifier:"MyImageAndNameCell")
+        
         // セルの高さを内容によって可変にする
         mypageTableView.estimatedRowHeight = 50 //予想のセルの高さ //入れないとワーニングが出る
         mypageTableView.rowHeight = UITableView.automaticDimension
@@ -78,8 +81,7 @@ extension MypageViewController {
                 cell.setSupportCountLabel(supportCount: mypageService.getSupportCount())
                 cell.setMessageCountLabel(messageCount: mypageService.getMessageCount())
             }
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
-//            cell.setUserImage()
+
             return cell
 
         case 2:
@@ -123,7 +125,10 @@ extension MypageViewController {
 extension MypageViewController: MypageServiceDelegate {
     
     func gotUserMessageInfo() {
-        mypageTableView.reloadData()
+        if reloadFlag == true {
+            reloadFlag = false
+            mypageTableView.reloadData()
+        }
     }
     
     func loaded() {
