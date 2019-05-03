@@ -21,19 +21,22 @@ class EditUserInfoService {
     
     weak var delegate: EditUserInfoServiceDelegate?
     
-    //var editUserInfo: UserInformation?
+    var editUserInfo: UserInformation?
     
     func updateName(name: String) {
-        rep.getUserInfo(completion: { (userInformation) in
-            userInformation.name = name
-            self.rep.update(userInformation, completion: {
+        rep.getUserInfo(completion: { (userInfo) in
+            userInfo.name = name
+            self.rep.update(userInfo, completion: {
                 self.delegate?.updated()
             })
         })
     }
     
-    func load() {
-        
+    func loadUserInfo() {
+        rep.getUserInfo { (userInfo) in
+            self.editUserInfo = userInfo
+            self.delegate?.loaded()
+        }
     }
     
     // 流れは、saveを分けることかな〜。saveName()とかsaveBirthday()とか。

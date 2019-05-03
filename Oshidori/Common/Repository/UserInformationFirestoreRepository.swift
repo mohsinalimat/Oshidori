@@ -56,14 +56,6 @@ class UserInformationFirestoreRepository {
                 completion()
             }
         }
-//        let messageInfoDocumentRef = getMessageInfoDocumentRef()
-//        messageInfoDocumentRef.setData(UserMessageInfo.shared.firstRepresentation){ err in
-//            if let err = err {
-//                debugPrint("error...\(err)")
-//            } else {
-//                completion()
-//            }
-//        }
     }
     
     func getUserInfo(completion: @escaping (UserInformation) -> Void ) {
