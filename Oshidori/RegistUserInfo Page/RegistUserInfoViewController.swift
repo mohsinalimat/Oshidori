@@ -48,11 +48,15 @@ class RegistUserInfoViewController: UIViewController, UITextFieldDelegate {
         let created = Date()
         // 初期のデータを保存するため、partnerIdとroomIdは"" で良い。
         // TODO: nil が怖いので要注意 すでにクラッシュしてる
-        let userInfo = UserInformation(name: name, birthday: nil, partnerId: "", partnerName: "", roomId: "", created: created, imageUrl: "")
+        if let FCMToken = UserDefaults.standard.string(forKey: "FCMToken") {
+            let userInfo = UserInformation(name: name, FCMToken: FCMToken,birthday: nil, partnerId: "", partnerName: "", roomId: "", created: created, imageUrl: "")
+            UserInfoService.shared.save(userInfo)
+        } else {
+            let userInfo = UserInformation(name: name, FCMToken: "", birthday: nil, partnerId: "", partnerName: "", roomId: "", created: created, imageUrl: "")
+            UserInfoService.shared.save(userInfo)
+        }
         HUD.show(.progress)
-        UserInfoService.shared.save(userInfo)
     }
-    
 }
 
 extension RegistUserInfoViewController: UserInfoServiceDelegate {
