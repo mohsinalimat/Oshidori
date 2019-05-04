@@ -8,18 +8,24 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 class UserInformationFirestoreRepository {
     // firebase 関連
     private let db = Firestore.firestore()
-    func getUserInfoDocumentRef() -> DocumentReference {
+    private func getUserInfoDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
+            // TODO; これは危険
             fatalError("Uidを取得できませんでした。")
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
     
-    func getMessageInfoDocumentRef() -> DocumentReference {
+    private func getPartnerUserInfoDocumentRef(partnerId: String) -> DocumentReference {
+        return db.collection("users").document(partnerId).collection("info").document(partnerId)
+    }
+    
+    private func getMessageInfoDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
         }
@@ -42,6 +48,96 @@ class UserInformationFirestoreRepository {
                 debugPrint("error...\(err)")
             } else {
                 completion()
+            }
+        }
+    }
+    
+    func update(_ userInfo: UserInformation, completion: @escaping () -> Void )  {
+        debugPrint("Firestoreへセーブ")
+        let userInfoDocumentRef = getUserInfoDocumentRef()
+        userInfoDocumentRef.setData(userInfo.representation) { err in
+            if let err = err {
+                debugPrint("error...\(err)")
+            } else {
+                completion()
+            }
+        }
+    }
+    
+    func updatePartnerInfo(_ parnerInfo: UserInformation, partnerId: String, completion: @escaping () -> Void )  {
+        debugPrint("Firestoreへセーブ")
+        let partnerInfoDocumentRef = getPartnerUserInfoDocumentRef(partnerId: partnerId)
+        partnerInfoDocumentRef.setData(parnerInfo.representation) { err in
+            if let err = err {
+                debugPrint("error...\(err)")
+            } else {
+                completion()
+            }
+        }
+    }
+    
+    func getUserInfo(completion: @escaping (UserInformation) -> Void ) {
+        let userInfoDocumentRef = getUserInfoDocumentRef()
+        userInfoDocumentRef.getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() else {
+                return
+            }
+            let userInfo = UserInformation(data: data)
+            completion(userInfo)
+        }
+    }
+    
+    func getPartnerUserInfo(partnerId: String,completion: @escaping (UserInformation) -> Void ) {
+        let partnerUserInfoDocumentRef = getPartnerUserInfoDocumentRef(partnerId: partnerId)
+        partnerUserInfoDocumentRef.getDocument { (snapshot, error) in
+            guard let data = snapshot?.data() else {
+                return
+            }
+            let partnerInfo = UserInformation(data: data)
+            completion(partnerInfo)
+        }
+    }
+    
+}
+
+extension UserInformationFirestoreRepository {
+    func saveImage(image: UIImage, completion: @escaping ((_ imageUrl: String?)->Void)) {
+        // まずは保存するところのパスをとる。
+        let storageRef = Storage.storage().reference()
+        // 被る確率を減らすために、名前に現在の時間をつける。
+        // 100%被らないようにするのはハイコストだけど、99%はいける
+        let currentTime = String(Int(floor(NSDate().timeIntervalSince1970 * 100000)))
+        // 次はどんな名前で保存すればいいかな〜と考える
+        // userのIDをつかえばいいのか？
+        
+        let metadata = StorageMetadata()
+        // コンテンツのタイプを、アップロード時にfirebaseに教えてあげる。教えないと、写真として保存されない。
+        // ダウンロードするときに写真として持ってこれない。
+        // サーバーは、コンテンツタイプを理解して、ダウンロードするかを決める。（処理をどうするかを決める）
+        metadata.contentType = "image/jpeg"
+        //画像を非同期にアップロード
+        let dataRef = storageRef.child("\(currentTime).jpg")
+        // 画像をJpegにする関数。数字は圧縮率。0.5がバランスが取れている。らしい。
+        let data = image.jpegData(compressionQuality: 0.5)
+        // firebase で決まっている関数。metadataも一緒に送っているよ。
+        dataRef.putData(data!, metadata: metadata) { (metadata, error) in
+            // error で比較しないんだ。firebaseのドキュメント読めばいいんだよ
+            guard let metadata = metadata else {
+                print (error.debugDescription)
+                completion(nil)
+                return
+            }
+            // ここは特に意味ない。
+            let size = metadata.size
+            print (size)
+            // ダウンロードURLを取得するよ。このURLを取れるようになったよ！！！
+            dataRef.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    print (error.debugDescription)
+                    completion(nil)
+                    return
+                }
+                completion(downloadURL.absoluteString)
             }
         }
     }

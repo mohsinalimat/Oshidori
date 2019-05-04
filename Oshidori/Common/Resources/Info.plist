@@ -22,6 +22,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>QRコードを読み取る為にカメラを使います。</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>プロフィール写真を設定するために写真のライブラリを使用します。</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

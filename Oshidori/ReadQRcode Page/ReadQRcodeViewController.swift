@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import Firebase
 import PKHUD
 
 class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
@@ -19,6 +18,7 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
+        setDelegate()
 
         // カメラやマイクのデバイスそのものを管理するオブジェクトを生成（ここではワイドアングルカメラ・ビデオ・背面カメラを指定）
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
@@ -81,86 +81,28 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
             // 読み取り終了
             self.session.stopRunning()
             // ユーザ情報をsetする
-            save(partnerId)
-            moveMessagePage()
+            HUD.show(.progress)
+            ReadQRcodeService.shared.save(partnerId)
         }
-    }
-    
-    // firebase 関連
-    private let db = Firestore.firestore()
-    private var reference: CollectionReference?
-    private let storage = Storage.storage().reference()
-    private func getMyDocumentRef() -> DocumentReference {
-        guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
-        }
-        return db.collection("users").document(uid).collection("info").document(uid)
-    }
-    private func getPartnerDocumentRef(partnerId: String) -> DocumentReference {
-        return db.collection("users").document(partnerId).collection("info").document(partnerId)
-    }
-    private func getRoomCollectionRef() -> CollectionReference {
-        guard let _ = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
-        }
-        return db.collection("rooms")
-    }
-    
-    func save(_ partnerId: String) {
-        HUD.show(.progress)
-        print("Firestoreへセーブ")
-        let myDocumentRef = getMyDocumentRef()
-        let partnerDocumentRef = getPartnerDocumentRef(partnerId: partnerId)
-        myDocumentRef.updateData(["partnerId": partnerId]){ err in
-            if let err = err {
-                debugPrint("Error updating document: \(err)")
-                HUD.hide()
-            } else {
-                debugPrint("my partnerId updated!!!")
-                
-                guard let uid = User.shared.getUid() else {
-                    return
-                }
-                
-                partnerDocumentRef.updateData(["partnerId": uid]){ err in
-                    if let err = err {
-                        debugPrint("Error updating document: \(err)")
-                        HUD.hide()
-                    } else {
-                        debugPrint("partnerId updated!!!")
-                        
-                        // roomIdを作成し、roomを作成し、userIDを登録している。
-                        let roomRef = self.getRoomCollectionRef().document()
-                        let roomId = roomRef.documentID
-                        roomRef.setData([
-                            "firstUser": uid ,
-                            "secondUser": partnerId ,
-                            "roomId" :  roomId ,
-                        ]) { err in
-                            if let err = err {
-                                HUD.hide()
-                                debugPrint("Error adding document: \(err)")
-                            } else {
-                                // roomIdをuserInfoに登録しにいっている。
-                                myDocumentRef.updateData(["roomId": roomId]) { err in
-                                    if let err = err {
-                                        debugPrint("Error updating document: \(err)")
-                                    }
-                                    HUD.hide()
-                                }
-                                partnerDocumentRef.updateData(["roomId": roomId]) { err in
-                                    if let err = err {
-                                        debugPrint("Error updating document: \(err)")
-                                    }
-                                    HUD.hide()
-                                    self.alert("成功", "パートナーができました！", nil)
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
     }
 }
+
+extension ReadQRcodeViewController: ReadQRcodeServiceDelegate {
+    func gotInfo() {
+        HUD.hide()
+        ReadQRcodeService.shared.update()
+        HUD.show(.progress)
+    }
+    
+    func updated() {
+        // TODO: 何かアニメーションをつけたい！
+        HUD.hide()
+        moveMessagePage()
+        
+    }
+    
+    func setDelegate() {
+        ReadQRcodeService.shared.delegate = self
+    }
+}
+

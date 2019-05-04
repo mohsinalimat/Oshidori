@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct RepresentationMessage {
     
@@ -39,8 +40,8 @@ struct RepresentationMessage {
         if let messageId = data["messageId"] as? String{
             self.messageId = messageId
         }
-        if let sentDate = data["sentDate"] as? Date {
-            self.sentDate = sentDate
+        if let sentDate = data["sentDate"] as? Timestamp {
+            self.sentDate = sentDate.dateValue()
         }
         if let contentType = data["contentType"] as? String {
             self.contentType = contentType

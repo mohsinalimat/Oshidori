@@ -17,7 +17,6 @@ class LoginViewController: UIViewController, UserDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var moveRegisterPageButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,27 +31,23 @@ class LoginViewController: UIViewController, UserDelegate {
     }
     
     @IBAction func didTapSignInButton(_ sender: Any) {
-        if let credential = getCredential() {
-            HUD.show(.progress)
-            user.login(credential: credential, completion: {[weak self] in
-                guard let self = self else {
-                    return
-                }
-
-                if self.user.isLogin() {
-                    self.moveMessagePage()
-                } else {
-                    self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
-                }
-                HUD.hide()
-                self.moveMessagePage()
-            })
-        }
-        
-    }
-    
-    @IBAction func didTapRegisterButton(_ sender: Any) {
-        moveUserCreatePage()
+//        if let credential = getCredential() {
+//            HUD.show(.progress)
+//            user.login(credential: credential, completion: {[weak self] in
+//                guard let self = self else {
+//                    return
+//                }
+//
+//                if self.user.isLogin() {
+//                    self.moveMessagePage()
+//                } else {
+//                    self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
+//                }
+//                HUD.hide()
+//            })
+//        }
+        // デバッグ用
+         self.moveMessagePage()
     }
     
     func getCredential() -> Credential? {

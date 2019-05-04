@@ -35,8 +35,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        moveSendMessageButton.isHidden = true
-        
+        moveSendMessageButton.isHidden = true
         // 登録をすることで、カスタムセルを利用できるようになる。
         // nibファイルはxibファイルの作成と同時に作られるらしい。
         // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
@@ -68,6 +67,10 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = false
     }
@@ -80,11 +83,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
-    
-    // MARK: - Table view data source
-    
     func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
@@ -112,7 +111,10 @@ extension ReceiveMessageViewController {
     
     private func getUserInformationRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
+            alert("エラー", "申し訳ありません。ユーザ情報が取得できませんでした。ログインし直してください。") {
+                self.moveLoginPage()
+            }
+            return db.collection("users").document() // 一応書いておかないとエラーになっちゃう
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
@@ -129,12 +131,12 @@ extension ReceiveMessageViewController {
         guard  let collectionRef = getRoomMessagesCollectionRef() else {
             return
         }
-        collectionRef.order(by: "created", descending: true).getDocuments() { (querySnapshot, err) in
+        collectionRef.order(by: "sentDate", descending: true).getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
             for document in querySnapshot!.documents {
                 guard let content = document.get("content") else { return }
-                guard let date = document.get("created") else { return }
+                guard let date = document.get("sentDate") else { return }
                 guard let name = document.get("senderName") else { return }
                 guard let contentType = document.get("contentType") else { return }
                 let dateTimestamp = date as! Timestamp
@@ -148,13 +150,3 @@ extension ReceiveMessageViewController {
         }
     }
 }
-
-//    func updateMessages() {
-//        guard let roomId = userInformation?.roomId else {
-//            return
-//        }
-//        let messagesRef = db.collection("rooms").document(roomId).collection("messages")
-//        messagesRef.ons
-//    }
-
-

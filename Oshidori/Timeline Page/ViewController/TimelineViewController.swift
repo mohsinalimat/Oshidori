@@ -28,7 +28,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineService.timelineMessagesRemove()
         // firestoreからデータを取って、テーブルビューに反映
         timelineService.loadTimelineMessage()
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,19 +42,22 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineMessageCell", for: indexPath) as? TimelineMessageTableViewCell else {
             return UITableViewCell()
         }
-        guard let message:RepresentationMessage = timelineService.getMessage(indexPathRow: indexPath.row) else {
-            return cell
-        }
+        let message:RepresentationMessage = timelineService.getMessage(indexPathRow: indexPath.row)
         cell.setContentLabel(content: message.content ?? "")
         if let date = message.sentDate {
             let sentDate = convertDateToString(timestampDate: date as NSDate)
             cell.setSendDataLabel(sendDate: sentDate)
         }
         cell.setSenderId(senderId: message.senderId ?? "")
+        cell.setMessageId(messageId: message.messageId ?? "")
         cell.setContentTypeImage(contentType: message.contentType ?? "")
         cell.setCourageCountLabel(courageCount: message.courageCount ?? 0)
         cell.setSupportCountLabel(supportCount: message.supportCount ?? 0)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
 }
   
