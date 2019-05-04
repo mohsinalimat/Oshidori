@@ -27,7 +27,8 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        // mypageTableView.reloadData()
+        getInformation()
+        mypageTableView.reloadData()
     }
 
 }
