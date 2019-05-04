@@ -126,6 +126,7 @@
 		6732F2A2224DB2F600011710 /* OshidoriUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriUITests.swift; sourceTree = "<group>"; };
 		6732F2A4224DB2F600011710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6736F1622254B45000E89952 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
+		673E9B68227D3764004B0C91 /* Oshidori.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Oshidori.entitlements; sourceTree = "<group>"; };
 		67579D7022782132007AA6DA /* UserMessageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessageInfo.swift; sourceTree = "<group>"; };
 		67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineFirestoreRepository.swift; sourceTree = "<group>"; };
 		67579D7A22787FD2007AA6DA /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
@@ -285,6 +286,7 @@
 		6732F27E224DB2F500011710 /* Oshidori */ = {
 			isa = PBXGroup;
 			children = (
+				673E9B68227D3764004B0C91 /* Oshidori.entitlements */,
 				6732F27F224DB2F500011710 /* AppDelegate.swift */,
 				67A2D59F2276797E00755F0B /* Common */,
 				6723DEB2224F74CB00B3DF69 /* TabBarController */,
@@ -612,6 +614,14 @@
 				TargetAttributes = {
 					6732F27B224DB2F500011710 = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					6732F292224DB2F600011710 = {
 						CreatedOnToolsVersion = 10.2;
@@ -1016,6 +1026,8 @@
 			baseConfigurationReference = 94F39C30B74CB220E1073109 /* Pods-Oshidori.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Oshidori/Oshidori.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92S7PT7663;
 				INFOPLIST_FILE = "$(SRCROOT)/Oshidori/Common/Resources/Info.plist";
@@ -1035,6 +1047,8 @@
 			baseConfigurationReference = FF072515068B5F54AC5B64AE /* Pods-Oshidori.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Oshidori/Oshidori.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 92S7PT7663;
 				INFOPLIST_FILE = "$(SRCROOT)/Oshidori/Common/Resources/Info.plist";

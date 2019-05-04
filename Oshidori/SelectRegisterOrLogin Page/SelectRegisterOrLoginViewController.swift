@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class SelectRegisterOrLoginViewController: UIViewController {
 
@@ -15,6 +16,11 @@ class SelectRegisterOrLoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        // プッシュ通知の許諾ダイアログを出したいタイミングで呼んであげる. 必ずしもここじゃなくても良い
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
+            print("push permission finished")
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
