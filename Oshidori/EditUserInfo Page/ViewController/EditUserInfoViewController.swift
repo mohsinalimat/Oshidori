@@ -77,13 +77,6 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
                 })
             }
             <<< LabelRow(){ row in
-                row.title = "プロフィール写真"
-                if let _ = editUserInfoService.editUserInfo?.imageUrl {
-                    row.value = "設定済"
-                } else {
-                    row.value = "未設定"
-                }
-                
                 row.onCellSelection({ (LabelCell, LabelRow) in
                     guard let content = LabelRow.title else {
                         return
@@ -93,12 +86,27 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
                 row.cellUpdate({ (LabelCell, LabelRow) in
                     LabelCell.accessoryType = .disclosureIndicator
                 })
+                row.title = "プロフィール写真"
+                guard let _ = editUserInfoService.editUserInfo?.imageUrl else {
+                    row.value = "未設定"
+                    return
+                }
+                row.value = "設定済"
+                
             }
             
             +++ Section("パートナー")
             <<< LabelRow(){ row in
                 row.title = "ニックネーム"
-                row.value = editUserInfoService.editUserInfo?.partnerName ?? "未設定"
+                guard let partnerName = editUserInfoService.editUserInfo?.partnerName else {
+                    row.value = "未設定"
+                    return
+                }
+                if partnerName == "" {
+                    row.value = "未設定"
+                } else {
+                    row.value = partnerName
+                }
         }
     }
 }
