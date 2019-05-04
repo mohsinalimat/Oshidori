@@ -28,6 +28,7 @@
 	<string>プロフィール写真を設定するために写真のライブラリを使用します。</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

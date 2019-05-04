@@ -16,6 +16,7 @@ class UserInformation {
     static var shared = UserInformation()
     
     var name: String = ""
+    var FCMToken: String = ""
     var birthday: Date?
     var partnerId: String = ""
     var partnerName: String = ""
@@ -25,8 +26,9 @@ class UserInformation {
     
     init() {}
  
-    init(name: String, birthday: Date?, partnerId: String, partnerName: String, roomId: String, created: Date, imageUrl: String) {
+    init(name: String, FCMToken: String, birthday: Date?, partnerId: String, partnerName: String, roomId: String, created: Date, imageUrl: String) {
         self.name = name
+        self.FCMToken = FCMToken
         self.birthday = birthday
         self.partnerId = partnerId
         self.partnerName = partnerName
@@ -38,6 +40,9 @@ class UserInformation {
     init(data: [String: Any]) {
         if let name = data["name"] as? String {
             self.name = name
+        }
+        if let FCMToken = data["FCMToken"] as? String {
+            self.FCMToken = FCMToken
         }
         if let birthday = data["birthday"] as? Timestamp {
             self.birthday = birthday.dateValue()
@@ -68,6 +73,7 @@ extension UserInformation {
             if let birthday = birthday {
                 let rep: [String : Any] = [
                     "name": name,
+                    "FCMToken": FCMToken,
                     "birthday": birthday,
                     "partnerId": partnerId,
                     "partnerName": partnerName,
@@ -79,6 +85,7 @@ extension UserInformation {
             } else {
                 let rep: [String : Any] = [
                     "name": name,
+                    "FCMToken": FCMToken,
                     "birthday": "",
                     "partnerId": partnerId,
                     "partnerName": partnerName,
@@ -93,6 +100,7 @@ extension UserInformation {
         guard let birthday = birthday else {
             let rep: [String : Any] = [
                 "name": name,
+                "FCMToken": FCMToken,
                 "birthday": "",
                 "partnerId": partnerId,
                 "partnerName": partnerName,
@@ -104,6 +112,7 @@ extension UserInformation {
         }
         let rep: [String : Any] = [
             "name": name,
+            "FCMToken": FCMToken,
             "birthday": birthday,
             "partnerId": partnerId,
             "partnerName": partnerName,

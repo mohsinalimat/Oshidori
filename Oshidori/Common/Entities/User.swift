@@ -30,7 +30,6 @@ class User {
     
     weak var delegate: UserDelegate?
     
-    
     // ユーザ作成
     func create (credential: Credential, completion: @escaping () -> Void) {
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in

@@ -9,9 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
-import FirebaseMessaging
 import UserNotifications
-import FirebaseInstanceID
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -73,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID🌞: \(messageID)")
         }
         
         // Print full message.
@@ -91,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID👿: \(messageID)")
         }
         
         // Print full message.
@@ -174,19 +172,10 @@ extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
         
-        let dataDict:[String: String] = ["token": fcmToken]
-        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
-        InstanceID.instanceID().instanceID { (result, error) in
-            if let error = error {
-                print("Error fetching remote instance ID: \(error)")
-            } else if let result = result {
-                print("Remote instance ID token: \(result.token)")
-                
-                // self.instanceIDTokenMessage.text  = "Remote InstanceID token: \(result.token)"
-            }
-        }
+        UserDefaults.standard.set(fcmToken, forKey: "FCMToken")
+        UserDefaults.standard.synchronize()
+        print("🌞")
+        print(UserDefaults.standard.string(forKey:"FCMToken"))
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
@@ -216,10 +205,10 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let userInfo = notification.request.content.userInfo
         
         // for analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
+        Messaging.messaging().appDidReceiveMessage(userInfo)
         
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID🐨: \(messageID)")
         }
         
         completionHandler([.alert])
@@ -231,8 +220,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         
+        // for analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            print("Message ID🐶: \(messageID)")
         }
         
         completionHandler()
