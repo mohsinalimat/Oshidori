@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
     
+    let userInfo = UserInfoService.shared
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
@@ -174,8 +176,9 @@ extension AppDelegate: MessagingDelegate {
         
         UserDefaults.standard.set(fcmToken, forKey: "FCMToken")
         UserDefaults.standard.synchronize()
-        print("🌞")
-        print(UserDefaults.standard.string(forKey:"FCMToken"))
+        debugPrint("🌞")
+        debugPrint(UserDefaults.standard.string(forKey:"FCMToken"))
+        userInfo.update()
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
