@@ -232,12 +232,12 @@
 			path = TabBarController;
 			sourceTree = "<group>";
 		};
-		6723DEB3224F74DD00B3DF69 /* Storyboards */ = {
+		6723DEB3224F74DD00B3DF69 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				6732F28B224DB2F600011710 /* LaunchScreen.storyboard */,
 			);
-			path = Storyboards;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		6723DEB622509BAF00B3DF69 /* Extension */ = {
@@ -363,7 +363,7 @@
 			children = (
 				6723DEB622509BAF00B3DF69 /* Extension */,
 				6723DEAF224F740600B3DF69 /* Entities */,
-				6723DEB3224F74DD00B3DF69 /* Storyboards */,
+				6723DEB3224F74DD00B3DF69 /* Storyboard */,
 				677AB3032270238A00DBCD62 /* Services */,
 				677AB3002270228100DBCD62 /* Repository */,
 				67A2D5A02276799800755F0B /* Resources */,
