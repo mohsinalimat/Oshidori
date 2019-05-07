@@ -52,6 +52,8 @@
 		676AF05E2281532800BDB911 /* PartnerSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */; };
 		676AF060228171FB00BDB911 /* MessageRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF05F228171FB00BDB911 /* MessageRoomViewController.swift */; };
 		676AF0622281720C00BDB911 /* MessageRoomViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */; };
+		676AF0652281860F00BDB911 /* MessageRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF0642281860F00BDB911 /* MessageRoomService.swift */; };
+		676AF0672281863500BDB911 /* MessageRoomFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF0662281863500BDB911 /* MessageRoomFirestoreRepository.swift */; };
 		677AB2FF2270227B00DBCD62 /* UserInformationFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */; };
 		677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB3012270238400DBCD62 /* UserInfoService.swift */; };
 		677D6BD92265F06700C5E069 /* RegistUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */; };
@@ -160,6 +162,8 @@
 		676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PartnerSettingViewController.storyboard; sourceTree = "<group>"; };
 		676AF05F228171FB00BDB911 /* MessageRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewController.swift; sourceTree = "<group>"; };
 		676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageRoomViewController.storyboard; sourceTree = "<group>"; };
+		676AF0642281860F00BDB911 /* MessageRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomService.swift; sourceTree = "<group>"; };
+		676AF0662281863500BDB911 /* MessageRoomFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomFirestoreRepository.swift; sourceTree = "<group>"; };
 		677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationFirestoreRepository.swift; sourceTree = "<group>"; };
 		677AB3012270238400DBCD62 /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -437,6 +441,8 @@
 			children = (
 				676AF05F228171FB00BDB911 /* MessageRoomViewController.swift */,
 				676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */,
+				676AF0642281860F00BDB911 /* MessageRoomService.swift */,
+				676AF0662281863500BDB911 /* MessageRoomFirestoreRepository.swift */,
 			);
 			path = "MessageRoom Page";
 			sourceTree = "<group>";
@@ -949,8 +955,10 @@
 				67EE40D12265D58800E2F2C5 /* UserInformation.swift in Sources */,
 				6736F1632254B45000E89952 /* UserDefault.swift in Sources */,
 				676AF060228171FB00BDB911 /* MessageRoomViewController.swift in Sources */,
+				676AF0672281863500BDB911 /* MessageRoomFirestoreRepository.swift in Sources */,
 				67C7ABAE2279A04A00344D6E /* RepresentationMessage.swift in Sources */,
 				6732EA59227BEA6100C4AF6C /* RoomFirestoreRepository.swift in Sources */,
+				676AF0652281860F00BDB911 /* MessageRoomService.swift in Sources */,
 				6723DEBE2254396700B3DF69 /* Message.swift in Sources */,
 				676AF05A2281512A00BDB911 /* PartnerSettingViewController.swift in Sources */,
 				67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */,

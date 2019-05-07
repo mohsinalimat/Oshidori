@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import MessageKit
 import InputBarAccessoryView
 
@@ -21,8 +20,7 @@ class MessageRoomViewController: MessagesViewController {
     
     var messageId :String?
     
-    // firebase 関連
-    private let db = Firestore.firestore()
+    let messageRoomService = MessageRoomService.shared
     
     // 日付をフォーマットするために必要
     lazy var formatter: DateFormatter = {
@@ -41,49 +39,34 @@ class MessageRoomViewController: MessagesViewController {
         
         customizeMessageKit()
         // プロパティのUserInfoに入れる。
-        getUserInfo()
-        
-        getMessages()
-        
-        DispatchQueue.main.async {
-            // messageListにメッセージの配列をいれて
-            //self.messageList.append(self.getOshidoriMessages())
-            // messagesCollectionViewをリロードして
-            self.messagesCollectionView.reloadData()
-            // 一番下までスクロールする
-            self.messagesCollectionView.scrollToBottom()
+        guard let messageId = messageId else {
+            return
         }
-    }
-    
-    // サンプル用に適当なメッセージ
-    func getMessages() -> [Message] {
-        return [
-            createMessage(text: "あ"),
-            createMessage(text: "い"),
-            createMessage(text: "う"),
-            createMessage(text: "え"),
-            createMessage(text: "お"),
-            createMessage(text: "か"),
-            createMessage(text: "き"),
-            createMessage(text: "く"),
-            createMessage(text: "け"),
-            createMessage(text: "こ"),
-            createMessage(text: "さ"),
-            createMessage(text: "し"),
-            createMessage(text: "すせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん"),
-        ]
-    }
-    
-    func createMessage(text: String) -> Message {
-        _ = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15),
-                                                                           .foregroundColor: UIColor.black])
-        return Message(text: text, sender: currentSender(), messageId: "T##String", date: Date())
+        messageRoomService.getAllInfo(messageId: messageId) {
+            DispatchQueue.main.async {
+                // messageListにメッセージの配列をいれて
+                self.messageList = self.messageRoomService.messages
+                // messagesCollectionViewをリロードして
+                self.messagesCollectionView.reloadData()
+                // 一番下までスクロールする
+                self.messagesCollectionView.scrollToBottom()
+            }
+        }
     }
 }
 
 extension MessageRoomViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         createAndInsertMessageFromeUser(text)
+        cleanTextBoxAndScroll(inputBar: inputBar)
+        createAndInsertMessageFromOshidori(text)
+    }
+    
+    func cleanTextBoxAndScroll(inputBar: InputBarAccessoryView) {
+        // 空っぽにする
+        inputBar.inputTextView.text = String()
+        // 一番下にスクロールする。アニメーション付き
+        messagesCollectionView.scrollToBottom(animated: true)
     }
 }
 
@@ -110,6 +93,11 @@ extension MessageRoomViewController: MessagesLayoutDelegate {
     
     func createAndInsertMessageFromOshidori(_ text: String) {
         let message = Message(text: text, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
+        insertNewMessage(message)
+    }
+    
+    func createAndInsertMessageFromPartner(_ text: String) {
+        let message = Message(text: text, sender: partnerSender(), messageId: UUID().uuidString, date: Date())
         insertNewMessage(message)
     }
     
@@ -161,47 +149,7 @@ extension MessageRoomViewController: MessagesDataSource {
 
 // firebase関連
 extension MessageRoomViewController {
-    private func getRoomMessagesCollectionRef() -> CollectionReference? {
-        guard let roomId = userInformation?.roomId, let messageId = messageId else {
-            return nil
-        }
-        return db.collection("rooms").document(roomId).collection("messages").document(messageId).collection("messages")
-    }
     
-    private func getTimelineColletionRef() -> CollectionReference {
-        return db.collection("timelineMessages")
-    }
-    
-    private func getUserInformationRef() -> DocumentReference {
-        guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
-        }
-        return db.collection("users").document(uid).collection("info").document(uid)
-    }
-    
-    private func getUid() -> String {
-        guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
-            return ""
-        }
-        return uid
-    }
-
-    func getUserInfo() {
-        // userInformaitonの初期化。情報を持ってくる
-        getUserInformationRef().getDocument{ (document, error) in
-            if let userInformation = document.flatMap({
-                $0.data().flatMap({ (data) in
-                    return UserInformation(data: data)
-                })
-            }) {
-                // 上記で得た内容を保存する
-                self.userInformation = userInformation
-            } else {
-                // TODO: エラーへの対処
-            }
-        }
-    }
 }
 
 extension MessageRoomViewController {

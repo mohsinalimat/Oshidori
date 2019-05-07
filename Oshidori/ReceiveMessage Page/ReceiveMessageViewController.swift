@@ -29,7 +29,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, Rec
     // userInfo を入れておく場所
     var userInformation : UserInformation?
     
-    var messages:[(content:String, sendDate:String, name:String, contentType:String)] = []
+    var messages:[(content:String, sendDate:String, name:String, contentType:String, messageId:String)] = []
     
     @IBOutlet weak var receiveTableView: UITableView!
     
@@ -99,6 +99,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, Rec
         // TODO: viewの角を丸くする
         cell.messageView.layer.cornerRadius = 0.8
         cell.messageView.backgroundColor = OshidoriColor.light
+        cell.tag = indexPath.row
         return cell
     }
 }
@@ -135,10 +136,11 @@ extension ReceiveMessageViewController {
                 guard let date = document.get("sentDate") else { return }
                 guard let name = document.get("senderName") else { return }
                 guard let contentType = document.get("contentType") else { return }
+                guard let messageId = document.get("messageId") else { return }
                 let dateTimestamp = date as! Timestamp
                 let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
                 self.messages.append((content: content as! String, sendDate: dateString,
-                                      name: name as! String, contentType: contentType as! String))
+                                  name: name as! String, contentType: contentType as! String, messageId: messageId as! String))
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
@@ -149,6 +151,8 @@ extension ReceiveMessageViewController {
 
 extension ReceiveMessageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // これをどこかに保存しなきゃ。
+        let messageId = messages[indexPath.row].messageId
         moveMessageRoomPage()
     }
     
