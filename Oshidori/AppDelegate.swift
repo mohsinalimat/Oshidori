@@ -41,11 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: ログインしていたら、Message.storyboardに遷移するようにする
         
         
-//        // ここでrootViewの切り替えをする
+        // ここでrootViewの切り替えをする
 //        window = UIWindow()
 //        window?.makeKeyAndVisible()
 //        // instantiate() を使おう
-//        window?.rootViewController = MypageViewController.instantiate()
+//        window?.rootViewController = MessageRoomViewController.instantiate()
         
         return true
     }

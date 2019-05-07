@@ -75,14 +75,16 @@ class MessageRoomViewController: MessagesViewController {
     }
     
     func createMessage(text: String) -> Message {
-        let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15),
+        _ = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15),
                                                                            .foregroundColor: UIColor.black])
         return Message(text: text, sender: currentSender(), messageId: "T##String", date: Date())
     }
 }
 
-extension MessageRoomViewController: MessageInputBarDelegate {
-    
+extension MessageRoomViewController: InputBarAccessoryViewDelegate {
+    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        createAndInsertMessageFromeUser(text)
+    }
 }
 
 extension MessageRoomViewController: MessagesLayoutDelegate {
@@ -154,12 +156,6 @@ extension MessageRoomViewController: MessagesDataSource {
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messageList.count
-    }
-}
-
-extension MessageRoomViewController {
-    func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
-        // save と　reload
     }
 }
 
