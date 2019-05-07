@@ -69,6 +69,15 @@ class User {
         }
     }
     
+    func delete() {
+        user?.delete(completion: { (error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+        })
+    }
+    
     // ログアウト
     func logout(){
         try! Auth.auth().signOut()

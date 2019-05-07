@@ -22,15 +22,15 @@ extension UIViewController {
     
     func alertSelect(_ title: String, _ message: String, _ closedHandler: (()->Void)?) {
         let alert = UIAlertController(title:title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "いいえ", style: UIAlertAction.Style.default, handler: {
+            (action: UIAlertAction!) in
+            
+        }))
         alert.addAction(UIAlertAction(title: "はい", style: UIAlertAction.Style.default, handler: {
             (action: UIAlertAction!) in
             if let closedHandler = closedHandler {
                 closedHandler()
             }
-        }))
-        alert.addAction(UIAlertAction(title: "いいえ", style: UIAlertAction.Style.default, handler: {
-            (action: UIAlertAction!) in
-            
         }))
         
         self.present(alert, animated: true, completion: nil)

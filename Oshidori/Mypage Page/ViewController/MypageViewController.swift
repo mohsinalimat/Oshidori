@@ -114,7 +114,7 @@ extension MypageViewController {
         }
         switch indexPath.row {
         case 0:
-            moveQRcodePage()
+            movePartnerInfoPage()
         case 1:
             moveUserEditPage()
         case 2:
@@ -128,6 +128,15 @@ extension MypageViewController {
         default:
             break
         }
+    }
+}
+
+extension MypageViewController {
+    func movePartnerInfoPage() {
+        let storyboard = UIStoryboard(name: "ShowQRcode", bundle: nil)
+        let VC = PartnerSettingViewController.instantiate()
+        // VC.partnerFlag = true
+        self.navigationController?.pushViewController(VC, animated: true)
     }
 }
 

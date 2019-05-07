@@ -98,6 +98,15 @@ class UserInformationFirestoreRepository {
         }
     }
     
+    func delete() {
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        db.collection("users").document(uid).delete { (error) in
+            // TODO: 部屋も削除する
+            User.shared.delete()
+        }
+    }
 }
 
 extension UserInformationFirestoreRepository {
