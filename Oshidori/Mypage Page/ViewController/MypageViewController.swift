@@ -144,10 +144,12 @@ extension MypageViewController {
 
 extension MypageViewController {
     func movePartnerInfoPage() {
-        let VC = PartnerSettingViewController.instantiate()
+        let storyboard = UIStoryboard(name: "PartnerSettingViewController", bundle: nil)
+        guard let VC = storyboard.instantiateViewController(withIdentifier: "PartnerSettingViewController") as? PartnerSettingViewController else {
+            return
+        }
         VC.partnerFlag = partnerFlag
         VC.partnerName = partnerName
-        
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
