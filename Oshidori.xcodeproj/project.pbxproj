@@ -50,6 +50,8 @@
 		676AF0582281272C00BDB911 /* SettingButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 676AF0562281272C00BDB911 /* SettingButtonCell.xib */; };
 		676AF05A2281512A00BDB911 /* PartnerSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF0592281512A00BDB911 /* PartnerSettingViewController.swift */; };
 		676AF05E2281532800BDB911 /* PartnerSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */; };
+		676AF060228171FB00BDB911 /* MessageRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF05F228171FB00BDB911 /* MessageRoomViewController.swift */; };
+		676AF0622281720C00BDB911 /* MessageRoomViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */; };
 		677AB2FF2270227B00DBCD62 /* UserInformationFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */; };
 		677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB3012270238400DBCD62 /* UserInfoService.swift */; };
 		677D6BD92265F06700C5E069 /* RegistUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */; };
@@ -156,6 +158,8 @@
 		676AF0562281272C00BDB911 /* SettingButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingButtonCell.xib; sourceTree = "<group>"; };
 		676AF0592281512A00BDB911 /* PartnerSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingViewController.swift; sourceTree = "<group>"; };
 		676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PartnerSettingViewController.storyboard; sourceTree = "<group>"; };
+		676AF05F228171FB00BDB911 /* MessageRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomViewController.swift; sourceTree = "<group>"; };
+		676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageRoomViewController.storyboard; sourceTree = "<group>"; };
 		677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationFirestoreRepository.swift; sourceTree = "<group>"; };
 		677AB3012270238400DBCD62 /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 				67A2D5B72276A89E00755F0B /* Mypage Page */,
 				676AF05C2281530B00BDB911 /* PartnerSetting page */,
 				676AF05B228152DC00BDB911 /* Void */,
+				676AF0632281721200BDB911 /* MessageRoom Page */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
@@ -425,6 +430,15 @@
 				676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */,
 			);
 			path = "PartnerSetting page";
+			sourceTree = "<group>";
+		};
+		676AF0632281721200BDB911 /* MessageRoom Page */ = {
+			isa = PBXGroup;
+			children = (
+				676AF05F228171FB00BDB911 /* MessageRoomViewController.swift */,
+				676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */,
+			);
+			path = "MessageRoom Page";
 			sourceTree = "<group>";
 		};
 		677AB3002270228100DBCD62 /* Repository */ = {
@@ -757,6 +771,7 @@
 				676AF03F2280481600BDB911 /* PartnerSettingViewController2.storyboard in Resources */,
 				67A2D5AC2276807200755F0B /* EditUserInfo.storyboard in Resources */,
 				67A2D5BB2276BEE100755F0B /* MyImageAndNameTableViewCell.xib in Resources */,
+				676AF0622281720C00BDB911 /* MessageRoomViewController.storyboard in Resources */,
 				67A2D5BF2276BFD400755F0B /* MessageReportTableViewCell.xib in Resources */,
 				67A2D5B62276A89300755F0B /* Mypage.storyboard in Resources */,
 				676AF04622804A1D00BDB911 /* PartnerImageCell.xib in Resources */,
@@ -933,6 +948,7 @@
 				676AF04522804A1D00BDB911 /* PartnerImageCell.swift in Sources */,
 				67EE40D12265D58800E2F2C5 /* UserInformation.swift in Sources */,
 				6736F1632254B45000E89952 /* UserDefault.swift in Sources */,
+				676AF060228171FB00BDB911 /* MessageRoomViewController.swift in Sources */,
 				67C7ABAE2279A04A00344D6E /* RepresentationMessage.swift in Sources */,
 				6732EA59227BEA6100C4AF6C /* RoomFirestoreRepository.swift in Sources */,
 				6723DEBE2254396700B3DF69 /* Message.swift in Sources */,

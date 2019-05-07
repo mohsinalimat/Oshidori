@@ -14,7 +14,7 @@ protocol ReceiveMessageViewControllerDelegate: class {
     func reloadDate()
 }
 
-class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ReceiveMessageViewControllerDelegate {
+class ReceiveMessageViewController: UIViewController, UITableViewDataSource, ReceiveMessageViewControllerDelegate {
     
     func reloadDate() {
         messages.removeAll()
@@ -65,10 +65,6 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
                 debugPrint("Document does not exist")
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,5 +144,17 @@ extension ReceiveMessageViewController {
             self.receiveTableView.reloadData()
             
         }
+    }
+}
+
+extension ReceiveMessageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        moveMessageRoomPage()
+    }
+    
+    func moveMessageRoomPage() {
+        let storyboard = UIStoryboard(name: "MessageRoomViewController", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "MessageRoomViewController")
+        self.navigationController?.pushViewController(VC, animated: true)
     }
 }

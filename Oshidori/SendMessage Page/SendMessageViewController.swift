@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseFirestore
 import MessageKit
 import InputBarAccessoryView
 
@@ -134,8 +133,6 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
     
     // firebase 関連
     private let db = Firestore.firestore()
-    private var reference: CollectionReference?
-    private let storage = Storage.storage().reference()
     private func getRoomMessagesCollectionRef() -> CollectionReference {
         guard let roomId = userInformation?.roomId else {
             fatalError("roomIdを取得できませんでした。")
