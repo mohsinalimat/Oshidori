@@ -14,6 +14,9 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var mypageTableView: UITableView!
     
+    var partnerFlag: Bool = false
+    var partnerName: String = ""
+    
     let settingTitleArray:[String] = ["パートナー設定", "ユーザー情報", "このアプリについて", "ログアウト"]
     
     override func viewDidLoad() {
@@ -27,7 +30,8 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
-        // mypageTableView.reloadData()
+        getInformation()
+        mypageTableView.reloadData()
     }
 
 }
@@ -78,7 +82,15 @@ extension MypageViewController {
             if let userInfo = MypageService.shared.userInfo {
                 cell.setUserImage(imageUrl: userInfo.imageUrl)
                 cell.setUserName(name: userInfo.name)
+                if userInfo.partnerId == "" {
+                    partnerFlag = false
+                } else {
+                    partnerFlag = true
+                    partnerName = userInfo.partnerName
+                }
             }
+            
+            
             
             return cell
 
@@ -113,7 +125,7 @@ extension MypageViewController {
         }
         switch indexPath.row {
         case 0:
-            moveQRcodePage()
+            movePartnerInfoPage()
         case 1:
             moveUserEditPage()
         case 2:
@@ -127,6 +139,18 @@ extension MypageViewController {
         default:
             break
         }
+    }
+}
+
+extension MypageViewController {
+    func movePartnerInfoPage() {
+        let storyboard = UIStoryboard(name: "PartnerSettingViewController", bundle: nil)
+        guard let VC = storyboard.instantiateViewController(withIdentifier: "PartnerSettingViewController") as? PartnerSettingViewController else {
+            return
+        }
+        VC.partnerFlag = partnerFlag
+        VC.partnerName = partnerName
+        self.navigationController?.pushViewController(VC, animated: true)
     }
 }
 

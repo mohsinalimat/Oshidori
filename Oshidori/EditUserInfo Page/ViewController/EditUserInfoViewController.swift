@@ -68,8 +68,11 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
                     guard let content = LabelRow.title else {
                         return
                     }
+                    
                     if let birthday = self.editUserInfoService.editUserInfo?.birthday {
                         self.moveEditInformationPage(content, birthday: birthday)
+                    } else {
+                        self.moveEditInformationPage(content, birthday: nil)
                     }
                 })
                 row.cellUpdate({ (LabelCell, LabelRow) in
@@ -77,13 +80,6 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
                 })
             }
             <<< LabelRow(){ row in
-                row.title = "プロフィール写真"
-                if let _ = editUserInfoService.editUserInfo?.imageUrl {
-                    row.value = "設定済"
-                } else {
-                    row.value = "未設定"
-                }
-                
                 row.onCellSelection({ (LabelCell, LabelRow) in
                     guard let content = LabelRow.title else {
                         return
@@ -93,12 +89,30 @@ extension EditUserInfoViewController: EditUserInfoServiceDelegate {
                 row.cellUpdate({ (LabelCell, LabelRow) in
                     LabelCell.accessoryType = .disclosureIndicator
                 })
+                row.title = "プロフィール写真"
+                guard let imageUrl = editUserInfoService.editUserInfo?.imageUrl else {
+                    return
+                }
+                if imageUrl == "" {
+                    row.value = "未設定"
+                } else {
+                    row.value = "設定済"
+                }
+                
             }
             
             +++ Section("パートナー")
             <<< LabelRow(){ row in
                 row.title = "ニックネーム"
-                row.value = editUserInfoService.editUserInfo?.partnerName ?? "未設定"
+                guard let partnerName = editUserInfoService.editUserInfo?.partnerName else {
+                    row.value = "未設定"
+                    return
+                }
+                if partnerName == "" {
+                    row.value = "未設定"
+                } else {
+                    row.value = partnerName
+                }
         }
     }
 }
@@ -113,7 +127,7 @@ extension EditUserInfoViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
-    func moveEditInformationPage(_ content: String, birthday: Date) {
+    func moveEditInformationPage(_ content: String, birthday: Date?) {
         let storyboard = UIStoryboard(name: "EditInformation", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "EditInformationStoryboard") as! EditInformationViewController
         VC.editContent = content

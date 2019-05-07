@@ -30,7 +30,6 @@ class User {
     
     weak var delegate: UserDelegate?
     
-    
     // ユーザ作成
     func create (credential: Credential, completion: @escaping () -> Void) {
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in
@@ -68,6 +67,15 @@ class User {
             self.delegate?.didLogin(error: error)
             completion()
         }
+    }
+    
+    func delete() {
+        user?.delete(completion: { (error) in
+            if let error = error {
+                debugPrint(error.localizedDescription)
+                return
+            }
+        })
     }
     
     // ログアウト

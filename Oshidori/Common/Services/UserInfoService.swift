@@ -26,16 +26,21 @@ class UserInfoService {
     var userInfo: UserInformation?
     var partnerInfo: UserInformation?
     
-    // タスクの追加
     func save (_ userInfo: UserInformation) {
         userInfoRep.save(userInfo) {
             self.delegate?.saved()
         }
     }
     
-    func update (_ userInfo: UserInformation) {
+    func update () {
+        guard User.shared.getUid() != nil else {
+            debugPrint("更新できません")
+            return
+        }
         userInfoRep.getUserInfo { (UserInformation) in
-            
+            self.userInfoRep.update(UserInformation, completion: {
+                debugPrint("更新完了")
+            })
         }
     }
     
@@ -51,6 +56,12 @@ class UserInfoService {
             EditUserInfoService.shared.updateImage(imageUrl: url)
             completion(imageUrl)
         }
+    }
+    
+    func deleteUserInfo(completion: @escaping () -> Void) {
+        userInfoRep.delete()
+        User.shared.delete()
+        completion()
     }
 }
 

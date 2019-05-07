@@ -14,12 +14,12 @@ PODS:
     - FirebaseAnalytics (= 5.8.1)
   - Firebase/CoreOnly (5.20.2):
     - FirebaseCore (= 5.4.1)
-  - Firebase/DynamicLinks (5.20.2):
-    - Firebase/CoreOnly
-    - FirebaseDynamicLinks (= 3.4.3)
   - Firebase/Firestore (5.20.2):
     - Firebase/CoreOnly
     - FirebaseFirestore (= 1.2.1)
+  - Firebase/Messaging (5.20.2):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.5.0)
   - Firebase/Storage (5.20.2):
     - Firebase/CoreOnly
     - FirebaseStorage (= 3.1.1)
@@ -42,10 +42,6 @@ PODS:
   - FirebaseCore (5.4.1):
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/Logger (~> 5.2)
-  - FirebaseDynamicLinks (3.4.3):
-    - FirebaseAnalytics (~> 5.1)
-    - FirebaseAnalyticsInterop (~> 1.0)
-    - FirebaseCore (~> 5.2)
   - FirebaseFirestore (1.2.1):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.2)
@@ -65,6 +61,14 @@ PODS:
     - FirebaseCore (~> 5.2)
     - GoogleUtilities/Environment (~> 5.2)
     - GoogleUtilities/UserDefaults (~> 5.2)
+  - FirebaseMessaging (3.5.0):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.6)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/Reachability (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+    - Protobuf (~> 3.1)
   - FirebaseStorage (3.1.1):
     - FirebaseAuthInterop (~> 1.0)
     - FirebaseCore (~> 5.2)
@@ -114,9 +118,6 @@ PODS:
     - Eureka (~> 5.0)
   - InputBarAccessoryView (4.2.2)
   - leveldb-library (1.20)
-  - MessageInputBar (0.4.1):
-    - MessageInputBar/Core (= 0.4.1)
-  - MessageInputBar/Core (0.4.1)
   - MessageKit (3.0.0):
     - InputBarAccessoryView (~> 4.2.2)
   - nanopb (0.3.901):
@@ -133,12 +134,11 @@ DEPENDENCIES:
   - Eureka
   - Firebase/Auth
   - Firebase/Core
-  - Firebase/DynamicLinks
   - Firebase/Firestore
+  - Firebase/Messaging
   - Firebase/Storage
   - ImageRow
   - InputBarAccessoryView
-  - MessageInputBar
   - MessageKit
   - Nuke
   - PKHUD
@@ -154,9 +154,9 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
-    - FirebaseDynamicLinks
     - FirebaseFirestore
     - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleUtilities
@@ -166,7 +166,6 @@ SPEC REPOS:
     - ImageRow
     - InputBarAccessoryView
     - leveldb-library
-    - MessageInputBar
     - MessageKit
     - nanopb
     - Nuke
@@ -183,9 +182,9 @@ SPEC CHECKSUMS:
   FirebaseAuth: dd7bbf03a5aee0eafb3a1aee4d2812bd74bac890
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: f1a9a8be1aee4bf71a2fc0f4096df6788bdfda61
-  FirebaseDynamicLinks: f7a8717e2c7ea652923882a2d60b0045d6fd99d5
   FirebaseFirestore: faca891c0f0d1d6c10c793473e2f6a29d75014b5
   FirebaseInstanceID: a122b0c258720cf250551bb2bedf48c699f80d90
+  FirebaseMessaging: 4235f949ce1c4e827aeb19705ba5c53f9b85aa10
   FirebaseStorage: 6162ef4322502b818d9de0ec552f5226d283de43
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
@@ -195,7 +194,6 @@ SPEC CHECKSUMS:
   ImageRow: e65b2e1a33f89062bf2a553a2aad61d975eb7428
   InputBarAccessoryView: 2b937602598e2fab3149f37f51dd7ad795653812
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
-  MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   MessageKit: e892a9ca49ebe6d82684d3a93ad84021fa23e2c6
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Nuke: 44130e95e09463f8773ae4b96b90de1eba6b3350
@@ -203,6 +201,6 @@ SPEC CHECKSUMS:
   Protobuf: 7a877b7f3e5964e3fce995e2eb323dbc6831bb5a
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: 28c25ae7e282cdcec100aa16e9e21f92a8c61763
+PODFILE CHECKSUM: 19a848dfecb314eabc360dbbcc0663b02c661796
 
 COCOAPODS: 1.6.1
