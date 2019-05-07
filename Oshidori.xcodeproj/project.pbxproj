@@ -38,7 +38,7 @@
 		67579D7922787F4D007AA6DA /* TimelineFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */; };
 		67579D7B22787FD2007AA6DA /* TimelineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67579D7A22787FD2007AA6DA /* TimelineService.swift */; };
 		676AF03D2280480B00BDB911 /* PartnerSettingViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF03C2280480B00BDB911 /* PartnerSettingViewController2.swift */; };
-		676AF03F2280481600BDB911 /* PartnerSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF03E2280481600BDB911 /* PartnerSettingViewController.storyboard */; };
+		676AF03F2280481600BDB911 /* PartnerSettingViewController2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF03E2280481600BDB911 /* PartnerSettingViewController2.storyboard */; };
 		676AF04522804A1D00BDB911 /* PartnerImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF04322804A1D00BDB911 /* PartnerImageCell.swift */; };
 		676AF04622804A1D00BDB911 /* PartnerImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 676AF04422804A1D00BDB911 /* PartnerImageCell.xib */; };
 		676AF04D22804B3300BDB911 /* AlertInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF04B22804B3300BDB911 /* AlertInfoCell.swift */; };
@@ -49,6 +49,7 @@
 		676AF0572281272C00BDB911 /* SettingButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF0552281272C00BDB911 /* SettingButtonCell.swift */; };
 		676AF0582281272C00BDB911 /* SettingButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 676AF0562281272C00BDB911 /* SettingButtonCell.xib */; };
 		676AF05A2281512A00BDB911 /* PartnerSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF0592281512A00BDB911 /* PartnerSettingViewController.swift */; };
+		676AF05E2281532800BDB911 /* PartnerSettingViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */; };
 		677AB2FF2270227B00DBCD62 /* UserInformationFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */; };
 		677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB3012270238400DBCD62 /* UserInfoService.swift */; };
 		677D6BD92265F06700C5E069 /* RegistUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */; };
@@ -143,7 +144,7 @@
 		67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineFirestoreRepository.swift; sourceTree = "<group>"; };
 		67579D7A22787FD2007AA6DA /* TimelineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineService.swift; sourceTree = "<group>"; };
 		676AF03C2280480B00BDB911 /* PartnerSettingViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingViewController2.swift; sourceTree = "<group>"; };
-		676AF03E2280481600BDB911 /* PartnerSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PartnerSettingViewController.storyboard; sourceTree = "<group>"; };
+		676AF03E2280481600BDB911 /* PartnerSettingViewController2.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PartnerSettingViewController2.storyboard; sourceTree = "<group>"; };
 		676AF04322804A1D00BDB911 /* PartnerImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerImageCell.swift; sourceTree = "<group>"; };
 		676AF04422804A1D00BDB911 /* PartnerImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerImageCell.xib; sourceTree = "<group>"; };
 		676AF04B22804B3300BDB911 /* AlertInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertInfoCell.swift; sourceTree = "<group>"; };
@@ -154,6 +155,7 @@
 		676AF0552281272C00BDB911 /* SettingButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButtonCell.swift; sourceTree = "<group>"; };
 		676AF0562281272C00BDB911 /* SettingButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingButtonCell.xib; sourceTree = "<group>"; };
 		676AF0592281512A00BDB911 /* PartnerSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSettingViewController.swift; sourceTree = "<group>"; };
+		676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PartnerSettingViewController.storyboard; sourceTree = "<group>"; };
 		677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationFirestoreRepository.swift; sourceTree = "<group>"; };
 		677AB3012270238400DBCD62 /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -326,7 +328,8 @@
 				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
 				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
 				67A2D5B72276A89E00755F0B /* Mypage Page */,
-				676AF0402280482000BDB911 /* PartnerSetting Page */,
+				676AF05C2281530B00BDB911 /* PartnerSetting page */,
+				676AF05B228152DC00BDB911 /* Void */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
@@ -374,21 +377,20 @@
 			path = ViewController;
 			sourceTree = "<group>";
 		};
-		676AF0402280482000BDB911 /* PartnerSetting Page */ = {
+		676AF0402280482000BDB911 /* Prepare PartnerSetting Page */ = {
 			isa = PBXGroup;
 			children = (
 				676AF04822804AB100BDB911 /* View */,
 				676AF04722804AA300BDB911 /* ViewController */,
 			);
-			path = "PartnerSetting Page";
+			path = "Prepare PartnerSetting Page";
 			sourceTree = "<group>";
 		};
 		676AF04722804AA300BDB911 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				676AF03C2280480B00BDB911 /* PartnerSettingViewController2.swift */,
-				676AF03E2280481600BDB911 /* PartnerSettingViewController.storyboard */,
-				676AF0592281512A00BDB911 /* PartnerSettingViewController.swift */,
+				676AF03E2280481600BDB911 /* PartnerSettingViewController2.storyboard */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -406,6 +408,23 @@
 				676AF0562281272C00BDB911 /* SettingButtonCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		676AF05B228152DC00BDB911 /* Void */ = {
+			isa = PBXGroup;
+			children = (
+				676AF0402280482000BDB911 /* Prepare PartnerSetting Page */,
+			);
+			path = Void;
+			sourceTree = "<group>";
+		};
+		676AF05C2281530B00BDB911 /* PartnerSetting page */ = {
+			isa = PBXGroup;
+			children = (
+				676AF0592281512A00BDB911 /* PartnerSettingViewController.swift */,
+				676AF05D2281532800BDB911 /* PartnerSettingViewController.storyboard */,
+			);
+			path = "PartnerSetting page";
 			sourceTree = "<group>";
 		};
 		677AB3002270228100DBCD62 /* Repository */ = {
@@ -731,10 +750,11 @@
 				67C9E047225EB6DD00516B3D /* Timeline.storyboard in Resources */,
 				676AF0582281272C00BDB911 /* SettingButtonCell.xib in Resources */,
 				67C9E04D225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib in Resources */,
+				676AF05E2281532800BDB911 /* PartnerSettingViewController.storyboard in Resources */,
 				670A16AC226D76F8006C8F47 /* SelectRegisterOrLogin.storyboard in Resources */,
 				6732F28D224DB2F600011710 /* LaunchScreen.storyboard in Resources */,
 				6723DEAA224F4A5700B3DF69 /* GoogleService-Info.plist in Resources */,
-				676AF03F2280481600BDB911 /* PartnerSettingViewController.storyboard in Resources */,
+				676AF03F2280481600BDB911 /* PartnerSettingViewController2.storyboard in Resources */,
 				67A2D5AC2276807200755F0B /* EditUserInfo.storyboard in Resources */,
 				67A2D5BB2276BEE100755F0B /* MyImageAndNameTableViewCell.xib in Resources */,
 				67A2D5BF2276BFD400755F0B /* MessageReportTableViewCell.xib in Resources */,

@@ -14,6 +14,9 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var mypageTableView: UITableView!
     
+    var partnerFlag: Bool = false
+    var partnerName: String = ""
+    
     let settingTitleArray:[String] = ["パートナー設定", "ユーザー情報", "このアプリについて", "ログアウト"]
     
     override func viewDidLoad() {
@@ -79,7 +82,15 @@ extension MypageViewController {
             if let userInfo = MypageService.shared.userInfo {
                 cell.setUserImage(imageUrl: userInfo.imageUrl)
                 cell.setUserName(name: userInfo.name)
+                if userInfo.partnerId == "" {
+                    partnerFlag = false
+                } else {
+                    partnerFlag = true
+                    partnerName = userInfo.partnerName
+                }
             }
+            
+            
             
             return cell
 
@@ -133,9 +144,10 @@ extension MypageViewController {
 
 extension MypageViewController {
     func movePartnerInfoPage() {
-        let storyboard = UIStoryboard(name: "ShowQRcode", bundle: nil)
         let VC = PartnerSettingViewController.instantiate()
-        // VC.partnerFlag = true
+        VC.partnerFlag = partnerFlag
+        VC.partnerName = partnerName
+        
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
