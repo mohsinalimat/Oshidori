@@ -14,9 +14,16 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
   
     let timelineService = TimelineService.shared
     
+    private let refreshCtl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         timelineService.delegate = self
+        
+        // 上のぐるぐるの実装
+        timelineTableView.refreshControl = refreshCtl
+        refreshCtl.tintColor = OshidoriColor.primary
+        refreshCtl.addTarget(self, action: #selector(refreshTimeline), for: .valueChanged)
         
         timelineTableView.register (UINib(nibName: "TimelineMessageTableViewCellTableViewCell", bundle: nil),forCellReuseIdentifier:"TimelineMessageCell")
         
@@ -25,7 +32,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineTableView.rowHeight = UITableView.automaticDimension
         
         // timelineMessages の初期化
-        timelineService.timelineMessagesRemove()
+        timelineService.timelineMessagesRemove() {}
         // firestoreからデータを取って、テーブルビューに反映
         timelineService.loadTimelineMessage()
     }
@@ -42,6 +49,10 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineMessageCell", for: indexPath) as? TimelineMessageTableViewCell else {
             return UITableViewCell()
         }
+        // エラーを制御
+        if timelineService.getTimelineMessagesCount() == 0 {
+            return UITableViewCell()
+        }
         let message:RepresentationMessage = timelineService.getMessage(indexPathRow: indexPath.row)
         cell.setContentLabel(content: message.content ?? "")
         if let date = message.sentDate {
@@ -56,8 +67,25 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+    }
+    
+    // 下から５件くらいになったらリフレッシュ
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard tableView.cellForRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0)-5, section: 0)) != nil else {
+            return
+        }
+        // ここでリフレッシュのメソッドを呼ぶ
+        timelineService.loadTimelineMessage()
+    }
+}
+
+extension TimelineViewController {
+    @objc func refreshTimeline() {
+        timelineService.refreshTimeline()
+        self.refreshCtl.endRefreshing()
     }
 }
   

@@ -194,7 +194,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
             if let _ = error {
                 return
             }
-            self.delegate?.reloadDate()
+            self.delegate?.reloadReceiveMessageTableView()
         }
     }
     
