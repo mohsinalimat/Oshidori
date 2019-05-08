@@ -30,6 +30,7 @@ class MessageRoomService {
     var messageId :String?
     var messageList :[RepresentationMessage] = []
     var messages: [Message] = []
+    var tmpMessage: RepresentationMessage?
     
     weak var delegate: MessageRoomServiceDelegate?
     
@@ -54,7 +55,11 @@ extension MessageRoomService {
 //            self.messages.removeAll()
             snapshot.documentChanges.forEach { change in
                 let repMessage = RepresentationMessage(data: change.document.data())
+                if self.tmpMessage?.messageId == repMessage.messageId {
+                    return
+                }
                 self.messageList.append(repMessage)
+                self.tmpMessage = repMessage
             }
             self.repToMessage()
             self.delegate?.firestoreUpdated()
@@ -81,14 +86,6 @@ extension MessageRoomService {
                 // Lestnerを作成しておく
                 self.makeLisner(roomId: userInfo.roomId, messageId: messageId)
                 completion()
-//                self.messageRoomRep.getMessages(messageId: messageId, roomId: userInfo.roomId) { (messages) in
-//                    self.messageList = messages
-//                    self.repToMessage()
-//
-//                    // Lestnerを作成しておく
-//                    self.makeLisner(roomId: userInfo.roomId, messageId: messageId)
-//                    completion()
-//                }
             })
         }
     }

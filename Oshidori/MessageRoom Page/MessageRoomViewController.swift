@@ -114,7 +114,7 @@ extension MessageRoomViewController: MessagesLayoutDelegate {
     // create and insertNewMessage
     func createAndInsertMessageFromeUser(_ text: String) {
         let message = Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-        insertNewMessage(message)
+        // insertNewMessage(message)
         messageRoomService.save(message: message)
     }
     
@@ -222,6 +222,11 @@ extension MessageRoomViewController: MessagesDisplayDelegate {
         if message.sender.senderId == oshidoriSender().senderId {
             let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "O")
             avatarView.set(avatar: avatar)
+        }
+        if message.sender.senderId == partnerSender().senderId {
+            // Nukeの処理
+//            let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "")
+//            avatarView.set(avatar: avatar)
         }
     }
     
