@@ -14,18 +14,7 @@ protocol ReceiveMessageViewControllerDelegate: class {
     func reloadReceiveMessageTableView()
 }
 
-class ReceiveMessageViewController: UIViewController, ReceiveMessageViewControllerDelegate {
-    
-    func reloadReceiveMessageTableView() {
-        messages.removeAll()
-        tmpMessages = nil
-        lastDate = nil
-        if let lastDate = self.lastDate {
-            self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
-        } else {
-            self.getMessageDataFromFirestore_createTableView(lastDate: Date())
-        }
-    }
+class ReceiveMessageViewController: UIViewController {
     
     // firebase関連
     let db = Firestore.firestore()
@@ -42,12 +31,17 @@ class ReceiveMessageViewController: UIViewController, ReceiveMessageViewControll
     
     private var lastDate: Date?
     
+    private let refreshCtl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         moveSendMessageButton.isHidden = true
-        // 登録をすることで、カスタムセルを利用できるようになる。
-        // nibファイルはxibファイルの作成と同時に作られるらしい。
-        // nibNameには.xibの名前。forCellReuseIdentifier には、その中にあるcellに命名したidentifierを記述
+        
+        // 上のぐるぐるの実装
+        receiveTableView.refreshControl = refreshCtl
+        refreshCtl.tintColor = OshidoriColor.primary
+        refreshCtl.addTarget(self, action: #selector(reloadReceiveMessageTableView), for: .valueChanged)
+        
         receiveTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
         
         // セルの高さを内容によって可変にする
@@ -90,6 +84,16 @@ class ReceiveMessageViewController: UIViewController, ReceiveMessageViewControll
         guard let VC = storyboard.instantiateViewController(withIdentifier: "SendMessageStoryboard") as? SendMessageViewController else { return }
         VC.delegate = self
         self.navigationController?.pushViewController(VC, animated: true)
+    }
+}
+
+extension ReceiveMessageViewController: ReceiveMessageViewControllerDelegate {
+    @objc func reloadReceiveMessageTableView() {
+        messages.removeAll()
+        tmpMessages = nil
+        lastDate = nil
+        getMessageDataFromFirestore_createTableView(lastDate: Date())
+        refreshCtl.endRefreshing()
     }
 }
 
