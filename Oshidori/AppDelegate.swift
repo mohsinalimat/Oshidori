@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UNUserNotificationCenter.current().delegate = self
         // TODO: ログインしていたら、Message.storyboardに遷移するようにする
         
+        // FCM をもう一度有効にするには、ランタイム コールを実行します。
+        Messaging.messaging().isAutoInitEnabled = true
         
         // ここでrootViewの切り替えをする
 //        window = UIWindow()
@@ -63,8 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        Messaging.messaging()
-            .setAPNSToken(deviceToken as Data, type: MessagingAPNSTokenType.unknown)
+        Messaging.messaging().apnsToken = deviceToken as Data
         // InstanceID.instanceID().setAPNSToken(deviceToken, type: InstanceIDAPNSTokenType.sandbox)
     }
     
