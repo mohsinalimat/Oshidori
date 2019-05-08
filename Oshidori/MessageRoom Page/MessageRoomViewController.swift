@@ -31,6 +31,10 @@ class MessageRoomViewController: MessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        messageRoomService.messages.removeAll()
+        messageRoomService.messageList.removeAll()
+        
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
@@ -147,16 +151,16 @@ extension MessageRoomViewController: MessagesDataSource {
     }
 }
 
-// firebase関連
-extension MessageRoomViewController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if viewController is ViewController {
-            //挿入したい処理
-            
-        }
-    }
-
-}
+//extension MessageRoomViewController: UINavigationControllerDelegate {
+//    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+//        if viewController is ReceiveMessageViewController {
+//            //挿入したい処理
+//            messageRoomService.messages.removeAll()
+//            messageRoomService.messageList.removeAll()
+//        }
+//    }
+//
+//}
 
 extension MessageRoomViewController {
     func customizeMessageKit() {

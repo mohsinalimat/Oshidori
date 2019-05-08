@@ -50,8 +50,8 @@ extension MessageRoomService {
                 self.messageRoomRep.getMessages(messageId: messageId, roomId: userInfo.roomId) { (messages) in
                     self.messageList = messages
                     self.repToMessage()
+                    completion()
                 }
-                completion()
             })
         }
     }

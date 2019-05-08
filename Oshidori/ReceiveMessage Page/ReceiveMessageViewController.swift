@@ -153,12 +153,15 @@ extension ReceiveMessageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // これをどこかに保存しなきゃ。
         let messageId = messages[indexPath.row].messageId
-        moveMessageRoomPage()
+        moveMessageRoomPage(messageId: messageId)
     }
     
-    func moveMessageRoomPage() {
+    func moveMessageRoomPage(messageId: String) {
         let storyboard = UIStoryboard(name: "MessageRoomViewController", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "MessageRoomViewController")
+        guard let VC = storyboard.instantiateViewController(withIdentifier: "MessageRoomViewController") as? MessageRoomViewController else {
+            return
+        }
+        VC.messageId = messageId
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
