@@ -8,10 +8,12 @@
 
 import Foundation
 import MessageKit
+import Firebase
 
 protocol MessageRoomServiceDelegate: class {
     func saved()
     func loaded()
+    func firestoreUpdated()
 }
 
 class MessageRoomService {
@@ -30,6 +32,35 @@ class MessageRoomService {
     var messages: [Message] = []
     
     weak var delegate: MessageRoomServiceDelegate?
+    
+    private var messageRoomListener: ListenerRegistration?
+    
+    deinit {
+        messageRoomListener?.remove()
+    }
+}
+
+extension MessageRoomService {
+    func makeLisner(roomId: String, messageId: String) {
+        guard let messageRoomCollectionRef = messageRoomRep.getRoomMessagesCollectionRef(roomId: roomId, messageId: messageId) else {
+            return
+        }
+        messageRoomListener = messageRoomCollectionRef.order(by: "sentDate", descending: false).addSnapshotListener { querySnapshot, error in
+            guard let snapshot = querySnapshot else {
+                print("Error listening for roomMessage updates: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+//            self.messageList.removeAll()
+//            self.messages.removeAll()
+            snapshot.documentChanges.forEach { change in
+                let repMessage = RepresentationMessage(data: change.document.data())
+                self.messageList.append(repMessage)
+            }
+            self.repToMessage()
+            self.delegate?.firestoreUpdated()
+            debugPrint("🌞")
+        }
+    }
 }
 
 extension MessageRoomService {
@@ -47,11 +78,17 @@ extension MessageRoomService {
             self.userInfoRep.getPartnerUserInfo(partnerId: userInfo.partnerId, completion: { (partnerInfo) in
                 self.partnerInfo = partnerInfo
                 self.room = Room(roomId: userInfo.roomId, userId: partnerInfo.partnerId, partnerId: userInfo.partnerId)
-                self.messageRoomRep.getMessages(messageId: messageId, roomId: userInfo.roomId) { (messages) in
-                    self.messageList = messages
-                    self.repToMessage()
-                    completion()
-                }
+                // Lestnerを作成しておく
+                self.makeLisner(roomId: userInfo.roomId, messageId: messageId)
+                completion()
+//                self.messageRoomRep.getMessages(messageId: messageId, roomId: userInfo.roomId) { (messages) in
+//                    self.messageList = messages
+//                    self.repToMessage()
+//
+//                    // Lestnerを作成しておく
+//                    self.makeLisner(roomId: userInfo.roomId, messageId: messageId)
+//                    completion()
+//                }
             })
         }
     }

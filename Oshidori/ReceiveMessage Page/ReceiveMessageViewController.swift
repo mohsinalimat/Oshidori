@@ -144,7 +144,6 @@ extension ReceiveMessageViewController {
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
-            
         }
     }
 }

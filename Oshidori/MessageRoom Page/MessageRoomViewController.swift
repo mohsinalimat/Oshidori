@@ -35,12 +35,13 @@ class MessageRoomViewController: MessagesViewController {
         messageRoomService.messages.removeAll()
         messageRoomService.messageList.removeAll()
         
+        messageRoomService.delegate = self
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate = self
         messageInputBar.delegate = self
-        
+        debugPrint("🌹")
         customizeMessageKit()
         // プロパティのUserInfoに入れる。
         guard let messageId = messageId else {
@@ -48,16 +49,37 @@ class MessageRoomViewController: MessagesViewController {
         }
         messageRoomService.messageId = messageId
         messageRoomService.getAllInfo(messageId: messageId) {
-            DispatchQueue.main.async {
-                // messageListにメッセージの配列をいれて
-                self.messageList = self.messageRoomService.messages
-                // messagesCollectionViewをリロードして
-                self.messagesCollectionView.reloadData()
-                // 一番下までスクロールする
-                self.messagesCollectionView.scrollToBottom()
-            }
+//            DispatchQueue.main.async {
+//                // messageListにメッセージの配列をいれて
+//                self.messageList = self.messageRoomService.messages
+//                // messagesCollectionViewをリロードして
+//                self.messagesCollectionView.reloadData()
+//                // 一番下までスクロールする
+//                self.messagesCollectionView.scrollToBottom()
+//                debugPrint("🏊‍♂️")
+//            }
         }
     }
+}
+
+extension MessageRoomViewController: MessageRoomServiceDelegate {
+    func saved() {
+        
+    }
+    
+    func loaded() {
+        
+    }
+    
+    func firestoreUpdated() {
+        messageList.removeAll()
+        messageList = messageRoomService.messages
+        messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToBottom()
+        
+    }
+    
+    
 }
 
 extension MessageRoomViewController: InputBarAccessoryViewDelegate {

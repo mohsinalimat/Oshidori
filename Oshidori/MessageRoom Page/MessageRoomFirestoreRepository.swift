@@ -14,7 +14,8 @@ class MessageRoomFirestoreRepository {
     
     // firebase 関連
     private let db = Firestore.firestore()
-    private func getRoomMessagesCollectionRef(roomId: String, messageId: String) -> CollectionReference? {
+    
+    func getRoomMessagesCollectionRef(roomId: String, messageId: String) -> CollectionReference? {
         return db.collection("rooms").document(roomId).collection("messages").document(messageId).collection("messages")
     }
     
@@ -61,6 +62,7 @@ class MessageRoomFirestoreRepository {
                 let message = RepresentationMessage(data: document.data())
                 messages.append(message)
             }
+            debugPrint("👿")
             completion(messages)
         }
     }
