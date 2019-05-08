@@ -41,11 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: ログインしていたら、Message.storyboardに遷移するようにする
         
         
-//        // ここでrootViewの切り替えをする
+        // ここでrootViewの切り替えをする
 //        window = UIWindow()
 //        window?.makeKeyAndVisible()
 //        // instantiate() を使おう
-//        window?.rootViewController = MypageViewController.instantiate()
+//        window?.rootViewController = MessageRoomViewController.instantiate()
         
         return true
     }
@@ -77,9 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         
         // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID🌞: \(messageID)")
-        }
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//
+//        }
         
         // Print full message.
         print(userInfo)
@@ -95,12 +95,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         
         // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID👿: \(messageID)")
-        }
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//
+//        }
         
         // Print full message.
-        print(userInfo)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -177,16 +176,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - MessagingDelegate
 extension AppDelegate: MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        
         UserDefaults.standard.set(fcmToken, forKey: "FCMToken")
         UserDefaults.standard.synchronize()
-        debugPrint("🌞")
-        debugPrint(UserDefaults.standard.string(forKey:"FCMToken"))
         let userInfo = UserInfoService.shared
         userInfo.update()
-        //userInfo.update()
-
     }
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
@@ -196,10 +189,8 @@ extension AppDelegate: MessagingDelegate {
     // [START refresh_token]
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         
-        print("Firebase registration token: \(fcmToken)")
-        
-        print(fcmToken)
-        
+        let userInfo = UserInfoService.shared
+        userInfo.update()
         
     }
     
@@ -218,9 +209,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // for analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID🐨: \(messageID)")
-        }
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//        }
         
         completionHandler([.alert])
     }
@@ -234,9 +224,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // for analytics
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID🐶: \(messageID)")
-        }
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//        }
         
         completionHandler()
     }

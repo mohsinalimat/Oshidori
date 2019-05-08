@@ -33,12 +33,9 @@ class User {
     // ユーザ作成
     func create (credential: Credential, completion: @escaping () -> Void) {
         Auth.auth().createUser(withEmail: credential.email, password: credential.password) { (result, error) in
-            if let error = error {
-                // error をはかせる
-                print ("👿")
-                print (error.localizedDescription)
-            } else {
-                print("🌞ユーザー作成成功")
+            if let _ = error {
+                // TODO:error をはかせる
+                
             }
             self.delegate?.didCreate(error: error)
             completion()
@@ -58,11 +55,8 @@ class User {
     // ログイン
     func login (credential: Credential, completion: @escaping () -> Void) {
         Auth.auth().signIn(withEmail: credential.email, password: credential.password) { (result, error) in
-            if let error = error {
-                print ("👿")
-                print (error.localizedDescription)
-            } else {
-                print("🌞ログイン成功")
+            if error != nil {
+                //TODO: エラー処理
             }
             self.delegate?.didLogin(error: error)
             completion()
@@ -71,8 +65,7 @@ class User {
     
     func delete() {
         user?.delete(completion: { (error) in
-            if let error = error {
-                debugPrint(error.localizedDescription)
+            if let _ = error {
                 return
             }
         })

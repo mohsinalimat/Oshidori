@@ -57,7 +57,7 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
                     }
                 }
             } catch {
-                print("Error occured while creating video device input: \(error)")
+                // TODO:エラー処理
             }
         }
     }

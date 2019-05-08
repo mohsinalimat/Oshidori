@@ -16,7 +16,7 @@ class UserInformationFirestoreRepository {
     private func getUserInfoDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             // TODO; これは危険
-            fatalError("Uidを取得できませんでした。")
+            return db.collection("users").document("error")
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
@@ -27,25 +27,24 @@ class UserInformationFirestoreRepository {
     
     private func getMessageInfoDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
+            return db.collection("users").document("error")
         }
         return db.collection("usersMessagesInfo").document(uid)
     }
     
     func save(_ userInfo: UserInformation, completion: @escaping () -> Void )  {
-        debugPrint("Firestoreへセーブ")
         let userInfoDocumentRef = getUserInfoDocumentRef()
         userInfoDocumentRef.setData(userInfo.representation) { err in
-            if let err = err {
-                debugPrint("error...\(err)")
+            if let _ = err {
+                // TODO:エラー処理
             } else {
                 completion()
             }
         }
         let messageInfoDocumentRef = getMessageInfoDocumentRef()
         messageInfoDocumentRef.setData(UserMessageInfo.shared.firstRepresentation){ err in
-            if let err = err {
-                debugPrint("error...\(err)")
+            if let _ = err {
+                // TODO:エラー処理
             } else {
                 completion()
             }
@@ -53,11 +52,10 @@ class UserInformationFirestoreRepository {
     }
     
     func update(_ userInfo: UserInformation, completion: @escaping () -> Void )  {
-        debugPrint("Firestoreへセーブ")
         let userInfoDocumentRef = getUserInfoDocumentRef()
         userInfoDocumentRef.setData(userInfo.representation) { err in
-            if let err = err {
-                debugPrint("error...\(err)")
+            if let _ = err {
+                // TODO:エラー処理
             } else {
                 completion()
             }
@@ -65,11 +63,10 @@ class UserInformationFirestoreRepository {
     }
     
     func updatePartnerInfo(_ parnerInfo: UserInformation, partnerId: String, completion: @escaping () -> Void )  {
-        debugPrint("Firestoreへセーブ")
         let partnerInfoDocumentRef = getPartnerUserInfoDocumentRef(partnerId: partnerId)
         partnerInfoDocumentRef.setData(parnerInfo.representation) { err in
-            if let err = err {
-                debugPrint("error...\(err)")
+            if let _ = err {
+                // TODO:エラー処理
             } else {
                 completion()
             }
@@ -132,17 +129,14 @@ extension UserInformationFirestoreRepository {
         dataRef.putData(data!, metadata: metadata) { (metadata, error) in
             // error で比較しないんだ。firebaseのドキュメント読めばいいんだよ
             guard let metadata = metadata else {
-                print (error.debugDescription)
                 completion(nil)
                 return
             }
             // ここは特に意味ない。
             let size = metadata.size
-            print (size)
             // ダウンロードURLを取得するよ。このURLを取れるようになったよ！！！
             dataRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
-                    print (error.debugDescription)
                     completion(nil)
                     return
                 }

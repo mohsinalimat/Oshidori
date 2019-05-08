@@ -14,7 +14,7 @@ protocol ReceiveMessageViewControllerDelegate: class {
     func reloadDate()
 }
 
-class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ReceiveMessageViewControllerDelegate {
+class ReceiveMessageViewController: UIViewController, UITableViewDataSource, ReceiveMessageViewControllerDelegate {
     
     func reloadDate() {
         messages.removeAll()
@@ -29,7 +29,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
     // userInfo を入れておく場所
     var userInformation : UserInformation?
     
-    var messages:[(content:String, sendDate:String, name:String, contentType:String)] = []
+    var messages:[(content:String, sendDate:String, name:String, contentType:String, messageId:String)] = []
     
     @IBOutlet weak var receiveTableView: UITableView!
     
@@ -55,7 +55,6 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
                 })
             }) {
                 self.userInformation = userInformation
-                debugPrint("🌞City: \(userInformation.name)")
                 if !(userInformation.roomId.isEmpty) {
                     self.moveSendMessageButton.isHidden = false
                     // firestoreからデータを取って、テーブルビューに反映
@@ -65,10 +64,6 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
                 debugPrint("Document does not exist")
             }
         }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -103,6 +98,7 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, UIT
         // TODO: viewの角を丸くする
         cell.messageView.layer.cornerRadius = 0.8
         cell.messageView.backgroundColor = OshidoriColor.light
+        cell.tag = indexPath.row
         return cell
     }
 }
@@ -139,14 +135,31 @@ extension ReceiveMessageViewController {
                 guard let date = document.get("sentDate") else { return }
                 guard let name = document.get("senderName") else { return }
                 guard let contentType = document.get("contentType") else { return }
+                guard let messageId = document.get("messageId") else { return }
                 let dateTimestamp = date as! Timestamp
                 let dateString = self.convertDateToString(timestampDate: dateTimestamp.dateValue() as NSDate)
                 self.messages.append((content: content as! String, sendDate: dateString,
-                                      name: name as! String, contentType: contentType as! String))
+                                  name: name as! String, contentType: contentType as! String, messageId: messageId as! String))
             }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
-            
         }
+    }
+}
+
+extension ReceiveMessageViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // これをどこかに保存しなきゃ。
+        let messageId = messages[indexPath.row].messageId
+        moveMessageRoomPage(messageId: messageId)
+    }
+    
+    func moveMessageRoomPage(messageId: String) {
+        let storyboard = UIStoryboard(name: "MessageRoomViewController", bundle: nil)
+        guard let VC = storyboard.instantiateViewController(withIdentifier: "MessageRoomViewController") as? MessageRoomViewController else {
+            return
+        }
+        VC.messageId = messageId
+        self.navigationController?.pushViewController(VC, animated: true)
     }
 }

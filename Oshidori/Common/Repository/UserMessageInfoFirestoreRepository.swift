@@ -17,8 +17,8 @@ class UserMessageInfoFirestoreRepository {
         var userMessageInfo: UserMessageInfo?
         let userMessageInfoDocRef = db.collection("usersMessagesInfo").document(uid)
         userMessageInfoDocRef.getDocument { (Snapshot, Error) in
-            if let error = Error {
-                debugPrint(error.localizedDescription)
+            if let _ = Error {
+                
             } else if let data = Snapshot?.data(){
                 userMessageInfo = UserMessageInfo(data: data)
             }

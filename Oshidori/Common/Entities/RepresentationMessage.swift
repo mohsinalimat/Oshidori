@@ -13,16 +13,18 @@ struct RepresentationMessage {
     
     var content: String?
     var senderId: String?
+    var senderName: String?
     var messageId: String?
     var sentDate: Date?
     var contentType: String?
     var courageCount: Int?
     var supportCount: Int?
     
-    init(content: String, senderId: String, messageId: String,
+    init(content: String, senderId: String, senderName:String, messageId: String,
          sentDate: Date, contentType: String, courageCount: Int, supportCount: Int) {
         self.content = content
         self.senderId = senderId
+        self.senderName = senderName
         self.messageId = messageId
         self.sentDate = sentDate
         self.contentType = contentType
@@ -36,6 +38,9 @@ struct RepresentationMessage {
         }
         if let senderId = data["senderId"] as? String {
             self.senderId = senderId
+        }
+        if let senderName = data["senderName"] as? String {
+            self.senderName = senderName
         }
         if let messageId = data["messageId"] as? String{
             self.messageId = messageId
