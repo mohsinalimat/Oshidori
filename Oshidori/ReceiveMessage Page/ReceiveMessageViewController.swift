@@ -55,7 +55,6 @@ class ReceiveMessageViewController: UIViewController, UITableViewDataSource, Rec
                 })
             }) {
                 self.userInformation = userInformation
-                debugPrint("🌞City: \(userInformation.name)")
                 if !(userInformation.roomId.isEmpty) {
                     self.moveSendMessageButton.isHidden = false
                     // firestoreからデータを取って、テーブルビューに反映

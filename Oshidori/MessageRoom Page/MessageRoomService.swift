@@ -48,11 +48,8 @@ extension MessageRoomService {
         }
         messageRoomListener = messageRoomCollectionRef.order(by: "sentDate", descending: false).addSnapshotListener { querySnapshot, error in
             guard let snapshot = querySnapshot else {
-                print("Error listening for roomMessage updates: \(error?.localizedDescription ?? "No error")")
                 return
             }
-//            self.messageList.removeAll()
-//            self.messages.removeAll()
             snapshot.documentChanges.forEach { change in
                 let repMessage = RepresentationMessage(data: change.document.data())
                 if self.tmpMessage?.messageId == repMessage.messageId {
@@ -63,7 +60,6 @@ extension MessageRoomService {
             }
             self.repToMessage()
             self.delegate?.firestoreUpdated()
-            debugPrint("🌞")
         }
     }
 }

@@ -135,7 +135,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
     private let db = Firestore.firestore()
     private func getRoomMessagesCollectionRef() -> CollectionReference {
         guard let roomId = userInformation?.roomId else {
-            fatalError("roomIdを取得できませんでした。")
+            return db.collection("error")
         }
         return db.collection("rooms").document(roomId).collection("messages")
     }
@@ -144,13 +144,12 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
     }
     private func getUserInformationRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
+            return db.collection("users").document("error")
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
     private func getUid() -> String {
         guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
             return ""
         }
         return uid
@@ -166,9 +165,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
             }) {
                 // 上記で得た内容を保存する
                 self.userInformation = userInformation
-                debugPrint("🌞City: \(userInformation.name)")
             } else {
-                debugPrint("Document does not exist")
             }
         }
     }
@@ -178,7 +175,6 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         guard isAfterWroteMessage() else {
             return
         }
-        debugPrint("Firestoreへmessageをセーブ（roomとtimeline）")
         
         // Delete firebase
         // messageIDを取っておいて、それをタイムラインとユーザのroomIdと紐づけて参照を行うようにしよう
@@ -195,8 +191,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         sendMessage.messageId = messageId
         
         roomMessageDocumentRef.setData(sendMessage.representation){ error in
-            if let error = error {
-                print(error.localizedDescription)
+            if let _ = error {
                 return
             }
             self.delegate?.reloadDate()
@@ -209,8 +204,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         var sendMessage = message
         sendMessage.messageId = messageId
         timelineMessagesDocumentRef.setData(sendMessage.representation) { error in
-            if let error = error {
-                print(error.localizedDescription)
+            if let _ = error {
                 return
             }
         }

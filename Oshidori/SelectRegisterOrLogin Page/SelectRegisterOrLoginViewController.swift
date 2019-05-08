@@ -19,7 +19,7 @@ class SelectRegisterOrLoginViewController: UIViewController {
         // プッシュ通知の許諾ダイアログを出したいタイミングで呼んであげる. 必ずしもここじゃなくても良い
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
-            print("push permission finished")
+            //debugPrint("push permission finished")
         }
     }
     

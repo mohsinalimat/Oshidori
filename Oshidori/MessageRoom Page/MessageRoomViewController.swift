@@ -41,7 +41,6 @@ class MessageRoomViewController: MessagesViewController {
         messagesCollectionView.messagesDisplayDelegate = self
         messagesCollectionView.messageCellDelegate = self
         messageInputBar.delegate = self
-        debugPrint("🌹")
         customizeMessageKit()
         // プロパティのUserInfoに入れる。
         guard let messageId = messageId else {
@@ -49,15 +48,6 @@ class MessageRoomViewController: MessagesViewController {
         }
         messageRoomService.messageId = messageId
         messageRoomService.getAllInfo(messageId: messageId) {
-//            DispatchQueue.main.async {
-//                // messageListにメッセージの配列をいれて
-//                self.messageList = self.messageRoomService.messages
-//                // messagesCollectionViewをリロードして
-//                self.messagesCollectionView.reloadData()
-//                // 一番下までスクロールする
-//                self.messagesCollectionView.scrollToBottom()
-//                debugPrint("🏊‍♂️")
-//            }
         }
     }
 }

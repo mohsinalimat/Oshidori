@@ -22,7 +22,7 @@ class MessageRoomFirestoreRepository {
    
     private func getUserInformationRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
+            return db.collection("users").document("error")
         }
         return db.collection("users").document(uid).collection("info").document(uid)
     }
@@ -62,7 +62,6 @@ class MessageRoomFirestoreRepository {
                 let message = RepresentationMessage(data: document.data())
                 messages.append(message)
             }
-            debugPrint("👿")
             completion(messages)
         }
     }

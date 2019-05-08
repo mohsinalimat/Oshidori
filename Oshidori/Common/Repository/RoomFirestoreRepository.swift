@@ -21,8 +21,7 @@ class RoomFirestoreRepository {
         var roomInfo = receiveRoomInfo
         roomInfo.roomId = roomRef.documentID
         roomRef.setData(roomInfo.representation) { (error) in
-            if let error = error {
-                debugPrint(error.localizedDescription)
+            if let _ = error {
                 return
             }
             completion(roomInfo)

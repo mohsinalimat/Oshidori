@@ -33,7 +33,6 @@ class ReadQRcodeService {
     }
     
     func save(_ partnerId: String) {
-        debugPrint("Firestoreへセーブ")
         let uid = ReadQRcodeService.shared.getUid()
         let room = Room(roomId: "", userId: uid, partnerId: partnerId)
         ReadQRcodeService.shared.makeRoom(roomInfo: room)
@@ -50,9 +49,7 @@ class ReadQRcodeService {
             return
         }
         userInfoRep.update(userInfo) {
-            debugPrint("🌞userInfoを更新しました！")
             self.userInfoRep.updatePartnerInfo(partnerInfo, partnerId: userInfo.partnerId ){
-                debugPrint("🌞partnerInfoを更新しました！")
                 self.delegate?.updated()
             }
         }

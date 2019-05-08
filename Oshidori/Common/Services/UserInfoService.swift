@@ -34,7 +34,6 @@ class UserInfoService {
     
     func update () {
         guard User.shared.getUid() != nil else {
-            debugPrint("更新できません")
             return
         }
         userInfoRep.getUserInfo { (UserInformation) in

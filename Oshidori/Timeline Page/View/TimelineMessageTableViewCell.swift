@@ -51,7 +51,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
         }
         // messageIdを持っておけば探せるのでは？
         guard let messageId = messageId, let uid = uid else {
-            debugPrint("👿messageIdを取り出せませんでした")
             return
         }
         TimelineService.shared.updateCourageCountForMessage(messageId: messageId)
@@ -70,7 +69,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
             supportCountLabel.text = String(count)
         }
         guard let messageId = messageId, let uid = uid else {
-            debugPrint("👿messageIdを取り出せませんでした")
             return
         }
         TimelineService.shared.updateSupportCountForMessage(messageId: messageId)
