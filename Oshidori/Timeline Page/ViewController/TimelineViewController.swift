@@ -19,6 +19,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         timelineService.delegate = self
+        
+        // 上のぐるぐるの実装
         timelineTableView.refreshControl = refreshCtl
         refreshCtl.tintColor = OshidoriColor.primary
         refreshCtl.addTarget(self, action: #selector(refreshTimeline), for: .valueChanged)

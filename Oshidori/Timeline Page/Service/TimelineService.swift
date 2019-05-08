@@ -53,6 +53,9 @@ class TimelineService {
             return
         }
         timelineMessageRep.loadTimelineMessage(lastDate: lastDate) { (messages,lastDate) in
+            if self.keepLastDate == lastDate {
+                return
+            }
             for message in messages {
                 self.timelineMessages.append(message)
             }

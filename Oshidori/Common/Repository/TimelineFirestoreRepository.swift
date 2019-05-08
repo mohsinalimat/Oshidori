@@ -49,6 +49,7 @@ class TimelineFirestoreRepository {
             var lastDate = Date()
             for document in querySnapshot!.documents {
                 let timelineMessage = RepresentationMessage(data: document.data())
+                // TODO:最後の判定をいれ方がいいかもしれませんね。。。
                 timelineMessages.append(timelineMessage)
                 if let sentDate = timelineMessage.sentDate {
                     lastDate = sentDate
