@@ -45,16 +45,18 @@ class TimelineService {
     func loadTimelineMessage() {
         guard  let lastDate = KeepLastDate else {
             let now = Date()
-            timelineMessageRep.loadTimelineMessage(lastDate: now) { (messages) in
+            timelineMessageRep.loadTimelineMessage(lastDate: now) { (messages,lastDate)  in
                 self.timelineMessages = messages
+                self.KeepLastDate = lastDate
                 self.delegate?.loaded()
             }
             return
         }
-        timelineMessageRep.loadTimelineMessage(lastDate: lastDate) { (messages) in
+        timelineMessageRep.loadTimelineMessage(lastDate: lastDate) { (messages,lastDate) in
             for message in messages {
                 self.timelineMessages.append(message)
             }
+            self.KeepLastDate = lastDate
             self.delegate?.loaded()
         }
     }

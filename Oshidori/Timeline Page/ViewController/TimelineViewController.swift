@@ -59,6 +59,17 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
     }
+    
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // 下から５件くらいになったらリフレッシュ
+        guard tableView.cellForRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0)-5, section: 0)) != nil else {
+            return
+        }
+        // ここでリフレッシュのメソッドを呼ぶ
+        timelineService.loadTimelineMessage()
+    }
 }
   
 extension TimelineViewController: TimelineServiceDelegate {

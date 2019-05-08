@@ -41,26 +41,21 @@ class TimelineFirestoreRepository {
     }
     
 // ここで、タイムラインから持ってくる数を変更する！！！
-    func loadTimelineMessage(lastDate: Date, completion: @escaping (([RepresentationMessage]) -> Void)){
+    func loadTimelineMessage(lastDate: Date, completion: @escaping (([RepresentationMessage],Date) -> Void)){
         var timelineMessages: [RepresentationMessage] = []
-        let collectionRef = getTimelineColletionRef().order(by: "sentDate", descending: true).limit(to: 10).start(at: [lastDate])
+        let collectionRef = getTimelineColletionRef().order(by: "sentDate", descending: true).limit(to: 20).start(at: [lastDate])
         collectionRef.getDocuments { (querySnapshot, err) in
             guard err == nil else { return }
+            var lastDate = Date()
             for document in querySnapshot!.documents {
                 let timelineMessage = RepresentationMessage(data: document.data())
                 timelineMessages.append(timelineMessage)
+                if let sentDate = timelineMessage.sentDate {
+                    lastDate = sentDate
+                }
             }
-            completion (timelineMessages)
+            completion (timelineMessages, lastDate)
         }
-//        collectionRef.order(by: "sentDate", descending: true).getDocuments() { (querySnapshot, err) in
-//            // エラーだったらリターンするよ
-//            guard err == nil else { return }
-//            for document in querySnapshot!.documents {
-//                let timelineMessage = RepresentationMessage(data: document.data())
-//                timelineMessages.append(timelineMessage)
-//            }
-//            completion (timelineMessages)
-//        }
     }
 }
 
