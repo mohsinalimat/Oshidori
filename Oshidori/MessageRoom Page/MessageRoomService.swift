@@ -34,6 +34,13 @@ class MessageRoomService {
 
 extension MessageRoomService {
     
+    func save(message: Message) {
+        guard let messageId = messageId, let roomId = room?.roomId else {
+            return
+        }
+        messageRoomRep.save(message: message, messageId: messageId, roomId: roomId)
+    }
+    
     func getAllInfo(messageId: String, completion: @escaping () -> ()) {
         userInfoRep.getUserInfo { (userInfo) in
             self.userInfo = userInfo
@@ -47,6 +54,10 @@ extension MessageRoomService {
                 completion()
             })
         }
+    }
+    
+    func getUid() -> String {
+        return messageRoomRep.getUid()
     }
     
     func repToMessage() {

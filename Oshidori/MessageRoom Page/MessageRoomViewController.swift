@@ -42,6 +42,7 @@ class MessageRoomViewController: MessagesViewController {
         guard let messageId = messageId else {
             return
         }
+        messageRoomService.messageId = messageId
         messageRoomService.getAllInfo(messageId: messageId) {
             DispatchQueue.main.async {
                 // messageListにメッセージの配列をいれて
@@ -59,7 +60,6 @@ extension MessageRoomViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         createAndInsertMessageFromeUser(text)
         cleanTextBoxAndScroll(inputBar: inputBar)
-        createAndInsertMessageFromOshidori(text)
     }
     
     func cleanTextBoxAndScroll(inputBar: InputBarAccessoryView) {
@@ -89,6 +89,7 @@ extension MessageRoomViewController: MessagesLayoutDelegate {
     func createAndInsertMessageFromeUser(_ text: String) {
         let message = Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date())
         insertNewMessage(message)
+        messageRoomService.save(message: message)
     }
     
     func createAndInsertMessageFromOshidori(_ text: String) {
@@ -120,11 +121,10 @@ extension MessageRoomViewController: MessageCellDelegate {
 extension MessageRoomViewController: MessagesDataSource {
     
     func currentSender() -> SenderType {
-//        guard let name = userInformation?.name else {
-//            return Sender(senderId: "", displayName: "")
-//        }
-//        return Sender(senderId: getUid(), displayName: name)
-        return Sender(senderId: "", displayName: "")
+        guard let name = messageRoomService.userInfo?.name else {
+            return Sender(senderId: "", displayName: "")
+        }
+        return Sender(senderId: messageRoomService.getUid(), displayName: name)
     }
     
     func oshidoriSender() -> SenderType {
@@ -132,7 +132,7 @@ extension MessageRoomViewController: MessagesDataSource {
     }
     
     func partnerSender() -> SenderType {
-        guard let partnerName = userInformation?.partnerName, let partnerId = userInformation?.partnerId else {
+        guard let partnerName = messageRoomService.userInfo?.partnerName, let partnerId = messageRoomService.userInfo?.partnerId else {
             return Sender(senderId: "", displayName: "")
         }
         return Sender(senderId: partnerId, displayName: partnerName)
@@ -148,8 +148,14 @@ extension MessageRoomViewController: MessagesDataSource {
 }
 
 // firebase関連
-extension MessageRoomViewController {
-    
+extension MessageRoomViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController is ViewController {
+            //挿入したい処理
+            
+        }
+    }
+
 }
 
 extension MessageRoomViewController {

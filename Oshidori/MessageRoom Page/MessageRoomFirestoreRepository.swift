@@ -18,10 +18,7 @@ class MessageRoomFirestoreRepository {
         return db.collection("rooms").document(roomId).collection("messages").document(messageId).collection("messages")
     }
     
-    private func getTimelineColletionRef() -> CollectionReference {
-        return db.collection("timelineMessages")
-    }
-    
+   
     private func getUserInformationRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
             fatalError("Uidを取得できませんでした。")
@@ -29,9 +26,8 @@ class MessageRoomFirestoreRepository {
         return db.collection("users").document(uid).collection("info").document(uid)
     }
     
-    private func getUid() -> String {
+    func getUid() -> String {
         guard let uid = User.shared.getUid() else {
-            fatalError("Uidを取得できませんでした。")
             return ""
         }
         return uid
@@ -58,7 +54,7 @@ class MessageRoomFirestoreRepository {
         guard let collectionRef = getRoomMessagesCollectionRef(roomId: roomId, messageId: messageId) else {
             return
         }
-        collectionRef.order(by: "sentDate", descending: true).getDocuments() { (querySnapshot, err) in
+        collectionRef.order(by: "sentDate", descending: false).getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
             for document in querySnapshot!.documents {
@@ -68,4 +64,12 @@ class MessageRoomFirestoreRepository {
             completion(messages)
         }
     }
+    
+    func save(message: Message,messageId: String, roomId: String) {
+        guard let collectionRef = getRoomMessagesCollectionRef(roomId: roomId, messageId: messageId) else {
+            return
+        }
+        collectionRef.addDocument(data: message.representation)
+    }
+    
 }
