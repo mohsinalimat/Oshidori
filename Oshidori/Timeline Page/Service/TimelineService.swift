@@ -24,6 +24,8 @@ class TimelineService {
     
     private let userMessageInfoFirestoreRep = UserMessageInfoFirestoreRepository()
     
+    private var KeepLastDate: Date?
+    
     func updateCourageCountForMessage(messageId: String) {
         timelineMessageRep.updateCourageCount(messageId: messageId)
     }
@@ -41,8 +43,18 @@ class TimelineService {
     }
     
     func loadTimelineMessage() {
-        timelineMessageRep.loadTimelineMessage { (messages) in
-            self.timelineMessages = messages
+        guard  let lastDate = KeepLastDate else {
+            let now = Date()
+            timelineMessageRep.loadTimelineMessage(lastDate: now) { (messages) in
+                self.timelineMessages = messages
+                self.delegate?.loaded()
+            }
+            return
+        }
+        timelineMessageRep.loadTimelineMessage(lastDate: lastDate) { (messages) in
+            for message in messages {
+                self.timelineMessages.append(message)
+            }
             self.delegate?.loaded()
         }
     }
