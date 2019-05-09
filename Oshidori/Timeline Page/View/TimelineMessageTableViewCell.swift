@@ -24,22 +24,31 @@ class TimelineMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var courageCountLabel: UILabel!
     @IBOutlet weak var supportCountLabel: UILabel!
     
+    @IBOutlet weak var courageTextLabel: UILabel!
+    @IBOutlet weak var supportTextLabel: UILabel!
+    
+    @IBOutlet weak var courageImageView: UIImageView!
+    @IBOutlet weak var supportImageView: UIImageView!
+    
     var messageId: String?
     var uid: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        changeLayerForViewBeforeTap(courageView)
+        changeLayerForViewBeforeTap(supportView)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        changeLayerForView(courageView)
-        changeLayerForView(supportView)
+        
     }
     
     @IBAction func didTapCourageButton(_ sender: Any) {
-        courageView.backgroundColor = OshidoriColor.primary
-        courageCountLabel.tintColor = .white
+        changeLayerForViewAfterTapped(courageView)
+        courageImageView.image = UIImage(named: "Courage_after")
+        courageTextLabel.textColor = .white
+        courageCountLabel.textColor = .white
         courageButton.isEnabled = false
         
         guard let strCourageCount = courageCountLabel.text else {
@@ -58,8 +67,10 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapSupportButton(_ sender: Any) {
-        supportView.backgroundColor = OshidoriColor.primary
-        supportCountLabel.tintColor = .white
+        changeLayerForViewAfterTapped(supportView)
+        supportImageView.image = UIImage(named: "Support_after")
+        supportTextLabel.textColor = .white
+        supportCountLabel.textColor = .white
         supportButton.isEnabled = false
         
         guard let strSupportCount = supportCountLabel.text else {
@@ -76,7 +87,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
         TimelineService.shared.updateSupportCountForUser(uid: uid)
     }
     
-    func changeLayerForView(_ view: UIView) {
+    func changeLayerForViewBeforeTap(_ view: UIView) {
         view.layer.cornerRadius = 8
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.lightGray.cgColor
@@ -87,6 +98,13 @@ class TimelineMessageTableViewCell: UITableViewCell {
         //        view.layer.shadowRadius = 10
         //        view.layer.shadowColor = UIColor.black.cgColor
         //        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+    }
+    
+    func changeLayerForViewAfterTapped(_ view: UIView) {
+        view.layer.cornerRadius = 8
+        view.layer.borderWidth = 1
+        view.layer.borderColor = OshidoriColor.primary.cgColor
+        view.backgroundColor = OshidoriColor.primary
     }
     
     func setContentLabel(content: String) {

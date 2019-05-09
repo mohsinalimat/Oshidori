@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "timeline2.png",
+      "filename" : "good_grey.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "good_grey-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "good_grey-2.png",
       "scale" : "3x"
     }
   ],

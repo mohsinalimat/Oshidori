@@ -29,7 +29,7 @@
                     <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="名前" placeholder="ニックネーム" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rRU-Sw-k0B" customClass="HoshiTextField" customModule="TextFieldEffects">
                         <rect key="frame" x="30" y="175" width="337" height="26.5"/>
                         <nil key="textColor"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                 </subviews>
