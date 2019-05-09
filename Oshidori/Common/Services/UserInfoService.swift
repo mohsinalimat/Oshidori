@@ -58,8 +58,9 @@ class UserInfoService {
     }
     
     func deleteUserInfo(completion: @escaping () -> Void) {
-        userInfoRep.deleteUpdate()
-        completion()
+        userInfoRep.deleteUpdate{
+            completion()
+        }
     }
 }
 

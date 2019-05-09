@@ -109,11 +109,20 @@ class UserInformationFirestoreRepository {
         }
     }
     
-    func deleteUpdate() {
+    func deleteUpdate(completion: @escaping () -> Void) {
         let userInfoDocumentRef = getUserInfoDocumentRef()
-        userInfoDocumentRef.updateData(["partnerId": "",
-                                        "partnerName": "",
-                                        "roomId": "",])
+        getUserInfo { (userInfo) in
+            let partnerDocumentRef = self.getPartnerUserInfoDocumentRef(partnerId: userInfo.partnerId)
+            self.getPartnerUserInfo(partnerId: userInfo.partnerId, completion: { (partnerInfo) in
+                userInfoDocumentRef.updateData(["partnerId": "",
+                                                "partnerName": "",
+                                                "roomId": "",])
+                partnerDocumentRef.updateData(["partnerId": "",
+                                                "partnerName": "",
+                                                "roomId": "",])
+                completion()
+            })
+        }
     }
 }
 
