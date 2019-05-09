@@ -311,6 +311,7 @@
 				67A2D5A222767A4800755F0B /* Login Page */,
 				67A2D5A322767A5600755F0B /* RegistAuthUser Page */,
 				67A2D5AA22767C0C00755F0B /* RegistUserInfo Page */,
+				676AF0632281721200BDB911 /* MessageRoom Page */,
 				67A2D5A422767AA200755F0B /* SendMessage Page */,
 				67A2D5A522767B9900755F0B /* ReceiveMessage Page */,
 				67A2D5A622767BAB00755F0B /* Timeline Page */,
@@ -319,7 +320,6 @@
 				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
 				67A2D5B72276A89E00755F0B /* Mypage Page */,
 				676AF05C2281530B00BDB911 /* PartnerSetting page */,
-				676AF0632281721200BDB911 /* MessageRoom Page */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";

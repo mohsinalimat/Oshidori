@@ -32,6 +32,8 @@ class MessageRoomService {
     var messages: [Message] = []
     var tmpMessage: RepresentationMessage?
     
+    var lastDocument: DocumentSnapshot?
+    
     weak var delegate: MessageRoomServiceDelegate?
     
     private var messageRoomListener: ListenerRegistration?
@@ -50,16 +52,22 @@ extension MessageRoomService {
             guard let snapshot = querySnapshot else {
                 return
             }
-            snapshot.documentChanges.forEach { change in
-                let repMessage = RepresentationMessage(data: change.document.data())
-                if self.tmpMessage?.messageId == repMessage.messageId {
-                    return
-                }
-                self.messageList.append(repMessage)
-                self.tmpMessage = repMessage
+            
+            guard let lastSnapshot = snapshot.documents.last else {
+                // The collection is empty
+                return
             }
+            if self.lastDocument == lastSnapshot {
+                return
+            }
+            self.lastDocument = lastSnapshot
+            snapshot.documents.forEach({ (documentSnapshot) in
+                let repMessage = RepresentationMessage(data: documentSnapshot.data())
+                self.messageList.append(repMessage)
+            })
             self.repToMessage()
             self.delegate?.firestoreUpdated()
+            
         }
     }
 }
@@ -116,6 +124,13 @@ extension MessageRoomService {
         }
         let message = Message(text: repContent, sender: repSender, messageId: repMessageId, date: repSentDate)
         messages.append(message)
+    }
+    
+    func removeAllMessages() {
+        messageList.removeAll()
+        messages.removeAll()
+        tmpMessage = nil
+        lastDocument = nil
     }
     
 }
