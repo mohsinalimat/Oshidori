@@ -52,12 +52,33 @@
                                     <action selector="didTapSignInButton:" destination="pbY-dy-WiX" eventType="touchUpInside" id="JQb-Ij-Q2l"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="8YN-AI-O7W">
+                                <rect key="frame" x="86.5" y="328" width="202" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パスワードを忘れた方は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="em3-FG-Nng">
+                                        <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PWR-zb-xK6">
+                                        <rect key="frame" x="156" y="0.0" width="46" height="30"/>
+                                        <state key="normal" title="こちら">
+                                            <color key="titleColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="Koy-2l-rfQ" kind="show" id="lKx-E2-k3l"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AOa-6m-n6p" firstAttribute="trailing" secondItem="sJu-d3-FVN" secondAttribute="trailing" constant="30" id="LNq-RN-i7J"/>
                             <constraint firstItem="ecF-sK-r3S" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="30" id="MiM-qD-PiN"/>
                             <constraint firstItem="sJu-d3-FVN" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="30" id="SxE-QM-eqf"/>
+                            <constraint firstItem="8YN-AI-O7W" firstAttribute="top" secondItem="ecF-sK-r3S" secondAttribute="bottom" constant="20" id="WgW-43-j7u"/>
                             <constraint firstItem="sJu-d3-FVN" firstAttribute="top" secondItem="1Wj-au-FBU" secondAttribute="bottom" constant="30" id="XDu-CD-ada"/>
                             <constraint firstItem="1Wj-au-FBU" firstAttribute="centerX" secondItem="NUe-ss-P1B" secondAttribute="centerX" id="cBO-iW-Png"/>
                             <constraint firstItem="ecF-sK-r3S" firstAttribute="top" secondItem="Hva-qs-GJS" secondAttribute="bottom" constant="60" id="f7Z-nk-K6q"/>
@@ -66,6 +87,7 @@
                             <constraint firstItem="Hva-qs-GJS" firstAttribute="top" secondItem="sJu-d3-FVN" secondAttribute="bottom" constant="30" id="kPi-jZ-t5e"/>
                             <constraint firstItem="AOa-6m-n6p" firstAttribute="trailing" secondItem="Hva-qs-GJS" secondAttribute="trailing" constant="30" id="m3y-kQ-CKe"/>
                             <constraint firstItem="Hva-qs-GJS" firstAttribute="leading" secondItem="AOa-6m-n6p" secondAttribute="leading" constant="30" id="ofj-cO-NIJ"/>
+                            <constraint firstItem="8YN-AI-O7W" firstAttribute="centerX" secondItem="NUe-ss-P1B" secondAttribute="centerX" id="paE-Ke-hpF"/>
                             <constraint firstItem="1Wj-au-FBU" firstAttribute="top" secondItem="AOa-6m-n6p" secondAttribute="top" constant="30" id="u9g-uH-qZ9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AOa-6m-n6p"/>
@@ -79,6 +101,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cy0-wk-SWf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="538" y="-3"/>
+        </scene>
+        <!--Resetting Password View Controller-->
+        <scene sceneID="1QO-G8-hRq">
+            <objects>
+                <viewController id="Koy-2l-rfQ" customClass="ResettingPasswordViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hpe-wr-bmj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="メールアドレス" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YeI-UG-6XE">
+                                <rect key="frame" x="30" y="108" width="315" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="Xvv-0s-Fg7">
+                                <rect key="frame" x="117.5" y="50" width="140" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="qEP-8V-7eD"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="qp6-Hd-Vmv"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hfM-cy-niy">
+                                <rect key="frame" x="30" y="188" width="315" height="50"/>
+                                <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="eWy-gc-m2Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="送信">
+                                    <color key="titleColor" red="0.98039215690000003" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapSendButton:" destination="Koy-2l-rfQ" eventType="touchUpInside" id="qaL-Xo-Ha4"/>
+                                    <action selector="didTapSignInButton:" destination="pbY-dy-WiX" eventType="touchUpInside" id="vED-Zu-FUN"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="※入力したメールアドレスにパスワードの再設定のメールを送信いたします。" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Qb0-4e-eKu">
+                                <rect key="frame" x="30" y="258" width="315" height="379"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Xvv-0s-Fg7" firstAttribute="centerX" secondItem="Hpe-wr-bmj" secondAttribute="centerX" id="8zj-km-zxV"/>
+                            <constraint firstItem="Xvv-0s-Fg7" firstAttribute="top" secondItem="2gg-EO-aGM" secondAttribute="top" constant="30" id="JfY-cA-SJf"/>
+                            <constraint firstItem="YeI-UG-6XE" firstAttribute="top" secondItem="Xvv-0s-Fg7" secondAttribute="bottom" constant="30" id="Llr-Ve-ZZ4"/>
+                            <constraint firstItem="2gg-EO-aGM" firstAttribute="bottom" secondItem="Qb0-4e-eKu" secondAttribute="bottom" constant="30" id="PLs-95-e2B"/>
+                            <constraint firstItem="hfM-cy-niy" firstAttribute="top" secondItem="YeI-UG-6XE" secondAttribute="bottom" constant="50" id="bSH-GK-f76"/>
+                            <constraint firstItem="2gg-EO-aGM" firstAttribute="trailing" secondItem="YeI-UG-6XE" secondAttribute="trailing" constant="30" id="dpH-hR-YhI"/>
+                            <constraint firstItem="2gg-EO-aGM" firstAttribute="trailing" secondItem="Qb0-4e-eKu" secondAttribute="trailing" constant="30" id="eKw-wK-kmi"/>
+                            <constraint firstItem="Qb0-4e-eKu" firstAttribute="top" secondItem="hfM-cy-niy" secondAttribute="bottom" constant="20" id="fYv-2H-cYT"/>
+                            <constraint firstItem="2gg-EO-aGM" firstAttribute="trailing" secondItem="hfM-cy-niy" secondAttribute="trailing" constant="30" id="gdz-M7-leh"/>
+                            <constraint firstItem="Qb0-4e-eKu" firstAttribute="leading" secondItem="2gg-EO-aGM" secondAttribute="leading" constant="30" id="hxo-y3-06c"/>
+                            <constraint firstItem="hfM-cy-niy" firstAttribute="leading" secondItem="2gg-EO-aGM" secondAttribute="leading" constant="30" id="rW8-gZ-Cw1"/>
+                            <constraint firstItem="YeI-UG-6XE" firstAttribute="leading" secondItem="2gg-EO-aGM" secondAttribute="leading" constant="30" id="uTB-TH-bne"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="2gg-EO-aGM"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailField" destination="YeI-UG-6XE" id="rdk-FZ-vJc"/>
+                        <outlet property="sendButton" destination="hfM-cy-niy" id="eqt-jG-c6H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9B-Wc-8ii" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1483" y="-3"/>
         </scene>
     </scenes>
     <resources>

@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
         user.delegate = self
         emailField.becomeFirstResponder()
         signInButton.layer.cornerRadius = 8.0
+        signInButton.backgroundColor = OshidoriColor.primary
         // Do any additional setup after loading the view.
     }
     
