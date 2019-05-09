@@ -40,10 +40,6 @@ class PartnerSettingViewController: UIViewController {
     }
 }
 
-//extension PartnerSettingViewController: UserInfoServiceDelegate {
-//    
-//}
-
 extension PartnerSettingViewController {
     func setting() {
         settingButton.layer.cornerRadius = 8.0
