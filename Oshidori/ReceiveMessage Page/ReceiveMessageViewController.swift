@@ -124,8 +124,6 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         cell.setContentTypeImage(contentType: message.contentType ?? "")
         cell.setNameLabel(name: message.senderName ?? "")
         // TODO: viewの角を丸くする
-        cell.messageView.layer.cornerRadius = 0.8
-        cell.messageView.backgroundColor = OshidoriColor.light
         cell.tag = indexPath.row
         
         return cell

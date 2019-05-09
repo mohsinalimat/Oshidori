@@ -24,7 +24,7 @@ class OshidoriColor: UIColor {
     
     // 白っぽい灰色を返す
     class var background: UIColor {
-        return rgbColor(rgbValue: 0xFAF9F9)
+        return rgbColor(rgbValue: 0xF0F0F0)
     }
     
     // 薄い緑を返す
@@ -35,6 +35,18 @@ class OshidoriColor: UIColor {
     // ほぼ黒に近い青を返す
     class var dark: UIColor {
         return rgbColor(rgbValue: 0x555B6E)
+    }
+    
+    class var thanks: UIColor {
+        return rgbColor(rgbValue: 0xFF64A5)
+    }
+    
+    class var sorry: UIColor {
+        return rgbColor(rgbValue: 0x1D88BB)
+    }
+    
+    class var anone: UIColor {
+        return rgbColor(rgbValue: 0xAE9D00)
     }
     
     // #FFFFFFのように色を指定できるようになる
