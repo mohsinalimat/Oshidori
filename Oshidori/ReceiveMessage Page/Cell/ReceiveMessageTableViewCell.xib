@@ -23,7 +23,7 @@
                         <rect key="frame" x="5" y="5" width="310" height="124.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Dge-xN-JfM">
-                                <rect key="frame" x="5" y="5" width="79" height="30"/>
+                                <rect key="frame" x="5" y="5" width="158.5" height="30"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_thanks" translatesAutoresizingMaskIntoConstraints="NO" id="mFh-Xh-G1d">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
@@ -32,8 +32,8 @@
                                             <constraint firstAttribute="width" constant="40" id="Lq7-T9-13o"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bz-9b-KJ2">
-                                        <rect key="frame" x="48" y="0.0" width="31" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ありがとうのお手紙" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ueq-tR-21q">
+                                        <rect key="frame" x="48" y="0.0" width="110.5" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -44,6 +44,13 @@
                                 <rect key="frame" x="200.5" y="5" width="104.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Bz-9b-KJ2">
+                                <rect key="frame" x="139" y="47" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="メッセージの本文が入ります。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wun-LH-xab">
@@ -77,6 +84,7 @@
             <connections>
                 <outlet property="contentLabel" destination="wun-LH-xab" id="Yn8-jf-MoP"/>
                 <outlet property="contentTypeImage" destination="mFh-Xh-G1d" id="vUl-g6-Ovr"/>
+                <outlet property="contentTypeLabel" destination="ueq-tR-21q" id="GmR-D2-L83"/>
                 <outlet property="dateLabel" destination="zy2-b5-QT0" id="KPS-q6-GZv"/>
                 <outlet property="messageView" destination="dJ9-7X-TkB" id="I9Z-pQ-w8J"/>
                 <outlet property="nameLabel" destination="9Bz-9b-KJ2" id="RUY-DC-fBq"/>
@@ -85,6 +93,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Oshidori_thanks" width="374" height="269"/>
+        <image name="Oshidori_thanks" width="512" height="512"/>
     </resources>
 </document>

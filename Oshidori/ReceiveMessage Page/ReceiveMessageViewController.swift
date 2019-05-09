@@ -119,7 +119,7 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         cell.setContentLabel(content: message.content ?? "")
         if let date = message.sentDate {
             let sentDate = convertDateToString(timestampDate: date as NSDate)
-            cell.setDataLabel(date: sentDate)
+            cell.setSentDataLabel(date: sentDate)
         }
         cell.setContentTypeImage(contentType: message.contentType ?? "")
         cell.setNameLabel(name: message.senderName ?? "")

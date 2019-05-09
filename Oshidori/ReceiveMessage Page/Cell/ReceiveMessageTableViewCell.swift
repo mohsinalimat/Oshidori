@@ -11,6 +11,8 @@ import UIKit
 class ReceiveMessageTableViewCell: UITableViewCell {
 
     @IBOutlet private weak var contentLabel: UILabel!
+    @IBOutlet weak var contentTypeLabel: UILabel!
+    
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var contentTypeImage: UIImageView!
@@ -40,7 +42,7 @@ class ReceiveMessageTableViewCell: UITableViewCell {
         contentLabel.text = content
     }
     
-    func setDataLabel(date: String) {
+    func setSentDataLabel(date: String) {
         dateLabel.text = date
     }
     
@@ -57,7 +59,7 @@ class ReceiveMessageTableViewCell: UITableViewCell {
         case "あのね":
             contentTypeImage.image = UIImage(named: "Oshidori_anone")
         default:
-            contentTypeImage.image = UIImage(named: "Oshidori_normal")
+            contentTypeImage.image = UIImage(named: "Oshidori_thanks")
         }
     }
 
