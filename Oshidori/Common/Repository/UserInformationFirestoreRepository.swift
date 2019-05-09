@@ -15,7 +15,6 @@ class UserInformationFirestoreRepository {
     private let db = Firestore.firestore()
     private func getUserInfoDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
-            // TODO; これは危険
             return db.collection("users").document("error")
         }
         return db.collection("users").document(uid).collection("info").document(uid)
@@ -27,7 +26,7 @@ class UserInformationFirestoreRepository {
     
     private func getMessageInfoDocumentRef() -> DocumentReference {
         guard let uid = User.shared.getUid() else {
-            return db.collection("users").document("error")
+            return db.collection("usersMessagesInfo").document("error")
         }
         return db.collection("usersMessagesInfo").document(uid)
     }
@@ -92,6 +91,21 @@ class UserInformationFirestoreRepository {
             }
             let partnerInfo = UserInformation(data: data)
             completion(partnerInfo)
+        }
+    }
+    
+    func isExistUser(userId: String,completion: @escaping (Bool, UserInformation?) -> Void ) {
+        let userInfoDocumentRef = getPartnerUserInfoDocumentRef(partnerId: userId)
+        userInfoDocumentRef.getDocument { (snapshot, error) in
+            guard let error = error else {
+                guard let data = snapshot?.data() else {
+                    return
+                }
+                let partnerInfo = UserInformation(data: data)
+                completion(true, partnerInfo)
+                return
+            }
+            completion(false, nil)
         }
     }
     
