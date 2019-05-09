@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oVa-Jq-7Xa">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oVa-Jq-7Xa">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -49,7 +49,7 @@
         <scene sceneID="RgN-5Z-4LY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HYY-uv-QZv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="Timeline" selectedImage="Timeline" id="pgT-aT-KZ5">
+                    <tabBarItem key="tabBarItem" title="" image="Support_before" selectedImage="Support_before" id="pgT-aT-KZ5">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -71,6 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Timeline" width="32" height="32"/>
+        <image name="Support_before" width="49.5" height="35"/>
     </resources>
 </document>

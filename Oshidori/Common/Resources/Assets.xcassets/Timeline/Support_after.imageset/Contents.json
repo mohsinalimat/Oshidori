@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "cheer_dark.png",
+      "filename" : "cheer_white.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "cheer_dark-1.png",
+      "filename" : "cheer_white-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "cheer_dark-2.png",
+      "filename" : "cheer_white-2.png",
       "scale" : "3x"
     }
   ],

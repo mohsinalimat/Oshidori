@@ -119,13 +119,11 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         cell.setContentLabel(content: message.content ?? "")
         if let date = message.sentDate {
             let sentDate = convertDateToString(timestampDate: date as NSDate)
-            cell.setDataLabel(date: sentDate)
+            cell.setSentDataLabel(date: sentDate)
         }
         cell.setContentTypeImage(contentType: message.contentType ?? "")
         cell.setNameLabel(name: message.senderName ?? "")
         // TODO: viewの角を丸くする
-        cell.messageView.layer.cornerRadius = 0.8
-        cell.messageView.backgroundColor = OshidoriColor.light
         cell.tag = indexPath.row
         
         return cell

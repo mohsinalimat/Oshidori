@@ -61,7 +61,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         cell.setSenderId(senderId: message.senderId ?? "")
         cell.setMessageId(messageId: message.messageId ?? "")
-        cell.setContentTypeImage(contentType: message.contentType ?? "")
+        cell.setContentType(contentType: message.contentType ?? "")
         cell.setCourageCountLabel(courageCount: message.courageCount ?? 0)
         cell.setSupportCountLabel(supportCount: message.supportCount ?? 0)
         return cell

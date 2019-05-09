@@ -9,12 +9,11 @@
 import UIKit
 
 class TimelineMessageTableViewCell: UITableViewCell {
-
+    
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var sendDateLabel: UILabel!
     
-    @IBOutlet weak var contentTypeImageByOshidori: UIImageView!
-    @IBOutlet weak var contentTypeImageByMessage: UIImageView!
+    @IBOutlet weak var contentTypeLabel: UILabel!
     
     @IBOutlet weak var courageView: UIView!
     @IBOutlet weak var supportView: UIView!
@@ -25,21 +24,31 @@ class TimelineMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var courageCountLabel: UILabel!
     @IBOutlet weak var supportCountLabel: UILabel!
     
+    @IBOutlet weak var courageTextLabel: UILabel!
+    @IBOutlet weak var supportTextLabel: UILabel!
+    
+    @IBOutlet weak var courageImageView: UIImageView!
+    @IBOutlet weak var supportImageView: UIImageView!
+    
     var messageId: String?
     var uid: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        changeLayerForViewBeforeTap(courageView)
+        changeLayerForViewBeforeTap(supportView)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        changeLayerForView(courageView)
-        changeLayerForView(supportView)
+        
     }
     
     @IBAction func didTapCourageButton(_ sender: Any) {
-        courageView.backgroundColor = OshidoriColor.primary
+        changeLayerForViewAfterTapped(courageView)
+        courageImageView.image = UIImage(named: "Courage_after")
+        courageTextLabel.textColor = .white
+        courageCountLabel.textColor = .white
         courageButton.isEnabled = false
         
         guard let strCourageCount = courageCountLabel.text else {
@@ -58,7 +67,10 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapSupportButton(_ sender: Any) {
-        supportView.backgroundColor = OshidoriColor.primary
+        changeLayerForViewAfterTapped(supportView)
+        supportImageView.image = UIImage(named: "Support_after")
+        supportTextLabel.textColor = .white
+        supportCountLabel.textColor = .white
         supportButton.isEnabled = false
         
         guard let strSupportCount = supportCountLabel.text else {
@@ -75,16 +87,24 @@ class TimelineMessageTableViewCell: UITableViewCell {
         TimelineService.shared.updateSupportCountForUser(uid: uid)
     }
     
-    func changeLayerForView(_ view: UIView) {
+    func changeLayerForViewBeforeTap(_ view: UIView) {
         view.layer.cornerRadius = 8
-        // view.layer.borderWidth = 1
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.lightGray.cgColor
         // TODO: ボーダーの色いるかな？
         //view.layer.borderColor = OshidoriColor.background.cgColor
-        view.backgroundColor = OshidoriColor.light
-//        view.layer.shadowOpacity = 0.1
-//        view.layer.shadowRadius = 10
-//        view.layer.shadowColor = UIColor.black.cgColor
-//        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        view.backgroundColor = OshidoriColor.background
+        //        view.layer.shadowOpacity = 0.1
+        //        view.layer.shadowRadius = 10
+        //        view.layer.shadowColor = UIColor.black.cgColor
+        //        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+    }
+    
+    func changeLayerForViewAfterTapped(_ view: UIView) {
+        view.layer.cornerRadius = 8
+        view.layer.borderWidth = 1
+        view.layer.borderColor = OshidoriColor.primary.cgColor
+        view.backgroundColor = OshidoriColor.primary
     }
     
     func setContentLabel(content: String) {
@@ -95,20 +115,20 @@ class TimelineMessageTableViewCell: UITableViewCell {
         sendDateLabel.text = sendDate
     }
     
-    func setContentTypeImage(contentType: String) {
+    func setContentType(contentType: String) {
         switch contentType {
         case "ありがとう":
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_thanks")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_thanks")
+            contentTypeLabel.text = "ありがとう"
+            contentTypeLabel.textColor = OshidoriColor.thanks
         case "ごめんね":
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_sorry")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_sorry")
+            contentTypeLabel.text = "ごめんね"
+            contentTypeLabel.textColor = OshidoriColor.sorry
         case "あのね":
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_anone")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_anone")
+            contentTypeLabel.text = "あのね"
+            contentTypeLabel.textColor = OshidoriColor.anone
         default:
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_normal")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_thanks")
+            contentTypeLabel.text = "ありがとう"
+            contentTypeLabel.textColor = OshidoriColor.thanks
         }
     }
     
