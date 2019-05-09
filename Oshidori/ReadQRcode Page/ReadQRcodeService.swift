@@ -40,8 +40,8 @@ class ReadQRcodeService {
     
     func isExistPartner(partnerId: String, completion: @escaping (Bool, String?) -> Void) {
         userInfoRep.isExistUser(userId: partnerId) { (result, partnerInfo) in
-            if let parnerInfo = partnerInfo {
-                completion(result, partnerInfo?.name)
+            if let partner = partnerInfo {
+                completion(result, partner.name)
             } else {
                 completion(result, nil)
             }

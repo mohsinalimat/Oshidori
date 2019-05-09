@@ -80,8 +80,8 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
             HUD.show(.progress)
             // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
             ReadQRcodeService.shared.isExistPartner(partnerId: partnerId) { (result, partnerName) in
+                HUD.hide()
                 if result == true {
-                    HUD.hide()
                     if let name = partnerName {
                         self.alertSelect("確認", "\(name)さんをパートナーとして紐付けますか？", {
                             HUD.show(.progress)
@@ -94,7 +94,6 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
                     }
                     
                 } else {
-                    HUD.hide()
                     self.alert("エラー", "ユーザが存在しません！正しいQRコードを読み込んでください！", nil)
                 }
             }
