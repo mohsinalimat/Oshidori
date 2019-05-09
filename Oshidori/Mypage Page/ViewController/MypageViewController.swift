@@ -32,6 +32,7 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewWillAppear(false)
         getInformation()
         mypageTableView.reloadData()
+        mypageTableView.tableFooterView = UIView() 
     }
 
 }
