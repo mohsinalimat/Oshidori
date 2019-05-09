@@ -78,10 +78,11 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     func changeLayerForView(_ view: UIView) {
         view.layer.cornerRadius = 8
-        // view.layer.borderWidth = 1
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.lightGray.cgColor
         // TODO: ボーダーの色いるかな？
         //view.layer.borderColor = OshidoriColor.background.cgColor
-        view.backgroundColor = OshidoriColor.light
+        view.backgroundColor = OshidoriColor.background
         //        view.layer.shadowOpacity = 0.1
         //        view.layer.shadowRadius = 10
         //        view.layer.shadowColor = UIColor.black.cgColor
