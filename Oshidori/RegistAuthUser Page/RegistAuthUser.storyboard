@@ -52,9 +52,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※パスワードは英数字6文字以上でお願いします。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yao-mm-Whc">
+                                <rect key="frame" x="30" y="208" width="228" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Yao-mm-Whc" firstAttribute="leading" secondItem="2zb-T8-Vqg" secondAttribute="leading" id="92n-Af-WmM"/>
                             <constraint firstItem="N27-0y-EQC" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="BLV-3h-YJC"/>
                             <constraint firstItem="ggZ-dV-EeY" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="EHh-Qe-vBd"/>
                             <constraint firstItem="2zb-T8-Vqg" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="KRp-J8-XSd"/>
@@ -69,6 +76,7 @@
                             <constraint firstItem="oXb-Pm-4Yh" firstAttribute="trailing" secondItem="2zb-T8-Vqg" secondAttribute="trailing" constant="30" id="mfN-Be-yZH"/>
                             <constraint firstItem="oIu-ZI-u3V" firstAttribute="centerX" secondItem="jNR-o1-p9R" secondAttribute="centerX" id="nvA-8t-8db"/>
                             <constraint firstItem="2zb-T8-Vqg" firstAttribute="leading" secondItem="oXb-Pm-4Yh" secondAttribute="leading" constant="30" id="qQI-gS-eLn"/>
+                            <constraint firstItem="Yao-mm-Whc" firstAttribute="top" secondItem="2zb-T8-Vqg" secondAttribute="bottom" constant="10" id="y8V-Sw-zUy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oXb-Pm-4Yh"/>
                     </view>
