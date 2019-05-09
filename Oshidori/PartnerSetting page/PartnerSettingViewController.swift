@@ -43,6 +43,7 @@ class PartnerSettingViewController: UIViewController {
 extension PartnerSettingViewController {
     func setting() {
         settingButton.layer.cornerRadius = 8.0
+        settingButton.backgroundColor = OshidoriColor.primary
         
         guard let flag = partnerFlag else {
             return
