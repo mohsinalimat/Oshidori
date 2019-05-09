@@ -8,6 +8,7 @@
 
 import UIKit
 import PKHUD
+import FirebaseAuth
 
 class RegistAuthUserViewController: UIViewController {
 
@@ -24,6 +25,8 @@ class RegistAuthUserViewController: UIViewController {
         registButton.backgroundColor = OshidoriColor.primary
         registButton.layer.cornerRadius = 8.0
         emailField.becomeFirstResponder()
+        
+        User.shared.delegate = self
 
         // Do any additional setup after loading the view.
     }
@@ -41,11 +44,12 @@ class RegistAuthUserViewController: UIViewController {
 //                    //
 //                })
                 
+                
                 self.user.login(credential: credential, completion: {
                     if self.user.isLogin() {
                         self.moveUserRegistPage()
                     } else {
-                        self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
+                        
                     }
                     HUD.hide()
                 })
@@ -75,4 +79,43 @@ class RegistAuthUserViewController: UIViewController {
     }
     */
 
+}
+
+extension RegistAuthUserViewController: UserDelegate {
+    func didCreate(error: Error?) {
+        guard let err = error else {
+            return
+        }
+        if let errCode = AuthErrorCode(rawValue: err._code) {
+            switch errCode {
+            case .invalidEmail:
+                alert("エラー", "メールアドレスの形式を確認してください。", nil)
+            case .emailAlreadyInUse:
+                alert("エラー", "このメールアドレスはすでに使われています。", nil)
+            case .weakPassword:
+                alert("エラー", "パスワードは英数字6文字以上で入力してください。", nil)
+            default:
+                alert("エラー", "エラーが起きました🙇‍♂️　\nしばらくしてから再度お試しください。", nil)
+            }
+        }
+    }
+    
+    func didLogin(error: Error?) {
+        guard let err = error else {
+            return
+        }
+        debugPrint(err.localizedDescription)
+        if let errCode = AuthErrorCode(rawValue: err._code) {
+            switch errCode {
+            case .invalidEmail:
+                alert("エラー", "メールアドレスの形式を確認してください。", nil)
+            case .wrongPassword:
+                alert("エラー", "パスワードが間違っています。", nil)
+            default:
+                alert("エラー", "エラーが起きました🙇‍♂️　\nしばらくしてから再度お試しください。", nil)
+            }
+        }
+    }
+    
+    
 }

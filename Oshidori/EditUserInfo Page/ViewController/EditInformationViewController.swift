@@ -9,6 +9,7 @@
 import UIKit
 import Eureka
 import ImageRow
+import PKHUD
 
 class EditInformationViewController: FormViewController {
     
@@ -95,6 +96,7 @@ class EditInformationViewController: FormViewController {
     }
     
     @IBAction func didTapSaveButton(_ sender: Any) {
+        HUD.show(.progress)
         guard let content = editContent else {
             return
         }
@@ -140,6 +142,7 @@ extension EditInformationViewController: EditUserInfoServiceDelegate {
     }
     
     func updated() {
+        HUD.hide()
         self.navigationController?.popToRootViewController(animated: true)
     }
     

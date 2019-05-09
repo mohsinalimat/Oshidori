@@ -13,8 +13,29 @@ class ShowQRcodeViewController: UIViewController {
     
     @IBOutlet weak var QRcode: UIImageView!
     
+    var userInfoRep = UserInformationFirestoreRepository()
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        
+        // 値が変更されたら、移動するようにする
+        let userInfoListener = db.collection("users").document(uid).collection("info").document(uid).addSnapshotListener { (querySnapshot, error) in
+            
+            guard let data = querySnapshot?.data() else {
+                return
+            }
+            
+            let userInfo = UserInformation(data: data)
+            if userInfo.partnerId == "" {
+                return
+            } else {
+                self.moveMessagePage()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

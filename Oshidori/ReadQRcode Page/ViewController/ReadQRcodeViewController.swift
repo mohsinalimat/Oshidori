@@ -76,13 +76,27 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
                 alert("エラー","それは自分のQRコードだよ😱", nil)
                 return
             }
-            // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
             
-            // 読み取り終了
-            self.session.stopRunning()
-            // ユーザ情報をsetする
             HUD.show(.progress)
-            ReadQRcodeService.shared.save(partnerId)
+            // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
+            ReadQRcodeService.shared.isExistPartner(partnerId: partnerId) { (result, partnerName) in
+                HUD.hide()
+                if result == true {
+                    if let name = partnerName {
+                        self.alertSelect("確認", "\(name)さんをパートナーとして紐付けますか？", {
+                            HUD.show(.progress)
+                            // 読み取り終了
+                            self.session.stopRunning()
+                            // ユーザ情報をsetする
+                            ReadQRcodeService.shared.save(partnerId)
+                            
+                        })
+                    }
+                    
+                } else {
+                    self.alert("エラー", "ユーザが存在しません！正しいQRコードを読み込んでください！", nil)
+                }
+            }
         }
     }
 }

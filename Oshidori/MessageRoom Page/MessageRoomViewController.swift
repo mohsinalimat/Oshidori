@@ -32,8 +32,9 @@ class MessageRoomViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messageRoomService.messages.removeAll()
-        messageRoomService.messageList.removeAll()
+        messageRoomService.removeAllMessages()
+        
+        navigationController?.delegate = self
         
         messageRoomService.delegate = self
         messagesCollectionView.messagesDataSource = self
@@ -64,9 +65,9 @@ extension MessageRoomViewController: MessageRoomServiceDelegate {
     func firestoreUpdated() {
         messageList.removeAll()
         messageList = messageRoomService.messages
+        messageRoomService.removeAllMessages()
         messagesCollectionView.reloadData()
         messagesCollectionView.scrollToBottom()
-        
     }
     
     
@@ -88,7 +89,7 @@ extension MessageRoomViewController: InputBarAccessoryViewDelegate {
 
 extension MessageRoomViewController: MessagesLayoutDelegate {
     private func insertNewMessage(_ message: Message) {
-        messageList.append(message)
+        //messageList.append(message)
         messagesCollectionView.performBatchUpdates({
             messagesCollectionView.insertSections([messageList.count - 1])
             if messageList.count >= 2 {
@@ -163,16 +164,14 @@ extension MessageRoomViewController: MessagesDataSource {
     }
 }
 
-//extension MessageRoomViewController: UINavigationControllerDelegate {
-//    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-//        if viewController is ReceiveMessageViewController {
-//            //挿入したい処理
-//            messageRoomService.messages.removeAll()
-//            messageRoomService.messageList.removeAll()
-//        }
-//    }
-//
-//}
+extension MessageRoomViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController is ReceiveMessageViewController {
+            messageRoomService.messageList.removeAll()
+        }
+    }
+
+}
 
 extension MessageRoomViewController {
     func customizeMessageKit() {

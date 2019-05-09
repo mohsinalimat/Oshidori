@@ -44,6 +44,7 @@
 		676AF0622281720C00BDB911 /* MessageRoomViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */; };
 		676AF0652281860F00BDB911 /* MessageRoomService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF0642281860F00BDB911 /* MessageRoomService.swift */; };
 		676AF0672281863500BDB911 /* MessageRoomFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF0662281863500BDB911 /* MessageRoomFirestoreRepository.swift */; };
+		676AF06B2283F1BA00BDB911 /* ResettingPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676AF06A2283F1BA00BDB911 /* ResettingPasswordViewController.swift */; };
 		677AB2FF2270227B00DBCD62 /* UserInformationFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */; };
 		677AB3022270238400DBCD62 /* UserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AB3012270238400DBCD62 /* UserInfoService.swift */; };
 		677D6BD92265F06700C5E069 /* RegistUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */; };
@@ -144,6 +145,7 @@
 		676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MessageRoomViewController.storyboard; sourceTree = "<group>"; };
 		676AF0642281860F00BDB911 /* MessageRoomService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomService.swift; sourceTree = "<group>"; };
 		676AF0662281863500BDB911 /* MessageRoomFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRoomFirestoreRepository.swift; sourceTree = "<group>"; };
+		676AF06A2283F1BA00BDB911 /* ResettingPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResettingPasswordViewController.swift; sourceTree = "<group>"; };
 		677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformationFirestoreRepository.swift; sourceTree = "<group>"; };
 		677AB3012270238400DBCD62 /* UserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoService.swift; sourceTree = "<group>"; };
 		677D6BD82265F06700C5E069 /* RegistUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistUserInfoViewController.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				67A2D5A222767A4800755F0B /* Login Page */,
 				67A2D5A322767A5600755F0B /* RegistAuthUser Page */,
 				67A2D5AA22767C0C00755F0B /* RegistUserInfo Page */,
+				676AF0632281721200BDB911 /* MessageRoom Page */,
 				67A2D5A422767AA200755F0B /* SendMessage Page */,
 				67A2D5A522767B9900755F0B /* ReceiveMessage Page */,
 				67A2D5A622767BAB00755F0B /* Timeline Page */,
@@ -317,7 +320,6 @@
 				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
 				67A2D5B72276A89E00755F0B /* Mypage Page */,
 				676AF05C2281530B00BDB911 /* PartnerSetting page */,
-				676AF0632281721200BDB911 /* MessageRoom Page */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
@@ -440,6 +442,7 @@
 		67A2D5A222767A4800755F0B /* Login Page */ = {
 			isa = PBXGroup;
 			children = (
+				676AF06A2283F1BA00BDB911 /* ResettingPasswordViewController.swift */,
 				6723DEA7224F10B600B3DF69 /* LoginViewController.swift */,
 				6723DEA3224E176F00B3DF69 /* Login.storyboard */,
 			);
@@ -911,6 +914,7 @@
 				6732F288224DB2F500011710 /* Oshidori.xcdatamodeld in Sources */,
 				67A2D5BE2276BFD400755F0B /* MessageReportTableViewCell.swift in Sources */,
 				677AB2FF2270227B00DBCD62 /* UserInformationFirestoreRepository.swift in Sources */,
+				676AF06B2283F1BA00BDB911 /* ResettingPasswordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

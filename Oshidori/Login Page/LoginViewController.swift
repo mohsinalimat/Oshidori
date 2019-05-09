@@ -8,8 +8,9 @@
 
 import UIKit
 import PKHUD
+import FirebaseAuth
 
-class LoginViewController: UIViewController, UserDelegate {
+class LoginViewController: UIViewController {
     
     // 書き方の省略のため
     let user = User.shared
@@ -23,6 +24,7 @@ class LoginViewController: UIViewController, UserDelegate {
         user.delegate = self
         emailField.becomeFirstResponder()
         signInButton.layer.cornerRadius = 8.0
+        signInButton.backgroundColor = OshidoriColor.primary
         // Do any additional setup after loading the view.
     }
     
@@ -46,8 +48,8 @@ class LoginViewController: UIViewController, UserDelegate {
 //                HUD.hide()
 //            })
 //        }
-        // デバッグ用
-         self.moveMessagePage()
+         //デバッグ用
+          self.moveMessagePage()
     }
     
     func getCredential() -> Credential? {
@@ -62,19 +64,45 @@ class LoginViewController: UIViewController, UserDelegate {
         return Credential(email: email, password: password)
     }
     
+    
+}
+
+extension LoginViewController: UserDelegate {
     // 作成後の処理
     func didCreate(error: Error?) {
-        if let error = error {
-            self.alert("エラー", error.localizedDescription, nil)
+        guard let err = error else {
             return
+        }
+        if let errCode = AuthErrorCode(rawValue: err._code) {
+            switch errCode {
+            case .invalidEmail:
+                alert("エラー", "メールアドレスの形式を確認してください。", nil)
+            case .emailAlreadyInUse:
+                alert("エラー", "このメールアドレスはすでに使われています。", nil)
+            case .weakPassword:
+                alert("エラー", "パスワードは英数字6文字以上で入力してください。", nil)
+            default:
+                alert("エラー", "エラーが起きました🙇‍♂️　\nしばらくしてから再度お試しください。", nil)
+            }
         }
     }
     
     // ログイン後の処理
     func didLogin(error: Error?) {
-        if let error = error {
-            self.alert("エラー", error.localizedDescription, nil)
+        guard let err = error else {
             return
+        }
+        if let errCode = AuthErrorCode(rawValue: err._code) {
+            switch errCode {
+            case .invalidEmail:
+                alert("エラー", "メールアドレスの形式を確認してください。", nil)
+            case .wrongPassword:
+                alert("エラー", "パスワードが間違っています。", nil)
+            case .weakPassword:
+                alert("エラー", "パスワードは英数字6文字以上で入力してください。", nil)
+            default:
+                alert("エラー", "エラーが起きました🙇‍♂️　\nしばらくしてから再度お試しください。", nil)
+            }
         }
     }
 }

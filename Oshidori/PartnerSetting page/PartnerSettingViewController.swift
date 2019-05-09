@@ -26,11 +26,13 @@ class PartnerSettingViewController: UIViewController {
         if partnerFlag == false {
             moveQRcodePage()
         } else {
-            alertSelect("本当に解除しますか？", "※パートナーを解除すると全てのデータが削除されてしまいます。 \n※データの修復はできませんので、解除は慎重にお願いいたします。") {
+            alertSelect("本当に解除しますか？", "※パートナーを解除すると全てのデータが削除されてしまいます。 \n※データの修復はできませんので、解除は慎重にお願いいたします。 \n※ログイン情報は残ります。") {
                 let userService = UserInfoService()
                 userService.deleteUserInfo(completion: {
-                    User.shared.logout()
-                    self.moveSelectRegisterOrLoginPage()
+                    self.alert("完了", "削除が完了しました！", {
+                        User.shared.logout()
+                        self.moveSelectRegisterOrLoginPage()
+                    })
                 })
             }
         }
@@ -41,6 +43,7 @@ class PartnerSettingViewController: UIViewController {
 extension PartnerSettingViewController {
     func setting() {
         settingButton.layer.cornerRadius = 8.0
+        settingButton.backgroundColor = OshidoriColor.primary
         
         guard let flag = partnerFlag else {
             return

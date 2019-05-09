@@ -38,6 +38,16 @@ class ReadQRcodeService {
         ReadQRcodeService.shared.makeRoom(roomInfo: room)
     }
     
+    func isExistPartner(partnerId: String, completion: @escaping (Bool, String?) -> Void) {
+        userInfoRep.isExistUser(userId: partnerId) { (result, partnerInfo) in
+            if let partner = partnerInfo {
+                completion(result, partner.name)
+            } else {
+                completion(result, nil)
+            }
+        }
+    }
+    
     func makeRoom(roomInfo :Room) {
         roomRep.makeRoom(receiveRoomInfo: roomInfo) { (room) in
             self.getBouthUserInfo(room: room)
