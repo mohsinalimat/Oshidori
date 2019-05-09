@@ -9,12 +9,11 @@
 import UIKit
 
 class TimelineMessageTableViewCell: UITableViewCell {
-
+    
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var sendDateLabel: UILabel!
     
-    @IBOutlet weak var contentTypeImageByOshidori: UIImageView!
-    @IBOutlet weak var contentTypeImageByMessage: UIImageView!
+    @IBOutlet weak var contentTypeLabel: UILabel!
     
     @IBOutlet weak var courageView: UIView!
     @IBOutlet weak var supportView: UIView!
@@ -31,7 +30,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         changeLayerForView(courageView)
@@ -40,6 +39,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBAction func didTapCourageButton(_ sender: Any) {
         courageView.backgroundColor = OshidoriColor.primary
+        courageCountLabel.tintColor = .white
         courageButton.isEnabled = false
         
         guard let strCourageCount = courageCountLabel.text else {
@@ -59,6 +59,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBAction func didTapSupportButton(_ sender: Any) {
         supportView.backgroundColor = OshidoriColor.primary
+        supportCountLabel.tintColor = .white
         supportButton.isEnabled = false
         
         guard let strSupportCount = supportCountLabel.text else {
@@ -81,10 +82,10 @@ class TimelineMessageTableViewCell: UITableViewCell {
         // TODO: ボーダーの色いるかな？
         //view.layer.borderColor = OshidoriColor.background.cgColor
         view.backgroundColor = OshidoriColor.light
-//        view.layer.shadowOpacity = 0.1
-//        view.layer.shadowRadius = 10
-//        view.layer.shadowColor = UIColor.black.cgColor
-//        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        //        view.layer.shadowOpacity = 0.1
+        //        view.layer.shadowRadius = 10
+        //        view.layer.shadowColor = UIColor.black.cgColor
+        //        view.layer.shadowOffset = CGSize(width: 2, height: 2)
     }
     
     func setContentLabel(content: String) {
@@ -95,20 +96,20 @@ class TimelineMessageTableViewCell: UITableViewCell {
         sendDateLabel.text = sendDate
     }
     
-    func setContentTypeImage(contentType: String) {
+    func setContentType(contentType: String) {
         switch contentType {
         case "ありがとう":
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_thanks")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_thanks")
+            contentTypeLabel.text = "ありがとう"
+            contentTypeLabel.textColor = OshidoriColor.thanks
         case "ごめんね":
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_sorry")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_sorry")
+            contentTypeLabel.text = "ごめんね"
+            contentTypeLabel.textColor = OshidoriColor.sorry
         case "あのね":
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_anone")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_anone")
+            contentTypeLabel.text = "あのね"
+            contentTypeLabel.textColor = OshidoriColor.anone
         default:
-            contentTypeImageByOshidori.image = UIImage(named: "Oshidori_normal")
-            contentTypeImageByMessage.image  = UIImage(named: "Message_thanks")
+            contentTypeLabel.text = "ありがとう"
+            contentTypeLabel.textColor = OshidoriColor.thanks
         }
     }
     
