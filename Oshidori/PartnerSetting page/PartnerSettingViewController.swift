@@ -26,7 +26,7 @@ class PartnerSettingViewController: UIViewController {
         if partnerFlag == false {
             moveQRcodePage()
         } else {
-            alertSelect("本当に解除しますか？", "※パートナーを解除すると全てのデータが削除されてしまいます。 \n※データの修復はできませんので、解除は慎重にお願いいたします。") {
+            alertSelect("本当に解除しますか？", "※パートナーを解除すると全てのデータが削除されてしまいます。 \n※データの修復はできませんので、解除は慎重にお願いいたします。 \n※ログイン情報は残ります。") {
                 let userService = UserInfoService()
                 userService.deleteUserInfo(completion: {
                     User.shared.logout()
