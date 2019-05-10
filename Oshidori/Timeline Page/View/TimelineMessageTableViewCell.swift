@@ -33,24 +33,53 @@ class TimelineMessageTableViewCell: UITableViewCell {
     var messageId: String?
     var uid: String?
     
+    var isCourageTapped = false
+    var isSupportTapped = false
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        changeLayerForViewBeforeTap(courageView)
-        changeLayerForViewBeforeTap(supportView)
+        if isCourageTapped {
+            changeLayerForViewAfterTapped(courageView)
+        } else {
+            changeLayerForViewBeforeTap(courageView)
+        }
+        if isSupportTapped {
+            changeLayerForViewAfterTapped(supportView)
+        } else {
+            changeLayerForViewBeforeTap(supportView)
+        }
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
+        if isCourageTapped {
+            changeLayerForViewAfterTapped(courageView)
+        } else {
+            changeLayerForViewBeforeTap(courageView)
+        }
+        if isSupportTapped {
+            changeLayerForViewAfterTapped(supportView)
+        } else {
+            changeLayerForViewBeforeTap(supportView)
+        }
+    }
+    
+    override func prepareForReuse() {
+        super .prepareForReuse()
+        if isCourageTapped {
+            changeLayerForViewAfterTapped(courageView)
+        } else {
+            changeLayerForViewBeforeTap(courageView)
+        }
+        if isSupportTapped {
+            changeLayerForViewAfterTapped(supportView)
+        } else {
+            changeLayerForViewBeforeTap(supportView)
+        }
     }
     
     @IBAction func didTapCourageButton(_ sender: Any) {
         changeLayerForViewAfterTapped(courageView)
-        courageImageView.image = UIImage(named: "Courage_after")
-        courageTextLabel.textColor = .white
-        courageCountLabel.textColor = .white
-        courageButton.isEnabled = false
-        
         guard let strCourageCount = courageCountLabel.text else {
             return
         }
@@ -68,11 +97,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBAction func didTapSupportButton(_ sender: Any) {
         changeLayerForViewAfterTapped(supportView)
-        supportImageView.image = UIImage(named: "Support_after")
-        supportTextLabel.textColor = .white
-        supportCountLabel.textColor = .white
-        supportButton.isEnabled = false
-        
         guard let strSupportCount = supportCountLabel.text else {
             return
         }
@@ -91,13 +115,20 @@ class TimelineMessageTableViewCell: UITableViewCell {
         view.layer.cornerRadius = 8
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.lightGray.cgColor
-        // TODO: ボーダーの色いるかな？
-        //view.layer.borderColor = OshidoriColor.background.cgColor
         view.backgroundColor = OshidoriColor.background
-        //        view.layer.shadowOpacity = 0.1
-        //        view.layer.shadowRadius = 10
-        //        view.layer.shadowColor = UIColor.black.cgColor
-        //        view.layer.shadowOffset = CGSize(width: 2, height: 2)
+        if view == courageView {
+            courageImageView.image = UIImage(named: "Courage_before")
+            courageTextLabel.textColor = .lightGray
+            courageCountLabel.textColor = .lightGray
+            courageButton.isEnabled = true
+        }
+        if view == supportView{
+            supportImageView.image = UIImage(named: "Support_before")
+            supportTextLabel.textColor = .lightGray
+            supportCountLabel.textColor = .lightGray
+            supportButton.isEnabled = true
+        }
+        
     }
     
     func changeLayerForViewAfterTapped(_ view: UIView) {
@@ -105,6 +136,18 @@ class TimelineMessageTableViewCell: UITableViewCell {
         view.layer.borderWidth = 1
         view.layer.borderColor = OshidoriColor.primary.cgColor
         view.backgroundColor = OshidoriColor.primary
+        if view == courageView {
+            courageImageView.image = UIImage(named: "Courage_after")
+            courageTextLabel.textColor = .white
+            courageCountLabel.textColor = .white
+            courageButton.isEnabled = false
+        }
+        if view == supportView{
+            supportImageView.image = UIImage(named: "Support_after")
+            supportTextLabel.textColor = .white
+            supportCountLabel.textColor = .white
+            supportButton.isEnabled = false
+        }
     }
     
     func setContentLabel(content: String) {
@@ -146,6 +189,14 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     func setSupportCountLabel(supportCount: Int) {
         supportCountLabel.text = String(supportCount)
+    }
+    
+    func setIsCourageTapped(isTapped :Bool) {
+        self.isCourageTapped = isTapped
+    }
+    
+    func setIsSupportTapped(isTapped :Bool) {
+        self.isSupportTapped = isTapped
     }
     
 }

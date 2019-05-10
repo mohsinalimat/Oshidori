@@ -19,6 +19,8 @@ struct RepresentationMessage {
     var contentType: String?
     var courageCount: Int?
     var supportCount: Int?
+    var isCourageTapped = false
+    var isSupportTapped = false
     
     init(content: String, senderId: String, senderName:String, messageId: String,
          sentDate: Date, contentType: String, courageCount: Int, supportCount: Int) {

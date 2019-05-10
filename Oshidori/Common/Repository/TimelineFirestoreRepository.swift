@@ -17,6 +17,7 @@ class TimelineFirestoreRepository {
     }
     
     func updateCourageCount(messageId: String) {
+        
         let timelineMessageRef = db.collection("timelineMessages").document(messageId)
         timelineMessageRef.getDocument { (Snapshot, Error) in
             var courageCount: Int = Snapshot?.get("courageCount") as! Int
