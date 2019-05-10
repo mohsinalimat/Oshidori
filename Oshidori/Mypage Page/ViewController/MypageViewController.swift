@@ -80,14 +80,18 @@ extension MypageViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
-            if let userInfo = MypageService.shared.userInfo {
+            if let userInfo = mypageService.userInfo {
                 cell.setUserImage(imageUrl: userInfo.imageUrl)
                 cell.setUserName(name: userInfo.name)
                 if userInfo.partnerId == "" {
                     partnerFlag = false
                 } else {
                     partnerFlag = true
-                    partnerName = userInfo.partnerName
+                    if let roomInfo = mypageService.roomInfo {
+                        partnerName = roomInfo.partnerName
+                    } else {
+                        partnerName = "取得に失敗しました"
+                    }
                 }
             }
             
@@ -159,7 +163,7 @@ extension MypageViewController {
     
     func getInformation() {
         getUserMessageInfo()
-        getUserInfo()
+        getUserAndRoomInfo()
     }
     
     func getUserMessageInfo() {
@@ -169,12 +173,13 @@ extension MypageViewController {
         mypageService.getUserMessageInfo(uid: uid)
     }
     
-    func getUserInfo() {
+    func getUserAndRoomInfo() {
         guard let uid = User.shared.getUid() else {
             return
         }
-        mypageService.getUserInfo()
+        mypageService.getUserAndRoomInfo()
     }
+    
 }
 
 extension MypageViewController: MypageServiceDelegate {

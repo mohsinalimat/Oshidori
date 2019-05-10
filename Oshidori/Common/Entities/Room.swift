@@ -36,16 +36,68 @@ struct Room {
         self.partnerName = partnerName
         self.partnerImageUrl = partnerImageUrl
     }
+    
+    init(data: [String: Any]) {
+        if let roomId = data["roomId"] as? String {
+            self.roomId = roomId
+        }
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        guard let firstUserId = data["firstUserId"] as? String else {
+            return
+        }
+        guard let secondUserId = data["secondUserId"] as? String else {
+            return
+        }
+        if firstUserId == uid {
+            
+            self.userId = firstUserId
+            if let firstUserName = data["firstUserName"] as? String {
+                self.userName = firstUserName
+            }
+            if let firstUserImageUrl = data["firstUserImageUrl"] as? String{
+                self.userImageUrl = firstUserImageUrl
+            }
+            
+            self.partnerId = secondUserId
+            if let secondUserName = data["secondUserName"] as? String {
+                self.partnerName = secondUserName
+            }
+            if let secondUserImageUrl = data["secondUserImageUrl"] as? String{
+                self.partnerImageUrl = secondUserImageUrl
+            }
+            
+        } else {
+            
+            self.partnerId = firstUserId
+            if let firstUserName = data["firstUserName"] as? String {
+                self.partnerName = firstUserName
+            }
+            if let firstUserImageUrl = data["firstUserImageUrl"] as? String{
+                self.partnerImageUrl = firstUserImageUrl
+            }
+            
+            self.userId = secondUserId
+            if let secondUserName = data["secondUserName"] as? String {
+                self.userName = secondUserName
+            }
+            if let secondUserImageUrl = data["secondUserImageUrl"] as? String{
+                self.userImageUrl = secondUserImageUrl
+            }
+            
+        }
+    }
 }
 
 extension Room {
     var representation: [String : Any] {
         let rep: [String : Any] = [
             "roomId": roomId,
-            "firstUser": userId,
+            "firstUserId": userId,
             "firstUserName": userName,
             "firstUserImageUrl": userImageUrl,
-            "secondUser": partnerId,
+            "secondUserId": partnerId,
             "secondUserName": partnerName,
             "secondUserImageUrl": partnerImageUrl,
         ]

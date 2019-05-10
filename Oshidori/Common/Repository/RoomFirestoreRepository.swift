@@ -37,4 +37,16 @@ class RoomFirestoreRepository {
             completion()
         }
     }
+    
+    func getRoomInfo(roomId: String, completion: @escaping (Room) -> Void) {
+        let roomDocumentRef = getRoomColletionRef().document(roomId)
+        roomDocumentRef.getDocument { (snapShot, error) in
+           
+            guard let data = snapShot?.data() else {
+                return
+            }
+            let room = Room(data: data)
+            completion(room)
+        }
+    }
 }

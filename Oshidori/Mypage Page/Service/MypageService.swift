@@ -25,6 +25,10 @@ class MypageService {
     private var userInfoRep = UserInformationFirestoreRepository()
     
     var userInfo: UserInformation?
+    
+    private var roomMessageRep = RoomFirestoreRepository()
+    
+    var roomInfo: Room?
 
     
     weak var delegate: MypageServiceDelegate?
@@ -64,10 +68,18 @@ class MypageService {
 
 extension MypageService {
     
-    func getUserInfo() {
+    func getUserAndRoomInfo() {
         userInfoRep.getUserInfo { (receivedUserInfo) in
-            self.userInfo = receivedUserInfo
-            self.delegate?.gotUserInfo()
+            if receivedUserInfo.roomId == "" {
+                self.userInfo = receivedUserInfo
+                self.delegate?.gotUserInfo()
+            } else {
+                self.roomMessageRep.getRoomInfo(roomId: receivedUserInfo.roomId, completion: { (room) in
+                    self.roomInfo = room
+                    self.userInfo = receivedUserInfo
+                    self.delegate?.gotUserInfo()
+                })
+            }
         }
     }
 }
