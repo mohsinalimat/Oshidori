@@ -59,7 +59,7 @@ extension MessageRoomViewController: MessageRoomServiceDelegate {
     }
     
     func loaded() {
-        
+        messagesCollectionView.reloadData()
     }
     
     func firestoreUpdated() {
@@ -213,7 +213,13 @@ extension MessageRoomViewController: MessagesDisplayDelegate {
             avatarView.set(avatar: avatar)
         }
         if message.sender.senderId == partnerSender().senderId {
-            // Nukeの処理
+            if let image = messageRoomService.partnerImage?.image {
+                let avatar = Avatar(image: image, initials: "")
+                            avatarView.set(avatar: avatar)
+            } else {
+                let avatar = Avatar(image: UIImage(named: "Oshidori_null"), initials: "")
+                avatarView.set(avatar: avatar)
+            }
 //            let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "")
 //            avatarView.set(avatar: avatar)
         }

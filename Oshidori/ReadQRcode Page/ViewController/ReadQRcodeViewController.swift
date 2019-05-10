@@ -104,7 +104,7 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
 extension ReadQRcodeViewController: ReadQRcodeServiceDelegate {
     func gotInfo() {
         HUD.hide()
-        ReadQRcodeService.shared.update()
+        ReadQRcodeService.shared.updateUserInfo()
         HUD.show(.progress)
     }
     

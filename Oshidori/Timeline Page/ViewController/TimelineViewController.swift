@@ -64,6 +64,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.setContentType(contentType: message.contentType ?? "")
         cell.setCourageCountLabel(courageCount: message.courageCount ?? 0)
         cell.setSupportCountLabel(supportCount: message.supportCount ?? 0)
+        cell.setIsCourageTapped(isTapped: message.isCourageTapped)
+        cell.setIsSupportTapped(isTapped: message.isSupportTapped)
         return cell
     }
     

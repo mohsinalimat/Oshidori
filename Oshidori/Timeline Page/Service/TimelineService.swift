@@ -28,10 +28,22 @@ class TimelineService {
     
     func updateCourageCountForMessage(messageId: String) {
         timelineMessageRep.updateCourageCount(messageId: messageId)
+        
+        for (index, message) in timelineMessages.enumerated() {
+            if message.messageId == messageId {
+                timelineMessages[index].isCourageTapped = true
+            }
+        }
     }
     
     func updateSupportCountForMessage(messageId: String) {
         timelineMessageRep.updateSupportCount(messageId: messageId)
+        
+        for (index, message) in timelineMessages.enumerated() {
+            if message.messageId == messageId {
+                timelineMessages[index].isSupportTapped = true
+            }
+        }
     }
     
     func updateCourageCountForUser(uid: String) {

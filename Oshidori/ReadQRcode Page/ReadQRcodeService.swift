@@ -54,7 +54,7 @@ class ReadQRcodeService {
         }
     }
     
-    func update() {
+    func updateUserInfo() {
         guard let userInfo = tmpUserInfo , let partnerInfo = tmpPartnerInfo else {
             return
         }
@@ -88,9 +88,22 @@ class ReadQRcodeService {
                 self.tmpUserInfo = userInfo
                 self.tmpPartnerInfo = partnerInfo
                 
+                let updateRoom = Room(roomId: room.roomId, userId: room.userId, userName: userInfo.name,
+                                      userImageUrl: userInfo.imageUrl, partnerId: room.partnerId,
+                                      partnerName: partnerInfo.name, partnerImageUrl: partnerInfo.imageUrl)
+                debugPrint(updateRoom)
+                self.updateRoomInfo(updateRoom: updateRoom) {
+                    
+                }
                 self.delegate?.gotInfo()
             })
         })
+    }
+    
+    func updateRoomInfo(updateRoom: Room, completion: @escaping () ->Void) {
+        roomRep.updateRoom(updateRoom: updateRoom) {
+            completion()
+        }
     }
     
     

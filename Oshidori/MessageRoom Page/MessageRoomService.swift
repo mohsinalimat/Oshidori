@@ -9,6 +9,7 @@
 import Foundation
 import MessageKit
 import Firebase
+import Nuke
 
 protocol MessageRoomServiceDelegate: class {
     func saved()
@@ -24,9 +25,11 @@ class MessageRoomService {
     
     private var messageRoomRep = MessageRoomFirestoreRepository()
     
+    private var roomRep = RoomFirestoreRepository()
+    
     var userInfo: UserInformation?
     var partnerInfo: UserInformation?
-    var room: Room?
+    var roomInfo: Room?
     var messageId :String?
     var messageList :[RepresentationMessage] = []
     var messages: [Message] = []
@@ -37,6 +40,8 @@ class MessageRoomService {
     weak var delegate: MessageRoomServiceDelegate?
     
     private var messageRoomListener: ListenerRegistration?
+    
+    var partnerImage:UIImageView?
     
     deinit {
         messageRoomListener?.remove()
@@ -75,7 +80,7 @@ extension MessageRoomService {
 extension MessageRoomService {
     
     func save(message: Message) {
-        guard let messageId = messageId, let roomId = room?.roomId else {
+        guard let messageId = messageId, let roomId = roomInfo?.roomId else {
             return
         }
         messageRoomRep.save(message: message, messageId: messageId, roomId: roomId)
@@ -84,12 +89,40 @@ extension MessageRoomService {
     func getAllInfo(messageId: String, completion: @escaping () -> ()) {
         userInfoRep.getUserInfo { (userInfo) in
             self.userInfo = userInfo
-            self.userInfoRep.getPartnerUserInfo(partnerId: userInfo.partnerId, completion: { (partnerInfo) in
-                self.partnerInfo = partnerInfo
-                self.room = Room(roomId: userInfo.roomId, userId: partnerInfo.partnerId, partnerId: userInfo.partnerId)
-                // Lestnerを作成しておく
+            self.roomRep.getRoomInfo(roomId: userInfo.roomId, completion: { (room) in
+                self.roomInfo = room
+                if userInfo.partnerId == room.partnerId {
+                    var imageUrl: URL?
+                    imageUrl = URL(string: room.partnerImageUrl)
+                    if let url = imageUrl {
+                        let tmpImageView = UIImageView()
+                        Nuke.loadImage(with: url, options: ImageLoadingOptions(
+                            placeholder: UIImage(named: "Oshidori_null"),
+                            transition: .fadeIn(duration: 0.33)
+                            ), into: tmpImageView, progress: { (response, tmp , tmp1) in
+                                
+                        }, completion: { (response, error) in
+                            self.partnerImage = tmpImageView
+                            self.delegate?.loaded()
+                        })
+                    }
+                } else {
+                    var imageUrl: URL?
+                    imageUrl = URL(string: room.userImageUrl)
+                    if let url = imageUrl {
+                        let tmpImageView = UIImageView()
+                        Nuke.loadImage(with: url, into: tmpImageView)
+                        self.partnerImage = tmpImageView
+                    }
+                }
                 self.makeLisner(roomId: userInfo.roomId, messageId: messageId)
                 completion()
+            })
+            self.userInfoRep.getPartnerUserInfo(partnerId: userInfo.partnerId, completion: { (partnerInfo) in
+                self.partnerInfo = partnerInfo
+                // Lestnerを作成しておく
+//                self.makeLisner(roomId: userInfo.roomId, messageId: messageId)
+//                completion()
             })
         }
     }

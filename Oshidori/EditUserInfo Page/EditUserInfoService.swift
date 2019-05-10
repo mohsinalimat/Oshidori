@@ -17,41 +17,65 @@ class EditUserInfoService {
     
     static var shared = EditUserInfoService()
     
-    private var rep = UserInformationFirestoreRepository()
+    private var userInfoRep = UserInformationFirestoreRepository()
+    
+    private var roomRep = RoomFirestoreRepository()
     
     weak var delegate: EditUserInfoServiceDelegate?
     
     var editUserInfo: UserInformation?
     
     func updateName(name: String) {
-        rep.getUserInfo(completion: { (userInfo) in
+        userInfoRep.getUserInfo(completion: { (userInfo) in
             userInfo.name = name
-            self.rep.update(userInfo, completion: {
-                self.delegate?.updated()
+            self.userInfoRep.update(userInfo, completion: {
+                // ここでルームを更新する
+                self.roomRep.getRoomInfo(roomId: userInfo.roomId, completion: { (room) in
+                    var updateRoom = room
+                    if userInfo.partnerId == updateRoom.partnerId {
+                        updateRoom.userName = name
+                    } else {
+                        updateRoom.partnerName = name
+                    }
+                    self.roomRep.updateRoom(updateRoom: updateRoom, completion: {
+                        self.delegate?.updated()
+                    })
+                })
             })
         })
     }
     
     func updateBirthday(birthday: Date) {
-        rep.getUserInfo(completion: { (userInfo) in
+        userInfoRep.getUserInfo(completion: { (userInfo) in
             userInfo.birthday = birthday
-            self.rep.update(userInfo, completion: {
+            self.userInfoRep.update(userInfo, completion: {
                 self.delegate?.updated()
             })
         })
     }
     
     func updateImage(imageUrl: String) {
-        rep.getUserInfo(completion: { (userInfo) in
+        userInfoRep.getUserInfo(completion: { (userInfo) in
             userInfo.imageUrl = imageUrl
-            self.rep.update(userInfo, completion: {
-                self.delegate?.updated()
+            self.userInfoRep.update(userInfo, completion: {
+                // ここでルームを更新する
+                self.roomRep.getRoomInfo(roomId: userInfo.roomId, completion: { (room) in
+                    var updateRoom = room
+                    if userInfo.partnerId == updateRoom.partnerId {
+                        updateRoom.userImageUrl = imageUrl
+                    } else {
+                        updateRoom.partnerImageUrl = imageUrl
+                    }
+                    self.roomRep.updateRoom(updateRoom: updateRoom, completion: {
+                        self.delegate?.updated()
+                    })
+                })
             })
         })
     }
     
     func loadUserInfo() {
-        rep.getUserInfo { (userInfo) in
+        userInfoRep.getUserInfo { (userInfo) in
             self.editUserInfo = userInfo
             self.delegate?.loaded()
         }

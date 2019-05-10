@@ -36,36 +36,51 @@ extension UserMessageInfoFirestoreRepository {
     func updateCourageCount(uid: String) {
         let usersMessagesInfoRef = db.collection("usersMessagesInfo").document(uid)
         usersMessagesInfoRef.getDocument { (Snapshot, Error) in
-            var courageCount: Int = Snapshot?.get("courageCount") as! Int
-            courageCount += 1
-            let rep: [String : Any] = [
-                "courageCount": courageCount
-            ]
-            usersMessagesInfoRef.updateData(rep)
+            guard let snapshot = Snapshot else {
+                return
+            }
+            let courageCount = snapshot.get("courageCount") as? Int
+            if let count = courageCount {
+                let addedCount = count + 1
+                let rep: [String : Any] = [
+                    "supportCount": addedCount
+                ]
+                usersMessagesInfoRef.updateData(rep)
+            }
         }
     }
     
     func updateSupportCount(uid: String) {
         let usersMessagesInfoRef = db.collection("usersMessagesInfo").document(uid)
         usersMessagesInfoRef.getDocument { (Snapshot, Error) in
-            var supportCount: Int = Snapshot?.get("supportCount") as! Int
-            supportCount += 1
-            let rep: [String : Any] = [
-                "supportCount": supportCount
-            ]
-            usersMessagesInfoRef.updateData(rep)
+            guard let snapshot = Snapshot else {
+                return
+            }
+            let supportCount = snapshot.get("supportCount") as? Int
+            if let count = supportCount {
+                let addedCount = count + 1
+                let rep: [String : Any] = [
+                    "supportCount": addedCount
+                ]
+                usersMessagesInfoRef.updateData(rep)
+            }
         }
     }
     
     func updateMessageCount(uid: String) {
         let usersMessagesInfoRef = db.collection("usersMessagesInfo").document(uid)
         usersMessagesInfoRef.getDocument { (Snapshot, Error) in
-            var count: Int = Snapshot?.get("messageCount") as! Int
-            count += 1
-            let rep: [String : Any] = [
-                "messageCount": count
-            ]
-            usersMessagesInfoRef.updateData(rep)
+            guard let snapshot = Snapshot else {
+                return
+            }
+            let messageCount = snapshot.get("messageCount") as? Int
+            if let count = messageCount {
+                let addedCount = count + 1
+                let rep: [String : Any] = [
+                    "messageCount": addedCount
+                ]
+                usersMessagesInfoRef.updateData(rep)
+            }
         }
     }
 }
