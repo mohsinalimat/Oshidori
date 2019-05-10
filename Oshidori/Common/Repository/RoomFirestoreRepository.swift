@@ -31,7 +31,7 @@ class RoomFirestoreRepository {
     func updateRoom(updateRoom: Room, completion: @escaping () -> Void) {
         let roomDocumentRef = getRoomColletionRef().document(updateRoom.roomId)
         roomDocumentRef.updateData(updateRoom.representation) { (error) in
-            guard let _ = error else {
+            if let _ = error {
                 return
             }
             completion()
