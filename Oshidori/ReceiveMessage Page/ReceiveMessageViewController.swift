@@ -237,6 +237,7 @@ extension ReceiveMessageViewController {
             
             
             // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
+            // cellにも、messageにもisNotReadを持たせる。
             for (_, messageId) in self.notReadMessage.enumerated() {
                 for (indexMessage, message) in self.messages.enumerated() {
                     if message.messageId == messageId {
