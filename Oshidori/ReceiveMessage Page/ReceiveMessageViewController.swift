@@ -34,6 +34,10 @@ class ReceiveMessageViewController: UIViewController {
     
     private let refreshCtl = UIRefreshControl()
     
+    // 未読を入れるため
+    private let roomUserInfoRep = RoomFirestoreRepository()
+    private var notReadMessage: [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         moveSendMessageButton.isHidden = true
@@ -65,16 +69,19 @@ class ReceiveMessageViewController: UIViewController {
                 })
             }) {
                 self.userInformation = userInformation
-                if !(userInformation.roomId.isEmpty) {
-                    self.moveSendMessageButton.isHidden = false
-                    // firestoreからデータを取って、テーブルビューに反映
-                    if let lastDate = self.lastDate {
-                        self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
-                    } else {
-                        self.getMessageDataFromFirestore_createTableView(lastDate: Date())
+                // 未読処理
+                self.getRoomUserInfo() {
+                    if !(userInformation.roomId.isEmpty) {
+                        self.moveSendMessageButton.isHidden = false
+                        // firestoreからデータを取って、テーブルビューに反映
+                        if let lastDate = self.lastDate {
+                            self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
+                        } else {
+                            self.getMessageDataFromFirestore_createTableView(lastDate: Date())
+                        }
                     }
-                    
                 }
+                
             } else {
                 debugPrint("Document does not exist")
             }
@@ -93,6 +100,23 @@ class ReceiveMessageViewController: UIViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
+
+extension ReceiveMessageViewController {
+    func getRoomUserInfo(completion: @escaping () -> ()) {
+        guard let userInfo = self.userInformation else {
+            return
+        }
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        roomUserInfoRep.getRoomMessageUserInfo(roomId: userInfo.roomId, uid: uid) { (notReadMessages) in
+            self.notReadMessage = notReadMessages
+            completion()
+        }
+    }
+}
+
+
 
 extension ReceiveMessageViewController {
     func addShadowForView(_ button: UIButton) {
@@ -151,6 +175,12 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         }
         cell.setContentTypeImage(contentType: message.contentType ?? "")
         cell.setNameLabel(name: message.senderName ?? "")
+        // セルの処理
+        for messageId in notReadMessage {
+            if message.messageId == messageId {
+                cell.isNotRead = true
+            }
+        }
         // TODO: viewの角を丸くする
         cell.tag = indexPath.row
         
@@ -232,6 +262,7 @@ extension ReceiveMessageViewController: UITableViewDelegate {
             return
         }
         VC.messageId = messageId
+        
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }

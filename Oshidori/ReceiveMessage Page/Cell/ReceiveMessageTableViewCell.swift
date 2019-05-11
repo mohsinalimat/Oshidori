@@ -32,6 +32,8 @@ class ReceiveMessageTableViewCell: UITableViewCell {
         changeLayerForLabel(noticeNotReadLabel)
         if !isNotRead {
             noticeNotReadLabel.isHidden = true
+        } else {
+            noticeNotReadLabel.isHidden = false
         }
     }
 
@@ -40,6 +42,8 @@ class ReceiveMessageTableViewCell: UITableViewCell {
         changeLayerForView(messageView)
         if !isNotRead {
             noticeNotReadLabel.isHidden = true
+        } else {
+            noticeNotReadLabel.isHidden = false
         }
     }
     
@@ -47,6 +51,8 @@ class ReceiveMessageTableViewCell: UITableViewCell {
         super .prepareForReuse()
         if !isNotRead {
             noticeNotReadLabel.isHidden = true
+        } else {
+            noticeNotReadLabel.isHidden = false
         }
     }
     
