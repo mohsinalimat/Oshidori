@@ -39,6 +39,7 @@ class ReceiveMessageViewController: UIViewController {
         moveSendMessageButton.isHidden = true
         
         setDZNEmptyDataSetDelegate()
+        addShadowForView(moveSendMessageButton)
         
         // 背景の色を指定
         receiveTableView.backgroundColor = OshidoriColor.background
@@ -90,6 +91,15 @@ class ReceiveMessageViewController: UIViewController {
         guard let VC = storyboard.instantiateViewController(withIdentifier: "SendMessageStoryboard") as? SendMessageViewController else { return }
         VC.delegate = self
         self.navigationController?.pushViewController(VC, animated: true)
+    }
+}
+
+extension ReceiveMessageViewController {
+    func addShadowForView(_ button: UIButton) {
+        button.layer.masksToBounds = false
+        button.layer.shadowOffset = CGSize(width: 0, height: 5); // 下向きの影
+        button.layer.shadowRadius = 8
+        button.layer.shadowOpacity = 0.3
     }
 }
 
