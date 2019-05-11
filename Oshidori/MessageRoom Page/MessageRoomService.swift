@@ -84,6 +84,13 @@ extension MessageRoomService {
             return
         }
         messageRoomRep.save(message: message, messageId: messageId, roomId: roomId)
+        guard let userInfo = userInfo else {
+            return
+        }
+        // 増やすのは相手に！！！
+        roomRep.addRoomMessageUserInfo(roomId: roomId, uid: userInfo.partnerId, messageId: messageId) {
+            
+        }
     }
     
     func getAllInfo(messageId: String, completion: @escaping () -> ()) {
@@ -164,6 +171,14 @@ extension MessageRoomService {
         messages.removeAll()
         tmpMessage = nil
         lastDocument = nil
+    }
+    
+    func deleteRoomUserInfo(messageId: String) {
+        guard let userInfo = userInfo else {
+            return
+        }
+        // 自分のを消す
+        roomRep.delete(roomId: userInfo.roomId, uid: getUid(), messageId: messageId)
     }
     
 }
