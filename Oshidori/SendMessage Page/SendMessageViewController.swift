@@ -25,6 +25,9 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
     // userInfo を入れておく場所
     var userInformation : UserInformation?
     
+    // firebase 関連
+    private let db = Firestore.firestore()
+    
     // contentTypeに使用する言葉
     let THANKYOU = "ありがとう"
     let SORRY = "ごめんね"
@@ -131,8 +134,26 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         return messageList[indexPath.section]
     }
     
-    // firebase 関連
-    private let db = Firestore.firestore()
+    let roomUserInfoRep = RoomFirestoreRepository()
+}
+
+// RoomFirestoreRepository()
+extension SendMessageViewController {
+    private func addRoomMessageInfo(messageId: String) {
+        guard let userInfo = self.userInformation else {
+            return
+        }
+        roomUserInfoRep.addRoomMessageUserInfo(roomId: userInfo.roomId, uid: userInfo.partnerId,
+                                               messageId: messageId) {
+                                                
+        }
+    }
+}
+
+
+// firebase
+extension SendMessageViewController {
+    
     private func getRoomMessagesCollectionRef() -> CollectionReference {
         guard let roomId = userInformation?.roomId else {
             return db.collection("error")
@@ -180,6 +201,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         // messageIDを取っておいて、それをタイムラインとユーザのroomIdと紐づけて参照を行うようにしよう
         let messageId = saveToTimelineMessages(message)
         saveToRoomMessage(message: message, messageId: messageId)
+        addRoomMessageInfo(messageId: messageId)
         let userMessageInfoRep = UserMessageInfoFirestoreRepository()
         userMessageInfoRep.updateMessageCount(uid: message.sender.senderId)
     }

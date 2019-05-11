@@ -41,12 +41,36 @@ class RoomFirestoreRepository {
     func getRoomInfo(roomId: String, completion: @escaping (Room) -> Void) {
         let roomDocumentRef = getRoomColletionRef().document(roomId)
         roomDocumentRef.getDocument { (snapShot, error) in
-           
             guard let data = snapShot?.data() else {
                 return
             }
             let room = Room(data: data)
             completion(room)
         }
+    }
+    
+    func getRoomMessageUserInfoRef(roomId: String, uid: String) -> CollectionReference {
+        return getRoomColletionRef().document(roomId).collection("messageUserInfo").document(uid).collection("notRead")
+    }
+    
+    func getRoomMessageUserInfo(roomId: String, uid: String, completion: @escaping ([String]) -> ()) {
+        let roomMessageUserInfoRef = getRoomMessageUserInfoRef(roomId: roomId, uid: uid)
+        roomMessageUserInfoRef.getDocuments { (querySnapShot, error) in
+            var notReadMessageIds: [String] = []
+            for document in querySnapShot!.documents {
+                notReadMessageIds.append(document.documentID)
+            }
+            completion(notReadMessageIds)
+        }
+    }
+    
+    func addRoomMessageUserInfo(roomId: String, uid: String, messageId: String, completion: @escaping () -> ()) {
+        let roomMessageUserInfoRef = getRoomMessageUserInfoRef(roomId: roomId, uid: uid)
+        roomMessageUserInfoRef.document(messageId).setData(["messageId":messageId])
+    }
+    
+    func delete(roomId: String, uid: String, messageId: String, completion: @escaping ([String]) -> ()) {
+        let roomMessageUserInfoRef = getRoomMessageUserInfoRef(roomId: roomId, uid: uid)
+        roomMessageUserInfoRef.document(messageId).delete()
     }
 }
