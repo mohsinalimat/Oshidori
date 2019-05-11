@@ -15,7 +15,6 @@
 		670A16AE226D7F9B006C8F47 /* SelectRegisterOrLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670A16AD226D7F9B006C8F47 /* SelectRegisterOrLoginViewController.swift */; };
 		6723DEA4224E176F00B3DF69 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6723DEA3224E176F00B3DF69 /* Login.storyboard */; };
 		6723DEA8224F10B600B3DF69 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEA7224F10B600B3DF69 /* LoginViewController.swift */; };
-		6723DEAA224F4A5700B3DF69 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6723DEA9224F4A5700B3DF69 /* GoogleService-Info.plist */; };
 		6723DEAC224F51C800B3DF69 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEAB224F51C800B3DF69 /* User.swift */; };
 		6723DEAE224F52BB00B3DF69 /* Credential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEAD224F52BB00B3DF69 /* Credential.swift */; };
 		6723DEB522509BA100B3DF69 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEB422509BA100B3DF69 /* UIViewController.swift */; };
@@ -73,6 +72,7 @@
 		67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E0502260131700516B3D /* OshidoriColor.swift */; };
 		67C9E053226017B200516B3D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E052226017B200516B3D /* TabBarController.swift */; };
 		67DD01D422686DEC00583BF6 /* ReadQRcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DD01D322686DEC00583BF6 /* ReadQRcode.storyboard */; };
+		67E291DE22867B2A00AF4B81 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67E291DD22867B2A00AF4B81 /* GoogleService-Info.plist */; };
 		67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */; };
 		67EE40CF2265AAFF00E2F2C5 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE40CE2265AAFF00E2F2C5 /* EditUserInfoViewController.swift */; };
 		67EE40D12265D58800E2F2C5 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE40D02265D58800E2F2C5 /* UserInformation.swift */; };
@@ -109,7 +109,6 @@
 		670A16AD226D7F9B006C8F47 /* SelectRegisterOrLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRegisterOrLoginViewController.swift; sourceTree = "<group>"; };
 		6723DEA3224E176F00B3DF69 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6723DEA7224F10B600B3DF69 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		6723DEA9224F4A5700B3DF69 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6723DEAB224F51C800B3DF69 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6723DEAD224F52BB00B3DF69 /* Credential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credential.swift; sourceTree = "<group>"; };
 		6723DEB422509BA100B3DF69 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
@@ -174,6 +173,7 @@
 		67C9E0502260131700516B3D /* OshidoriColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriColor.swift; sourceTree = "<group>"; };
 		67C9E052226017B200516B3D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		67DD01D322686DEC00583BF6 /* ReadQRcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadQRcode.storyboard; sourceTree = "<group>"; };
+		67E291DD22867B2A00AF4B81 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistAuthUser.storyboard; sourceTree = "<group>"; };
 		67EE40CE2265AAFF00E2F2C5 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
 		67EE40D02265D58800E2F2C5 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
@@ -425,7 +425,7 @@
 				6732F289224DB2F600011710 /* Assets.xcassets */,
 				6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */,
 				6732F28E224DB2F600011710 /* Info.plist */,
-				6723DEA9224F4A5700B3DF69 /* GoogleService-Info.plist */,
+				67E291DD22867B2A00AF4B81 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -713,7 +713,6 @@
 				676AF05E2281532800BDB911 /* PartnerSettingViewController.storyboard in Resources */,
 				670A16AC226D76F8006C8F47 /* SelectRegisterOrLogin.storyboard in Resources */,
 				6732F28D224DB2F600011710 /* LaunchScreen.storyboard in Resources */,
-				6723DEAA224F4A5700B3DF69 /* GoogleService-Info.plist in Resources */,
 				67A2D5AC2276807200755F0B /* EditUserInfo.storyboard in Resources */,
 				67A2D5BB2276BEE100755F0B /* MyImageAndNameTableViewCell.xib in Resources */,
 				676AF0622281720C00BDB911 /* MessageRoomViewController.storyboard in Resources */,
@@ -726,6 +725,7 @@
 				6732F28A224DB2F600011710 /* Assets.xcassets in Resources */,
 				6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */,
 				67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */,
+				67E291DE22867B2A00AF4B81 /* GoogleService-Info.plist in Resources */,
 				67DD01D422686DEC00583BF6 /* ReadQRcode.storyboard in Resources */,
 				6723DEBC2253193500B3DF69 /* SendMessage.storyboard in Resources */,
 			);
