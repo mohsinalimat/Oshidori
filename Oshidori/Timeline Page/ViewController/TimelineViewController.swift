@@ -20,6 +20,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         timelineService.delegate = self
+        timelineTableView.separatorStyle = .none
         
         setDZNEmptyDataDelegate()
         
@@ -96,7 +97,7 @@ extension TimelineViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate
     
     func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
         // now loadingとか欲しいかも
-        return UIImage(named: "Oshidori_null")
+        return UIImage(named: "Timeline_null")
     }
     
 }
@@ -111,5 +112,6 @@ extension TimelineViewController {
 extension TimelineViewController: TimelineServiceDelegate {
     func loaded() {
         timelineTableView.reloadData()
+        timelineTableView.separatorStyle = .singleLine
     }
 }
