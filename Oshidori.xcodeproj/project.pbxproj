@@ -382,7 +382,6 @@
 				676AF05F228171FB00BDB911 /* MessageRoomViewController.swift */,
 				676AF0612281720C00BDB911 /* MessageRoomViewController.storyboard */,
 				676AF0642281860F00BDB911 /* MessageRoomService.swift */,
-				676AF0662281863500BDB911 /* MessageRoomFirestoreRepository.swift */,
 			);
 			path = "MessageRoom Page";
 			sourceTree = "<group>";
@@ -393,6 +392,7 @@
 				677AB2FE2270227B00DBCD62 /* UserInformationFirestoreRepository.swift */,
 				67C7ABAB2279607100344D6E /* UserMessageInfoFirestoreRepository.swift */,
 				67579D7822787F4D007AA6DA /* TimelineFirestoreRepository.swift */,
+				676AF0662281863500BDB911 /* MessageRoomFirestoreRepository.swift */,
 				6732EA58227BEA6100C4AF6C /* RoomFirestoreRepository.swift */,
 			);
 			path = Repository;
