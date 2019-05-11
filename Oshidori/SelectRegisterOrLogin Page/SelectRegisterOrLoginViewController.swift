@@ -21,6 +21,11 @@ class SelectRegisterOrLoginViewController: UIViewController {
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
             //debugPrint("push permission finished")
         }
+        
+        // 自動ログインの機能
+        if User.shared.isLogin() {
+            moveMessagePage()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
