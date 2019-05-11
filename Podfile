@@ -29,5 +29,6 @@ pod 'Eureka'
 pod 'InputBarAccessoryView'
 pod 'ImageRow'
 pod 'Nuke'
+pod 'DZNEmptyDataSet'
 
 end
