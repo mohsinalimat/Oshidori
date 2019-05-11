@@ -66,7 +66,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        super .prepareForReuse()
+        super.prepareForReuse()
         if isCourageTapped {
             changeLayerForViewAfterTapped(courageView)
         } else {

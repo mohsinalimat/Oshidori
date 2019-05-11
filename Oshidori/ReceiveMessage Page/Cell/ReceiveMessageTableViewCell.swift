@@ -27,7 +27,7 @@ class ReceiveMessageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = OshidoriColor.background
+        
         addShadowForView(messageView)
         changeLayerForLabel(noticeNotReadLabel)
         if !isNotRead {
@@ -48,7 +48,7 @@ class ReceiveMessageTableViewCell: UITableViewCell {
     }
     
     override func prepareForReuse() {
-        super .prepareForReuse()
+        super.prepareForReuse()
         if !isNotRead {
             noticeNotReadLabel.isHidden = true
         } else {

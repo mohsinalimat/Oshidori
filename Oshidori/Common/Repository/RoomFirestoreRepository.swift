@@ -69,7 +69,7 @@ class RoomFirestoreRepository {
         roomMessageUserInfoRef.document(messageId).setData(["messageId":messageId])
     }
     
-    func delete(roomId: String, uid: String, messageId: String, completion: @escaping ([String]) -> ()) {
+    func delete(roomId: String, uid: String, messageId: String) {
         let roomMessageUserInfoRef = getRoomMessageUserInfoRef(roomId: roomId, uid: uid)
         roomMessageUserInfoRef.document(messageId).delete()
     }
