@@ -23,9 +23,9 @@ class SelectRegisterOrLoginViewController: UIViewController {
         }
         
         // 自動ログインの機能
-        if User.shared.isLogin() {
-            moveMessagePage()
-        }
+//        if User.shared.isLogin() {
+//            moveMessagePage()
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
