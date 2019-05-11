@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,6 +20,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         timelineService.delegate = self
+        
+        setDZNEmptyDataDelegate()
         
         // 上のぐるぐるの実装
         timelineTableView.refreshControl = refreshCtl
@@ -82,6 +85,20 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         // ここでリフレッシュのメソッドを呼ぶ
         timelineService.loadTimelineMessage()
     }
+}
+
+extension TimelineViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func setDZNEmptyDataDelegate() {
+        timelineTableView.emptyDataSetSource = self
+        timelineTableView.emptyDataSetDelegate = self
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        // now loadingとか欲しいかも
+        return UIImage(named: "Oshidori_null")
+    }
+    
 }
 
 extension TimelineViewController {
