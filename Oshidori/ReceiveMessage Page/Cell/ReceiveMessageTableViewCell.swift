@@ -39,14 +39,13 @@ class ReceiveMessageTableViewCell: UITableViewCell {
     
     func addShadowForView(_ view:UIView) {
         view.layer.masksToBounds = false
-        view.layer.shadowOffset = CGSize(width: 0, height: 5); // 上向きの影
+        view.layer.shadowOffset = CGSize(width: 0, height: 5); // 下向きの影
         view.layer.shadowRadius = 8
         view.layer.shadowOpacity = 0.3
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
     }
 
     

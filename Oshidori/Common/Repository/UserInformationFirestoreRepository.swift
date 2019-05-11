@@ -146,7 +146,10 @@ extension UserInformationFirestoreRepository {
         // 画像をJpegにする関数。数字は圧縮率。0.5がバランスが取れている。らしい。
         let data = image.jpegData(compressionQuality: 0.5)
         // firebase で決まっている関数。metadataも一緒に送っているよ。
-        dataRef.putData(data!, metadata: metadata) { (metadata, error) in
+        guard let tmpData = data else {
+            return
+        }
+        dataRef.putData(tmpData, metadata: metadata) { (metadata, error) in
             // error で比較しないんだ。firebaseのドキュメント読めばいいんだよ
             guard let metadata = metadata else {
                 completion(nil)

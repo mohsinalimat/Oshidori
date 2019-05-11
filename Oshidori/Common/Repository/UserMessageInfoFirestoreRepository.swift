@@ -43,7 +43,7 @@ extension UserMessageInfoFirestoreRepository {
             if let count = courageCount {
                 let addedCount = count + 1
                 let rep: [String : Any] = [
-                    "supportCount": addedCount
+                    "courageCount": addedCount
                 ]
                 usersMessagesInfoRef.updateData(rep)
             }

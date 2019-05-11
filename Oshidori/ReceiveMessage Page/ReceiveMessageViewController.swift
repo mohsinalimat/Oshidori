@@ -37,6 +37,9 @@ class ReceiveMessageViewController: UIViewController {
         super.viewDidLoad()
         moveSendMessageButton.isHidden = true
         
+        // 背景の色を指定
+        receiveTableView.backgroundColor = OshidoriColor.background
+        
         // 上のぐるぐるの実装
         receiveTableView.refreshControl = refreshCtl
         refreshCtl.tintColor = OshidoriColor.primary
