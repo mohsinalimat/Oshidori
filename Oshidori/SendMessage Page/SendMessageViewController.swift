@@ -179,12 +179,12 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         // Delete firebase
         // messageIDを取っておいて、それをタイムラインとユーザのroomIdと紐づけて参照を行うようにしよう
         let messageId = saveToTimelineMessages(message)
-        saveToRoomMessges(message: message, messageId: messageId)
+        saveToRoomMessage(message: message, messageId: messageId)
         let userMessageInfoRep = UserMessageInfoFirestoreRepository()
         userMessageInfoRep.updateMessageCount(uid: message.sender.senderId)
     }
         
-    func saveToRoomMessges(message: Message, messageId: String) {
+    func saveToRoomMessage(message: Message, messageId: String) {
         let roomMessageDocumentRef = getRoomMessagesCollectionRef().document(messageId)
         
         var sendMessage = message
@@ -194,8 +194,17 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
             if let _ = error {
                 return
             }
+            self.saveToRoomMessageFirstContent(message: message, messageId: messageId)
             self.delegate?.reloadReceiveMessageTableView()
         }
+    }
+    
+    func saveToRoomMessageFirstContent(message: Message, messageId: String) {
+        let roomMessagesCollectionRef = getRoomMessagesCollectionRef().document(messageId).collection("messages")
+        var storedMessage = message
+        storedMessage.content = message.sender.displayName + "さんから\n「" + message.content + "」\nのお手紙が届いたよ！"
+        storedMessage.sender = oshidoriSender()
+        roomMessagesCollectionRef.addDocument(data: storedMessage.representation)
     }
     
     func saveToTimelineMessages(_ message: Message) -> String {

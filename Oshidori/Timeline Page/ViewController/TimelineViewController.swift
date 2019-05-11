@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,6 +20,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         timelineService.delegate = self
+        timelineTableView.separatorStyle = .none
+        
+        setDZNEmptyDataDelegate()
         
         // 上のぐるぐるの実装
         timelineTableView.refreshControl = refreshCtl
@@ -84,6 +88,20 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 }
 
+extension TimelineViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    
+    func setDZNEmptyDataDelegate() {
+        timelineTableView.emptyDataSetSource = self
+        timelineTableView.emptyDataSetDelegate = self
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        // now loadingとか欲しいかも
+        return UIImage(named: "Timeline_null")
+    }
+    
+}
+
 extension TimelineViewController {
     @objc func refreshTimeline() {
         timelineService.refreshTimeline()
@@ -94,5 +112,6 @@ extension TimelineViewController {
 extension TimelineViewController: TimelineServiceDelegate {
     func loaded() {
         timelineTableView.reloadData()
+        timelineTableView.separatorStyle = .singleLine
     }
 }
