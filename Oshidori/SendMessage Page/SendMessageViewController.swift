@@ -363,7 +363,7 @@ extension SendMessageViewController: MessageInputBarDelegate {
                     
                     cleanTextBoxAndScroll(inputBar: inputBar)
                 case chatStatus.afterWroteMessage:
-                    reactionWhenSelectSendType(textMessage: str)
+                    reactionWhenSelectSendType(textMessage: str, inputBar)
                     
                 case chatStatus.selectSendType:
                     insertNewMessage(getOshidoriMessages())
@@ -409,6 +409,25 @@ extension SendMessageViewController: MessageInputBarDelegate {
             //タップしても反応しないようにする
         }
     }
+    
+    func reactionWhenSelectSendType(textMessage: String,_ inputBar: InputBarAccessoryView) {
+        if textMessage == EDIT {
+            if let content = sendTempMessage?.content {
+                inputBar.inputTextView.text = content
+            }
+            selectEditAction()
+        } else if textMessage == KEEP {
+            if let sendMessage = sendTempMessage {
+                selectKeepAction(sendMessage: sendMessage)
+            }
+        } else if textMessage == REWRITE {
+            selectResetAction()
+        } else {
+            //タップしても反応しないようにする
+        }
+    }
+    
+    
     
     func storeContentType_changeStatus(storeText: String) {
         createAndInsertMessageFromOshidori("「" + storeText + "」だね！")

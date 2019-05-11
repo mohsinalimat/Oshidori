@@ -13,6 +13,7 @@ class AppDescriptionViewController: FormViewController {
     
     let termsServiceUrl = "https://github.com/YamaTatsu10969/Oshidori_Documents/blob/master/TermsService.md"
     let privacyPolicyUrl = "https://github.com/YamaTatsu10969/Oshidori_Documents/blob/master/privacy_policy.md"
+    let contactUrl = "https://forms.gle/KQw5YUYuo7wFZSR28"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,21 @@ class AppDescriptionViewController: FormViewController {
                         UIApplication.shared.open(url)
                     }
                 })
-            
+            }
+            <<< LabelRow(){ row in
+                row.title = "お問い合わせ"
+                row.cellUpdate({ (LabelCell, LabelRow) in
+                    LabelCell.accessoryType = .disclosureIndicator
+                })
+                row.onCellSelection({ (_, _) in
+                    let tmpUrl = URL(string: self.contactUrl)
+                    guard let url = tmpUrl else {
+                        return
+                    }
+                    if( UIApplication.shared.canOpenURL(url) ) {
+                        UIApplication.shared.open(url)
+                    }
+                })
         }
     }
 
