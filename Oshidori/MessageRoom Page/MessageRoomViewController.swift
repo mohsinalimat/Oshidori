@@ -168,6 +168,9 @@ extension MessageRoomViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController is ReceiveMessageViewController {
             messageRoomService.messageList.removeAll()
+            if let messageId = self.messageId {
+                messageRoomService.deleteRoomUserInfo(messageId: messageId)
+            }
         }
     }
 
@@ -220,8 +223,6 @@ extension MessageRoomViewController: MessagesDisplayDelegate {
                 let avatar = Avatar(image: UIImage(named: "Oshidori_null"), initials: "")
                 avatarView.set(avatar: avatar)
             }
-//            let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "")
-//            avatarView.set(avatar: avatar)
         }
     }
     

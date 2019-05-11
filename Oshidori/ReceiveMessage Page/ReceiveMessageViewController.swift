@@ -26,13 +26,17 @@ class ReceiveMessageViewController: UIViewController {
     var userInformation : UserInformation?
     
     var messages:[RepresentationMessage] = []
-    var tmpMessages:[RepresentationMessage]?
+//    var tmpMessages:[RepresentationMessage]?
     
     @IBOutlet weak var receiveTableView: UITableView!
     
     private var lastDate: Date?
     
     private let refreshCtl = UIRefreshControl()
+    
+    // 未読を入れるため
+    private let roomUserInfoRep = RoomFirestoreRepository()
+    private var notReadMessage: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,16 +69,19 @@ class ReceiveMessageViewController: UIViewController {
                 })
             }) {
                 self.userInformation = userInformation
-                if !(userInformation.roomId.isEmpty) {
-                    self.moveSendMessageButton.isHidden = false
-                    // firestoreからデータを取って、テーブルビューに反映
-                    if let lastDate = self.lastDate {
-                        self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
-                    } else {
-                        self.getMessageDataFromFirestore_createTableView(lastDate: Date())
+                // 未読処理
+                self.getRoomUserInfo() {
+                    if !(userInformation.roomId.isEmpty) {
+                        self.moveSendMessageButton.isHidden = false
+                        // firestoreからデータを取って、テーブルビューに反映
+                        if let lastDate = self.lastDate {
+                            self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
+                        } else {
+                            self.getMessageDataFromFirestore_createTableView(lastDate: Date())
+                        }
                     }
-                    
                 }
+                
             } else {
                 debugPrint("Document does not exist")
             }
@@ -93,6 +100,23 @@ class ReceiveMessageViewController: UIViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
+
+extension ReceiveMessageViewController {
+    func getRoomUserInfo(completion: @escaping () -> ()) {
+        guard let userInfo = self.userInformation else {
+            return
+        }
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        roomUserInfoRep.getRoomMessageUserInfo(roomId: userInfo.roomId, uid: uid) { (notReadMessages) in
+            self.notReadMessage = notReadMessages
+            completion()
+        }
+    }
+}
+
+
 
 extension ReceiveMessageViewController {
     func addShadowForView(_ button: UIButton) {
@@ -118,7 +142,6 @@ extension ReceiveMessageViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSet
 extension ReceiveMessageViewController: ReceiveMessageViewControllerDelegate {
     @objc func reloadReceiveMessageTableView() {
         messages.removeAll()
-        tmpMessages = nil
         lastDate = nil
         getMessageDataFromFirestore_createTableView(lastDate: Date())
         refreshCtl.endRefreshing()
@@ -132,7 +155,6 @@ extension ReceiveMessageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return messages.count
         return messages.count
     }
     
@@ -140,9 +162,11 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         // as! ReceiveMessageTableViewCell をつけないと、ReceiveMessageTableViewCell.swiftのパーツをいじることができない。
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
         
-        guard let messages = tmpMessages else {
+        // 上を引っ張った時にインデックスエラーになるので、エラー回避
+        if messages.isEmpty {
             return UITableViewCell()
         }
+        
         let message = messages[indexPath.row]
         cell.setContentLabel(content: message.content ?? "")
         if let date = message.sentDate {
@@ -151,9 +175,9 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         }
         cell.setContentTypeImage(contentType: message.contentType ?? "")
         cell.setNameLabel(name: message.senderName ?? "")
-        // TODO: viewの角を丸くする
-        cell.tag = indexPath.row
+        cell.isNotRead = message.isNotRead
         
+
         return cell
     }
 }
@@ -210,7 +234,17 @@ extension ReceiveMessageViewController {
                 }
                 self.messages.append(receiveMessage)
             }
-            self.tmpMessages = self.messages
+            
+            
+            // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
+            // cellにも、messageにもisNotReadを持たせる。
+            for (_, messageId) in self.notReadMessage.enumerated() {
+                for (indexMessage, message) in self.messages.enumerated() {
+                    if message.messageId == messageId {
+                        self.messages[indexMessage].isNotRead = true
+                    }
+                }
+            }
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
         }
@@ -223,6 +257,26 @@ extension ReceiveMessageViewController: UITableViewDelegate {
         guard let messageId = messages[indexPath.row].messageId else {
             return
         }
+        
+        // 未読の削除の処理
+        guard let userInfo = userInformation else {
+            return
+        }
+        guard let uid = User.shared.getUid() else {
+            return
+        }
+        
+        // 下の３つは未読を消す処理
+        roomUserInfoRep.delete(roomId: userInfo.roomId, uid: uid, messageId: messageId)
+        for (index, removeId) in notReadMessage.enumerated() {
+            if removeId == messageId {
+                notReadMessage.remove(at: index)
+            }
+        }
+        messages[indexPath.row].isNotRead = false
+        // セルを単独で更新する
+        self.receiveTableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+        
         moveMessageRoomPage(messageId: messageId)
     }
     
@@ -232,6 +286,7 @@ extension ReceiveMessageViewController: UITableViewDelegate {
             return
         }
         VC.messageId = messageId
+        
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }

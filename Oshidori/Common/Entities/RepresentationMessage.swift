@@ -21,6 +21,7 @@ struct RepresentationMessage {
     var supportCount: Int?
     var isCourageTapped = false
     var isSupportTapped = false
+    var isNotRead = false
     
     init(content: String, senderId: String, senderName:String, messageId: String,
          sentDate: Date, contentType: String, courageCount: Int, supportCount: Int) {

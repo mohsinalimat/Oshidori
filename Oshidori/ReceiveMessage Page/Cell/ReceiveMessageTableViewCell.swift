@@ -18,18 +18,49 @@ class ReceiveMessageTableViewCell: UITableViewCell {
     @IBOutlet weak var contentTypeImage: UIImageView!
     @IBOutlet weak var messageView: UIView!
     
+    @IBOutlet weak var noticeNotReadLabel: UILabel!
+    
+    var isNotRead = false
+    
     let shadowView = UIView()
     let innerLayer = CALayer()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = OshidoriColor.background
+        
         addShadowForView(messageView)
+        changeLayerForLabel(noticeNotReadLabel)
+        if !isNotRead {
+            noticeNotReadLabel.isHidden = true
+        } else {
+            noticeNotReadLabel.isHidden = false
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         changeLayerForView(messageView)
+        if !isNotRead {
+            noticeNotReadLabel.isHidden = true
+        } else {
+            noticeNotReadLabel.isHidden = false
+        }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        if !isNotRead {
+            noticeNotReadLabel.isHidden = true
+        } else {
+            noticeNotReadLabel.isHidden = false
+        }
+    }
+    
+    func changeLayerForLabel(_ label: UILabel) {
+        label.layer.cornerRadius = 2
+        label.layer.masksToBounds = true
+        label.backgroundColor = OshidoriColor.primary
+        label.textColor = .white
     }
     
     func changeLayerForView(_ view: UIView) {

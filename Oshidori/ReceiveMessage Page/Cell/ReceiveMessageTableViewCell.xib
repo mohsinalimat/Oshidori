@@ -73,13 +73,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未読" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gCF-kN-qVo">
+                                <rect key="frame" x="339" y="19.5" width="36" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="83F-0f-z8O"/>
+                                    <constraint firstAttribute="height" constant="16" id="ym6-WS-F8f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="wun-LH-xab" secondAttribute="bottom" constant="10" id="2xf-Ti-T8i"/>
                             <constraint firstAttribute="trailing" secondItem="s1q-zi-X2l" secondAttribute="trailing" constant="10" id="8d1-SQ-SY8"/>
+                            <constraint firstItem="gCF-kN-qVo" firstAttribute="centerY" secondItem="Dge-xN-JfM" secondAttribute="centerY" id="9Dl-Rg-VPZ"/>
                             <constraint firstItem="s1q-zi-X2l" firstAttribute="leading" secondItem="dJ9-7X-TkB" secondAttribute="leading" constant="10" id="G0N-Sk-pyT"/>
                             <constraint firstItem="5ed-Wx-5rm" firstAttribute="top" secondItem="s1q-zi-X2l" secondAttribute="bottom" constant="10" id="It0-YH-5c4"/>
+                            <constraint firstAttribute="trailing" secondItem="gCF-kN-qVo" secondAttribute="trailing" constant="10" id="JYE-tI-zET"/>
                             <constraint firstAttribute="trailing" secondItem="wun-LH-xab" secondAttribute="trailing" constant="10" id="QFn-yJ-xPS"/>
                             <constraint firstItem="5ed-Wx-5rm" firstAttribute="leading" secondItem="dJ9-7X-TkB" secondAttribute="leading" constant="10" id="cYV-lB-uFF"/>
                             <constraint firstAttribute="trailing" secondItem="5ed-Wx-5rm" secondAttribute="trailing" constant="10" id="mSU-3U-WOg"/>
@@ -103,10 +115,10 @@
                 <outlet property="contentLabel" destination="wun-LH-xab" id="Yn8-jf-MoP"/>
                 <outlet property="contentTypeImage" destination="mFh-Xh-G1d" id="vUl-g6-Ovr"/>
                 <outlet property="contentTypeLabel" destination="ueq-tR-21q" id="GmR-D2-L83"/>
-                <outlet property="contentView" destination="H2p-sc-9uM" id="t9x-Sw-8wa"/>
                 <outlet property="dateLabel" destination="zy2-b5-QT0" id="KPS-q6-GZv"/>
                 <outlet property="messageView" destination="dJ9-7X-TkB" id="I9Z-pQ-w8J"/>
                 <outlet property="nameLabel" destination="9Bz-9b-KJ2" id="RUY-DC-fBq"/>
+                <outlet property="noticeNotReadLabel" destination="gCF-kN-qVo" id="gKP-dx-1xR"/>
             </connections>
             <point key="canvasLocation" x="-29.710144927536234" y="30.133928571428569"/>
         </tableViewCell>
