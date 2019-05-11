@@ -134,7 +134,7 @@ extension MypageViewController {
         case 1:
             moveUserEditPage()
         case 2:
-            moveMessagePage()
+            moveAppDescriptionPage()
         case 3:
             alertSelect("ログアウト", "本当にログアウトしますか？") {
                 // TODO :最終的にONにする
@@ -155,6 +155,12 @@ extension MypageViewController {
         }
         VC.partnerFlag = partnerFlag
         VC.partnerName = partnerName
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    func moveAppDescriptionPage() {
+        let storyboard = UIStoryboard(name: "AppDescriptionViewController", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "AppDescriptionViewController")
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
