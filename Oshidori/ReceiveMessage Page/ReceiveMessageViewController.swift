@@ -109,9 +109,13 @@ extension ReceiveMessageViewController {
         guard let uid = User.shared.getUid() else {
             return
         }
-        roomUserInfoRep.getRoomMessageUserInfo(roomId: userInfo.roomId, uid: uid) { (notReadMessages) in
-            self.notReadMessage = notReadMessages
+        if userInfo.roomId == "" {
             completion()
+        } else {
+            roomUserInfoRep.getRoomMessageUserInfo(roomId: userInfo.roomId, uid: uid) { (notReadMessages) in
+                self.notReadMessage = notReadMessages
+                completion()
+            }
         }
     }
 }
