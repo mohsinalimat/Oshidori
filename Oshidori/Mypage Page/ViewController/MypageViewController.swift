@@ -138,7 +138,7 @@ extension MypageViewController {
         case 3:
             alertSelect("ログアウト", "本当にログアウトしますか？") {
                 // TODO :最終的にONにする
-                // User.shared.logout()
+                User.shared.logout()
                 self.moveSelectRegisterOrLoginPage()
             }
         default:

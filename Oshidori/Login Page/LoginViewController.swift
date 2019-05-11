@@ -33,23 +33,23 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func didTapSignInButton(_ sender: Any) {
-//        if let credential = getCredential() {
-//            HUD.show(.progress)
-//            user.login(credential: credential, completion: {[weak self] in
-//                guard let self = self else {
-//                    return
-//                }
-//
-//                if self.user.isLogin() {
-//                    self.moveMessagePage()
-//                } else {
-//                    self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
-//                }
-//                HUD.hide()
-//            })
-//        }
-         //デバッグ用
-          self.moveMessagePage()
+        if let credential = getCredential() {
+            HUD.show(.progress)
+            user.login(credential: credential, completion: {[weak self] in
+                guard let self = self else {
+                    return
+                }
+
+                if self.user.isLogin() {
+                    self.moveMessagePage()
+                } else {
+                    self.alert("エラー", "メールアドレスかパスワードが間違っているようです😓", nil)
+                }
+                HUD.hide()
+            })
+        }
+//         //デバッグ用
+//          self.moveMessagePage()
     }
     
     func getCredential() -> Credential? {
