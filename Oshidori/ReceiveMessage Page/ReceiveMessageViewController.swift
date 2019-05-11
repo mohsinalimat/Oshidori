@@ -38,6 +38,8 @@ class ReceiveMessageViewController: UIViewController {
         super.viewDidLoad()
         moveSendMessageButton.isHidden = true
         
+        setDZNEmptyDataSetDelegate()
+        
         // 背景の色を指定
         receiveTableView.backgroundColor = OshidoriColor.background
         
@@ -88,6 +90,18 @@ class ReceiveMessageViewController: UIViewController {
         guard let VC = storyboard.instantiateViewController(withIdentifier: "SendMessageStoryboard") as? SendMessageViewController else { return }
         VC.delegate = self
         self.navigationController?.pushViewController(VC, animated: true)
+    }
+}
+
+extension ReceiveMessageViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+    
+    func setDZNEmptyDataSetDelegate() {
+        receiveTableView.emptyDataSetDelegate = self
+        receiveTableView.emptyDataSetSource = self
+    }
+    
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "ReceiveMessage_null")
     }
 }
 
