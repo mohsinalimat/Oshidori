@@ -38,6 +38,8 @@ class ReceiveMessageViewController: UIViewController {
     private let roomUserInfoRep = RoomFirestoreRepository()
     private var notReadMessage: [String] = []
     
+    private var receiveMessageListener: ListenerRegistration?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         moveSendMessageButton.isHidden = true
@@ -69,18 +71,21 @@ class ReceiveMessageViewController: UIViewController {
                 })
             }) {
                 self.userInformation = userInformation
+                // listenrの設置
+                self.setReceiveMessagesListner()
                 // 未読処理
-                self.getRoomUserInfo() {
-                    if !(userInformation.roomId.isEmpty) {
-                        self.moveSendMessageButton.isHidden = false
-                        // firestoreからデータを取って、テーブルビューに反映
-                        if let lastDate = self.lastDate {
-                            self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
-                        } else {
-                            self.getMessageDataFromFirestore_createTableView(lastDate: Date())
-                        }
-                    }
-                }
+                self.resetMessageInfo()
+//                self.getRoomUserInfo() {
+//                    if !(userInformation.roomId.isEmpty) {
+//                        self.moveSendMessageButton.isHidden = false
+//                        // firestoreからデータを取って、テーブルビューに反映
+//                        if let lastDate = self.lastDate {
+//                            self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
+//                        } else {
+//                            self.getMessageDataFromFirestore_createTableView(lastDate: Date())
+//                        }
+//                    }
+//                }
                 
             } else {
                 debugPrint("Document does not exist")
@@ -115,6 +120,24 @@ extension ReceiveMessageViewController {
             roomUserInfoRep.getRoomMessageUserInfo(roomId: userInfo.roomId, uid: uid) { (notReadMessages) in
                 self.notReadMessage = notReadMessages
                 completion()
+            }
+        }
+    }
+    
+    func resetMessageInfo() {
+        // 未読処理
+        guard let userInfo = userInformation else {
+            return
+        }
+        self.getRoomUserInfo() {
+            if !(userInfo.roomId.isEmpty) {
+                self.moveSendMessageButton.isHidden = false
+                // firestoreからデータを取って、テーブルビューに反映
+                if let lastDate = self.lastDate {
+                    self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
+                } else {
+                    self.getMessageDataFromFirestore_createTableView(lastDate: Date())
+                }
             }
         }
     }
@@ -239,7 +262,6 @@ extension ReceiveMessageViewController {
                 self.messages.append(receiveMessage)
             }
             
-            
             // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
             // cellにも、messageにもisNotReadを持たせる。
             for (_, messageId) in self.notReadMessage.enumerated() {
@@ -252,6 +274,15 @@ extension ReceiveMessageViewController {
             // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
             self.receiveTableView.reloadData()
         }
+    }
+    
+    func setReceiveMessagesListner() {
+        guard let collectionRef = getRoomMessagesCollectionRef() else {
+            return
+        }
+        receiveMessageListener = collectionRef.addSnapshotListener({ (querySnapshot, error) in
+            self.reloadReceiveMessageTableView()
+        })
     }
 }
 
