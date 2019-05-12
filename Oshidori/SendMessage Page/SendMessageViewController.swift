@@ -145,7 +145,6 @@ extension SendMessageViewController {
         }
         roomUserInfoRep.addRoomMessageUserInfo(roomId: userInfo.roomId, uid: userInfo.partnerId,
                                                messageId: messageId) {
-                                                
         }
     }
 }
@@ -217,7 +216,7 @@ extension SendMessageViewController {
                 return
             }
             self.saveToRoomMessageFirstContent(message: message, messageId: messageId)
-            self.delegate?.reloadReceiveMessageTableView()
+//            self.delegate?.reloadReceiveMessageTableView()
         }
     }
     

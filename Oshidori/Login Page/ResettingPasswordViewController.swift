@@ -13,12 +13,14 @@ class ResettingPasswordViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var alertTextView: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         sendButton.layer.cornerRadius = 8.0
         sendButton.backgroundColor = OshidoriColor.primary
+        alertTextView.font = .systemFont(ofSize: 12)
 
     }
     
