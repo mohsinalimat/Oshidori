@@ -29,18 +29,23 @@ class EditUserInfoService {
         userInfoRep.getUserInfo(completion: { (userInfo) in
             userInfo.name = name
             self.userInfoRep.update(userInfo, completion: {
-                // ここでルームを更新する
-                self.roomRep.getRoomInfo(roomId: userInfo.roomId, completion: { (room) in
-                    var updateRoom = room
-                    if userInfo.partnerId == updateRoom.partnerId {
-                        updateRoom.userName = name
-                    } else {
-                        updateRoom.partnerName = name
-                    }
-                    self.roomRep.updateRoom(updateRoom: updateRoom, completion: {
-                        self.delegate?.updated()
+                
+                if self.isExistPartner(userInfo: userInfo) {
+                    // ここでルームを更新する
+                    self.roomRep.getRoomInfo(roomId: userInfo.roomId, completion: { (room) in
+                        var updateRoom = room
+                        if userInfo.partnerId == updateRoom.partnerId {
+                            updateRoom.userName = name
+                        } else {
+                            updateRoom.partnerName = name
+                        }
+                        self.roomRep.updateRoom(updateRoom: updateRoom, completion: {
+                            self.delegate?.updated()
+                        })
                     })
-                })
+                } else {
+                    self.delegate?.updated()
+                }
             })
         })
     }
@@ -58,18 +63,23 @@ class EditUserInfoService {
         userInfoRep.getUserInfo(completion: { (userInfo) in
             userInfo.imageUrl = imageUrl
             self.userInfoRep.update(userInfo, completion: {
-                // ここでルームを更新する
-                self.roomRep.getRoomInfo(roomId: userInfo.roomId, completion: { (room) in
-                    var updateRoom = room
-                    if userInfo.partnerId == updateRoom.partnerId {
-                        updateRoom.userImageUrl = imageUrl
-                    } else {
-                        updateRoom.partnerImageUrl = imageUrl
-                    }
-                    self.roomRep.updateRoom(updateRoom: updateRoom, completion: {
-                        self.delegate?.updated()
+                
+                if self.isExistPartner(userInfo: userInfo) {
+                    // ここでルームを更新する
+                    self.roomRep.getRoomInfo(roomId: userInfo.roomId, completion: { (room) in
+                        var updateRoom = room
+                        if userInfo.partnerId == updateRoom.partnerId {
+                            updateRoom.userImageUrl = imageUrl
+                        } else {
+                            updateRoom.partnerImageUrl = imageUrl
+                        }
+                        self.roomRep.updateRoom(updateRoom: updateRoom, completion: {
+                            self.delegate?.updated()
+                        })
                     })
-                })
+                } else {
+                    self.delegate?.updated()
+                }
             })
         })
     }
@@ -79,6 +89,13 @@ class EditUserInfoService {
             self.editUserInfo = userInfo
             self.delegate?.loaded()
         }
+    }
+    
+    func isExistPartner(userInfo:UserInformation) -> Bool {
+        if userInfo.roomId == "" {
+            return false
+        }
+        return true
     }
     
 }

@@ -19,7 +19,8 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
         setDelegate()
-
+        
+        checkAuthorization()
         // カメラやマイクのデバイスそのものを管理するオブジェクトを生成（ここではワイドアングルカメラ・ビデオ・背面カメラを指定）
         let discoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera],
                                                                 mediaType: .video,
@@ -60,6 +61,42 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
                 // TODO:エラー処理
             }
         }
+    }
+    
+    func checkAuthorization() {
+        let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        
+        if status == AVAuthorizationStatus.authorized {
+            // アクセス許可あり
+        } else if status == AVAuthorizationStatus.restricted {
+            // ユーザー自身にカメラへのアクセスが許可されていない
+            setAuthorization()
+        } else if status == AVAuthorizationStatus.notDetermined {
+            // まだアクセス許可を聞いていない
+            setAuthorization()
+        } else if status == AVAuthorizationStatus.denied {
+            // アクセス許可されていない
+            setAuthorization()
+        }
+    }
+    
+    func setAuthorization() {
+        let title: String = "カメラのアクセスに失敗しました"
+        let message: String = "カメラの許可がないため、パートナーのQRコードを読み取れません。「設定」からカメラの許可をお願いいたします！"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "設定", style: .default, handler: { (_) -> Void in
+            guard let settingsURL = URL(string: UIApplication.openSettingsURLString ) else {
+                return
+            }
+            UIApplication.shared.open(settingsURL, options: [:], completionHandler: nil)
+            self.navigationController?.popViewController(animated: true)
+        })
+        let closeAction: UIAlertAction = UIAlertAction(title: "閉じる", style: .cancel, handler: {(_) -> Void in
+            self.navigationController?.popViewController(animated: true)
+        })
+        alert.addAction(settingsAction)
+        alert.addAction(closeAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {

@@ -26,7 +26,6 @@ class ReceiveMessageViewController: UIViewController {
     var userInformation : UserInformation?
     
     var messages:[RepresentationMessage] = []
-//    var tmpMessages:[RepresentationMessage]?
     
     @IBOutlet weak var receiveTableView: UITableView!
     
@@ -71,22 +70,13 @@ class ReceiveMessageViewController: UIViewController {
                 })
             }) {
                 self.userInformation = userInformation
+                if userInformation.roomId == "" {
+                    return
+                }
                 // listenrの設置
                 self.setReceiveMessagesListner()
-                // 未読処理
-                self.resetMessageInfo()
-//                self.getRoomUserInfo() {
-//                    if !(userInformation.roomId.isEmpty) {
-//                        self.moveSendMessageButton.isHidden = false
-//                        // firestoreからデータを取って、テーブルビューに反映
-//                        if let lastDate = self.lastDate {
-//                            self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
-//                        } else {
-//                            self.getMessageDataFromFirestore_createTableView(lastDate: Date())
-//                        }
-//                    }
-//                }
-                
+
+
             } else {
                 debugPrint("Document does not exist")
             }
@@ -170,7 +160,7 @@ extension ReceiveMessageViewController: ReceiveMessageViewControllerDelegate {
     @objc func reloadReceiveMessageTableView() {
         messages.removeAll()
         lastDate = nil
-        getMessageDataFromFirestore_createTableView(lastDate: Date())
+        resetMessageInfo()
         refreshCtl.endRefreshing()
     }
 }
@@ -248,6 +238,7 @@ extension ReceiveMessageViewController {
         guard  let collectionRef = getRoomMessagesCollectionRef() else {
             return
         }
+        
         collectionRef.order(by: "sentDate", descending: true).limit(to: 10).start(at: [lastDate]).getDocuments() { (querySnapshot, err) in
             // エラーだったらリターンするよ
             guard err == nil else { return }
