@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TimelineMessageTableViewCellDelegate: class {
+    func shareButtonTapped(index: Int)
+}
+
 class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var contentLabel: UILabel!
@@ -35,6 +39,8 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     var isCourageTapped = false
     var isSupportTapped = false
+    
+    var delegate: TimelineMessageTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -79,16 +85,13 @@ class TimelineMessageTableViewCell: UITableViewCell {
         }
     }
     
+    @IBAction func didTapShareButton(_ sender: Any) {
+        delegate?.shareButtonTapped(index: self.tag)
+    }
+    
+    
     @IBAction func didTapCourageButton(_ sender: Any) {
         changeLayerForViewAfterTapped(courageView)
-        guard let strCourageCount = courageCountLabel.text else {
-            return
-        }
-        if let intCourageCount = Int(strCourageCount) {
-            let count = intCourageCount + 1
-            courageCountLabel.text = String(count)
-        }
-        // messageIdを持っておけば探せるのでは？
         guard let messageId = messageId, let uid = uid else {
             return
         }
@@ -98,13 +101,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBAction func didTapSupportButton(_ sender: Any) {
         changeLayerForViewAfterTapped(supportView)
-        guard let strSupportCount = supportCountLabel.text else {
-            return
-        }
-        if let intSupportCount = Int(strSupportCount) {
-            let count = intSupportCount + 1
-            supportCountLabel.text = String(count)
-        }
         guard let messageId = messageId, let uid = uid else {
             return
         }
@@ -113,10 +109,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     func changeLayerForViewBeforeTap(_ view: UIView) {
-        view.layer.cornerRadius = 8
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.backgroundColor = OshidoriColor.background
         if view == courageView {
             courageImageView.image = UIImage(named: "Courage_before")
             courageTextLabel.textColor = .lightGray
@@ -133,21 +125,31 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     func changeLayerForViewAfterTapped(_ view: UIView) {
-        view.layer.cornerRadius = 8
-        view.layer.borderWidth = 1
-        view.layer.borderColor = OshidoriColor.primary.cgColor
-        view.backgroundColor = OshidoriColor.primary
         if view == courageView {
             courageImageView.image = UIImage(named: "Courage_after")
-            courageTextLabel.textColor = .white
-            courageCountLabel.textColor = .white
+            courageTextLabel.textColor = OshidoriColor.primary
+            courageCountLabel.textColor = OshidoriColor.primary
             courageButton.isEnabled = false
+            guard let strCourageCount = courageCountLabel.text else {
+                return
+            }
+            if let intCourageCount = Int(strCourageCount) {
+                let count = intCourageCount + 1
+                courageCountLabel.text = String(count)
+            }
         }
         if view == supportView{
             supportImageView.image = UIImage(named: "Support_after")
-            supportTextLabel.textColor = .white
-            supportCountLabel.textColor = .white
+            supportTextLabel.textColor = OshidoriColor.primary
+            supportCountLabel.textColor = OshidoriColor.primary
             supportButton.isEnabled = false
+            guard let strSupportCount = supportCountLabel.text else {
+                return
+            }
+            if let intSupportCount = Int(strSupportCount) {
+                let count = intSupportCount + 1
+                supportCountLabel.text = String(count)
+            }
         }
     }
     

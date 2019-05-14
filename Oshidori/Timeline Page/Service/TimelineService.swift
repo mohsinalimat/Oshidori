@@ -26,6 +26,10 @@ class TimelineService {
     
     private var keepLastDate: Date?
     
+    func getTimelineMessages() -> [RepresentationMessage] {
+        return timelineMessages
+    }
+    
     func updateCourageCountForMessage(messageId: String) {
         timelineMessageRep.updateCourageCount(messageId: messageId)
         
