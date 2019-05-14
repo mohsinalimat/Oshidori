@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -161,14 +160,23 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Zg-zD-J8s">
+                        <rect key="frame" x="510" y="49.5" width="46" height="30"/>
+                        <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="didTapShareButton:" destination="eZX-PD-zo1" eventType="touchUpInside" id="RKH-j8-E3W"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="CBV-pB-YLC" firstAttribute="leading" secondItem="1WW-p3-kof" secondAttribute="leading" constant="20" id="0GE-LS-JvS"/>
                     <constraint firstAttribute="bottom" secondItem="TTc-uT-XF9" secondAttribute="bottom" constant="15" id="2h6-5R-Ig2"/>
                     <constraint firstAttribute="trailing" secondItem="cJg-oO-lYK" secondAttribute="trailing" constant="20" id="3hx-Xy-1nV"/>
+                    <constraint firstItem="8Zg-zD-J8s" firstAttribute="top" secondItem="cJg-oO-lYK" secondAttribute="bottom" constant="20" id="YxC-4E-n6W"/>
                     <constraint firstItem="xUY-9R-Bs8" firstAttribute="top" secondItem="1WW-p3-kof" secondAttribute="top" constant="15" id="eBM-ED-YP3"/>
                     <constraint firstItem="TTc-uT-XF9" firstAttribute="leading" secondItem="1WW-p3-kof" secondAttribute="leading" constant="20" id="fIf-ko-aFR"/>
                     <constraint firstItem="cJg-oO-lYK" firstAttribute="top" secondItem="1WW-p3-kof" secondAttribute="top" constant="15" id="i6K-Wl-TmJ"/>
+                    <constraint firstItem="8Zg-zD-J8s" firstAttribute="trailing" secondItem="1WW-p3-kof" secondAttribute="trailingMargin" constant="20" id="oHH-pe-TAa"/>
                     <constraint firstAttribute="trailing" secondItem="CBV-pB-YLC" secondAttribute="trailing" constant="20" id="pBv-Uy-Lz4"/>
                     <constraint firstAttribute="trailing" secondItem="TTc-uT-XF9" secondAttribute="trailing" constant="20" id="qog-oR-cnB"/>
                     <constraint firstItem="CBV-pB-YLC" firstAttribute="top" secondItem="xUY-9R-Bs8" secondAttribute="bottom" constant="10" id="tTb-0W-f6w"/>

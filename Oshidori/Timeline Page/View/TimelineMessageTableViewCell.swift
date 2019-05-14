@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TimelineMessageTableViewCellDelegate: class {
+    func shareButtonTapped(index: Int)
+}
+
 class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var contentLabel: UILabel!
@@ -35,6 +39,8 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     var isCourageTapped = false
     var isSupportTapped = false
+    
+    var delegate: TimelineMessageTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -78,6 +84,11 @@ class TimelineMessageTableViewCell: UITableViewCell {
             changeLayerForViewBeforeTap(supportView)
         }
     }
+    
+    @IBAction func didTapShareButton(_ sender: Any) {
+        delegate?.shareButtonTapped(index: self.tag)
+    }
+    
     
     @IBAction func didTapCourageButton(_ sender: Any) {
         changeLayerForViewAfterTapped(courageView)
@@ -142,6 +153,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
             courageTextLabel.textColor = .white
             courageCountLabel.textColor = .white
             courageButton.isEnabled = false
+            // TODO: ここに＋1するものを追加すればOK
         }
         if view == supportView{
             supportImageView.image = UIImage(named: "Support_after")

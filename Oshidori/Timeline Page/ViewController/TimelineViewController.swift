@@ -8,6 +8,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import Accounts
 
 class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -70,12 +71,15 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.setSupportCountLabel(supportCount: message.supportCount ?? 0)
         cell.setIsCourageTapped(isTapped: message.isCourageTapped)
         cell.setIsSupportTapped(isTapped: message.isSupportTapped)
+        cell.delegate = self
+        cell.tag = indexPath.row
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+
     }
     
     // 下から５件くらいになったらリフレッシュ
@@ -114,4 +118,71 @@ extension TimelineViewController: TimelineServiceDelegate {
         timelineTableView.reloadData()
         timelineTableView.separatorStyle = .singleLine
     }
+}
+
+extension TimelineViewController: TimelineMessageTableViewCellDelegate {
+    func shareButtonTapped(index: Int) {
+        let messages = timelineService.getTimelineMessages()
+        if messages.isEmpty {
+            return
+        }
+        guard let shareText = messages[index].content else {
+            return
+        }
+        let text = shareText + " #おしどり"
+        let activityItems = [text]
+        debugPrint(shareText)
+        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        // 使用しないアクティビティタイプ
+        let excludedActivityTypes = [
+            UIActivity.ActivityType.addToReadingList,
+            UIActivity.ActivityType.airDrop,
+            UIActivity.ActivityType.assignToContact,
+            UIActivity.ActivityType.message,
+            UIActivity.ActivityType.saveToCameraRoll,
+            UIActivity.ActivityType.print,
+            UIActivity.ActivityType.mail,
+            UIActivity.ActivityType.postToWeibo,
+            UIActivity.ActivityType.postToVimeo,
+            UIActivity.ActivityType.postToFlickr,
+            UIActivity.ActivityType.markupAsPDF,
+        ]
+        activityVC.excludedActivityTypes = excludedActivityTypes
+        // UIActivityViewControllerを表示
+        self.present(activityVC, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+//    func shareOshidoriContent() {
+//        let messages = timelineService.getTimelineMessages()
+//        if messages.isEmpty {
+//            return
+//        }
+//        guard let shareText = messages[indexPath.row].content else {
+//            return
+//        }
+//        let text = shareText + " #おしどり"
+//        let activityItems = [text]
+//        debugPrint(shareText)
+//        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+//        // 使用しないアクティビティタイプ
+//        let excludedActivityTypes = [
+//            UIActivity.ActivityType.addToReadingList,
+//            UIActivity.ActivityType.airDrop,
+//            UIActivity.ActivityType.assignToContact,
+//            UIActivity.ActivityType.message,
+//            UIActivity.ActivityType.saveToCameraRoll,
+//            UIActivity.ActivityType.print,
+//            UIActivity.ActivityType.mail,
+//            UIActivity.ActivityType.postToWeibo,
+//            UIActivity.ActivityType.postToVimeo,
+//            UIActivity.ActivityType.postToFlickr,
+//            UIActivity.ActivityType.markupAsPDF,
+//        ]
+//        activityVC.excludedActivityTypes = excludedActivityTypes
+//        // UIActivityViewControllerを表示
+//        self.present(activityVC, animated: true, completion: nil)
+//    }
 }
