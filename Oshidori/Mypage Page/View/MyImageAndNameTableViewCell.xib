@@ -29,15 +29,16 @@
                         <rect key="frame" x="30" y="130" width="343" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="H6c-ER-Xon"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Lce-Q2-sVQ"/>
                         </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucM-cg-kXZ">
-                        <rect key="frame" x="30" y="165" width="343" height="16"/>
+                        <rect key="frame" x="30" y="165" width="343" height="14"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="IB6-Tt-Od1"/>
+                            <constraint firstAttribute="height" constant="14" id="IB6-Tt-Od1"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="プロフィールを編集する"/>

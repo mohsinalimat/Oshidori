@@ -32,7 +32,7 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewWillAppear(false)
         getInformation()
         mypageTableView.reloadData()
-        mypageTableView.tableFooterView = UIView() 
+        mypageTableView.tableFooterView = UIView()
     }
 
 }
@@ -143,6 +143,13 @@ extension MypageViewController {
         default:
             break
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 100
+        }
+        return 0
     }
 }
 
