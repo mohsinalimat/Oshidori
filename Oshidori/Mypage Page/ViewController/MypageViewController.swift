@@ -80,6 +80,7 @@ extension MypageViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
+            cell.delegate = self
             if let userInfo = mypageService.userInfo {
                 cell.setUserImage(imageUrl: userInfo.imageUrl)
                 cell.setUserName(name: userInfo.name)
@@ -155,12 +156,14 @@ extension MypageViewController {
         }
         VC.partnerFlag = partnerFlag
         VC.partnerName = partnerName
+        VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func moveAppDescriptionPage() {
         let storyboard = UIStoryboard(name: "AppDescriptionViewController", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "AppDescriptionViewController")
+        VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
@@ -200,5 +203,11 @@ extension MypageViewController: MypageServiceDelegate {
     
     func loaded() {
         
+    }
+}
+
+extension MypageViewController: MyImageAndNameTableViewCellDelegate {
+    func tapped() {
+        moveUserEditPage()
     }
 }

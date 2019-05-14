@@ -8,17 +8,24 @@
 
 import UIKit
 import Nuke
-import TextFieldEffects
+
+protocol MyImageAndNameTableViewCellDelegate: class {
+    func tapped()
+}
 
 class MyImageAndNameTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var userNameField: HoshiTextField!
+    @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userImage: UIImageView!
-    var url :URL?
+    @IBOutlet weak var moveEditUserInfoButton: UIButton!
+    
+    var delegate: MyImageAndNameTableViewCellDelegate?
+    
+    var url: URL?
         
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setButton()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,7 +37,7 @@ class MyImageAndNameTableViewCell: UITableViewCell {
     func setUserImage(imageUrl :String?) {
         userImage.contentMode = .scaleAspectFill
         userImage.clipsToBounds = true
-        userImage.layer.cornerRadius = self.frame.height / 3.0 // 3.0にしたら丸になった
+        userImage.layer.cornerRadius = userImage.frame.width / 2 // 3.0にしたら丸になった
         guard let strUrl = imageUrl else {
             return
         }
@@ -48,4 +55,12 @@ class MyImageAndNameTableViewCell: UITableViewCell {
         userNameField.text = name
     }
     
+    func setButton() {
+        moveEditUserInfoButton.setTitleColor(OshidoriColor.primary, for: .normal)
+    }
+    
+    @IBAction func didTapMoveEditUserInfoButton(_ sender: Any) {
+        // moveUserEditPage()
+        delegate?.tapped()
+    }
 }
