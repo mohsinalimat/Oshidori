@@ -148,6 +148,13 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
             UIActivity.ActivityType.markupAsPDF,
         ]
         activityVC.excludedActivityTypes = excludedActivityTypes
+     
+        // iPadのクラッシュを防ぐ
+        if let popoverController = activityVC.popoverPresentationController {
+            popoverController.sourceRect = CGRect(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
+            popoverController.sourceView = self.view
+            popoverController.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+        }
         // UIActivityViewControllerを表示
         self.present(activityVC, animated: true, completion: nil)
     }

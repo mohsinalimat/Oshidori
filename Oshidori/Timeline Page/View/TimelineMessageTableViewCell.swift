@@ -92,14 +92,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBAction func didTapCourageButton(_ sender: Any) {
         changeLayerForViewAfterTapped(courageView)
-        guard let strCourageCount = courageCountLabel.text else {
-            return
-        }
-        if let intCourageCount = Int(strCourageCount) {
-            let count = intCourageCount + 1
-            courageCountLabel.text = String(count)
-        }
-        // messageIdを持っておけば探せるのでは？
         guard let messageId = messageId, let uid = uid else {
             return
         }
@@ -109,13 +101,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBAction func didTapSupportButton(_ sender: Any) {
         changeLayerForViewAfterTapped(supportView)
-        guard let strSupportCount = supportCountLabel.text else {
-            return
-        }
-        if let intSupportCount = Int(strSupportCount) {
-            let count = intSupportCount + 1
-            supportCountLabel.text = String(count)
-        }
         guard let messageId = messageId, let uid = uid else {
             return
         }
@@ -145,13 +130,26 @@ class TimelineMessageTableViewCell: UITableViewCell {
             courageTextLabel.textColor = OshidoriColor.primary
             courageCountLabel.textColor = OshidoriColor.primary
             courageButton.isEnabled = false
-            // TODO: ここに＋1するものを追加すればOK
+            guard let strCourageCount = courageCountLabel.text else {
+                return
+            }
+            if let intCourageCount = Int(strCourageCount) {
+                let count = intCourageCount + 1
+                courageCountLabel.text = String(count)
+            }
         }
         if view == supportView{
             supportImageView.image = UIImage(named: "Support_after")
             supportTextLabel.textColor = OshidoriColor.primary
             supportCountLabel.textColor = OshidoriColor.primary
             supportButton.isEnabled = false
+            guard let strSupportCount = supportCountLabel.text else {
+                return
+            }
+            if let intSupportCount = Int(strSupportCount) {
+                let count = intSupportCount + 1
+                supportCountLabel.text = String(count)
+            }
         }
     }
     

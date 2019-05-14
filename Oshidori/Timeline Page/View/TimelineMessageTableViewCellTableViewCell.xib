@@ -176,10 +176,20 @@
                                             <constraint firstItem="bhu-in-vEn" firstAttribute="leading" secondItem="zmk-mH-mae" secondAttribute="trailing" constant="3" id="Dfy-Cr-gRt"/>
                                         </constraints>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bM7-4V-uFy">
+                                        <rect key="frame" x="0.0" y="0.0" width="165.5" height="35"/>
+                                        <connections>
+                                            <action selector="didTapShareButton:" destination="eZX-PD-zo1" eventType="touchUpInside" id="w6n-G5-ZQa"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="bM7-4V-uFy" firstAttribute="leading" secondItem="aGK-NJ-osk" secondAttribute="leading" id="Q4A-h8-YQv"/>
                                     <constraint firstItem="6iF-4F-yOZ" firstAttribute="centerY" secondItem="aGK-NJ-osk" secondAttribute="centerY" id="WQn-jh-fir"/>
+                                    <constraint firstItem="bM7-4V-uFy" firstAttribute="top" secondItem="aGK-NJ-osk" secondAttribute="top" id="hYS-GC-HG9"/>
                                     <constraint firstAttribute="trailing" secondItem="6iF-4F-yOZ" secondAttribute="trailing" id="s29-a9-zkp"/>
+                                    <constraint firstAttribute="trailing" secondItem="bM7-4V-uFy" secondAttribute="trailing" id="se8-ml-RKw"/>
+                                    <constraint firstAttribute="bottom" secondItem="bM7-4V-uFy" secondAttribute="bottom" id="uFw-Br-oFt"/>
                                 </constraints>
                             </view>
                         </subviews>
