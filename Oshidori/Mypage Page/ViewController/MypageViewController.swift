@@ -17,7 +17,7 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var partnerFlag: Bool = false
     var partnerName: String = ""
     
-    let settingTitleArray:[String] = ["パートナー設定", "ユーザー情報", "このアプリについて", "ログアウト"]
+    let settingTitleArray:[String] = ["パートナー設定", "このアプリについて", "ログアウト"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,10 +65,10 @@ extension MypageViewController {
             return nil
             
         case 1:
-            return "お手紙"
+            return " "
             
         case 2:
-            return "設定"
+            return " "
             
         default:
             return nil
@@ -133,10 +133,8 @@ extension MypageViewController {
         case 0:
             movePartnerInfoPage()
         case 1:
-            moveUserEditPage()
-        case 2:
             moveAppDescriptionPage()
-        case 3:
+        case 2:
             alertSelect("ログアウト", "本当にログアウトしますか？") {
                 // TODO :最終的にONにする
                 User.shared.logout()
