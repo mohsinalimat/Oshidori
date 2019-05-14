@@ -124,10 +124,6 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     func changeLayerForViewBeforeTap(_ view: UIView) {
-        view.layer.cornerRadius = 8
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.backgroundColor = .none
         if view == courageView {
             courageImageView.image = UIImage(named: "Courage_before")
             courageTextLabel.textColor = .lightGray
@@ -144,21 +140,17 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     func changeLayerForViewAfterTapped(_ view: UIView) {
-        view.layer.cornerRadius = 8
-        view.layer.borderWidth = 1
-        view.layer.borderColor = OshidoriColor.primary.cgColor
-        view.backgroundColor = .none
         if view == courageView {
             courageImageView.image = UIImage(named: "Courage_after")
-            courageTextLabel.textColor = .white
-            courageCountLabel.textColor = .white
+            courageTextLabel.textColor = OshidoriColor.primary
+            courageCountLabel.textColor = OshidoriColor.primary
             courageButton.isEnabled = false
             // TODO: ここに＋1するものを追加すればOK
         }
         if view == supportView{
             supportImageView.image = UIImage(named: "Support_after")
-            supportTextLabel.textColor = .white
-            supportCountLabel.textColor = .white
+            supportTextLabel.textColor = OshidoriColor.primary
+            supportCountLabel.textColor = OshidoriColor.primary
             supportButton.isEnabled = false
         }
     }
