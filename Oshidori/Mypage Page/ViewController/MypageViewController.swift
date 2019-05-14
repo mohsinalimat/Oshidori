@@ -17,7 +17,7 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var partnerFlag: Bool = false
     var partnerName: String = ""
     
-    let settingTitleArray:[String] = ["パートナー設定", "ユーザー情報", "このアプリについて", "ログアウト"]
+    let settingTitleArray:[String] = ["パートナー設定", "このアプリについて", "ログアウト"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +32,7 @@ class MypageViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewWillAppear(false)
         getInformation()
         mypageTableView.reloadData()
-        mypageTableView.tableFooterView = UIView() 
+        mypageTableView.tableFooterView = UIView()
     }
 
 }
@@ -65,10 +65,10 @@ extension MypageViewController {
             return nil
             
         case 1:
-            return "お手紙"
+            return " "
             
         case 2:
-            return "設定"
+            return " "
             
         default:
             return nil
@@ -80,6 +80,7 @@ extension MypageViewController {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyImageAndNameCell", for: indexPath) as! MyImageAndNameTableViewCell
+            cell.delegate = self
             if let userInfo = mypageService.userInfo {
                 cell.setUserImage(imageUrl: userInfo.imageUrl)
                 cell.setUserName(name: userInfo.name)
@@ -132,10 +133,8 @@ extension MypageViewController {
         case 0:
             movePartnerInfoPage()
         case 1:
-            moveUserEditPage()
-        case 2:
             moveAppDescriptionPage()
-        case 3:
+        case 2:
             alertSelect("ログアウト", "本当にログアウトしますか？") {
                 // TODO :最終的にONにする
                 User.shared.logout()
@@ -144,6 +143,13 @@ extension MypageViewController {
         default:
             break
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 100
+        }
+        return 0
     }
 }
 
@@ -155,12 +161,14 @@ extension MypageViewController {
         }
         VC.partnerFlag = partnerFlag
         VC.partnerName = partnerName
+        VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func moveAppDescriptionPage() {
         let storyboard = UIStoryboard(name: "AppDescriptionViewController", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "AppDescriptionViewController")
+        VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
@@ -200,5 +208,11 @@ extension MypageViewController: MypageServiceDelegate {
     
     func loaded() {
         
+    }
+}
+
+extension MypageViewController: MyImageAndNameTableViewCellDelegate {
+    func tapped() {
+        moveUserEditPage()
     }
 }

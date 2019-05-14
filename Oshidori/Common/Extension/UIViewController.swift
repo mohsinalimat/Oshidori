@@ -71,12 +71,14 @@ extension UIViewController {
     func moveQRcodePage() {
         let storyboard = UIStoryboard(name: "ShowQRcode", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "QRcodeStoryboard")
+        VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
     func moveUserEditPage() {
         let storyboard = UIStoryboard(name: "EditUserInfo", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "EditUserInfoStoryboard")
+        VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }
     

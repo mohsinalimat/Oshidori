@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -33,7 +32,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkw-PU-qnn">
-                                <rect key="frame" x="334" y="742" width="60" height="60"/>
+                                <rect key="frame" x="334" y="782" width="60" height="60"/>
                                 <state key="normal" image="Write_icon"/>
                                 <connections>
                                     <action selector="didTapMoveSendMessageButton:" destination="NLn-5q-vla" eventType="touchUpInside" id="aTv-fI-WQi"/>
@@ -49,7 +48,7 @@
                             <constraint firstItem="Dvy-et-dQh" firstAttribute="leading" secondItem="7ux-or-BUb" secondAttribute="leading" id="YuY-5b-qcj"/>
                             <constraint firstItem="nSE-4Z-G9n" firstAttribute="trailing" secondItem="Dvy-et-dQh" secondAttribute="trailing" id="p4K-tJ-fiK"/>
                             <constraint firstItem="Dvy-et-dQh" firstAttribute="top" secondItem="nSE-4Z-G9n" secondAttribute="bottom" id="s3y-0k-hG8"/>
-                            <constraint firstItem="7ux-or-BUb" firstAttribute="bottom" secondItem="wkw-PU-qnn" secondAttribute="bottom" constant="60" id="sit-Ir-qaw"/>
+                            <constraint firstItem="7ux-or-BUb" firstAttribute="bottom" secondItem="wkw-PU-qnn" secondAttribute="bottom" constant="20" id="sit-Ir-qaw"/>
                             <constraint firstItem="nSE-4Z-G9n" firstAttribute="bottom" secondItem="7ux-or-BUb" secondAttribute="top" id="tu6-no-rCs"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7ux-or-BUb"/>
