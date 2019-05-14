@@ -152,37 +152,4 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
         self.present(activityVC, animated: true, completion: nil)
     }
     
-    
-    
-    
-//    func shareOshidoriContent() {
-//        let messages = timelineService.getTimelineMessages()
-//        if messages.isEmpty {
-//            return
-//        }
-//        guard let shareText = messages[indexPath.row].content else {
-//            return
-//        }
-//        let text = shareText + " #おしどり"
-//        let activityItems = [text]
-//        debugPrint(shareText)
-//        let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-//        // 使用しないアクティビティタイプ
-//        let excludedActivityTypes = [
-//            UIActivity.ActivityType.addToReadingList,
-//            UIActivity.ActivityType.airDrop,
-//            UIActivity.ActivityType.assignToContact,
-//            UIActivity.ActivityType.message,
-//            UIActivity.ActivityType.saveToCameraRoll,
-//            UIActivity.ActivityType.print,
-//            UIActivity.ActivityType.mail,
-//            UIActivity.ActivityType.postToWeibo,
-//            UIActivity.ActivityType.postToVimeo,
-//            UIActivity.ActivityType.postToFlickr,
-//            UIActivity.ActivityType.markupAsPDF,
-//        ]
-//        activityVC.excludedActivityTypes = excludedActivityTypes
-//        // UIActivityViewControllerを表示
-//        self.present(activityVC, animated: true, completion: nil)
-//    }
 }
