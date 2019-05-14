@@ -127,7 +127,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
         view.layer.cornerRadius = 8
         view.layer.borderWidth = 1
         view.layer.borderColor = UIColor.lightGray.cgColor
-        view.backgroundColor = OshidoriColor.background
+        view.backgroundColor = .none
         if view == courageView {
             courageImageView.image = UIImage(named: "Courage_before")
             courageTextLabel.textColor = .lightGray
@@ -147,7 +147,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
         view.layer.cornerRadius = 8
         view.layer.borderWidth = 1
         view.layer.borderColor = OshidoriColor.primary.cgColor
-        view.backgroundColor = OshidoriColor.primary
+        view.backgroundColor = .none
         if view == courageView {
             courageImageView.image = UIImage(named: "Courage_after")
             courageTextLabel.textColor = .white
