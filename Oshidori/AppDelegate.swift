@@ -39,16 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
-        // TODO: ログインしていたら、Message.storyboardに遷移するようにする
         
         // FCM をもう一度有効にするには、ランタイム コールを実行します。
         Messaging.messaging().isAutoInitEnabled = true
         
-        // ここでrootViewの切り替えをする
-//        window = UIWindow()
-//        window?.makeKeyAndVisible()
-//        // instantiate() を使おう
-//        window?.rootViewController = MessageRoomViewController.instantiate()
         
         return true
     }
