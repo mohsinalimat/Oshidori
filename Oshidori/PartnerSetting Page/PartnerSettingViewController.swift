@@ -30,8 +30,8 @@ class PartnerSettingViewController: UIViewController {
                 let userService = UserInfoService()
                 userService.deleteUserInfo(completion: {
                     self.alert("完了", "削除が完了しました！", {
-                        User.shared.logout()
-                        self.moveSelectRegisterOrLoginPage()
+                        // TODO: testしなきゃ
+                        self.navigationController?.popViewController(animated: true)
                     })
                 })
             }

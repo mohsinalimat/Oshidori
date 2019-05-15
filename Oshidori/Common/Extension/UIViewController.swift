@@ -78,6 +78,7 @@ extension UIViewController {
     func moveUserEditPage() {
         let storyboard = UIStoryboard(name: "EditUserInfo", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "EditUserInfoStoryboard")
+        // TODO: タブバー が出ちゃう
         VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }

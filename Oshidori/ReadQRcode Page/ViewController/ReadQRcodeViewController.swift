@@ -14,7 +14,7 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     
     // カメラやマイクの入出力を管理するオブジェクトを生成
     private let session = AVCaptureSession()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
@@ -115,19 +115,23 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
             }
             
             HUD.show(.progress)
+            
             // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
-            ReadQRcodeService.shared.isExistPartner(partnerId: partnerId) { (result, partnerName) in
+            PartnerSettingService.shared.isExistPartner(partnerId: partnerId) { (result, partnerName) in
                 HUD.hide()
                 if result == true {
                     if let name = partnerName {
+                        // 読み取り終了
+                        self.session.stopRunning()
                         self.alertSelect("確認", "\(name)さんをパートナーとして紐付けますか？", {
                             HUD.show(.progress)
-                            // 読み取り終了
-                            self.session.stopRunning()
+                            
                             // ユーザ情報をsetする
-                            ReadQRcodeService.shared.save(partnerId)
+                            PartnerSettingService.shared.save(partnerId)
                             
                         })
+                        // 読み取り開始
+                        self.session.startRunning()
                     }
                     
                 } else {
@@ -138,22 +142,20 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     }
 }
 
-extension ReadQRcodeViewController: ReadQRcodeServiceDelegate {
+extension ReadQRcodeViewController: PartnerSettingServiceDelegateDelegate {
     func gotInfo() {
         HUD.hide()
-        ReadQRcodeService.shared.updateUserInfo()
+        PartnerSettingService.shared.updateUserInfo()
         HUD.show(.progress)
     }
     
     func updated() {
-        // TODO: 何かアニメーションをつけたい！
         HUD.hide()
         moveMessagePage()
-        
     }
     
     func setDelegate() {
-        ReadQRcodeService.shared.delegate = self
+        PartnerSettingService.shared.delegate = self
     }
 }
 

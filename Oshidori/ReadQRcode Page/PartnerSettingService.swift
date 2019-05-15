@@ -8,38 +8,46 @@
 
 import Foundation
 
-protocol ReadQRcodeServiceDelegate: class {
+protocol PartnerSettingServiceDelegateDelegate: class {
     func updated()
     func gotInfo()
 }
 
-class ReadQRcodeService {
+class PartnerSettingService {
     
-    static var shared = ReadQRcodeService()
+    static var shared = PartnerSettingService()
     
     private var userInfoRep = UserInformationFirestoreRepository()
     private var roomRep = RoomFirestoreRepository()
     
-    weak var delegate: ReadQRcodeServiceDelegate?
+    weak var delegate: PartnerSettingServiceDelegateDelegate?
     
     var tmpUserInfo: UserInformation?
     var tmpPartnerInfo: UserInformation?
     
-    func getUid() -> String {
+    func getUid() -> String? {
         guard let uid = User.shared.getUid() else {
-            return ""
+            return nil
         }
         return uid
     }
     
     func save(_ partnerId: String) {
-        let uid = ReadQRcodeService.shared.getUid()
+        guard let uid = PartnerSettingService.shared.getUid() else {
+            return
+        }
         let room = Room(roomId: "", userId: uid, partnerId: partnerId)
-        ReadQRcodeService.shared.makeRoom(roomInfo: room)
+        PartnerSettingService.shared.makeRoom(roomInfo: room)
     }
     
     func isExistPartner(partnerId: String, completion: @escaping (Bool, String?) -> Void) {
         userInfoRep.isExistUser(userId: partnerId) { (result, partnerInfo) in
+            guard let uid = self.getUid() else {
+                return
+            }
+            if uid == partnerId {
+                completion(result, nil)
+            }
             if let partner = partnerInfo {
                 completion(result, partner.name)
             } else {

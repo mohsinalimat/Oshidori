@@ -517,7 +517,7 @@ extension SendMessageViewController{
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
         // message.senderで送信者を判断できる！
         if message.sender.senderId == oshidoriSender().senderId {
-            let avatar = Avatar(image: UIImage(named: "Oshidori_icon"), initials: "O")
+            let avatar = Avatar(image: UIImage(named: "Oshidori_chat"), initials: "O")
             avatarView.set(avatar: avatar)
         }
     }
