@@ -12,14 +12,20 @@ import PKHUD
 
 class SendEmailViewController: UIViewController {
 
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var sendEmailButton: UIButton!
+    @IBOutlet weak private var emailField: UITextField!
+    @IBOutlet weak private var sendEmailButton: UIButton!
+    @IBOutlet weak private var alertTextView: UITextView!
     
     let db = Firestore.firestore()
     let userDefault = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        sendEmailButton.backgroundColor = OshidoriColor.primary
+        sendEmailButton.setTitleColor(.white, for: .normal)
+        sendEmailButton.setTitle("送信", for: .normal)
+        sendEmailButton.layer.cornerRadius = 8.0
+        alertTextView.font = .systemFont(ofSize: 12)
         setDelegate()
     }
     
