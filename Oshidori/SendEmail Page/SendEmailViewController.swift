@@ -7,24 +7,94 @@
 //
 
 import UIKit
+import Firebase
+import PKHUD
 
 class SendEmailViewController: UIViewController {
 
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var sendEmailButton: UIButton!
+    
+    let db = Firestore.firestore()
+    let userDefault = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setDelegate()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func didTappedSendEmailButton(_ sender: Any) {
+        guard let email = emailField.text else {
+            return
+        }
+        guard isValidEmail(testStr: email) else {
+            alert("エラー", "正しいメールアドレスを入力してください。", nil)
+            return
+        }
+        let reference = db.collection("sendEmail")
+        guard let token = userDefault.object(forKey: "FCMToken") else {
+            debugPrint("token is null 👿")
+            return
+        }
+        reference.addDocument(data:["email": email, "FCMToken": token,] ) { (error) in
+            if let err = error  {
+                debugPrint(err.localizedDescription)
+                self.alert("エラー", "そのメールアドレスのユーザは存在しません", nil)
+                return
+            }
+            //self.alert("確認", "メールアドレスを確認しています。\nしばらくお待ちください。", nil)
+            HUD.show(.progress)
+        }
     }
-    */
-
+    
 }
+
+extension SendEmailViewController {
+    func isValidEmail(testStr:String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: testStr)
+    }
+    
+    func settingPartner(partnerId: String) {
+        HUD.show(.progress)
+        // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
+        PartnerSettingService.shared.isExistPartner(partnerId: partnerId) { (result, partnerName) in
+            HUD.hide()
+            if result == true {
+                if let name = partnerName {
+                    self.alertSelect("確認", "\(name)さんをパートナーとして紐付けますか？", {
+                        HUD.show(.progress)
+                        // 読み取り終了
+                        // ユーザ情報をsetする
+                        PartnerSettingService.shared.save(partnerId)
+                        
+                    })
+                }
+                
+            } else {
+                self.alert("エラー", "ユーザが存在しません！正しいQRコードを読み込んでください！", nil)
+            }
+        }
+    }
+}
+
+extension SendEmailViewController: PartnerSettingServiceDelegateDelegate {
+    func gotInfo() {
+        HUD.hide()
+        PartnerSettingService.shared.updateUserInfo()
+        HUD.show(.progress)
+    }
+    
+    func updated() {
+        HUD.hide()
+        moveMessagePage()
+        
+    }
+    
+    func setDelegate() {
+        PartnerSettingService.shared.delegate = self
+    }
+}
+

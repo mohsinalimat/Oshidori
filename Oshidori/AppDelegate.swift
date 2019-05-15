@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Firebase
 import UserNotifications
+import PKHUD
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 10.0, *) {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
+            Messaging.messaging().shouldEstablishDirectChannel = true
+            Messaging.messaging().useMessagingDelegateForDirectChannel = true
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions,completionHandler: {_, _ in })
@@ -78,27 +81,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
         
         // Print full message.
+        debugPrint("🌞user")
         print(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        
-        // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//
-//        }
-        
-        // Print full message.
-        
+        HUD.hide()
+        debugPrint("🌞user")
+        guard let partnerId = userInfo["userId"] as? String else {
+            return
+        }
+        if partnerId == "error" {
+            // 一番上のViewControllerを探す処理
+            if let topController = UIApplication.topViewController() {
+                topController.alert("エラー", "ユーザが存在しませんでした。", nil)
+            }
+            return
+        } else {
+            if let topController = UIApplication.topViewController() as? SendEmailViewController {
+                topController.settingPartner(partnerId: partnerId)
+            }
+        }
         completionHandler(UIBackgroundFetchResult.newData)
     }
+
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -180,6 +187,7 @@ extension AppDelegate: MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
         print("Received data message: \(remoteMessage.appData)")
+        debugPrint("🌞")
     }
     
     // [START refresh_token]
@@ -189,8 +197,24 @@ extension AppDelegate: MessagingDelegate {
         userInfo.update()
         
     }
-    
    
+}
+
+extension UIApplication {
+    class func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
 }
 
 // MARK: - UNUserNotificationCenterDelegate
@@ -207,7 +231,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
 //        if let messageID = userInfo[gcmMessageIDKey] {
 //        }
-        
         completionHandler([.alert])
     }
     

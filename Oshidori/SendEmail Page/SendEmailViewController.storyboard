@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Send Email View Controller-->
         <scene sceneID="fzb-WJ-DtU">
             <objects>
-                <viewController storyboardIdentifier="SendEmailViewController" id="1wi-q4-hU6" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SendEmailViewController" id="1wi-q4-hU6" customClass="SendEmailViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5J6-YB-yIu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,10 +22,16 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="emailField:" destination="EvK-h5-3FG" eventType="editingDidEnd" id="0qc-gB-CBh"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TqX-1r-27B">
                                 <rect key="frame" x="184" y="204" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="didTappedSendEmailButton:" destination="1wi-q4-hU6" eventType="touchUpInside" id="9PX-sk-bcC"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -38,8 +44,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eeG-pb-2nU"/>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="tGy-Ic-PJE" id="DqI-sh-NBe"/>
+                        <outlet property="sendEmailButton" destination="TqX-1r-27B" id="4h2-Jw-y2m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GZY-Tz-jzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="EvK-h5-3FG" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="93" y="95"/>
         </scene>
