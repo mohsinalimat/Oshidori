@@ -69,6 +69,13 @@ extension ShowQRcodeViewController {
         let VC = storyboard.instantiateViewController(withIdentifier: "ReadQRcodeStoryboard")
         self.navigationController?.pushViewController(VC, animated: false)
     }
+    
+    @IBAction func moveSendEmailPageButton(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "SendEmailViewController", bundle: nil)
+        let VC = storyboard.instantiateViewController(withIdentifier: "SendEmailViewController")
+        self.navigationController?.pushViewController(VC, animated: false)
+    }
+    
 }
     
 

@@ -52,6 +52,8 @@
 		67920DB522643E8500127083 /* ShowQRcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67920DB422643E8500127083 /* ShowQRcode.storyboard */; };
 		67920DB72264409900127083 /* ShowQRcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67920DB62264409900127083 /* ShowQRcodeViewController.swift */; };
 		67920DDC2264730500127083 /* ReadQRcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67920DDB2264730500127083 /* ReadQRcodeViewController.swift */; };
+		6797D471228C513F008FBA12 /* SendEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797D470228C513F008FBA12 /* SendEmailViewController.swift */; };
+		6797D473228C5152008FBA12 /* SendEmailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6797D472228C5152008FBA12 /* SendEmailViewController.storyboard */; };
 		67A2D5AC2276807200755F0B /* EditUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5AB2276807200755F0B /* EditUserInfo.storyboard */; };
 		67A2D5AE2276809600755F0B /* RegistUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5AD2276809600755F0B /* RegistUserInfo.storyboard */; };
 		67A2D5B0227680FA00755F0B /* ReceiveMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5AF227680FA00755F0B /* ReceiveMessage.storyboard */; };
@@ -155,6 +157,8 @@
 		67920DB422643E8500127083 /* ShowQRcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ShowQRcode.storyboard; sourceTree = "<group>"; };
 		67920DB62264409900127083 /* ShowQRcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowQRcodeViewController.swift; sourceTree = "<group>"; };
 		67920DDB2264730500127083 /* ReadQRcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadQRcodeViewController.swift; sourceTree = "<group>"; };
+		6797D470228C513F008FBA12 /* SendEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailViewController.swift; sourceTree = "<group>"; };
+		6797D472228C5152008FBA12 /* SendEmailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailViewController.storyboard; sourceTree = "<group>"; };
 		67A2D5AB2276807200755F0B /* EditUserInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditUserInfo.storyboard; sourceTree = "<group>"; };
 		67A2D5AD2276809600755F0B /* RegistUserInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistUserInfo.storyboard; sourceTree = "<group>"; };
 		67A2D5AF227680FA00755F0B /* ReceiveMessage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReceiveMessage.storyboard; sourceTree = "<group>"; };
@@ -330,6 +334,7 @@
 				67A2D5A622767BAB00755F0B /* Timeline Page */,
 				67A2D5A722767BC100755F0B /* ShowQRcode Page */,
 				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
+				6797D474228C5158008FBA12 /* SendEmail Page */,
 				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
 				67A2D5B72276A89E00755F0B /* Mypage Page */,
 				676AF05C2281530B00BDB911 /* PartnerSetting Page */,
@@ -418,6 +423,15 @@
 				677AB3012270238400DBCD62 /* UserInfoService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		6797D474228C5158008FBA12 /* SendEmail Page */ = {
+			isa = PBXGroup;
+			children = (
+				6797D470228C513F008FBA12 /* SendEmailViewController.swift */,
+				6797D472228C5152008FBA12 /* SendEmailViewController.storyboard */,
+			);
+			path = "SendEmail Page";
 			sourceTree = "<group>";
 		};
 		67A2D59F2276797E00755F0B /* Common */ = {
@@ -738,6 +752,7 @@
 				67A2D5AE2276809600755F0B /* RegistUserInfo.storyboard in Resources */,
 				672B7D192286F6A3008FA9D1 /* AppDescriptionViewController.storyboard in Resources */,
 				6732F28A224DB2F600011710 /* Assets.xcassets in Resources */,
+				6797D473228C5152008FBA12 /* SendEmailViewController.storyboard in Resources */,
 				6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */,
 				67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */,
 				67E291DE22867B2A00AF4B81 /* GoogleService-Info.plist in Resources */,
@@ -923,6 +938,7 @@
 				672B7D162286F674008FA9D1 /* AppDescriptionViewController.swift in Sources */,
 				676AF050228050EA00BDB911 /* UIStoryboard+Instantiation.swift in Sources */,
 				67EE40CF2265AAFF00E2F2C5 /* EditUserInfoViewController.swift in Sources */,
+				6797D471228C513F008FBA12 /* SendEmailViewController.swift in Sources */,
 				6707E0AC225ADB4E00C12A5A /* ReceiveMessageViewController.swift in Sources */,
 				6707D3D9225AE7B0007529FA /* ReceiveMessageTableViewCell.swift in Sources */,
 				67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */,
