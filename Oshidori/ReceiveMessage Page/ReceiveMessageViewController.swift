@@ -46,8 +46,8 @@ class ReceiveMessageViewController: UIViewController {
         setDZNEmptyDataSetDelegate()
         addShadowForView(moveSendMessageButton)
         
-        // 背景の色を指定
-        receiveTableView.backgroundColor = OshidoriColor.background
+        // 背景の色を消す
+        receiveTableView.backgroundColor = .none
         
         // 上のぐるぐるの実装
         receiveTableView.refreshControl = refreshCtl
