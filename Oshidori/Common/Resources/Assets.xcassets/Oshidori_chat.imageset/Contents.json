@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "oshidori_icon.png",
+      "filename" : "Oshidori_chat.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Oshidori_chat-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Oshidori_chat-2.png",
       "scale" : "3x"
     }
   ],
