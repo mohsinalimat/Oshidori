@@ -14,6 +14,8 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
     
     // カメラやマイクの入出力を管理するオブジェクトを生成
     private let session = AVCaptureSession()
+    
+    private var readingFlag = false
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,7 +116,9 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
                 return
             }
             
-            HUD.show(.progress)
+            if readingFlag == false {
+                HUD.show(.progress)
+            }
             
             // TODO: partnerIdが存在するかどうかを確認しなきゃいけない
             PartnerSettingService.shared.isExistPartner(partnerId: partnerId) { (result, partnerName) in
@@ -122,16 +126,20 @@ class ReadQRcodeViewController: UIViewController, AVCaptureMetadataOutputObjects
                 if result == true {
                     if let name = partnerName {
                         // 読み取り終了
-                        self.session.stopRunning()
+                        self.readingFlag = true
                         self.alertSelect("確認", "\(name)さんをパートナーとして紐付けますか？", {
                             HUD.show(.progress)
-                            
+                            // 読み取り終了
+                            self.session.stopRunning()
                             // ユーザ情報をsetする
                             PartnerSettingService.shared.save(partnerId)
                             
                         })
-                        // 読み取り開始
-                        self.session.startRunning()
+                        
+                        // 2秒後に falseにすることで、連続でQRコードを読み込まないようにし、HUDを出さない。
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                            self.readingFlag = false
+                        }
                     }
                     
                 } else {
