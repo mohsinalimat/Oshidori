@@ -105,6 +105,7 @@ extension ReceiveMessageViewController {
         } else {
             roomUserInfoRep.getRoomMessageUserInfo(roomId: userInfo.roomId, uid: uid) { (notReadMessages) in
                 self.notReadMessage = notReadMessages
+                AppDelegate.badgeCount = notReadMessages.count
                 completion()
             }
         }
@@ -303,6 +304,9 @@ extension ReceiveMessageViewController: UITableViewDelegate {
         messages[indexPath.row].isNotRead = false
         // セルを単独で更新する
         self.receiveTableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+        
+        // badgeの個数を合わせる
+        AppDelegate.badgeCount = notReadMessage.count
         
         moveMessageRoomPage(messageId: messageId)
     }
