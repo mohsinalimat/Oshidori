@@ -56,10 +56,6 @@ class ReceiveMessageViewController: UIViewController {
         
         receiveTableView.register (UINib(nibName: "ReceiveMessageTableViewCell", bundle: nil),forCellReuseIdentifier:"receiveMesseageCell")
         
-        // セルの高さを内容によって可変にする
-        receiveTableView.estimatedRowHeight = 50 //予想のセルの高さ //入れないとワーニングが出る
-        receiveTableView.rowHeight = UITableView.automaticDimension
-        
         // messages の初期化
         messages.removeAll()
         // userInformaitonの初期化。情報を持ってくる
@@ -109,6 +105,7 @@ extension ReceiveMessageViewController {
         } else {
             roomUserInfoRep.getRoomMessageUserInfo(roomId: userInfo.roomId, uid: uid) { (notReadMessages) in
                 self.notReadMessage = notReadMessages
+                AppDelegate.badgeCount = notReadMessages.count
                 completion()
             }
         }
@@ -176,7 +173,7 @@ extension ReceiveMessageViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // as! ReceiveMessageTableViewCell をつけないと、ReceiveMessageTableViewCell.swiftのパーツをいじることができない。
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "receiveMesseageCell", for: indexPath) as! ReceiveMessageTableViewCell
         
         // 上を引っ張った時にインデックスエラーになるので、エラー回避
@@ -196,6 +193,11 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        tableView.estimatedRowHeight = 100
+        return UITableView.automaticDimension
     }
 }
 
@@ -302,6 +304,9 @@ extension ReceiveMessageViewController: UITableViewDelegate {
         messages[indexPath.row].isNotRead = false
         // セルを単独で更新する
         self.receiveTableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.fade)
+        
+        // badgeの個数を合わせる
+        AppDelegate.badgeCount = notReadMessage.count
         
         moveMessageRoomPage(messageId: messageId)
     }
