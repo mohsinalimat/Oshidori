@@ -22,6 +22,7 @@ class UserInformation {
     var partnerName: String = ""
     var roomId: String = ""
     var imageUrl: String = ""
+    var imageName: String = ""
     var created: Date?
     
     init() {}
@@ -35,6 +36,18 @@ class UserInformation {
         self.roomId = roomId
         self.created = created
         self.imageUrl = imageUrl
+    }
+    
+    init(name: String, FCMToken: String, birthday: Date?, partnerId: String, partnerName: String, roomId: String, created: Date, imageUrl: String, imageName: String) {
+        self.name = name
+        self.FCMToken = FCMToken
+        self.birthday = birthday
+        self.partnerId = partnerId
+        self.partnerName = partnerName
+        self.roomId = roomId
+        self.created = created
+        self.imageUrl = imageUrl
+        self.imageName = imageName
     }
     
     init(data: [String: Any]) {
@@ -62,6 +75,9 @@ class UserInformation {
         if let imageUrl = data["imageUrl"] as? String {
             self.imageUrl = imageUrl
         }
+        if let imageName = data["imageName"] as? String {
+            self.imageName = imageName
+        }
     }
 
 }
@@ -80,6 +96,7 @@ extension UserInformation {
                     "roomId": roomId,
                     "created": "",
                     "imageUrl": imageUrl,
+                    "imageName": imageName,
                 ]
                 return rep
             } else {
@@ -92,6 +109,7 @@ extension UserInformation {
                     "roomId": roomId,
                     "created": "",
                     "imageUrl": imageUrl,
+                    "imageName": imageName,
                 ]
                 return rep
             }
@@ -107,6 +125,7 @@ extension UserInformation {
                 "roomId": roomId,
                 "created": created,
                 "imageUrl": imageUrl,
+                "imageName": imageName,
             ]
             return rep
         }
@@ -119,6 +138,7 @@ extension UserInformation {
             "roomId": roomId,
             "created": created,
             "imageUrl": imageUrl,
+            "imageName": imageName,
         ]
         return rep
     }
@@ -153,6 +173,7 @@ extension UserInformation {
     var editUserImageUrlRepresentation: [String : Any] {
         let rep: [String : Any] = [
             "userUrlImage": imageUrl,
+            "imageName": imageName,
         ]
         return rep
     }
