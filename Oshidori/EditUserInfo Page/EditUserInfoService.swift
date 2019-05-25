@@ -59,9 +59,14 @@ class EditUserInfoService {
         })
     }
     
-    func updateImage(imageUrl: String) {
+    func updateImage(imageUrl: String, imageName: String) {
         userInfoRep.getUserInfo(completion: { (userInfo) in
             userInfo.imageUrl = imageUrl
+            if !(userInfo.imageName == "") {
+                // 空じゃなかったら消す作業を入れる
+                self.userInfoRep.deleteImage(imageName: userInfo.imageName)
+            }
+            userInfo.imageName = imageName
             self.userInfoRep.update(userInfo, completion: {
                 
                 if self.isExistPartner(userInfo: userInfo) {
