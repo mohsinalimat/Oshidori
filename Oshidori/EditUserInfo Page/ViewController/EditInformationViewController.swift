@@ -121,7 +121,6 @@ class EditInformationViewController: FormViewController {
                 alert("エラー", "値を変更してください", nil)
                 return
             }
-            // TODO: 保存する
             UserInfoService.shared.saveImage(image: image) { (imageUrl) in
                 guard let url = imageUrl else {
                     return
