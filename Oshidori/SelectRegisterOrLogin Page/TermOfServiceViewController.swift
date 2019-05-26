@@ -36,6 +36,10 @@ final class TermOfServiceViewController: UIViewController {
         confirmBackButton.isEnabled = false
     }
     
+    override func viewDidLayoutSubviews() {
+        baseView.setContentOffset(.zero, animated: false)
+    }
+    
     @IBAction private func confirmButtonTapped(_ sender: UIButton) {
         dismiss(animated: true) {
             self.delegate?.confirmBackButton()
