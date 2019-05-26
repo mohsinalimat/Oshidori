@@ -191,7 +191,6 @@ extension ReceiveMessageViewController: UITableViewDataSource {
         cell.setNameLabel(name: message.senderName ?? "")
         cell.isNotRead = message.isNotRead
         
-
         return cell
     }
     
@@ -281,6 +280,7 @@ extension ReceiveMessageViewController {
 
 extension ReceiveMessageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
         // これをどこかに保存しなきゃ。
         guard let messageId = messages[indexPath.row].messageId else {
             return

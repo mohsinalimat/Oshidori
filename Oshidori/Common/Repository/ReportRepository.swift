@@ -18,6 +18,7 @@ final class ReportRepository {
             return
         }
         let rep: [String : Any] = [
+            "reportDate"   : Date(),
             "reportSender" : uid,
             "reportContent": reportContent,
             "content"      : message.content ?? "",
