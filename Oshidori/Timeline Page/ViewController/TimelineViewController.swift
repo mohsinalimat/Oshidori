@@ -40,6 +40,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineService.timelineMessagesRemove() {}
         // firestoreからデータを取って、テーブルビューに反映
         timelineService.loadTimelineMessage()
+        // tableViewを選択不可にする
+        timelineTableView.allowsSelection = false
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,6 +123,15 @@ extension TimelineViewController: TimelineServiceDelegate {
 }
 
 extension TimelineViewController: TimelineMessageTableViewCellDelegate {
+    func reportButtonTapped(index: Int) {
+        let messages = timelineService.getTimelineMessages()
+        if messages.isEmpty {
+            return
+        }
+        let reportMessage = messages[index]
+        print(reportMessage)
+    }
+    
     func shareButtonTapped(index: Int) {
         let messages = timelineService.getTimelineMessages()
         if messages.isEmpty {
@@ -129,7 +140,7 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
         guard let shareText = messages[index].content else {
             return
         }
-        let text = shareText + " #おしどり"
+        let text = shareText
         let activityItems = [text]
         debugPrint(shareText)
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)

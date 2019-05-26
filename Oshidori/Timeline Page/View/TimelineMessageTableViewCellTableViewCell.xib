@@ -18,12 +18,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="556" height="197.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yyyy/mm/dd 10:28" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-oO-lYK">
-                        <rect key="frame" x="431.5" y="15" width="104.5" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="26h-63-lAe">
+                        <rect key="frame" x="409" y="15" width="127" height="10"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yyyy/mm/dd 10:28" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cJg-oO-lYK">
+                                <rect key="frame" x="0.0" y="0.0" width="104.5" height="10"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nto-Hg-fo3">
+                                <rect key="frame" x="124.5" y="0.0" width="2.5" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="3QN-TD-NXf"/>
+                                    <constraint firstAttribute="width" secondItem="nto-Hg-fo3" secondAttribute="height" multiplier="7:29" id="Mnu-3T-lJH"/>
+                                </constraints>
+                                <state key="normal" title="    " image="report_icon"/>
+                            </button>
+                        </subviews>
+                    </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="メッセージの本文が入ります。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBV-pB-YLC">
                         <rect key="frame" x="20" y="130.5" width="516" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -203,14 +216,26 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YY1-eE-FuB">
+                        <rect key="frame" x="521" y="5" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="WvT-W5-uJH"/>
+                            <constraint firstAttribute="width" constant="30" id="uFu-Oj-stk"/>
+                        </constraints>
+                        <connections>
+                            <action selector="reportButtonTapped:" destination="eZX-PD-zo1" eventType="touchUpInside" id="oIJ-kB-eMI"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="CBV-pB-YLC" firstAttribute="leading" secondItem="1WW-p3-kof" secondAttribute="leading" constant="20" id="0GE-LS-JvS"/>
+                    <constraint firstAttribute="trailing" secondItem="YY1-eE-FuB" secondAttribute="trailing" constant="5" id="0ej-9E-yaX"/>
                     <constraint firstAttribute="bottom" secondItem="TTc-uT-XF9" secondAttribute="bottom" constant="10" id="2h6-5R-Ig2"/>
-                    <constraint firstAttribute="trailing" secondItem="cJg-oO-lYK" secondAttribute="trailing" constant="20" id="3hx-Xy-1nV"/>
+                    <constraint firstAttribute="trailing" secondItem="26h-63-lAe" secondAttribute="trailing" constant="20" id="5ed-on-Ofg"/>
+                    <constraint firstItem="26h-63-lAe" firstAttribute="top" secondItem="1WW-p3-kof" secondAttribute="top" constant="15" id="ORm-Nh-86P"/>
+                    <constraint firstItem="YY1-eE-FuB" firstAttribute="top" secondItem="1WW-p3-kof" secondAttribute="top" constant="5" id="TPQ-2U-pBn"/>
                     <constraint firstItem="xUY-9R-Bs8" firstAttribute="top" secondItem="1WW-p3-kof" secondAttribute="top" constant="15" id="eBM-ED-YP3"/>
                     <constraint firstItem="TTc-uT-XF9" firstAttribute="leading" secondItem="1WW-p3-kof" secondAttribute="leading" constant="20" id="fIf-ko-aFR"/>
-                    <constraint firstItem="cJg-oO-lYK" firstAttribute="top" secondItem="1WW-p3-kof" secondAttribute="top" constant="15" id="i6K-Wl-TmJ"/>
                     <constraint firstAttribute="trailing" secondItem="CBV-pB-YLC" secondAttribute="trailing" constant="20" id="pBv-Uy-Lz4"/>
                     <constraint firstAttribute="trailing" secondItem="TTc-uT-XF9" secondAttribute="trailing" constant="20" id="qog-oR-cnB"/>
                     <constraint firstItem="CBV-pB-YLC" firstAttribute="top" secondItem="xUY-9R-Bs8" secondAttribute="bottom" constant="10" id="tTb-0W-f6w"/>
@@ -227,6 +252,7 @@
                 <outlet property="courageImageView" destination="Usj-Or-wYd" id="C4F-3w-8Rc"/>
                 <outlet property="courageTextLabel" destination="rjh-MP-Icg" id="805-Ul-621"/>
                 <outlet property="courageView" destination="hgv-f0-yPx" id="91g-S0-zyq"/>
+                <outlet property="reportButton" destination="YY1-eE-FuB" id="MCQ-gJ-RDG"/>
                 <outlet property="sendDateLabel" destination="cJg-oO-lYK" id="EVR-r9-uAP"/>
                 <outlet property="supportButton" destination="tQJ-gv-tC8" id="mhl-zY-KsM"/>
                 <outlet property="supportCountLabel" destination="Bwv-xb-1gJ" id="Ny0-JD-ucL"/>
@@ -240,6 +266,7 @@
     <resources>
         <image name="Courage_before" width="39.5" height="35"/>
         <image name="Support_before" width="49.5" height="35"/>
+        <image name="report_icon" width="7.5" height="29.5"/>
         <image name="share_gray" width="36.5" height="36.5"/>
     </resources>
 </document>

@@ -10,6 +10,7 @@ import UIKit
 
 protocol TimelineMessageTableViewCellDelegate: class {
     func shareButtonTapped(index: Int)
+    func reportButtonTapped(index:Int)
 }
 
 class TimelineMessageTableViewCell: UITableViewCell {
@@ -33,6 +34,8 @@ class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var courageImageView: UIImageView!
     @IBOutlet weak var supportImageView: UIImageView!
+    
+    @IBOutlet weak var reportButton: UIButton!
     
     var messageId: String?
     var uid: String?
@@ -107,6 +110,11 @@ class TimelineMessageTableViewCell: UITableViewCell {
         TimelineService.shared.updateSupportCountForMessage(messageId: messageId)
         TimelineService.shared.updateSupportCountForUser(uid: uid)
     }
+    
+    @IBAction func reportButtonTapped(_ sender: Any) {
+        delegate?.reportButtonTapped(index: self.tag)
+    }
+    
     
     func changeLayerForViewBeforeTap(_ view: UIView) {
         if view == courageView {
@@ -201,5 +209,9 @@ class TimelineMessageTableViewCell: UITableViewCell {
     func setIsSupportTapped(isTapped :Bool) {
         self.isSupportTapped = isTapped
     }
+    
+}
+
+extension TimelineMessageTableViewCell {
     
 }
