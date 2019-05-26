@@ -18,7 +18,7 @@ final class ReportViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillLayoutSubviews() {
@@ -72,11 +72,9 @@ extension ReportViewController: UITableViewDelegate {
         guard let message = reportMessage else {
             return
         }
-        reportService.report(reportContent: reportContent[indexPath.row], message: message)
-        self.dismiss(animated: true) {
-            let VC = ReportViewController.instantiate()
-            self.present(VC, animated: true, completion: nil)
-        }
+        // reportService.report(reportContent: reportContent[indexPath.row], message: message)
+        let VC = ReportedViewController.instantiate()
+        self.present(VC, animated: true)
     }
 }
 
@@ -108,8 +106,12 @@ extension ReportViewController {
         navigationView.frame.size = CGSize(width: self.view.safeAreaLayoutGuide.owningView!.frame.width, height: navBar.frame.origin.y + navBar.frame.height)
     }
     
-    @objc private func returnView(){
+    @objc func returnView() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func doneReported() {
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
