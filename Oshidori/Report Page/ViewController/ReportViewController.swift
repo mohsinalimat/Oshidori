@@ -72,7 +72,7 @@ extension ReportViewController: UITableViewDelegate {
         guard let message = reportMessage else {
             return
         }
-        // reportService.report(reportContent: reportContent[indexPath.row], message: message)
+        reportService.report(reportContent: reportContent[indexPath.row], message: message)
         let VC = ReportedViewController.instantiate()
         self.present(VC, animated: true)
     }
@@ -97,7 +97,7 @@ extension ReportViewController {
         let navItem : UINavigationItem = UINavigationItem(title: "問題を報告する")
         
         //ナビゲーションバー右のボタンを設定
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "キャンセル", style: UIBarButtonItem.Style.plain, target: self, action:#selector(self.returnView))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "キャンセル", style: UIBarButtonItem.Style.done, target: self, action:#selector(self.returnView))
         navBar.pushItem(navItem, animated: true)
         self.view.addSubview(navBar)
         

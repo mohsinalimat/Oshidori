@@ -16,13 +16,66 @@
                     <view key="view" contentMode="scaleToFill" id="3sw-TM-lJn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ご報告ありがとうございます。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n4S-FR-xH4">
+                                <rect key="frame" x="10" y="118" width="394" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="このアカウントが" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ZI-sn-6BK">
+                                <rect key="frame" x="10" y="172" width="122.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="に" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noi-1x-0et">
+                                <rect key="frame" x="289.5" y="172" width="15.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="違反している事が確認でき次第対処します。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekR-So-7cO">
+                                <rect key="frame" x="10" y="201" width="404" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9xf-6V-tW2">
+                                <rect key="frame" x="134.5" y="166" width="153" height="30"/>
+                                <state key="normal" title="プライバシーポリシー">
+                                    <color key="titleColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="2bh-yC-ceq" eventType="touchUpInside" id="z9K-Tz-wE4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GQU-xc-OVu" firstAttribute="trailing" secondItem="ekR-So-7cO" secondAttribute="trailing" id="0GU-ga-fKL"/>
+                            <constraint firstItem="9xf-6V-tW2" firstAttribute="leading" secondItem="0ZI-sn-6BK" secondAttribute="trailing" constant="2" id="AgJ-aI-Atl"/>
+                            <constraint firstItem="0ZI-sn-6BK" firstAttribute="top" secondItem="n4S-FR-xH4" secondAttribute="bottom" constant="30" id="BJ8-8L-sob"/>
+                            <constraint firstItem="noi-1x-0et" firstAttribute="centerY" secondItem="0ZI-sn-6BK" secondAttribute="centerY" id="DYD-9i-GR9"/>
+                            <constraint firstItem="n4S-FR-xH4" firstAttribute="leading" secondItem="GQU-xc-OVu" secondAttribute="leading" constant="10" id="DhD-TI-iQX"/>
+                            <constraint firstItem="0ZI-sn-6BK" firstAttribute="leading" secondItem="GQU-xc-OVu" secondAttribute="leading" constant="10" id="Fsl-7A-eQG"/>
+                            <constraint firstItem="9xf-6V-tW2" firstAttribute="centerY" secondItem="0ZI-sn-6BK" secondAttribute="centerY" id="Gow-sQ-EUa"/>
+                            <constraint firstItem="n4S-FR-xH4" firstAttribute="top" secondItem="GQU-xc-OVu" secondAttribute="top" constant="74" id="J7t-PT-kke"/>
+                            <constraint firstItem="ekR-So-7cO" firstAttribute="top" secondItem="9xf-6V-tW2" secondAttribute="bottom" constant="5" id="diD-gp-Bhf"/>
+                            <constraint firstItem="ekR-So-7cO" firstAttribute="leading" secondItem="GQU-xc-OVu" secondAttribute="leading" constant="10" id="hif-8P-sFr"/>
+                            <constraint firstItem="GQU-xc-OVu" firstAttribute="trailing" secondItem="n4S-FR-xH4" secondAttribute="trailing" constant="10" id="jbL-Vl-98e"/>
+                            <constraint firstItem="noi-1x-0et" firstAttribute="leading" secondItem="9xf-6V-tW2" secondAttribute="trailing" constant="2" id="u8u-Ve-PyP"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GQU-xc-OVu"/>
                     </view>
+                    <connections>
+                        <outlet property="appriciateLabel" destination="n4S-FR-xH4" id="d51-vO-ut3"/>
+                        <outlet property="movePrivacyPolicyPageButton" destination="9xf-6V-tW2" id="eKS-vI-1ie"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sh9-dn-ReN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="110" y="83"/>
+            <point key="canvasLocation" x="-299" y="87"/>
         </scene>
     </scenes>
 </document>

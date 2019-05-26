@@ -10,16 +10,28 @@ import UIKit
 
 class ReportedViewController: UIViewController {
 
+    @IBOutlet weak var appriciateLabel: UILabel!
+    @IBOutlet weak var movePrivacyPolicyPageButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillLayoutSubviews() {
         setup()
     }
-
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+        let tmpUrl = URL(string: AppDescriptionViewController.privacyPolicyUrl)
+        guard let url = tmpUrl else {
+            return
+        }
+        if( UIApplication.shared.canOpenURL(url) ) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
 }
 
 extension ReportedViewController {
@@ -41,7 +53,7 @@ extension ReportedViewController {
         let navItem : UINavigationItem = UINavigationItem(title: "問題を報告する")
         
         //ナビゲーションバー右のボタンを設定
-        navItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: UIBarButtonItem.Style.plain, target: self, action:#selector(self.returnView))
+        navItem.rightBarButtonItem = UIBarButtonItem(title: "完了", style: UIBarButtonItem.Style.done, target: self, action:#selector(self.returnView))
         navBar.pushItem(navItem, animated: true)
         self.view.addSubview(navBar)
         
