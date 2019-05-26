@@ -25,16 +25,19 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="XmJ-oW-web" firstAttribute="leading" secondItem="B30-Kv-nbw" secondAttribute="leading" id="3f1-d4-PtM"/>
-                            <constraint firstItem="XmJ-oW-web" firstAttribute="top" secondItem="B30-Kv-nbw" secondAttribute="top" id="j6K-ZC-B5n"/>
+                            <constraint firstItem="XmJ-oW-web" firstAttribute="top" secondItem="B30-Kv-nbw" secondAttribute="top" id="iGu-dV-EE7"/>
                             <constraint firstItem="B30-Kv-nbw" firstAttribute="trailing" secondItem="XmJ-oW-web" secondAttribute="trailing" id="m0c-Y1-40o"/>
                             <constraint firstItem="B30-Kv-nbw" firstAttribute="bottom" secondItem="XmJ-oW-web" secondAttribute="bottom" id="tiK-gR-8RY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B30-Kv-nbw"/>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="XmJ-oW-web" id="jJr-F9-0fR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WkI-CI-VCG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="258" y="53"/>
+            <point key="canvasLocation" x="257.97101449275362" y="52.901785714285715"/>
         </scene>
     </scenes>
 </document>
