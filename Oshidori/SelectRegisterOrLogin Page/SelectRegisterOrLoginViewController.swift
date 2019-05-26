@@ -12,6 +12,10 @@ import UserNotifications
 class SelectRegisterOrLoginViewController: UIViewController {
 
     @IBOutlet weak var moveUserCreateButton: UIButton!
+    @IBAction func termOfServiceButtonTapped(_ sender: Any) {
+        let VC = TermOfServiceViewController.instantiate()
+        present(VC, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
