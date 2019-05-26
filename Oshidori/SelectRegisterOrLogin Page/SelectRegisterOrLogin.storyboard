@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,20 +18,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="u3w-I2-1aC">
-                                <rect key="frame" x="137" y="74" width="140" height="28"/>
+                                <rect key="frame" x="137" y="59" width="140" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="140" id="3FY-2r-TYx"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_icon" translatesAutoresizingMaskIntoConstraints="NO" id="OYh-xu-dUC">
-                                <rect key="frame" x="113.66666666666669" y="132" width="187" height="134.66666666666663"/>
+                                <rect key="frame" x="113.66666666666669" y="101.99999999999999" width="187" height="134.66666666666663"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="187" id="OOu-FP-pI7"/>
                                     <constraint firstAttribute="height" constant="134.5" id="dWb-ap-EH0"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-kV-3Gw">
-                                <rect key="frame" x="30" y="296.66666666666669" width="354" height="142"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-kV-3Gw">
+                                <rect key="frame" x="30" y="251.66666666666663" width="354" height="132"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パートナーに「すなお」な気持ちを伝えよう" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdU-KN-0fh">
                                         <rect key="frame" x="20" y="0.0" width="314" height="67"/>
@@ -41,7 +40,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAQ-PI-ptC">
-                                        <rect key="frame" x="20" y="92" width="314" height="50"/>
+                                        <rect key="frame" x="20" y="82.000000000000028" width="314" height="50"/>
                                         <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="CvB-im-8kP"/>
@@ -63,7 +62,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-XP-jZt">
-                                <rect key="frame" x="56.666666666666657" y="782" width="300.66666666666674" height="30"/>
+                                <rect key="frame" x="56.666666666666657" y="817" width="300.66666666666674" height="30"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウントをお持ちの方は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-JC-73c">
                                         <rect key="frame" x="0.0" y="0.0" width="147.33333333333334" height="30"/>
@@ -88,23 +87,63 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="qtR-gf-1a8">
+                                <rect key="frame" x="118.66666666666669" y="463.66666666666669" width="177" height="20"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AXj-dk-iOX" customClass="CheckBox" customModule="Oshidori" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="7Va-A7-gWW"/>
+                                            <constraint firstAttribute="height" constant="20" id="uW1-Ob-gmE"/>
+                                        </constraints>
+                                        <state key="normal" image="Checkbox_beforeSelect"/>
+                                        <connections>
+                                            <action selector="checkBoxTapped:" destination="otX-ll-A3u" eventType="touchUpInside" id="nJr-4t-mg3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pvt-sp-oiF">
+                                        <rect key="frame" x="38.999999999999986" y="0.0" width="138" height="20"/>
+                                        <state key="normal" title="利用規約に同意する">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="agreeButtonTapped:" destination="otX-ll-A3u" eventType="touchUpInside" id="LW7-p8-pFI"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pVn-3u-kJ2">
+                                <rect key="frame" x="122.66666666666669" y="413.66666666666669" width="169" height="30"/>
+                                <state key="normal" title="Oshidori 利用規約を読む">
+                                    <color key="titleColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="termOfServiceButtonTapped:" destination="otX-ll-A3u" eventType="touchUpInside" id="blp-Ih-gOs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3Mf-QU-tVb" firstAttribute="bottom" secondItem="tbI-XP-jZt" secondAttribute="bottom" constant="50" id="2YT-hN-EYb"/>
+                            <constraint firstItem="3Mf-QU-tVb" firstAttribute="bottom" secondItem="tbI-XP-jZt" secondAttribute="bottom" constant="15" id="2YT-hN-EYb"/>
                             <constraint firstItem="OYh-xu-dUC" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="Hrb-1Q-wGO"/>
                             <constraint firstItem="3Mf-QU-tVb" firstAttribute="trailing" secondItem="jiM-kV-3Gw" secondAttribute="trailing" constant="30" id="PTb-Qg-vgc"/>
+                            <constraint firstItem="pVn-3u-kJ2" firstAttribute="top" secondItem="jiM-kV-3Gw" secondAttribute="bottom" constant="30" id="Ple-QU-gNC"/>
+                            <constraint firstItem="qtR-gf-1a8" firstAttribute="top" secondItem="pVn-3u-kJ2" secondAttribute="bottom" constant="20" id="Vu2-h6-mZB"/>
                             <constraint firstItem="u3w-I2-1aC" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="bkH-de-qN3"/>
-                            <constraint firstItem="OYh-xu-dUC" firstAttribute="top" secondItem="u3w-I2-1aC" secondAttribute="bottom" constant="30" id="em6-c0-Vt0"/>
-                            <constraint firstItem="u3w-I2-1aC" firstAttribute="top" secondItem="3Mf-QU-tVb" secondAttribute="top" constant="30" id="flD-2q-NKl"/>
-                            <constraint firstItem="jiM-kV-3Gw" firstAttribute="top" secondItem="OYh-xu-dUC" secondAttribute="bottom" constant="30" id="i2J-Vm-j7V"/>
+                            <constraint firstItem="OYh-xu-dUC" firstAttribute="top" secondItem="u3w-I2-1aC" secondAttribute="bottom" constant="15" id="em6-c0-Vt0"/>
+                            <constraint firstItem="u3w-I2-1aC" firstAttribute="top" secondItem="3Mf-QU-tVb" secondAttribute="top" constant="15" id="flD-2q-NKl"/>
+                            <constraint firstItem="jiM-kV-3Gw" firstAttribute="top" secondItem="OYh-xu-dUC" secondAttribute="bottom" constant="15" id="i2J-Vm-j7V"/>
+                            <constraint firstItem="qtR-gf-1a8" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="mpt-Uv-ZNW"/>
                             <constraint firstItem="jiM-kV-3Gw" firstAttribute="leading" secondItem="3Mf-QU-tVb" secondAttribute="leading" constant="30" id="oYb-2x-OVm"/>
+                            <constraint firstItem="pVn-3u-kJ2" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="qdH-Mx-3YI"/>
                             <constraint firstItem="tbI-XP-jZt" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="v1e-Fy-NoT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3Mf-QU-tVb"/>
                     </view>
                     <navigationItem key="navigationItem" id="uER-uB-cAb"/>
                     <connections>
+                        <outlet property="agreeButton" destination="pvt-sp-oiF" id="JOB-hn-5TG"/>
+                        <outlet property="checkBox" destination="AXj-dk-iOX" id="rtO-Wh-Y1b"/>
                         <outlet property="moveUserCreateButton" destination="jAQ-PI-ptC" id="fGv-F3-IMi"/>
                     </connections>
                 </viewController>
@@ -134,7 +173,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Oshidori_icon" width="124.66666412353516" height="89.666664123535156"/>
+        <image name="Checkbox_beforeSelect" width="29.333333969116211" height="29.333333969116211"/>
+        <image name="Oshidori_icon" width="275.66665649414062" height="373"/>
         <image name="Oshidori_logo" width="141" height="28"/>
     </resources>
 </document>

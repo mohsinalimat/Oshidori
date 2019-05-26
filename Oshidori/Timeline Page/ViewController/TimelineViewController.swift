@@ -40,6 +40,8 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         timelineService.timelineMessagesRemove() {}
         // firestoreからデータを取って、テーブルビューに反映
         timelineService.loadTimelineMessage()
+        // tableViewを選択不可にする
+        timelineTableView.allowsSelection = false
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -121,6 +123,17 @@ extension TimelineViewController: TimelineServiceDelegate {
 }
 
 extension TimelineViewController: TimelineMessageTableViewCellDelegate {
+    func reportButtonTapped(index: Int) {
+        let messages = timelineService.getTimelineMessages()
+        if messages.isEmpty {
+            return
+        }
+        let VC = PresentReportViewController.instantiate()
+        VC.delegate = self
+        VC.reportMessage = messages[index]
+        present(VC, animated: true, completion: nil)
+    }
+    
     func shareButtonTapped(index: Int) {
         let messages = timelineService.getTimelineMessages()
         if messages.isEmpty {
@@ -129,7 +142,7 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
         guard let shareText = messages[index].content else {
             return
         }
-        let text = shareText + " #おしどり"
+        let text = shareText
         let activityItems = [text]
         debugPrint(shareText)
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
@@ -158,5 +171,16 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
         // UIActivityViewControllerを表示
         self.present(activityVC, animated: true, completion: nil)
     }
+}
+
+extension TimelineViewController: PresentReportViewControllerDelegate {
+    func cancelButtonTapped() {
+        
+    }
     
+    func reportButtonTapped(reportMessage: RepresentationMessage) {
+        let VC = ReportViewController.instantiate()
+        VC.reportMessage = reportMessage
+        present(VC, animated: true, completion: nil)
+    }
 }
