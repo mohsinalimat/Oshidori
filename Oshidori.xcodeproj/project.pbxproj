@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		66C73E8EF7E5DA251CF6CE5E /* Pods_Oshidori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549C64E89FB8F49CDD276DD4 /* Pods_Oshidori.framework */; };
+		6702605B229A779300373B92 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6702605A229A779300373B92 /* ReportViewController.swift */; };
+		6702605D229A77A600373B92 /* ReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6702605C229A77A600373B92 /* ReportViewController.storyboard */; };
+		6702605F229A77C900373B92 /* PresentReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6702605E229A77C900373B92 /* PresentReportViewController.swift */; };
+		67026061229A77D600373B92 /* PresentReportViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67026060229A77D600373B92 /* PresentReportViewController.storyboard */; };
 		6707D3D9225AE7B0007529FA /* ReceiveMessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707D3D7225AE7B0007529FA /* ReceiveMessageTableViewCell.swift */; };
 		6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6707D3D8225AE7B0007529FA /* ReceiveMessageTableViewCell.xib */; };
 		6707E0AC225ADB4E00C12A5A /* ReceiveMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6707E0AB225ADB4E00C12A5A /* ReceiveMessageViewController.swift */; };
@@ -111,6 +115,10 @@
 		269001C7C32D0828E6D11825 /* Pods_OshidoriTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OshidoriTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F67F92A9913F9418DE25909 /* Pods-OshidoriUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OshidoriUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OshidoriUITests/Pods-OshidoriUITests.release.xcconfig"; sourceTree = "<group>"; };
 		549C64E89FB8F49CDD276DD4 /* Pods_Oshidori.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Oshidori.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6702605A229A779300373B92 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		6702605C229A77A600373B92 /* ReportViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReportViewController.storyboard; sourceTree = "<group>"; };
+		6702605E229A77C900373B92 /* PresentReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentReportViewController.swift; sourceTree = "<group>"; };
+		67026060229A77D600373B92 /* PresentReportViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresentReportViewController.storyboard; sourceTree = "<group>"; };
 		6707D3D7225AE7B0007529FA /* ReceiveMessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveMessageTableViewCell.swift; sourceTree = "<group>"; };
 		6707D3D8225AE7B0007529FA /* ReceiveMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReceiveMessageTableViewCell.xib; sourceTree = "<group>"; };
 		6707E0AB225ADB4E00C12A5A /* ReceiveMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveMessageViewController.swift; sourceTree = "<group>"; };
@@ -352,6 +360,8 @@
 				67A2D5B72276A89E00755F0B /* Mypage Page */,
 				676AF05C2281530B00BDB911 /* PartnerSetting Page */,
 				672B7D172286F67A008FA9D1 /* AppDescription Page */,
+				6702605A229A779300373B92 /* ReportViewController.swift */,
+				6702605C229A77A600373B92 /* ReportViewController.storyboard */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
@@ -610,6 +620,8 @@
 			children = (
 				67C9E04E225EC22E00516B3D /* TimelineViewController.swift */,
 				67C9E046225EB6DD00516B3D /* Timeline.storyboard */,
+				6702605E229A77C900373B92 /* PresentReportViewController.swift */,
+				67026060229A77D600373B92 /* PresentReportViewController.storyboard */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -759,6 +771,7 @@
 				67A2D5AC2276807200755F0B /* EditUserInfo.storyboard in Resources */,
 				67A2D5BB2276BEE100755F0B /* MyImageAndNameTableViewCell.xib in Resources */,
 				676AF0622281720C00BDB911 /* MessageRoomViewController.storyboard in Resources */,
+				67026061229A77D600373B92 /* PresentReportViewController.storyboard in Resources */,
 				67A2D5BF2276BFD400755F0B /* MessageReportTableViewCell.xib in Resources */,
 				67A2D5B62276A89300755F0B /* Mypage.storyboard in Resources */,
 				67A2D5B0227680FA00755F0B /* ReceiveMessage.storyboard in Resources */,
@@ -772,6 +785,7 @@
 				6797D473228C5152008FBA12 /* SendEmailViewController.storyboard in Resources */,
 				6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */,
 				67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */,
+				6702605D229A77A600373B92 /* ReportViewController.storyboard in Resources */,
 				67DD01D422686DEC00583BF6 /* ReadQRcode.storyboard in Resources */,
 				6723DEBC2253193500B3DF69 /* SendMessage.storyboard in Resources */,
 			);
@@ -960,8 +974,10 @@
 				6797D471228C513F008FBA12 /* SendEmailViewController.swift in Sources */,
 				6707E0AC225ADB4E00C12A5A /* ReceiveMessageViewController.swift in Sources */,
 				6707D3D9225AE7B0007529FA /* ReceiveMessageTableViewCell.swift in Sources */,
+				6702605B229A779300373B92 /* ReportViewController.swift in Sources */,
 				67C9E04F225EC22E00516B3D /* TimelineViewController.swift in Sources */,
 				67579D7B22787FD2007AA6DA /* TimelineService.swift in Sources */,
+				6702605F229A77C900373B92 /* PresentReportViewController.swift in Sources */,
 				67C9E04C225EC20200516B3D /* TimelineMessageTableViewCell.swift in Sources */,
 				67A2D5C62277044600755F0B /* EditInformationViewController.swift in Sources */,
 				67F0F9D5229A342900B6CBE3 /* TermOfServiceViewController.swift in Sources */,

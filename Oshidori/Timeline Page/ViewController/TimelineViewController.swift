@@ -128,8 +128,9 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
         if messages.isEmpty {
             return
         }
-        let reportMessage = messages[index]
-        print(reportMessage)
+        let VC = PresentReportViewController.instantiate()
+        VC.reportMessage = messages[index]
+        present(VC, animated: true, completion: nil)
     }
     
     func shareButtonTapped(index: Int) {
@@ -169,5 +170,17 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
         // UIActivityViewControllerを表示
         self.present(activityVC, animated: true, completion: nil)
     }
+}
+
+extension TimelineViewController: PresentReportViewControllerDelegate {
+    func cancelButtonTapped() {
+        
+    }
+    
+    func reportButtonTapped(reportMessage: RepresentationMessage) {
+        let VC = ReportViewController.instantiate()
+        present(VC, animated: true, completion: nil)
+    }
+    
     
 }
