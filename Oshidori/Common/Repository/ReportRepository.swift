@@ -13,10 +13,11 @@ final class ReportRepository {
     
     private let db = Firestore.firestore()
     func save(reportContent:String, message:RepresentationMessage) {
-        let reportRef = db.collection("reportMessages")
+        
         guard let uid = User.shared.getUid() else {
             return
         }
+        let reportRef = db.collection("reportMessages").document(uid)
         let rep: [String : Any] = [
             "reportDate"   : Date(),
             "reportSender" : uid,
@@ -26,6 +27,6 @@ final class ReportRepository {
             "senderName"   : message.senderName ?? "",
             "sentDate"     : message.sentDate ?? "",
         ]
-        reportRef.addDocument(data: rep)
+        reportRef.setData(rep)
     }
 }

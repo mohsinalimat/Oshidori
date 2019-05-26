@@ -180,6 +180,7 @@ extension TimelineViewController: PresentReportViewControllerDelegate {
     
     func reportButtonTapped(reportMessage: RepresentationMessage) {
         let VC = ReportViewController.instantiate()
+        VC.reportMessage = reportMessage
         present(VC, animated: true, completion: nil)
     }
 }
