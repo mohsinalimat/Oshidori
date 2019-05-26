@@ -15,6 +15,13 @@ class SelectRegisterOrLoginViewController: UIViewController {
     @IBOutlet weak var agreeButton: UIButton!
     @IBOutlet weak var checkBox: CheckBox!
     
+    var isReadTermOfService = false {
+        didSet {
+            if isReadTermOfService {
+                trueLayout()
+            }
+        }
+    }
     
     @IBAction func termOfServiceButtonTapped(_ sender: Any) {
         let VC = TermOfServiceViewController.instantiate()
@@ -34,6 +41,11 @@ class SelectRegisterOrLoginViewController: UIViewController {
         if User.shared.isLogin() {
             moveMessagePage()
         }
+        
+        if isReadTermOfService {
+            isEnableCreateButtonTrue()
+            trueLayout()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +53,8 @@ class SelectRegisterOrLoginViewController: UIViewController {
         moveUserCreateButton.layer.cornerRadius = 8
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        isEnableCreateButton()
-        isEnableButtonFlase()
+        isEnableCreateButtonTrue()
+        falseLayout()
     }
     
     @IBAction func didTopMoveUserCreateButton(_ sender: Any) {
@@ -60,7 +72,7 @@ class SelectRegisterOrLoginViewController: UIViewController {
         checkBox.buttonClicked(sender: checkBox)
     }
     
-    func isEnableCreateButton() {
+    func isEnableCreateButtonTrue() {
         if checkBox.isChecked {
             moveUserCreateButton.isEnabled = true
             moveUserCreateButton.alpha = 1.0
@@ -73,23 +85,23 @@ class SelectRegisterOrLoginViewController: UIViewController {
 
 extension SelectRegisterOrLoginViewController: CheckBoxDelegate {
     func tapped() {
-        isEnableCreateButton()
+        isEnableCreateButtonTrue()
     }
 }
 
 extension SelectRegisterOrLoginViewController: TermOfServiceViewControllerDelegate {
     func confirmBackButton() {
-        isEnableButtonTrue()
+        isReadTermOfService = true
     }
     
-    func isEnableButtonFlase() {
+    func falseLayout() {
         checkBox.isEnabled = false
         agreeButton.isEnabled = false
         checkBox.alpha = 0.5
         agreeButton.alpha = 0.5
     }
     
-    func isEnableButtonTrue() {
+    func trueLayout() {
         checkBox.isEnabled = true
         agreeButton.isEnabled = true
         checkBox.alpha = 1
