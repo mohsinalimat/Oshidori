@@ -12,6 +12,10 @@ import UserNotifications
 class SelectRegisterOrLoginViewController: UIViewController {
 
     @IBOutlet weak var moveUserCreateButton: UIButton!
+    @IBOutlet weak var agreeButton: UIButton!
+    @IBOutlet weak var checkBox: CheckBox!
+    
+    
     @IBAction func termOfServiceButtonTapped(_ sender: Any) {
         let VC = TermOfServiceViewController.instantiate()
         present(VC, animated: true, completion: nil)
@@ -31,6 +35,8 @@ class SelectRegisterOrLoginViewController: UIViewController {
         if User.shared.isLogin() {
             moveMessagePage()
         }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,5 +52,21 @@ class SelectRegisterOrLoginViewController: UIViewController {
         moveLoginPage()
     }
     
+    @IBAction func checkBoxTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func agreeButtonTapped(_ sender: UIButton) {
+        checkBox.buttonClicked(sender: checkBox)
+    }
+    
+    
+}
 
+extension SelectRegisterOrLoginViewController: TermOfServiceViewControllerDelegate {
+    func confirmBackButton() {
+        checkBox.isEnabled = true
+        agreeButton.isEnabled = true
+        checkBox.alpha = 1
+        agreeButton.alpha = 1
+    }
 }

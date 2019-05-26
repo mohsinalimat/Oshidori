@@ -46,7 +46,7 @@ final class TermOfServiceViewController: UIViewController {
 extension TermOfServiceViewController: UITextViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // 一番下にきたらボタンを明るくする！
+        // 一番下にきたらボタンを明るくして、ボタンを使えるようにする！
         if scrollView.contentOffset.y >= baseView.contentSize.height - baseView.frame.height {
             confirmBackButton.isEnabled = true
             confirmBackButton.alpha = 1.0
