@@ -13,9 +13,6 @@ protocol PresentReportViewControllerDelegate: class {
     func reportButtonTapped(reportMessage: RepresentationMessage)
 }
 
-import UIKit
-
-
 final class PresentReportViewController: UIViewController {
     
     @IBOutlet weak private var baseView: UIView!

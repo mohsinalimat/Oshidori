@@ -129,6 +129,7 @@ extension TimelineViewController: TimelineMessageTableViewCellDelegate {
             return
         }
         let VC = PresentReportViewController.instantiate()
+        VC.delegate = self
         VC.reportMessage = messages[index]
         present(VC, animated: true, completion: nil)
     }
@@ -181,6 +182,4 @@ extension TimelineViewController: PresentReportViewControllerDelegate {
         let VC = ReportViewController.instantiate()
         present(VC, animated: true, completion: nil)
     }
-    
-    
 }
