@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol CheckBoxDelegate: class {
+    func tapped()
+}
+
 class CheckBox: UIButton {
     // Images
     let checkedImage = UIImage(named: "Checkbox_afterSelected")! as UIImage
     let uncheckedImage = UIImage(named: "Checkbox_beforeSelect")! as UIImage
+    
+    weak var delegate: CheckBoxDelegate?
     
     // Bool property
     var isChecked: Bool = false {
@@ -32,6 +38,8 @@ class CheckBox: UIButton {
     @objc func buttonClicked(sender: UIButton) {
         if sender == self {
             isChecked = !isChecked
+            delegate?.tapped()
         }
+        
     }
 }
