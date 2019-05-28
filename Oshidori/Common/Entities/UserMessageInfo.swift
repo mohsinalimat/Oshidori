@@ -48,10 +48,10 @@ class UserMessageInfo {
 extension UserMessageInfo {
     var representation: [String : Any] {
         let rep: [String : Any] = [
-            "courageCount": courageCount,
-            "supportCount": supportCount,
-            "messageIds": messageIds,
-            "messageCount": messageCount,
+            "courageCount": courageCount ?? 0,
+            "supportCount": supportCount ?? 0,
+            "messageIds": messageIds ?? "",
+            "messageCount": messageCount ?? 0,
         ]
         return rep
     }
@@ -62,7 +62,7 @@ extension UserMessageInfo {
         let rep: [String : Any] = [
             "courageCount": 0,
             "supportCount": 0,
-            "messageIds": messageIds,
+            "messageIds": messageIds ?? "",
             "messageCount": 0,
         ]
         return rep
