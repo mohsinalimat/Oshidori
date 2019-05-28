@@ -214,11 +214,7 @@ extension ReceiveMessageViewController {
         if readEndFlag {
             return
         }
-        if let doc = self.afterDocument {
-            self.getNextMessages(doc: doc)
-        } else {
-            self.getLatestMessages()
-        }
+        self.makeQueryAndGetMessage()
     }
 }
 
@@ -241,98 +237,107 @@ extension ReceiveMessageViewController {
         return db.collection("rooms").document(roomId).collection("messages")
     }
     
-    func getNextMessages(doc: DocumentSnapshot) {
+    func makeQueryAndGetMessage() {
         // firestoreからデータを持ってくる
         guard  let collectionRef = getRoomMessagesCollectionRef() else {
             return
         }
-        #warning("ここに最後の判定メソッドを入れておかないと無限に取りに行く")
-        
         if readEndFlag {
             return
         }
+        let queryRef = collectionRef.order(by: "sentDate", descending: true).limit(to: getMessagesCount)
         
-        collectionRef.order(by: "sentDate", descending: true).limit(to: getMessagesCount).start(afterDocument: doc).getDocuments() { (querySnapshot, err) in
-            
-            if self.readEndFlag {
-                return
-            }
-            // エラーだったらリターンするよ
-            guard let documents = querySnapshot?.documents else {
-                debugPrint(err?.localizedDescription)
-                return
+        if let doc = afterDocument {
+            queryRef.start(afterDocument: doc).getDocuments() { (querySnapshot, err) in
+                self.dataToMessages(querySnapshot: querySnapshot, err: err)
             }
             
-            debugPrint("documents.count: \(documents.count)")
-            // limit のgetCount以外の数を持ってきていたら、endFlagを立てる。0だったらreturn
-            if !(documents.count == self.getMessagesCount) {
-                self.readEndFlag = true
+        } else {
+            queryRef.start(at: [Date()]).getDocuments() { (querySnapshot, err) in
+                self.dataToMessages(querySnapshot: querySnapshot, err: err)
             }
-            
-            if documents.isEmpty {
-                return
-            }
-            
-            for document in documents {
-                let receiveMessage = RepresentationMessage(data: document.data())
-                self.messages.append(receiveMessage)
-            }
-            
-            // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
-            // cellにも、messageにもisNotReadを持たせる。
-            for (_, messageId) in self.notReadMessage.enumerated() {
-                for (indexMessage, message) in self.messages.enumerated() {
-                    if message.messageId == messageId {
-                        self.messages[indexMessage].isNotRead = true
-                    }
-                }
-            }
-            // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
-            self.receiveTableView.reloadData()
-            self.afterDocument = documents.last
-            
-
-
         }
+        
     }
     
-    func getLatestMessages() {
-        // firestoreからデータを持ってくる
-        guard  let collectionRef = getRoomMessagesCollectionRef() else {
-            return
-        }
+    func dataToMessages(querySnapshot: QuerySnapshot?, err: Error?) {
+        
         if self.readEndFlag {
             return
         }
-        #warning("ここに最後の判定メソッドを入れておかないと無限に取りに行く")
+        // エラーだったらリターンするよ
+        guard let documents = querySnapshot?.documents else {
+            debugPrint(err?.localizedDescription)
+            return
+        }
         
-        collectionRef.order(by: "sentDate", descending: true).limit(to: getMessagesCount).start(at: [Date()]).getDocuments() { (querySnapshot, err) in
-            // エラーだったらリターンするよ
-            guard let documents = querySnapshot?.documents else { return }
-            
-            if self.readEndFlag {
-                return
-            }
-            
-            for document in documents {
-                let receiveMessage = RepresentationMessage(data: document.data())
-                self.messages.append(receiveMessage)
-            }
-            // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
-            // cellにも、messageにもisNotReadを持たせる。
-            for (_, messageId) in self.notReadMessage.enumerated() {
-                for (indexMessage, message) in self.messages.enumerated() {
-                    if message.messageId == messageId {
-                        self.messages[indexMessage].isNotRead = true
-                    }
+        debugPrint("documents.count: \(documents.count)")
+        // limit のgetCount以外の数を持ってきていたら、endFlagを立てる。0だったらreturn
+        if !(documents.count == self.getMessagesCount) {
+            self.readEndFlag = true
+        }
+        
+        if documents.isEmpty {
+            return
+        }
+        
+        for document in documents {
+            let receiveMessage = RepresentationMessage(data: document.data())
+            self.messages.append(receiveMessage)
+        }
+        
+        // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
+        // cellにも、messageにもisNotReadを持たせる。
+        for (_, messageId) in self.notReadMessage.enumerated() {
+            for (indexMessage, message) in self.messages.enumerated() {
+                if message.messageId == messageId {
+                    self.messages[indexMessage].isNotRead = true
                 }
             }
-            // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
-            self.receiveTableView.reloadData()
-            
-            self.afterDocument = documents.last
         }
+        // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
+        self.receiveTableView.reloadData()
+        self.afterDocument = documents.last
+    
     }
+    
+//    func getLatestMessages() {
+//        // firestoreからデータを持ってくる
+//        guard  let collectionRef = getRoomMessagesCollectionRef() else {
+//            return
+//        }
+//        if self.readEndFlag {
+//            return
+//        }
+//        #warning("ここに最後の判定メソッドを入れておかないと無限に取りに行く")
+//
+//        collectionRef.order(by: "sentDate", descending: true).limit(to: getMessagesCount).start(at: [Date()]).getDocuments() { (querySnapshot, err) in
+//            // エラーだったらリターンするよ
+//            guard let documents = querySnapshot?.documents else { return }
+//
+//            if self.readEndFlag {
+//                return
+//            }
+//
+//            for document in documents {
+//                let receiveMessage = RepresentationMessage(data: document.data())
+//                self.messages.append(receiveMessage)
+//            }
+//            // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
+//            // cellにも、messageにもisNotReadを持たせる。
+//            for (_, messageId) in self.notReadMessage.enumerated() {
+//                for (indexMessage, message) in self.messages.enumerated() {
+//                    if message.messageId == messageId {
+//                        self.messages[indexMessage].isNotRead = true
+//                    }
+//                }
+//            }
+//            // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
+//            self.receiveTableView.reloadData()
+//
+//            self.afterDocument = documents.last
+//        }
+//    }
     
     func setReceiveMessagesListner() {
         guard let collectionRef = getRoomMessagesCollectionRef() else {
