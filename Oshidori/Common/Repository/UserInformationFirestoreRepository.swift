@@ -151,12 +151,10 @@ extension UserInformationFirestoreRepository {
         }
         dataRef.putData(tmpData, metadata: metadata) { (metadata, error) in
             // error で比較しないんだ。firebaseのドキュメント読めばいいんだよ
-            guard let metadata = metadata else {
+            guard let _ = metadata else {
                 completion(nil, nil)
                 return
             }
-            // ここは特に意味ない。
-            let size = metadata.size
             // ダウンロードURLを取得するよ。このURLを取れるようになったよ！！！
             dataRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
@@ -173,7 +171,7 @@ extension UserInformationFirestoreRepository {
         let desertRef = storageRef.child(imageName)
         
         desertRef.delete { error in
-            if let error = error {
+            if error != nil {
                 // Uh-oh, an error occurred!
             } else {
                 // File deleted successfully

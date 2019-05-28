@@ -267,7 +267,7 @@ extension ReceiveMessageViewController {
         }
         // エラーだったらリターンするよ
         guard let documents = querySnapshot?.documents else {
-            debugPrint(err?.localizedDescription)
+            debugPrint(err?.localizedDescription ?? "error")
             return
         }
         

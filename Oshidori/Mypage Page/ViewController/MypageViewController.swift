@@ -188,7 +188,7 @@ extension MypageViewController {
     }
     
     func getUserAndRoomInfo() {
-        guard let uid = User.shared.getUid() else {
+        guard let _ = User.shared.getUid() else {
             return
         }
         mypageService.getUserAndRoomInfo()
