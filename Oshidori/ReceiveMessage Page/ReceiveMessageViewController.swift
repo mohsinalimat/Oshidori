@@ -301,44 +301,6 @@ extension ReceiveMessageViewController {
     
     }
     
-//    func getLatestMessages() {
-//        // firestoreからデータを持ってくる
-//        guard  let collectionRef = getRoomMessagesCollectionRef() else {
-//            return
-//        }
-//        if self.readEndFlag {
-//            return
-//        }
-//        #warning("ここに最後の判定メソッドを入れておかないと無限に取りに行く")
-//
-//        collectionRef.order(by: "sentDate", descending: true).limit(to: getMessagesCount).start(at: [Date()]).getDocuments() { (querySnapshot, err) in
-//            // エラーだったらリターンするよ
-//            guard let documents = querySnapshot?.documents else { return }
-//
-//            if self.readEndFlag {
-//                return
-//            }
-//
-//            for document in documents {
-//                let receiveMessage = RepresentationMessage(data: document.data())
-//                self.messages.append(receiveMessage)
-//            }
-//            // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
-//            // cellにも、messageにもisNotReadを持たせる。
-//            for (_, messageId) in self.notReadMessage.enumerated() {
-//                for (indexMessage, message) in self.messages.enumerated() {
-//                    if message.messageId == messageId {
-//                        self.messages[indexMessage].isNotRead = true
-//                    }
-//                }
-//            }
-//            // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
-//            self.receiveTableView.reloadData()
-//
-//            self.afterDocument = documents.last
-//        }
-//    }
-    
     func setReceiveMessagesListner() {
         guard let collectionRef = getRoomMessagesCollectionRef() else {
             return
