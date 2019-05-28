@@ -29,9 +29,12 @@ class ReceiveMessageViewController: UIViewController {
     
     @IBOutlet weak var receiveTableView: UITableView!
     
-    private var lastDate: Date?
-    
     private let refreshCtl = UIRefreshControl()
+    
+    private var readEndFlag = false
+    private var lastDate: Date?
+    private var afterDocument: DocumentSnapshot?
+    private let getMessagesCount = 20
     
     // 未読を入れるため
     private let roomUserInfoRep = RoomFirestoreRepository()
@@ -112,7 +115,6 @@ extension ReceiveMessageViewController {
     }
     
     func resetMessageInfo() {
-        // 未読処理
         guard let userInfo = userInformation else {
             return
         }
@@ -120,11 +122,8 @@ extension ReceiveMessageViewController {
             if !(userInfo.roomId.isEmpty) {
                 self.moveSendMessageButton.isHidden = false
                 // firestoreからデータを取って、テーブルビューに反映
-                if let lastDate = self.lastDate {
-                    self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
-                } else {
-                    self.getMessageDataFromFirestore_createTableView(lastDate: Date())
-                }
+                // ここでリフレッシュのメソッドを呼ぶ
+                self.getAndReload()
             }
         }
     }
@@ -157,6 +156,8 @@ extension ReceiveMessageViewController: ReceiveMessageViewControllerDelegate {
     @objc func reloadReceiveMessageTableView() {
         messages.removeAll()
         lastDate = nil
+        afterDocument = nil
+        readEndFlag = false
         resetMessageInfo()
         refreshCtl.endRefreshing()
     }
@@ -206,12 +207,14 @@ extension ReceiveMessageViewController {
         guard tableView.cellForRow(at: IndexPath(row: tableView.numberOfRows(inSection: 0)-2, section: 0)) != nil else {
             return
         }
-        // ここでリフレッシュのメソッドを呼ぶ
-        if let lastDate = self.lastDate {
-            self.getMessageDataFromFirestore_createTableView(lastDate: lastDate)
-        } else {
-            self.getMessageDataFromFirestore_createTableView(lastDate: Date())
+        getAndReload()
+    }
+    
+    func getAndReload() {
+        if readEndFlag {
+            return
         }
+        self.makeQueryAndGetMessage()
     }
 }
 
@@ -234,39 +237,70 @@ extension ReceiveMessageViewController {
         return db.collection("rooms").document(roomId).collection("messages")
     }
     
-    func getMessageDataFromFirestore_createTableView(lastDate: Date) {
+    func makeQueryAndGetMessage() {
         // firestoreからデータを持ってくる
         guard  let collectionRef = getRoomMessagesCollectionRef() else {
             return
         }
+        if readEndFlag {
+            return
+        }
+        let queryRef = collectionRef.order(by: "sentDate", descending: true).limit(to: getMessagesCount)
         
-        collectionRef.order(by: "sentDate", descending: true).limit(to: 10).start(at: [lastDate]).getDocuments() { (querySnapshot, err) in
-            // エラーだったらリターンするよ
-            guard err == nil else { return }
-            for document in querySnapshot!.documents {
-                let receiveMessage = RepresentationMessage(data: document.data())
-                if let sentDate = receiveMessage.sentDate {
-                    if self.lastDate == sentDate {
-                        return
-                    }
-                    self.lastDate = sentDate
-                }
-                self.messages.append(receiveMessage)
+        if let doc = afterDocument {
+            queryRef.start(afterDocument: doc).getDocuments() { (querySnapshot, err) in
+                self.dataToMessages(querySnapshot: querySnapshot, err: err)
             }
             
-            // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
-            // cellにも、messageにもisNotReadを持たせる。
-            for (_, messageId) in self.notReadMessage.enumerated() {
-                for (indexMessage, message) in self.messages.enumerated() {
-                    if message.messageId == messageId {
-                        self.messages[indexMessage].isNotRead = true
-                    }
+        } else {
+            queryRef.start(at: [Date()]).getDocuments() { (querySnapshot, err) in
+                self.dataToMessages(querySnapshot: querySnapshot, err: err)
+            }
+        }
+        
+    }
+    
+    func dataToMessages(querySnapshot: QuerySnapshot?, err: Error?) {
+        
+        if self.readEndFlag {
+            return
+        }
+        // エラーだったらリターンするよ
+        guard let documents = querySnapshot?.documents else {
+            debugPrint(err?.localizedDescription ?? "error")
+            return
+        }
+        
+        debugPrint("documents.count: \(documents.count)")
+        // limit のgetCount以外の数を持ってきていたら、endFlagを立てる。0だったらreturn
+        if !(documents.count == self.getMessagesCount) {
+            self.readEndFlag = true
+        }
+        
+        if documents.isEmpty {
+            return
+        }
+        
+        for document in documents {
+            let receiveMessage = RepresentationMessage(data: document.data())
+            self.messages.append(receiveMessage)
+        }
+        
+        // notReadMessageに入っているIDを参照し、messagesのisNotReadを変更している
+        // cellにも、messageにもisNotReadを持たせる。
+        for (_, messageId) in self.notReadMessage.enumerated() {
+            for (indexMessage, message) in self.messages.enumerated() {
+                if message.messageId == messageId {
+                    self.messages[indexMessage].isNotRead = true
                 }
             }
-            // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
-            self.receiveTableView.reloadData()
         }
+        // firebaseにアクセスするよりも、tableViewのメソッドの方が先に走る。非同期通信だから。→リロードしてデータを反映させる。
+        self.receiveTableView.reloadData()
+        self.afterDocument = documents.last
+    
     }
+    
     
     func setReceiveMessagesListner() {
         guard let collectionRef = getRoomMessagesCollectionRef() else {
@@ -280,7 +314,9 @@ extension ReceiveMessageViewController {
 
 extension ReceiveMessageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        if messages.isEmpty {
+            return
+        }
         // これをどこかに保存しなきゃ。
         guard let messageId = messages[indexPath.row].messageId else {
             return

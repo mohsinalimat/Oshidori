@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // For iOS 10 display notification (sent via APNS)
             UNUserNotificationCenter.current().delegate = self
             Messaging.messaging().shouldEstablishDirectChannel = true
-            Messaging.messaging().useMessagingDelegateForDirectChannel = true
             
             let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
             UNUserNotificationCenter.current().requestAuthorization(options: authOptions,completionHandler: {_, _ in })

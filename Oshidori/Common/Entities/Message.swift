@@ -75,8 +75,8 @@ extension Message {
             "senderName": sender.displayName,
             "content": content,
             "contentType": getContentType(),
-            "courageCount" : courageCount,
-            "supportCount" : supportCount,
+            "courageCount" : courageCount ?? 0,
+            "supportCount" : supportCount ?? 0,
             "messageId" : messageId,
         ]
         return rep
@@ -86,7 +86,7 @@ extension Message {
 extension Message {
     var editCourageCountRepresentation: [String : Any] {
         let rep: [String : Any] = [
-            "courageCount": courageCount,
+            "courageCount": courageCount ?? 0,
         ]
         return rep
     }
@@ -95,7 +95,7 @@ extension Message {
 extension Message {
     var editSupportCountRepresentation: [String : Any] {
         let rep: [String : Any] = [
-            "supportCount": supportCount,
+            "supportCount": supportCount ?? 0,
         ]
         return rep
     }

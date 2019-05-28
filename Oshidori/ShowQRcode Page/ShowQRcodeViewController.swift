@@ -23,7 +23,7 @@ class ShowQRcodeViewController: UIViewController {
         }
         
         // 値が変更されたら、移動するようにする
-        let userInfoListener = db.collection("users").document(uid).collection("info").document(uid).addSnapshotListener { (querySnapshot, error) in
+        db.collection("users").document(uid).collection("info").document(uid).addSnapshotListener { (querySnapshot, error) in
             
             guard let data = querySnapshot?.data() else {
                 return
