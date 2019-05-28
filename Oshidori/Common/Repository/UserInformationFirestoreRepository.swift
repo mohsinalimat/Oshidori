@@ -97,7 +97,7 @@ class UserInformationFirestoreRepository {
     func isExistUser(userId: String,completion: @escaping (Bool, UserInformation?) -> Void ) {
         let userInfoDocumentRef = getPartnerUserInfoDocumentRef(partnerId: userId)
         userInfoDocumentRef.getDocument { (snapshot, error) in
-            guard let error = error else {
+            guard let _ = error else {
                 guard let data = snapshot?.data() else {
                     return
                 }

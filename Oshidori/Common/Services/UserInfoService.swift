@@ -37,6 +37,9 @@ class UserInfoService {
             return
         }
         userInfoRep.getUserInfo { (UserInformation) in
+            if let FCMToken = UserDefaults.standard.string(forKey: "FCMToken") {
+                UserInformation.FCMToken = FCMToken
+            }
             self.userInfoRep.update(UserInformation, completion: {
                 debugPrint("更新完了")
             })
