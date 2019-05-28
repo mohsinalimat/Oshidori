@@ -29,20 +29,25 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
     private let db = Firestore.firestore()
     
     // contentTypeに使用する言葉
-    let THANKYOU = "ありがとう"
-    let SORRY = "ごめんね"
-    let LISTEN = "あのね"
+    let dispThankyou = "1. ありがとう"
+    let saveThankyou = "ありがとう"
+    let dispSorry = "2. ごめんね"
+    let saveSorry = "ごめんね"
+    let dispListen = "3. あのね"
+    let saveListen = "あのね"
     
     // selectSendTypeに使用する言葉
-    let KEEP = "預ける"
+    let REWRITE = "1. 書き直す"
+    let KEEP = "2. 預ける"
     let EDIT = "編集"
-    let REWRITE = "書き直す"
+    let irregularEDIT = "「編集」"
+    
     
     // おしどりが話す内容
     enum oshidoriContent: String {
         case firstContent = "お手紙の種類をタップして選んでね！"
         case beforeWriteMessage = "おしどりに預けたいメッセージを書いてね！"
-        case afterWroteMessage = "この手紙を預けますか？ メッセージをタップして選択してください！編集する場合は、「編集」のメッセージを送ってね！"
+        case afterWroteMessage = "この手紙を預けますか？ 編集する場合は、「編集」と書いてメッセージを送ってね！"
         case lastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！"
         case continueMessage = "もう一度メッセージを書きますか？書く場合は、「書く」または「1」を入力してください！"
     }
@@ -189,7 +194,7 @@ extension SendMessageViewController {
             }
         }
     }
-
+    
     func save(_ message: Message) {
         // falseだったら実行されるようだ。guardは条件に一致なかった場合に、処理を中断させるための構文
         guard isAfterWroteMessage() else {
@@ -204,7 +209,7 @@ extension SendMessageViewController {
         let userMessageInfoRep = UserMessageInfoFirestoreRepository()
         userMessageInfoRep.updateMessageCount(uid: message.sender.senderId)
     }
-        
+    
     func saveToRoomMessage(message: Message, messageId: String) {
         let roomMessageDocumentRef = getRoomMessagesCollectionRef().document(messageId)
         
@@ -216,7 +221,7 @@ extension SendMessageViewController {
                 return
             }
             self.saveToRoomMessageFirstContent(message: message, messageId: messageId)
-//            self.delegate?.reloadReceiveMessageTableView()
+            //            self.delegate?.reloadReceiveMessageTableView()
         }
     }
     
@@ -347,23 +352,18 @@ extension SendMessageViewController: MessageInputBarDelegate {
                     
                 case chatStatus.selectContentType:
                     reactionWhenSelectContentType(textMessage: str)
+                    
                 case chatStatus.beforeWriteMessage:
                     // ユーザが送ったメッセージを保存
                     sendTempMessage = message
                     // メッセージを送信して状態を変化
                     insertNewMessage(message)
                     chatStatusFlag = chatStatus.afterWroteMessage
-                    insertNewMessage(getOshidoriMessages())
-                    
-                    // 「編集」「預ける」をボタンの代わりに送る
-                    // TODO: 画像で、ボタンのようにしたい。その時は、画像の名前になるのか？比較要素が。
-                    createAndInsertMessageFromeUser(REWRITE)
-                    createAndInsertMessageFromeUser(KEEP)
-                    
+                    reactionWhenWroteMessage()
                     cleanTextBoxAndScroll(inputBar: inputBar)
+                    
                 case chatStatus.afterWroteMessage:
                     reactionWhenSelectSendType(textMessage: str, inputBar)
-                    
                 case chatStatus.selectSendType:
                     insertNewMessage(getOshidoriMessages())
                     messagesCollectionView.scrollToBottom(animated: true)
@@ -384,21 +384,27 @@ extension SendMessageViewController: MessageInputBarDelegate {
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
+    func reactionWhenWroteMessage() {
+        insertNewMessage(getOshidoriMessages())
+        // 「編集」「預ける」をボタンの代わりに送る
+        // TODO: 画像で、ボタンのようにしたい。その時は、画像の名前になるのか？比較要素が。
+        createAndInsertMessageFromeUser(REWRITE)
+        createAndInsertMessageFromeUser(KEEP)
+    }
+    
     func reactionWhenSelectContentType(textMessage: String) {
         // selectContentTypeの時
-        if textMessage == THANKYOU {
-            storeContentType_changeStatus(storeText: textMessage)
-        } else if textMessage == SORRY {
-            storeContentType_changeStatus(storeText: textMessage)
-        } else if textMessage == LISTEN {
-            storeContentType_changeStatus(storeText: textMessage)
+        if textMessage == dispThankyou {
+            storeContentType_changeStatus(storeText: saveThankyou)
+        } else if textMessage == dispSorry {
+            storeContentType_changeStatus(storeText: saveSorry)
+        } else if textMessage == dispListen {
+            storeContentType_changeStatus(storeText: saveListen)
         }
     }
     
     func reactionWhenSelectSendType(textMessage: String) {
-        if textMessage == EDIT {
-            selectEditAction()
-        } else if textMessage == KEEP {
+        if textMessage == KEEP {
             if let sendMessage = sendTempMessage {
                 selectKeepAction(sendMessage: sendMessage)
             }
@@ -410,7 +416,7 @@ extension SendMessageViewController: MessageInputBarDelegate {
     }
     
     func reactionWhenSelectSendType(textMessage: String,_ inputBar: InputBarAccessoryView) {
-        if textMessage == EDIT {
+        if textMessage == EDIT || textMessage == irregularEDIT {
             if let content = sendTempMessage?.content {
                 inputBar.inputTextView.text = content
             }
@@ -422,7 +428,9 @@ extension SendMessageViewController: MessageInputBarDelegate {
         } else if textMessage == REWRITE {
             selectResetAction()
         } else {
-            //タップしても反応しないようにする
+            createAndInsertMessageFromOshidori("適切なメッセージを送ってね！")
+            inputBar.inputTextView.text = String()
+            reactionWhenWroteMessage()
         }
     }
     
@@ -437,9 +445,9 @@ extension SendMessageViewController: MessageInputBarDelegate {
     }
     
     func insertContentTypeToUserMessage() {
-        createAndInsertMessageFromeUser(THANKYOU)
-        createAndInsertMessageFromeUser(SORRY)
-        createAndInsertMessageFromeUser(LISTEN)
+        createAndInsertMessageFromeUser(dispThankyou)
+        createAndInsertMessageFromeUser(dispSorry)
+        createAndInsertMessageFromeUser(dispListen)
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
@@ -523,31 +531,31 @@ extension SendMessageViewController{
     }
     
     // メッセージの上に文字を表示
-//    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-//        if indexPath.section % 3 == 0 {
-//            return NSAttributedString(
-//                string: MessageKitDateFormatter.shared.string(from: message.sentDate),
-//                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
-//                             NSAttributedString.Key.foregroundColor: UIColor.darkGray]
-//            )
-//        }
-//        return nil
-//    }
+    //    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+    //        if indexPath.section % 3 == 0 {
+    //            return NSAttributedString(
+    //                string: MessageKitDateFormatter.shared.string(from: message.sentDate),
+    //                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
+    //                             NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+    //            )
+    //        }
+    //        return nil
+    //    }
     
     // メッセージの上に文字を表示（名前）
-//    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-//        let name = message.sender.displayName
-//        if isAfterWroteMessage() {
-//            return NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-//        }
-//        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
-//    }
+    //    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+    //        let name = message.sender.displayName
+    //        if isAfterWroteMessage() {
+    //            return NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+    //        }
+    //        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+    //    }
     
     // メッセージの下に文字を表示（日付）
-//    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-//        let dateString = formatter.string(from: message.sentDate)
-//        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
-//    }
+    //    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+    //        let dateString = formatter.string(from: message.sentDate)
+    //        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
+    //    }
     
     // 各ラベルの高さを設定（デフォルト0なので必須）
     func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
