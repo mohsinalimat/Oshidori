@@ -76,6 +76,8 @@ class EditInformationViewController: FormViewController {
                     $0.title = "画像"
                     $0.sourceTypes = [.PhotoLibrary]
                     $0.clearAction = .no
+                    $0.allowEditor = true
+                    $0.useEditedImage = true
                     $0.onChange { [unowned self] row in
                         if let value = row.value {
                             self.selectedImg = value
