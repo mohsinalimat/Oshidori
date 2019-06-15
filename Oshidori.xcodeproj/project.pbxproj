@@ -87,7 +87,7 @@
 		67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E0502260131700516B3D /* OshidoriColor.swift */; };
 		67C9E053226017B200516B3D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E052226017B200516B3D /* TabBarController.swift */; };
 		67DD01D422686DEC00583BF6 /* ReadQRcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DD01D322686DEC00583BF6 /* ReadQRcode.storyboard */; };
-		67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */; };
+		67EE40CD2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67EE40CC2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard */; };
 		67EE40CF2265AAFF00E2F2C5 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE40CE2265AAFF00E2F2C5 /* EditUserInfoViewController.swift */; };
 		67EE40D12265D58800E2F2C5 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE40D02265D58800E2F2C5 /* UserInformation.swift */; };
 		67F0F9D3229A265000B6CBE3 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0F9D2229A265000B6CBE3 /* CheckBox.swift */; };
@@ -207,7 +207,7 @@
 		67C9E0502260131700516B3D /* OshidoriColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriColor.swift; sourceTree = "<group>"; };
 		67C9E052226017B200516B3D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		67DD01D322686DEC00583BF6 /* ReadQRcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadQRcode.storyboard; sourceTree = "<group>"; };
-		67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistAuthUser.storyboard; sourceTree = "<group>"; };
+		67EE40CC2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistAuthUserViewController.storyboard; sourceTree = "<group>"; };
 		67EE40CE2265AAFF00E2F2C5 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
 		67EE40D02265D58800E2F2C5 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		67F0F9D2229A265000B6CBE3 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
@@ -392,25 +392,12 @@
 			isa = PBXGroup;
 			children = (
 				673E9B68227D3764004B0C91 /* Oshidori.entitlements */,
-				6732F27F224DB2F500011710 /* AppDelegate.swift */,
 				67A2D59F2276797E00755F0B /* Common */,
 				6723DEB2224F74CB00B3DF69 /* TabBarController */,
-				67A2D5A122767A2F00755F0B /* SelectRegisterOrLogin Page */,
-				67A2D5A222767A4800755F0B /* Login Page */,
-				67A2D5A322767A5600755F0B /* RegistAuthUser Page */,
-				67A2D5AA22767C0C00755F0B /* RegistUserInfo Page */,
-				676AF0632281721200BDB911 /* MessageRoom Page */,
-				67A2D5A422767AA200755F0B /* SendMessage Page */,
-				67A2D5A522767B9900755F0B /* ReceiveMessage Page */,
-				67A2D5A622767BAB00755F0B /* Timeline Page */,
-				67A2D5A722767BC100755F0B /* ShowQRcode Page */,
-				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
-				6797D474228C5158008FBA12 /* SendEmail Page */,
-				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
-				67A2D5B72276A89E00755F0B /* Mypage Page */,
-				676AF05C2281530B00BDB911 /* PartnerSetting Page */,
-				672B7D172286F67A008FA9D1 /* AppDescription Page */,
-				67026064229A9B1700373B92 /* Report Page */,
+				6733C2D022B4DB7900730500 /* Other Page */,
+				6733C2CD22B4DACF00730500 /* Message Tab */,
+				6733C2CF22B4DB2700730500 /* Timeline Tab */,
+				6733C2CE22B4DB1700730500 /* Mypage Tab */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
@@ -431,6 +418,66 @@
 				6732F2A4224DB2F600011710 /* Info.plist */,
 			);
 			path = OshidoriUITests;
+			sourceTree = "<group>";
+		};
+		6733C2CC22B4DA9300730500 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6732F27F224DB2F500011710 /* AppDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6733C2CD22B4DACF00730500 /* Message Tab */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A422767AA200755F0B /* SendMessage Page */,
+				676AF0632281721200BDB911 /* MessageRoom Page */,
+				67A2D5A522767B9900755F0B /* ReceiveMessage Page */,
+			);
+			path = "Message Tab";
+			sourceTree = "<group>";
+		};
+		6733C2CE22B4DB1700730500 /* Mypage Tab */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5B72276A89E00755F0B /* Mypage Page */,
+				6733C2D122B4E1FA00730500 /* QRcode Page */,
+				6797D474228C5158008FBA12 /* SendEmail Page */,
+				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
+				676AF05C2281530B00BDB911 /* PartnerSetting Page */,
+				672B7D172286F67A008FA9D1 /* AppDescription Page */,
+				67026064229A9B1700373B92 /* Report Page */,
+			);
+			path = "Mypage Tab";
+			sourceTree = "<group>";
+		};
+		6733C2CF22B4DB2700730500 /* Timeline Tab */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A622767BAB00755F0B /* Timeline Page */,
+			);
+			path = "Timeline Tab";
+			sourceTree = "<group>";
+		};
+		6733C2D022B4DB7900730500 /* Other Page */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A122767A2F00755F0B /* SelectRegisterOrLogin Page */,
+				67A2D5A222767A4800755F0B /* Login Page */,
+				67A2D5A322767A5600755F0B /* RegistAuthUser Page */,
+				67A2D5AA22767C0C00755F0B /* RegistUserInfo Page */,
+			);
+			path = "Other Page";
+			sourceTree = "<group>";
+		};
+		6733C2D122B4E1FA00730500 /* QRcode Page */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A722767BC100755F0B /* ShowQRcode Page */,
+				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
+			);
+			path = "QRcode Page";
 			sourceTree = "<group>";
 		};
 		673F94DC2279CBC200E293FE /* Service */ = {
@@ -513,6 +560,7 @@
 				6723DEB622509BAF00B3DF69 /* Extension */,
 				6723DEAF224F740600B3DF69 /* Entities */,
 				6723DEB3224F74DD00B3DF69 /* Storyboard */,
+				6733C2CC22B4DA9300730500 /* Controller */,
 				677AB3032270238A00DBCD62 /* Services */,
 				677AB3002270228100DBCD62 /* Repository */,
 				67A2D5A02276799800755F0B /* Resources */,
@@ -556,7 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				6723DEB72250AA7500B3DF69 /* RegistAuthUserViewController.swift */,
-				67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */,
+				67EE40CC2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard */,
 			);
 			path = "RegistAuthUser Page";
 			sourceTree = "<group>";
@@ -835,7 +883,7 @@
 				6732F28A224DB2F600011710 /* Assets.xcassets in Resources */,
 				6797D473228C5152008FBA12 /* SendEmailViewController.storyboard in Resources */,
 				6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */,
-				67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */,
+				67EE40CD2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard in Resources */,
 				6702605D229A77A600373B92 /* ReportViewController.storyboard in Resources */,
 				67026070229A9E7700373B92 /* SubTitleCell.xib in Resources */,
 				67DD01D422686DEC00583BF6 /* ReadQRcode.storyboard in Resources */,
@@ -1138,7 +1186,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1193,7 +1241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

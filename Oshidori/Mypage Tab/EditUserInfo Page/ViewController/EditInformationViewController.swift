@@ -76,6 +76,8 @@ class EditInformationViewController: FormViewController {
                     $0.title = "画像"
                     $0.sourceTypes = [.PhotoLibrary]
                     $0.clearAction = .no
+                    $0.allowEditor = true
+                    $0.useEditedImage = true
                     $0.onChange { [unowned self] row in
                         if let value = row.value {
                             self.selectedImg = value
@@ -96,14 +98,15 @@ class EditInformationViewController: FormViewController {
     }
     
     @IBAction func didTapSaveButton(_ sender: Any) {
-        HUD.show(.progress)
+        
         guard let content = editContent else {
             return
         }
-        
+        HUD.show(.progress)
         switch content {
         case nickNameContent:
             guard let name = nickName else {
+                HUD.hide()
                 alert("エラー", "値を変更してください", nil)
                 return
             }
@@ -111,6 +114,7 @@ class EditInformationViewController: FormViewController {
 
         case birthdayContent:
             guard let birthday = birthday else {
+                HUD.hide()
                 alert("エラー", "値を変更してください", nil)
                 return
             }
@@ -118,11 +122,13 @@ class EditInformationViewController: FormViewController {
 
         case photoContent:
             guard let image = image else {
+                HUD.hide()
                 alert("エラー", "値を変更してください", nil)
                 return
             }
             UserInfoService.shared.saveImage(image: image)
         default:
+            HUD.hide()
             break
         }
     }

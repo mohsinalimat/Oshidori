@@ -21,14 +21,8 @@ class RegistAuthUserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-        registButton.backgroundColor = OshidoriColor.primary
-        registButton.layer.cornerRadius = 8.0
-        emailField.becomeFirstResponder()
-        
         User.shared.delegate = self
-
-        // Do any additional setup after loading the view.
+        configureUI()
     }
     
     @IBAction func didTapRegisterButton(_ sender: Any) {
@@ -38,18 +32,17 @@ class RegistAuthUserViewController: UIViewController {
                 guard let self = self else {
                     return
                 }
-                
+
                 // TODO: メールを送って、確認することができる！！！
 //                self.user.verificate(credential: credential, completion: {
 //                    //
 //                })
-                
-                
+
                 self.user.login(credential: credential, completion: {
                     if self.user.isLogin() {
                         self.moveUserRegistPage()
                     } else {
-                        
+
                     }
                     HUD.hide()
                 })
@@ -68,17 +61,26 @@ class RegistAuthUserViewController: UIViewController {
         }
         return Credential(email: email, password: password)
     }
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension RegistAuthUserViewController {
+    
+    @objc func cancelButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+    private func configureUI() {
+        registButton.backgroundColor = OshidoriColor.primary
+        registButton.layer.cornerRadius = 8.0
+        emailField.becomeFirstResponder()
+        
+        let leftIconSize = CGRect(origin: CGPoint.zero, size: CGSize(width: 24, height: 24))
+        let leftIconButton = UIButton(frame: leftIconSize)
+        leftIconButton.setTitle("キャンセル", for: .normal)
+        let leftBarButton = UIBarButtonItem(customView: leftIconButton)
+        leftIconButton.addTarget(self, action: #selector(cancelButtonTapped(_:)), for: .touchUpInside)
+        navigationItem.leftBarButtonItem = leftBarButton
+    }
 }
 
 extension RegistAuthUserViewController: UserDelegate {

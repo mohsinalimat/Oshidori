@@ -95,8 +95,7 @@ extension MypageViewController {
                     }
                 }
             }
-            
-            
+            cell.selectionStyle = .none
             
             return cell
 
@@ -106,7 +105,7 @@ extension MypageViewController {
             cell.setCourageCountLabel(courageCount: mypageService.getCourageCount())
             cell.setSupportCountLabel(supportCount: mypageService.getSupportCount())
             cell.setMessageCountLabel(messageCount: mypageService.getMessageCount())
-            
+            cell.selectionStyle = .none
             return cell
 
         case 2:

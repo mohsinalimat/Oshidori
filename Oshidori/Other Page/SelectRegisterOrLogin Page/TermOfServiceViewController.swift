@@ -15,7 +15,8 @@ protocol TermOfServiceViewControllerDelegate: class {
 final class TermOfServiceViewController: UIViewController {
     
     @IBOutlet weak var baseView: UITextView!
-    @IBOutlet weak var confirmBackButton: UIButton!
+    @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var backButton: UIButton!
     
     weak var delegate: TermOfServiceViewControllerDelegate?
     
@@ -27,13 +28,15 @@ final class TermOfServiceViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.setNavigationBarHidden(true, animated: false)
         baseView.delegate = self
         baseView.layer.cornerRadius = 8
-        confirmBackButton.backgroundColor = OshidoriColor.primary
-        confirmBackButton.layer.cornerRadius = 8
-        confirmBackButton.setTitle("戻る", for: .normal)
-        confirmBackButton.alpha = 0.5
-        confirmBackButton.isEnabled = false
+        confirmButton.backgroundColor = OshidoriColor.primary
+        confirmButton.layer.cornerRadius = 8
+        confirmButton.alpha = 0.5
+        confirmButton.isEnabled = false
+        backButton.backgroundColor = OshidoriColor.dark
+        backButton.layer.cornerRadius = 8
     }
     
     override func viewDidLayoutSubviews() {
@@ -41,6 +44,10 @@ final class TermOfServiceViewController: UIViewController {
     }
     
     @IBAction private func confirmButtonTapped(_ sender: UIButton) {
+        moveUserCreatePage()
+    }
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
         dismiss(animated: true) {
             self.delegate?.confirmBackButton()
         }
@@ -52,8 +59,8 @@ extension TermOfServiceViewController: UITextViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // 一番下にきたらボタンを明るくして、ボタンを使えるようにする！
         if scrollView.contentOffset.y >= baseView.contentSize.height - baseView.frame.height {
-            confirmBackButton.isEnabled = true
-            confirmBackButton.alpha = 1.0
+            confirmButton.isEnabled = true
+            confirmButton.alpha = 1.0
         }
     }
 }
@@ -72,5 +79,7 @@ extension TermOfServiceViewController: UIViewControllerTransitioningDelegate {
         return AnimatedTransition(forPresented: false)
     }
 }
+
+
 
 

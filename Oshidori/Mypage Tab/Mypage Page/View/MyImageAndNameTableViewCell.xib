@@ -36,9 +36,10 @@
                         <textInputTraits key="textInputTraits"/>
                     </textField>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucM-cg-kXZ">
-                        <rect key="frame" x="30" y="165" width="343" height="14"/>
+                        <rect key="frame" x="101.5" y="152" width="200" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="14" id="IB6-Tt-Od1"/>
+                            <constraint firstAttribute="width" constant="200" id="4lp-RH-Ekc"/>
+                            <constraint firstAttribute="height" constant="40" id="IB6-Tt-Od1"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <state key="normal" title="プロフィールを編集する"/>
@@ -49,15 +50,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ltF-JB-FXN" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="0dz-NT-MmS"/>
-                    <constraint firstItem="ucM-cg-kXZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="9uK-hm-ZSg"/>
-                    <constraint firstAttribute="bottom" secondItem="ucM-cg-kXZ" secondAttribute="bottom" constant="20" id="CFm-us-iVB"/>
+                    <constraint firstAttribute="bottom" secondItem="ucM-cg-kXZ" secondAttribute="bottom" constant="7" id="CFm-us-iVB"/>
                     <constraint firstItem="rRU-Sw-k0B" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="IQR-bZ-kDV"/>
                     <constraint firstItem="ucM-cg-kXZ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Mp0-AS-g22"/>
                     <constraint firstAttribute="trailing" secondItem="rRU-Sw-k0B" secondAttribute="trailing" constant="30" id="SCd-15-ynX"/>
                     <constraint firstItem="ltF-JB-FXN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="ZpF-Ju-y2f"/>
-                    <constraint firstAttribute="trailing" secondItem="ucM-cg-kXZ" secondAttribute="trailing" constant="30" id="blR-ua-GUZ"/>
                     <constraint firstItem="rRU-Sw-k0B" firstAttribute="top" secondItem="ltF-JB-FXN" secondAttribute="bottom" constant="10" id="c7y-SE-cr9"/>
-                    <constraint firstItem="ucM-cg-kXZ" firstAttribute="top" secondItem="rRU-Sw-k0B" secondAttribute="bottom" constant="15" id="eMK-K3-osW"/>
+                    <constraint firstItem="ucM-cg-kXZ" firstAttribute="top" secondItem="rRU-Sw-k0B" secondAttribute="bottom" constant="2" id="eMK-K3-osW"/>
                     <constraint firstItem="rRU-Sw-k0B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="kvb-vq-gcm"/>
                 </constraints>
             </tableViewCellContentView>
