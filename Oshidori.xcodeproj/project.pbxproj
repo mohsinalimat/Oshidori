@@ -441,11 +441,10 @@
 		6733C2CE22B4DB1700730500 /* Mypage Tab */ = {
 			isa = PBXGroup;
 			children = (
-				67A2D5A722767BC100755F0B /* ShowQRcode Page */,
-				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
+				67A2D5B72276A89E00755F0B /* Mypage Page */,
+				6733C2D122B4E1FA00730500 /* QRcode Page */,
 				6797D474228C5158008FBA12 /* SendEmail Page */,
 				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
-				67A2D5B72276A89E00755F0B /* Mypage Page */,
 				676AF05C2281530B00BDB911 /* PartnerSetting Page */,
 				672B7D172286F67A008FA9D1 /* AppDescription Page */,
 				67026064229A9B1700373B92 /* Report Page */,
@@ -470,6 +469,15 @@
 				67A2D5AA22767C0C00755F0B /* RegistUserInfo Page */,
 			);
 			path = "Other Page";
+			sourceTree = "<group>";
+		};
+		6733C2D122B4E1FA00730500 /* QRcode Page */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A722767BC100755F0B /* ShowQRcode Page */,
+				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
+			);
+			path = "QRcode Page";
 			sourceTree = "<group>";
 		};
 		673F94DC2279CBC200E293FE /* Service */ = {
