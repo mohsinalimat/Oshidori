@@ -392,25 +392,12 @@
 			isa = PBXGroup;
 			children = (
 				673E9B68227D3764004B0C91 /* Oshidori.entitlements */,
-				6732F27F224DB2F500011710 /* AppDelegate.swift */,
 				67A2D59F2276797E00755F0B /* Common */,
 				6723DEB2224F74CB00B3DF69 /* TabBarController */,
-				67A2D5A122767A2F00755F0B /* SelectRegisterOrLogin Page */,
-				67A2D5A222767A4800755F0B /* Login Page */,
-				67A2D5A322767A5600755F0B /* RegistAuthUser Page */,
-				67A2D5AA22767C0C00755F0B /* RegistUserInfo Page */,
-				676AF0632281721200BDB911 /* MessageRoom Page */,
-				67A2D5A422767AA200755F0B /* SendMessage Page */,
-				67A2D5A522767B9900755F0B /* ReceiveMessage Page */,
-				67A2D5A622767BAB00755F0B /* Timeline Page */,
-				67A2D5A722767BC100755F0B /* ShowQRcode Page */,
-				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
-				6797D474228C5158008FBA12 /* SendEmail Page */,
-				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
-				67A2D5B72276A89E00755F0B /* Mypage Page */,
-				676AF05C2281530B00BDB911 /* PartnerSetting Page */,
-				672B7D172286F67A008FA9D1 /* AppDescription Page */,
-				67026064229A9B1700373B92 /* Report Page */,
+				6733C2D022B4DB7900730500 /* Other Page */,
+				6733C2CD22B4DACF00730500 /* Message Tab */,
+				6733C2CF22B4DB2700730500 /* Timeline Tab */,
+				6733C2CE22B4DB1700730500 /* Mypage Tab */,
 			);
 			path = Oshidori;
 			sourceTree = "<group>";
@@ -431,6 +418,58 @@
 				6732F2A4224DB2F600011710 /* Info.plist */,
 			);
 			path = OshidoriUITests;
+			sourceTree = "<group>";
+		};
+		6733C2CC22B4DA9300730500 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6732F27F224DB2F500011710 /* AppDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6733C2CD22B4DACF00730500 /* Message Tab */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A422767AA200755F0B /* SendMessage Page */,
+				676AF0632281721200BDB911 /* MessageRoom Page */,
+				67A2D5A522767B9900755F0B /* ReceiveMessage Page */,
+			);
+			path = "Message Tab";
+			sourceTree = "<group>";
+		};
+		6733C2CE22B4DB1700730500 /* Mypage Tab */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A722767BC100755F0B /* ShowQRcode Page */,
+				67A2D5A822767BD700755F0B /* ReadQRcode Page */,
+				6797D474228C5158008FBA12 /* SendEmail Page */,
+				67A2D5A922767BE400755F0B /* EditUserInfo Page */,
+				67A2D5B72276A89E00755F0B /* Mypage Page */,
+				676AF05C2281530B00BDB911 /* PartnerSetting Page */,
+				672B7D172286F67A008FA9D1 /* AppDescription Page */,
+				67026064229A9B1700373B92 /* Report Page */,
+			);
+			path = "Mypage Tab";
+			sourceTree = "<group>";
+		};
+		6733C2CF22B4DB2700730500 /* Timeline Tab */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A622767BAB00755F0B /* Timeline Page */,
+			);
+			path = "Timeline Tab";
+			sourceTree = "<group>";
+		};
+		6733C2D022B4DB7900730500 /* Other Page */ = {
+			isa = PBXGroup;
+			children = (
+				67A2D5A122767A2F00755F0B /* SelectRegisterOrLogin Page */,
+				67A2D5A222767A4800755F0B /* Login Page */,
+				67A2D5A322767A5600755F0B /* RegistAuthUser Page */,
+				67A2D5AA22767C0C00755F0B /* RegistUserInfo Page */,
+			);
+			path = "Other Page";
 			sourceTree = "<group>";
 		};
 		673F94DC2279CBC200E293FE /* Service */ = {
@@ -513,6 +552,7 @@
 				6723DEB622509BAF00B3DF69 /* Extension */,
 				6723DEAF224F740600B3DF69 /* Entities */,
 				6723DEB3224F74DD00B3DF69 /* Storyboard */,
+				6733C2CC22B4DA9300730500 /* Controller */,
 				677AB3032270238A00DBCD62 /* Services */,
 				677AB3002270228100DBCD62 /* Repository */,
 				67A2D5A02276799800755F0B /* Resources */,
