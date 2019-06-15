@@ -87,7 +87,7 @@
 		67C9E0512260131700516B3D /* OshidoriColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E0502260131700516B3D /* OshidoriColor.swift */; };
 		67C9E053226017B200516B3D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C9E052226017B200516B3D /* TabBarController.swift */; };
 		67DD01D422686DEC00583BF6 /* ReadQRcode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67DD01D322686DEC00583BF6 /* ReadQRcode.storyboard */; };
-		67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */; };
+		67EE40CD2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67EE40CC2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard */; };
 		67EE40CF2265AAFF00E2F2C5 /* EditUserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE40CE2265AAFF00E2F2C5 /* EditUserInfoViewController.swift */; };
 		67EE40D12265D58800E2F2C5 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67EE40D02265D58800E2F2C5 /* UserInformation.swift */; };
 		67F0F9D3229A265000B6CBE3 /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F0F9D2229A265000B6CBE3 /* CheckBox.swift */; };
@@ -207,7 +207,7 @@
 		67C9E0502260131700516B3D /* OshidoriColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OshidoriColor.swift; sourceTree = "<group>"; };
 		67C9E052226017B200516B3D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		67DD01D322686DEC00583BF6 /* ReadQRcode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReadQRcode.storyboard; sourceTree = "<group>"; };
-		67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistAuthUser.storyboard; sourceTree = "<group>"; };
+		67EE40CC2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistAuthUserViewController.storyboard; sourceTree = "<group>"; };
 		67EE40CE2265AAFF00E2F2C5 /* EditUserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoViewController.swift; sourceTree = "<group>"; };
 		67EE40D02265D58800E2F2C5 /* UserInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		67F0F9D2229A265000B6CBE3 /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				6723DEB72250AA7500B3DF69 /* RegistAuthUserViewController.swift */,
-				67EE40CC2265947C00E2F2C5 /* RegistAuthUser.storyboard */,
+				67EE40CC2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard */,
 			);
 			path = "RegistAuthUser Page";
 			sourceTree = "<group>";
@@ -883,7 +883,7 @@
 				6732F28A224DB2F600011710 /* Assets.xcassets in Resources */,
 				6797D473228C5152008FBA12 /* SendEmailViewController.storyboard in Resources */,
 				6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */,
-				67EE40CD2265947C00E2F2C5 /* RegistAuthUser.storyboard in Resources */,
+				67EE40CD2265947C00E2F2C5 /* RegistAuthUserViewController.storyboard in Resources */,
 				6702605D229A77A600373B92 /* ReportViewController.storyboard in Resources */,
 				67026070229A9E7700373B92 /* SubTitleCell.xib in Resources */,
 				67DD01D422686DEC00583BF6 /* ReadQRcode.storyboard in Resources */,

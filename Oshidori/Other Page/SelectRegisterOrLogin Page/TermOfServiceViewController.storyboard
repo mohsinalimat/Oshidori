@@ -163,35 +163,54 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-wd-vbZ">
-                                <rect key="frame" x="50" y="797" width="314" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="thd-RX-Pvr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="confirmButtonTapped:" destination="LKg-6d-rOQ" eventType="touchUpInside" id="bDQ-sf-T2I"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="bZ1-cE-mC8">
+                                <rect key="frame" x="50" y="782" width="314" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gL-VO-Mgd">
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="jfP-nE-fO3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="戻る">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backButtonTapped:" destination="LKg-6d-rOQ" eventType="touchUpInside" id="vHe-WD-NWd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-wd-vbZ">
+                                        <rect key="frame" x="167" y="0.0" width="147" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="thd-RX-Pvr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="同意">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmButtonTapped:" destination="LKg-6d-rOQ" eventType="touchUpInside" id="bDQ-sf-T2I"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="2YY-Q8-0bT" firstAttribute="bottom" secondItem="pr9-wd-vbZ" secondAttribute="bottom" constant="15" id="1oa-t3-q0q"/>
                             <constraint firstItem="SKQ-hb-A4t" firstAttribute="leading" secondItem="2YY-Q8-0bT" secondAttribute="leading" constant="50" id="8gt-K3-Biv"/>
-                            <constraint firstItem="pr9-wd-vbZ" firstAttribute="leading" secondItem="2YY-Q8-0bT" secondAttribute="leading" constant="50" id="K6n-7t-Fev"/>
                             <constraint firstItem="2YY-Q8-0bT" firstAttribute="trailing" secondItem="SKQ-hb-A4t" secondAttribute="trailing" constant="50" id="Zv5-x4-eng"/>
-                            <constraint firstItem="2YY-Q8-0bT" firstAttribute="trailing" secondItem="pr9-wd-vbZ" secondAttribute="trailing" constant="50" id="bjM-4e-ee7"/>
-                            <constraint firstItem="pr9-wd-vbZ" firstAttribute="top" secondItem="SKQ-hb-A4t" secondAttribute="bottom" constant="30" id="ekU-Y6-fbf"/>
+                            <constraint firstItem="bZ1-cE-mC8" firstAttribute="top" secondItem="SKQ-hb-A4t" secondAttribute="bottom" constant="15" id="dDL-NF-AFw"/>
                             <constraint firstItem="SKQ-hb-A4t" firstAttribute="top" secondItem="2YY-Q8-0bT" secondAttribute="top" constant="50" id="fXJ-OO-vIu"/>
+                            <constraint firstItem="bZ1-cE-mC8" firstAttribute="leading" secondItem="2YY-Q8-0bT" secondAttribute="leading" constant="50" id="iBJ-FL-Dnj"/>
+                            <constraint firstItem="2YY-Q8-0bT" firstAttribute="trailing" secondItem="bZ1-cE-mC8" secondAttribute="trailing" constant="50" id="jch-KN-bpp"/>
+                            <constraint firstItem="2YY-Q8-0bT" firstAttribute="bottom" secondItem="bZ1-cE-mC8" secondAttribute="bottom" constant="30" id="p8h-Gw-8Re"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2YY-Q8-0bT"/>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="0gL-VO-Mgd" id="88q-Oe-pwo"/>
                         <outlet property="baseView" destination="SKQ-hb-A4t" id="ZV7-ph-voV"/>
-                        <outlet property="confirmBackButton" destination="pr9-wd-vbZ" id="BN7-Nx-RI5"/>
+                        <outlet property="confirmButton" destination="pr9-wd-vbZ" id="BN7-Nx-RI5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bVY-PG-fTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
