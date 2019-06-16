@@ -49,7 +49,7 @@ extension PartnerSettingViewController {
             return
         }
         if flag {
-            settingButton.setTitle("解除する", for: .normal)
+            settingButton.setTitle("解除して新たな旅路に出る", for: .normal)
             settingButton.backgroundColor = OshidoriColor.dark
             settingButton.tintColor = OshidoriColor.background
             nameLabel.text = partnerName
