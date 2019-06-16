@@ -14,6 +14,9 @@ class AppDescriptionViewController: FormViewController {
     let termsServiceUrl = "https://github.com/YamaTatsu10969/Oshidori_Documents/blob/master/TermsService.md"
     static let privacyPolicyUrl = "https://github.com/YamaTatsu10969/Oshidori_Documents/blob/master/privacy_policy.md"
     let contactUrl = "https://forms.gle/KQw5YUYuo7wFZSR28"
+    
+    let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +28,7 @@ class AppDescriptionViewController: FormViewController {
             }
             <<< LabelRow(){ row in
                 row.title = "バージョン情報"
-                row.value = "1.0.0(1)"
+                row.value = "\(version) (\(build))"
             }
             <<< LabelRow(){ row in
                 row.title = "利用規約"
