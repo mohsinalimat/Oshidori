@@ -10,9 +10,9 @@ import UIKit
 import DZNEmptyDataSet
 import Accounts
 
-class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var timelineTableView: UITableView!
+    @IBOutlet weak private var timelineTableView: UITableView!
   
     let timelineService = TimelineService.shared
     
@@ -81,7 +81,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-
     }
     
     // 下から５件くらいになったらリフレッシュ
