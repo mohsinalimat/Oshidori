@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import MessageKit
 import InputBarAccessoryView
+import AudioToolbox
 
 class SendMessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
     
@@ -56,6 +57,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
     var chatStatusFlag :chatStatus?
     
     // chatのstatus
+    
     enum chatStatus{
         case selectContentType
         case beforeWriteMessage
@@ -120,6 +122,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
         return Message(text: str, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
     }
     
+    
     func currentSender() -> SenderType {
         guard let name = userInformation?.name else {
             return Sender(senderId: getUid(), displayName: "")
@@ -130,6 +133,7 @@ class SendMessageViewController: MessagesViewController, MessagesDataSource, Mes
     func oshidoriSender() -> SenderType {
         return Sender(senderId: "Oshidori", displayName: "おしどり")
     }
+    
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
         return messageList.count
@@ -361,6 +365,10 @@ extension SendMessageViewController: MessageInputBarDelegate {
                     chatStatusFlag = chatStatus.afterWroteMessage
                     reactionWhenWroteMessage()
                     cleanTextBoxAndScroll(inputBar: inputBar)
+                    AudioServicesPlaySystemSound(SystemSoundID("1519")!)
+                    
+                    // キーボードを閉じたい
+                    inputBar.inputTextView.resignFirstResponder()
                     
                 case chatStatus.afterWroteMessage:
                     reactionWhenSelectSendType(textMessage: str, inputBar)
@@ -382,6 +390,7 @@ extension SendMessageViewController: MessageInputBarDelegate {
         inputBar.inputTextView.text = String()
         // 一番下にスクロールする。アニメーション付き
         messagesCollectionView.scrollToBottom(animated: true)
+
     }
     
     func reactionWhenWroteMessage() {
@@ -441,6 +450,7 @@ extension SendMessageViewController: MessageInputBarDelegate {
         tmpStoreContentType = storeText
         chatStatusFlag = chatStatus.beforeWriteMessage
         insertNewMessage(getOshidoriMessages())
+        messageInputBar.inputTextView.becomeFirstResponder()
         messagesCollectionView.scrollToBottom(animated: true)
     }
     
@@ -490,6 +500,8 @@ extension SendMessageViewController: MessageCellDelegate {
         
         switch tapMessage.kind {
         case .text(let textMessage):
+            // ブルっとさせよう
+            AudioServicesPlaySystemSound(SystemSoundID("1519")!)
             // selectContentTypeの時
             reactionWhenSelectContentType(textMessage: textMessage)
             // wroteMessageの時

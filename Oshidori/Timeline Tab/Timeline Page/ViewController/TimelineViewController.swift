@@ -10,9 +10,9 @@ import UIKit
 import DZNEmptyDataSet
 import Accounts
 
-class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet weak var timelineTableView: UITableView!
+    @IBOutlet weak private var timelineTableView: UITableView!
   
     let timelineService = TimelineService.shared
     
@@ -81,7 +81,6 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-
     }
     
     // 下から５件くらいになったらリフレッシュ
@@ -91,6 +90,16 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         // ここでリフレッシュのメソッドを呼ぶ
         timelineService.loadTimelineMessage()
+    }
+}
+
+extension TimelineViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
 }
 

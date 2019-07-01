@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 import DZNEmptyDataSet
+import AudioToolbox
 
 protocol ReceiveMessageViewControllerDelegate: class {
     func reloadReceiveMessageTableView()
@@ -91,6 +92,7 @@ class ReceiveMessageViewController: UIViewController {
         let storyboard = UIStoryboard(name: "SendMessage", bundle: nil)
         guard let VC = storyboard.instantiateViewController(withIdentifier: "SendMessageStoryboard") as? SendMessageViewController else { return }
         VC.delegate = self
+        AudioServicesPlaySystemSound(SystemSoundID("1519")!)
         self.navigationController?.pushViewController(VC, animated: true)
     }
 }
@@ -129,7 +131,15 @@ extension ReceiveMessageViewController {
     }
 }
 
-
+extension ReceiveMessageViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+}
 
 extension ReceiveMessageViewController {
     func addShadowForView(_ button: UIButton) {

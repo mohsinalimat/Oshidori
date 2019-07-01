@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import AudioToolbox
 
 protocol TimelineMessageTableViewCellDelegate: class {
     func shareButtonTapped(index: Int)
     func reportButtonTapped(index:Int)
 }
 
-class TimelineMessageTableViewCell: UITableViewCell {
+final class TimelineMessageTableViewCell: UITableViewCell {
     
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var sendDateLabel: UILabel!
@@ -89,11 +90,13 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapShareButton(_ sender: Any) {
+        AudioServicesPlaySystemSound(SystemSoundID("1519")!)
         delegate?.shareButtonTapped(index: self.tag)
     }
     
     
     @IBAction func didTapCourageButton(_ sender: Any) {
+        AudioServicesPlaySystemSound(SystemSoundID("1519")!)
         changeLayerForViewAfterTapped(courageView)
         guard let messageId = messageId, let uid = uid else {
             return
@@ -103,6 +106,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     @IBAction func didTapSupportButton(_ sender: Any) {
+        AudioServicesPlaySystemSound(SystemSoundID("1519")!)
         changeLayerForViewAfterTapped(supportView)
         guard let messageId = messageId, let uid = uid else {
             return
@@ -112,6 +116,7 @@ class TimelineMessageTableViewCell: UITableViewCell {
     }
     
     @IBAction func reportButtonTapped(_ sender: Any) {
+        AudioServicesPlaySystemSound(SystemSoundID("1519")!)
         delegate?.reportButtonTapped(index: self.tag)
     }
     
