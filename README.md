@@ -5,6 +5,20 @@ Oshidoriは、カップルや夫婦、パートナーとのコミュニケーシ
 ## 個人開発
 個人で開発しているOshidoriです！
 
+## 技術
+Swift5.0
+Firebase 
+Firestore
+Firestorage
+Auth
+Cloud Function
+node.js
+
+## 使用ツール
+Xcode 10.2
+Figma
+XD
+
 ## LP
 [Oshidori LP](https://oshidori-bbdb1.firebaseapp.com/)
 
