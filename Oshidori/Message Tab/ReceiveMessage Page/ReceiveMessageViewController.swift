@@ -131,7 +131,15 @@ extension ReceiveMessageViewController {
     }
 }
 
-
+extension ReceiveMessageViewController {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        } else {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
+    }
+}
 
 extension ReceiveMessageViewController {
     func addShadowForView(_ button: UIButton) {
