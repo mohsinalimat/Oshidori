@@ -6,13 +6,13 @@ Oshidoriは、カップルや夫婦、パートナーとのコミュニケーシ
 個人で開発しているOshidoriです！
 
 ## 技術
-Swift5.0
-Firebase 
-Firestore
-Firestorage
-Auth
-Cloud Function
-node.js
+* Swift5.0
+* Firebase 
+* Firestore
+* Firestorage
+* Auth
+* Cloud Function
+* node.js
 
 ## 使用ツール
 Xcode 10.2
