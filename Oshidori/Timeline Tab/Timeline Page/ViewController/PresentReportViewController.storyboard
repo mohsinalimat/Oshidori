@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="k5w-zy-bhJ">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Present Report View Controller-->
+        <scene sceneID="6Sy-kG-8R5">
+            <objects>
+                <viewController useStoryboardIdentifierAsRestorationIdentifier="YES" id="k5w-zy-bhJ" customClass="PresentReportViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e9t-3J-ubc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Knx-cO-PKj">
+                                <rect key="frame" x="30" y="746" width="354" height="130"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfW-Ab-Prs">
+                                        <rect key="frame" x="20" y="70" width="314" height="50"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="FOg-PB-Ubc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="キャンセル">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="k5w-zy-bhJ" eventType="touchUpInside" id="7DH-qO-tT6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiA-ge-clS">
+                                        <rect key="frame" x="20" y="10" width="314" height="50"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="dfx-Aw-l3g"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="開発者に報告">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="reportButtonTapped:" destination="k5w-zy-bhJ" eventType="touchUpInside" id="FaN-v0-IPQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="gfW-Ab-Prs" secondAttribute="bottom" constant="10" id="0bs-fB-Fhg"/>
+                                    <constraint firstAttribute="trailing" secondItem="PiA-ge-clS" secondAttribute="trailing" constant="20" id="0wK-qV-Bjt"/>
+                                    <constraint firstItem="PiA-ge-clS" firstAttribute="leading" secondItem="Knx-cO-PKj" secondAttribute="leading" constant="20" id="96q-bs-KzG"/>
+                                    <constraint firstItem="gfW-Ab-Prs" firstAttribute="leading" secondItem="Knx-cO-PKj" secondAttribute="leading" constant="20" id="9m1-6s-YhK"/>
+                                    <constraint firstItem="PiA-ge-clS" firstAttribute="top" secondItem="Knx-cO-PKj" secondAttribute="top" constant="10" id="dfI-vN-EfP"/>
+                                    <constraint firstItem="gfW-Ab-Prs" firstAttribute="top" secondItem="PiA-ge-clS" secondAttribute="bottom" constant="10" id="gKE-dp-dkk"/>
+                                    <constraint firstAttribute="trailing" secondItem="gfW-Ab-Prs" secondAttribute="trailing" constant="20" id="w9o-Tb-8gt"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Knx-cO-PKj" firstAttribute="leading" secondItem="3Wn-0d-Gbh" secondAttribute="leading" constant="30" id="qcw-IT-byS"/>
+                            <constraint firstAttribute="bottom" secondItem="Knx-cO-PKj" secondAttribute="bottom" constant="20" id="tgq-LL-oZg"/>
+                            <constraint firstItem="3Wn-0d-Gbh" firstAttribute="trailing" secondItem="Knx-cO-PKj" secondAttribute="trailing" constant="30" id="zkW-b7-2UA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3Wn-0d-Gbh"/>
+                    </view>
+                    <connections>
+                        <outlet property="baseView" destination="Knx-cO-PKj" id="KNh-lj-KcC"/>
+                        <outlet property="cancelButton" destination="gfW-Ab-Prs" id="2Dq-NX-dX2"/>
+                        <outlet property="reportButton" destination="PiA-ge-clS" id="zZ1-in-pVQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iD5-Da-P9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="95.652173913043484" y="59.598214285714285"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Uq4-6O-JFN">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--2人の手紙-->
+        <scene sceneID="LfP-EF-DJC">
+            <objects>
+                <viewController id="NLn-5q-vla" customClass="ReceiveMessageViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2iN-9y-gQF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nSE-4Z-G9n">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <navigationItem title="手紙" id="O90-ND-rW5"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dvy-et-dQh">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="NLn-5q-vla" id="jF2-f4-oGK"/>
+                                    <outlet property="delegate" destination="NLn-5q-vla" id="Tfj-xX-jNx"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkw-PU-qnn">
+                                <rect key="frame" x="334" y="782" width="60" height="60"/>
+                                <state key="normal" image="Write_icon"/>
+                                <connections>
+                                    <action selector="didTapMoveSendMessageButton:" destination="NLn-5q-vla" eventType="touchUpInside" id="aTv-fI-WQi"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="nSE-4Z-G9n" firstAttribute="leading" secondItem="Dvy-et-dQh" secondAttribute="leading" id="3hw-DU-bE0"/>
+                            <constraint firstItem="Dvy-et-dQh" firstAttribute="bottom" secondItem="7ux-or-BUb" secondAttribute="bottom" id="91G-v2-c1N"/>
+                            <constraint firstItem="Dvy-et-dQh" firstAttribute="trailing" secondItem="7ux-or-BUb" secondAttribute="trailing" id="Jp6-Qt-ULD"/>
+                            <constraint firstItem="7ux-or-BUb" firstAttribute="trailing" secondItem="wkw-PU-qnn" secondAttribute="trailing" constant="20" id="NA3-V0-ir7"/>
+                            <constraint firstItem="Dvy-et-dQh" firstAttribute="leading" secondItem="7ux-or-BUb" secondAttribute="leading" id="YuY-5b-qcj"/>
+                            <constraint firstItem="nSE-4Z-G9n" firstAttribute="trailing" secondItem="Dvy-et-dQh" secondAttribute="trailing" id="p4K-tJ-fiK"/>
+                            <constraint firstItem="Dvy-et-dQh" firstAttribute="top" secondItem="nSE-4Z-G9n" secondAttribute="bottom" id="s3y-0k-hG8"/>
+                            <constraint firstItem="7ux-or-BUb" firstAttribute="bottom" secondItem="wkw-PU-qnn" secondAttribute="bottom" constant="20" id="sit-Ir-qaw"/>
+                            <constraint firstItem="nSE-4Z-G9n" firstAttribute="bottom" secondItem="7ux-or-BUb" secondAttribute="top" id="tu6-no-rCs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7ux-or-BUb"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="2人の手紙" id="dNr-K3-Iwx"/>
+                    <connections>
+                        <outlet property="moveSendMessageButton" destination="wkw-PU-qnn" id="x5z-u1-24v"/>
+                        <outlet property="receiveTableView" destination="Dvy-et-dQh" id="TSU-gy-jnG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tyf-Ps-k5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1064.8" y="-439.43028485757122"/>
+        </scene>
+        <!--2人の手紙-->
+        <scene sceneID="i8b-4o-gfK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uq4-6O-JFN" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBarItem key="tabBarItem" title="2人の手紙" image="Message" selectedImage="Message" id="HDE-Vc-4Qf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zaN-kY-wSZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gaN-3U-EsU">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="NLn-5q-vla" kind="relationship" relationship="rootViewController" id="kJT-6w-Tu0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sSz-vC-Uby" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="303.19999999999999" y="-438.53073463268368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Message" width="32" height="32"/>
+        <image name="Write_icon" width="60" height="60"/>
+    </resources>
+</document>

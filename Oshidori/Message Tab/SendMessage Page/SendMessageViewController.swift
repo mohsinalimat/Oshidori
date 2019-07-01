@@ -1,0 +1,588 @@
+//
+//  ChatViewController.swift
+//  Oshidori
+//
+//  Created by 山本竜也 on 2019/4/3.
+//  Copyright © 2019 山本竜也. All rights reserved.
+//
+
+import UIKit
+import Firebase
+import MessageKit
+import InputBarAccessoryView
+import AudioToolbox
+
+class SendMessageViewController: MessagesViewController, MessagesDataSource, MessagesLayoutDelegate, MessagesDisplayDelegate {
+    
+    // 会話の中身を記録する用　MessageKitで使うために必要
+    var messageList: [Message] = []
+    
+    // 最終的に送る内容
+    var sendTempMessage: Message?
+    
+    // contentTypeを保存しておく場所
+    var tmpStoreContentType: String?
+    
+    // userInfo を入れておく場所
+    var userInformation : UserInformation?
+    
+    // firebase 関連
+    private let db = Firestore.firestore()
+    
+    // contentTypeに使用する言葉
+    let dispThankyou = "1. ありがとう"
+    let saveThankyou = "ありがとう"
+    let dispSorry = "2. ごめんね"
+    let saveSorry = "ごめんね"
+    let dispListen = "3. あのね"
+    let saveListen = "あのね"
+    
+    // selectSendTypeに使用する言葉
+    let REWRITE = "1. 書き直す"
+    let KEEP = "2. 預ける"
+    let EDIT = "編集"
+    let irregularEDIT = "「編集」"
+    
+    
+    // おしどりが話す内容
+    enum oshidoriContent: String {
+        case firstContent = "お手紙の種類をタップして選んでね！"
+        case beforeWriteMessage = "おしどりに預けたいメッセージを書いてね！"
+        case afterWroteMessage = "この手紙を預けますか？ 編集する場合は、「編集」と書いてメッセージを送ってね！"
+        case lastMessage = "お預かりします！お手紙を書いてくれてありがとうございます！"
+        case continueMessage = "もう一度メッセージを書きますか？書く場合は、「書く」または「1」を入力してください！"
+    }
+    
+    // chatのstatusフラグ
+    var chatStatusFlag :chatStatus?
+    
+    // chatのstatus
+    
+    enum chatStatus{
+        case selectContentType
+        case beforeWriteMessage
+        case afterWroteMessage
+        case selectSendType
+        case enterError
+    }
+    
+    // 日付をフォーマットするために必要
+    lazy var formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        return formatter
+    }()
+    
+    weak var delegate: ReceiveMessageViewControllerDelegate?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // MessageKitで作られる画面の構成をカスタマイズする
+        customizeMessageKit()
+        // delegateを入れる
+        insertDelegate()
+        // 初期ステータスを入れる
+        chatStatusFlag = chatStatus.selectContentType
+        
+        // Delete firebase
+        // プロパティのUserInfoに入れる。
+        getUserInfo()
+        
+        DispatchQueue.main.async {
+            // messageListにメッセージの配列をいれて
+            self.messageList.append(self.getOshidoriMessages())
+            // messagesCollectionViewをリロードして
+            self.messagesCollectionView.reloadData()
+            // 一番下までスクロールする
+            self.messagesCollectionView.scrollToBottom()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        insertContentTypeToUserMessage()
+    }
+    
+    // おしどりから放たれる言葉を状態によって変更する
+    func getOshidoriMessages() -> Message {
+        var str = ""
+        // Q.オプショナルバインディングは必要ではない？
+        switch chatStatusFlag! {
+        case chatStatus.selectContentType:
+            str = oshidoriContent.firstContent.rawValue
+        case chatStatus.beforeWriteMessage:
+            str = oshidoriContent.beforeWriteMessage.rawValue
+        case chatStatus.afterWroteMessage:
+            str = oshidoriContent.afterWroteMessage.rawValue
+        case chatStatus.selectSendType:
+            str = oshidoriContent.lastMessage.rawValue
+        default:
+            str = "正しい値を入力してください！"
+        }
+        
+        return Message(text: str, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
+    }
+    
+    
+    func currentSender() -> SenderType {
+        guard let name = userInformation?.name else {
+            return Sender(senderId: getUid(), displayName: "")
+        }
+        return Sender(senderId: getUid(), displayName: name)
+    }
+    
+    func oshidoriSender() -> SenderType {
+        return Sender(senderId: "Oshidori", displayName: "おしどり")
+    }
+    
+    
+    func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
+        return messageList.count
+    }
+    
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageType {
+        return messageList[indexPath.section]
+    }
+    
+    let roomUserInfoRep = RoomFirestoreRepository()
+}
+
+// RoomFirestoreRepository()
+extension SendMessageViewController {
+    private func addRoomMessageInfo(messageId: String) {
+        guard let userInfo = self.userInformation else {
+            return
+        }
+        roomUserInfoRep.addRoomMessageUserInfo(roomId: userInfo.roomId, uid: userInfo.partnerId,
+                                               messageId: messageId) {
+        }
+    }
+}
+
+
+// firebase
+extension SendMessageViewController {
+    
+    private func getRoomMessagesCollectionRef() -> CollectionReference {
+        guard let roomId = userInformation?.roomId else {
+            return db.collection("error")
+        }
+        return db.collection("rooms").document(roomId).collection("messages")
+    }
+    private func getTimelineColletionRef() -> CollectionReference {
+        return db.collection("timelineMessages")
+    }
+    private func getUserInformationRef() -> DocumentReference {
+        guard let uid = User.shared.getUid() else {
+            return db.collection("users").document("error")
+        }
+        return db.collection("users").document(uid).collection("info").document(uid)
+    }
+    private func getUid() -> String {
+        guard let uid = User.shared.getUid() else {
+            return ""
+        }
+        return uid
+    }
+    
+    func getUserInfo() {
+        // userInformaitonの初期化。情報を持ってくる
+        getUserInformationRef().getDocument{ (document, error) in
+            if let userInformation = document.flatMap({
+                $0.data().flatMap({ (data) in
+                    return UserInformation(data: data)
+                })
+            }) {
+                // 上記で得た内容を保存する
+                self.userInformation = userInformation
+            } else {
+            }
+        }
+    }
+    
+    func save(_ message: Message) {
+        // falseだったら実行されるようだ。guardは条件に一致なかった場合に、処理を中断させるための構文
+        guard isAfterWroteMessage() else {
+            return
+        }
+        
+        // Delete firebase
+        // messageIDを取っておいて、それをタイムラインとユーザのroomIdと紐づけて参照を行うようにしよう
+        let messageId = saveToTimelineMessages(message)
+        saveToRoomMessage(message: message, messageId: messageId)
+        addRoomMessageInfo(messageId: messageId)
+        let userMessageInfoRep = UserMessageInfoFirestoreRepository()
+        userMessageInfoRep.updateMessageCount(uid: message.sender.senderId)
+    }
+    
+    func saveToRoomMessage(message: Message, messageId: String) {
+        let roomMessageDocumentRef = getRoomMessagesCollectionRef().document(messageId)
+        
+        var sendMessage = message
+        sendMessage.messageId = messageId
+        
+        roomMessageDocumentRef.setData(sendMessage.representation){ error in
+            if let _ = error {
+                return
+            }
+            self.saveToRoomMessageFirstContent(message: message, messageId: messageId)
+            //            self.delegate?.reloadReceiveMessageTableView()
+        }
+    }
+    
+    func saveToRoomMessageFirstContent(message: Message, messageId: String) {
+        let roomMessagesCollectionRef = getRoomMessagesCollectionRef().document(messageId).collection("messages")
+        var storedMessage = message
+        storedMessage.content = message.sender.displayName + "さんから\n「" + message.content + "」\nのお手紙が届いたよ！"
+        storedMessage.sender = oshidoriSender()
+        roomMessagesCollectionRef.addDocument(data: storedMessage.representation)
+    }
+    
+    func saveToTimelineMessages(_ message: Message) -> String {
+        let timelineMessagesDocumentRef = getTimelineColletionRef().document()
+        let messageId  = timelineMessagesDocumentRef.documentID
+        var sendMessage = message
+        sendMessage.messageId = messageId
+        timelineMessagesDocumentRef.setData(sendMessage.representation) { error in
+            if let _ = error {
+                return
+            }
+        }
+        return messageId
+    }
+}
+
+// メッセージを作成,表示
+extension SendMessageViewController {
+    // 初期表示以外はここを通さなければ表示されない。
+    private func insertNewMessage(_ message: Message) {
+        messageList.append(message)
+        messagesCollectionView.performBatchUpdates({
+            messagesCollectionView.insertSections([messageList.count - 1])
+            if messageList.count >= 2 {
+                messagesCollectionView.reloadSections([messageList.count - 2])
+            }
+        }, completion: { [weak self] _ in
+            if self?.isLastSectionVisible() == true {
+                self?.messagesCollectionView.scrollToBottom(animated: true)
+            }
+        })
+    }
+    
+    // create and insertNewMessage
+    func createAndInsertMessageFromeUser(_ text: String) {
+        let message = Message(text: text, sender: currentSender(), messageId: UUID().uuidString, date: Date())
+        insertNewMessage(message)
+    }
+    
+    func createAndInsertMessageFromOshidori(_ text: String) {
+        let message = Message(text: text, sender: oshidoriSender(), messageId: UUID().uuidString, date: Date())
+        insertNewMessage(message)
+    }
+    
+    // メッセージを見えるようにしている
+    func isLastSectionVisible() -> Bool {
+        guard !messageList.isEmpty else { return false }
+        let lastIndexPath = IndexPath(item: 0, section: messageList.count - 1)
+        return messagesCollectionView.indexPathsForVisibleItems.contains(lastIndexPath)
+    }
+}
+
+// 状態の判断
+extension SendMessageViewController {
+    
+    func isSelectContentType() -> Bool{
+        if chatStatusFlag == chatStatus.selectContentType {
+            return true
+        }
+        return false
+    }
+    func isBeforeWriteMessage() -> Bool{
+        if chatStatusFlag == chatStatus.beforeWriteMessage {
+            return true
+        }
+        return false
+    }
+    func isAfterWroteMessage() -> Bool{
+        if chatStatusFlag == chatStatus.afterWroteMessage {
+            return true
+        }
+        return false
+    }
+    func isSelectSendType() -> Bool{
+        if chatStatusFlag == chatStatus.selectSendType {
+            return true
+        }
+        return false
+    }
+}
+
+extension SendMessageViewController {
+    
+    func customizeMessageKit() {
+        // カスタマイズ
+        messageInputBar.inputTextView.placeholder = "メッセージを入力してね！"
+        messageInputBar.sendButton.image = UIImage(named: "Send_icon")
+        messageInputBar.sendButton.title = nil
+        if let layout = messagesCollectionView.collectionViewLayout as? MessagesCollectionViewFlowLayout {
+            // ここで自分のアイコンをzeroにしている！
+            layout.setMessageOutgoingAvatarSize(.zero)
+        }
+    }
+}
+
+extension SendMessageViewController {
+    func insertDelegate() {
+        messagesCollectionView.messagesDataSource = self
+        messagesCollectionView.messagesLayoutDelegate = self
+        messagesCollectionView.messagesDisplayDelegate = self
+        messageInputBar.delegate = self
+        messagesCollectionView.messageCellDelegate = self
+    }
+}
+
+extension SendMessageViewController: MessageInputBarDelegate {
+    
+    // メッセージを入力するMessageInputBarの送信ボタンを押したときに発生するファンクション
+    
+    internal func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
+        for component in inputBar.inputTextView.components {
+            if let str = component as? String {
+                guard let contentType = tmpStoreContentType else {
+                    return
+                }
+                let message = Message(content: str, sender: currentSender(), messageId: UUID().uuidString, sentDate: Date(),contentType: contentType, courageCount: 0, supportCount: 0)
+                
+                switch  chatStatusFlag! {
+                    
+                case chatStatus.selectContentType:
+                    reactionWhenSelectContentType(textMessage: str)
+                    
+                case chatStatus.beforeWriteMessage:
+                    // ユーザが送ったメッセージを保存
+                    sendTempMessage = message
+                    // メッセージを送信して状態を変化
+                    insertNewMessage(message)
+                    chatStatusFlag = chatStatus.afterWroteMessage
+                    reactionWhenWroteMessage()
+                    cleanTextBoxAndScroll(inputBar: inputBar)
+                    AudioServicesPlaySystemSound(SystemSoundID("1519")!)
+                    
+                    // キーボードを閉じたい
+                    inputBar.inputTextView.resignFirstResponder()
+                    
+                case chatStatus.afterWroteMessage:
+                    reactionWhenSelectSendType(textMessage: str, inputBar)
+                case chatStatus.selectSendType:
+                    insertNewMessage(getOshidoriMessages())
+                    messagesCollectionView.scrollToBottom(animated: true)
+                default :
+                    chatStatusFlag = chatStatus.enterError
+                    insertNewMessage(getOshidoriMessages())
+                    chatStatusFlag = chatStatus.selectContentType
+                    insertNewMessage(getOshidoriMessages())
+                }
+            }
+        }
+    }
+    
+    func cleanTextBoxAndScroll(inputBar: InputBarAccessoryView) {
+        // 空っぽにする
+        inputBar.inputTextView.text = String()
+        // 一番下にスクロールする。アニメーション付き
+        messagesCollectionView.scrollToBottom(animated: true)
+
+    }
+    
+    func reactionWhenWroteMessage() {
+        insertNewMessage(getOshidoriMessages())
+        // 「編集」「預ける」をボタンの代わりに送る
+        // TODO: 画像で、ボタンのようにしたい。その時は、画像の名前になるのか？比較要素が。
+        createAndInsertMessageFromeUser(REWRITE)
+        createAndInsertMessageFromeUser(KEEP)
+    }
+    
+    func reactionWhenSelectContentType(textMessage: String) {
+        // selectContentTypeの時
+        if textMessage == dispThankyou {
+            storeContentType_changeStatus(storeText: saveThankyou)
+        } else if textMessage == dispSorry {
+            storeContentType_changeStatus(storeText: saveSorry)
+        } else if textMessage == dispListen {
+            storeContentType_changeStatus(storeText: saveListen)
+        }
+    }
+    
+    func reactionWhenSelectSendType(textMessage: String) {
+        if textMessage == KEEP {
+            if let sendMessage = sendTempMessage {
+                selectKeepAction(sendMessage: sendMessage)
+            }
+        } else if textMessage == REWRITE {
+            selectResetAction()
+        } else {
+            //タップしても反応しないようにする
+        }
+    }
+    
+    func reactionWhenSelectSendType(textMessage: String,_ inputBar: InputBarAccessoryView) {
+        if textMessage == EDIT || textMessage == irregularEDIT {
+            if let content = sendTempMessage?.content {
+                inputBar.inputTextView.text = content
+            }
+            selectEditAction()
+        } else if textMessage == KEEP {
+            if let sendMessage = sendTempMessage {
+                selectKeepAction(sendMessage: sendMessage)
+            }
+        } else if textMessage == REWRITE {
+            selectResetAction()
+        } else {
+            createAndInsertMessageFromOshidori("適切なメッセージを送ってね！")
+            inputBar.inputTextView.text = String()
+            reactionWhenWroteMessage()
+        }
+    }
+    
+    
+    
+    func storeContentType_changeStatus(storeText: String) {
+        createAndInsertMessageFromOshidori("「" + storeText + "」だね！")
+        tmpStoreContentType = storeText
+        chatStatusFlag = chatStatus.beforeWriteMessage
+        insertNewMessage(getOshidoriMessages())
+        messageInputBar.inputTextView.becomeFirstResponder()
+        messagesCollectionView.scrollToBottom(animated: true)
+    }
+    
+    func insertContentTypeToUserMessage() {
+        createAndInsertMessageFromeUser(dispThankyou)
+        createAndInsertMessageFromeUser(dispSorry)
+        createAndInsertMessageFromeUser(dispListen)
+        messagesCollectionView.scrollToBottom(animated: true)
+    }
+    
+    func selectKeepAction(sendMessage: Message) {
+        save(sendMessage)
+        sendTempMessage = nil
+        chatStatusFlag = chatStatus.selectSendType
+        insertNewMessage(getOshidoriMessages())
+        // inputBarFillWhenEditAction()
+        messagesCollectionView.scrollToBottom(animated: true)
+        chatStatusFlag = chatStatus.selectContentType
+    }
+    
+    func selectEditAction() {
+        chatStatusFlag = chatStatus.beforeWriteMessage
+        insertNewMessage(getOshidoriMessages())
+        messagesCollectionView.scrollToBottom(animated: true)
+    }
+    
+    func selectResetAction() {
+        tmpStoreContentType = nil
+        sendTempMessage = nil
+        chatStatusFlag = chatStatus.selectContentType
+        insertNewMessage(getOshidoriMessages())
+        insertContentTypeToUserMessage()
+        messagesCollectionView.scrollToBottom(animated: true)
+    }
+    
+}
+
+extension SendMessageViewController: MessageCellDelegate {
+    // メッセージのセルがタップされた時を検知するため。反応なし。
+    func didTapMessage(in cell: MessageCollectionViewCell) {
+        guard !isBeforeWriteMessage() else {
+            return
+        }
+        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
+        guard let messagesDataSource = messagesCollectionView.messagesDataSource else { return }
+        let tapMessage = messagesDataSource.messageForItem(at: indexPath, in: messagesCollectionView)
+        
+        switch tapMessage.kind {
+        case .text(let textMessage):
+            // ブルっとさせよう
+            AudioServicesPlaySystemSound(SystemSoundID("1519")!)
+            // selectContentTypeの時
+            reactionWhenSelectContentType(textMessage: textMessage)
+            // wroteMessageの時
+            reactionWhenSelectSendType(textMessage: textMessage)
+        default:
+            break
+        }
+    }
+}
+
+// メッセージのdelegate
+extension SendMessageViewController{
+    
+    // メッセージの色を変更（デフォルトは自分：白、相手：黒）
+    func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ? .white : .darkText
+    }
+    
+    // メッセージの背景色を変更している（デフォルトは自分：緑、相手：グレー）
+    func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+        return isFromCurrentSender(message: message) ?
+            UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) :
+            UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+    }
+    
+    // メッセージを吹き出し風にする。尻尾みたいなの。
+    func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
+        let corner: MessageStyle.TailCorner = isFromCurrentSender(message: message) ? .bottomRight : .bottomLeft
+        return .bubbleTail(corner, .curved)
+    }
+    
+    // アイコンをセット
+    func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+        // message.senderで送信者を判断できる！
+        if message.sender.senderId == oshidoriSender().senderId {
+            let avatar = Avatar(image: UIImage(named: "Oshidori_chat"), initials: "O")
+            avatarView.set(avatar: avatar)
+        }
+    }
+    
+    // メッセージの上に文字を表示
+    //    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+    //        if indexPath.section % 3 == 0 {
+    //            return NSAttributedString(
+    //                string: MessageKitDateFormatter.shared.string(from: message.sentDate),
+    //                attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 10),
+    //                             NSAttributedString.Key.foregroundColor: UIColor.darkGray]
+    //            )
+    //        }
+    //        return nil
+    //    }
+    
+    // メッセージの上に文字を表示（名前）
+    //    func messageTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+    //        let name = message.sender.displayName
+    //        if isAfterWroteMessage() {
+    //            return NSAttributedString(string: "", attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+    //        }
+    //        return NSAttributedString(string: name, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption1)])
+    //    }
+    
+    // メッセージの下に文字を表示（日付）
+    //    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+    //        let dateString = formatter.string(from: message.sentDate)
+    //        return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .caption2)])
+    //    }
+    
+    // 各ラベルの高さを設定（デフォルト0なので必須）
+    func cellTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        if indexPath.section % 3 == 0 { return 6 }
+        return 0
+    }
+    
+    func messageTopLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 13
+    }
+    
+    func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
+        return 0
+    }
+    
+}
+
+

@@ -97,7 +97,7 @@ class UserInformationFirestoreRepository {
     func isExistUser(userId: String,completion: @escaping (Bool, UserInformation?) -> Void ) {
         let userInfoDocumentRef = getPartnerUserInfoDocumentRef(partnerId: userId)
         userInfoDocumentRef.getDocument { (snapshot, error) in
-            guard let error = error else {
+            guard let _ = error else {
                 guard let data = snapshot?.data() else {
                     return
                 }
@@ -127,7 +127,7 @@ class UserInformationFirestoreRepository {
 }
 
 extension UserInformationFirestoreRepository {
-    func saveImage(image: UIImage, completion: @escaping ((_ imageUrl: String?)->Void)) {
+    func saveImage(image: UIImage, completion: @escaping ((_ imageUrl: String?, _ imageName: String?)->Void)) {
         // まずは保存するところのパスをとる。
         let storageRef = Storage.storage().reference()
         // 被る確率を減らすために、名前に現在の時間をつける。
@@ -151,19 +151,30 @@ extension UserInformationFirestoreRepository {
         }
         dataRef.putData(tmpData, metadata: metadata) { (metadata, error) in
             // error で比較しないんだ。firebaseのドキュメント読めばいいんだよ
-            guard let metadata = metadata else {
-                completion(nil)
+            guard let _ = metadata else {
+                completion(nil, nil)
                 return
             }
-            // ここは特に意味ない。
-            let size = metadata.size
             // ダウンロードURLを取得するよ。このURLを取れるようになったよ！！！
             dataRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
-                    completion(nil)
+                    completion(nil, nil)
                     return
                 }
-                completion(downloadURL.absoluteString)
+                completion(downloadURL.absoluteString, "\(currentTime).jpg")
+            }
+        }
+    }
+    
+    func deleteImage(imageName: String) {
+        let storageRef = Storage.storage().reference()
+        let desertRef = storageRef.child(imageName)
+        
+        desertRef.delete { error in
+            if error != nil {
+                // Uh-oh, an error occurred!
+            } else {
+                // File deleted successfully
             }
         }
     }

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HYY-uv-QZv">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--みんなの手紙-->
+        <scene sceneID="akl-eK-RYp">
+            <objects>
+                <viewController id="04n-Po-db9" customClass="TimelineViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0JV-k7-uhm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oVa-Jq-7Xa">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="04n-Po-db9" id="Qpb-fG-0CG"/>
+                                    <outlet property="delegate" destination="04n-Po-db9" id="fmw-1r-Vhu"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="oVa-Jq-7Xa" firstAttribute="leading" secondItem="jzG-S4-mdj" secondAttribute="leading" id="8sz-Ud-1BE"/>
+                            <constraint firstItem="oVa-Jq-7Xa" firstAttribute="bottom" secondItem="jzG-S4-mdj" secondAttribute="bottom" id="SFs-8e-V8c"/>
+                            <constraint firstItem="oVa-Jq-7Xa" firstAttribute="top" secondItem="jzG-S4-mdj" secondAttribute="top" id="hUT-Tq-Oqy"/>
+                            <constraint firstItem="oVa-Jq-7Xa" firstAttribute="trailing" secondItem="jzG-S4-mdj" secondAttribute="trailing" id="mdk-cC-r6U"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="jzG-S4-mdj"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="みんなの手紙" id="fQI-E4-1k4"/>
+                    <connections>
+                        <outlet property="timelineTableView" destination="oVa-Jq-7Xa" id="Xjs-2m-Qbj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rWp-mX-tRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="968.79999999999995" y="28.335832083958024"/>
+        </scene>
+        <!--みんなの手紙-->
+        <scene sceneID="RgN-5Z-4LY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HYY-uv-QZv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="みんなの手紙" image="Support_before" selectedImage="Support_before" id="pgT-aT-KZ5"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Rbj-pZ-5v7">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Sj1-oc-zXx">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="04n-Po-db9" kind="relationship" relationship="rootViewController" id="s8u-zn-CPD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CWC-8p-ham" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="29.600000000000001" y="28.335832083958024"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Support_before" width="49.5" height="35"/>
+    </resources>
+</document>

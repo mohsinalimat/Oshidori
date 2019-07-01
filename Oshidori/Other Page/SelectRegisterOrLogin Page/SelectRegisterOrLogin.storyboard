@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y31-Vt-7Mz">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Select Register Or Login View Controller-->
+        <scene sceneID="n5c-km-1Dt">
+            <objects>
+                <viewController id="otX-ll-A3u" customClass="SelectRegisterOrLoginViewController" customModule="Oshidori" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="z6C-yh-TUW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_logo" translatesAutoresizingMaskIntoConstraints="NO" id="u3w-I2-1aC">
+                                <rect key="frame" x="90" y="50" width="140" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="140" id="3FY-2r-TYx"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Oshidori_icon" translatesAutoresizingMaskIntoConstraints="NO" id="OYh-xu-dUC">
+                                <rect key="frame" x="66.5" y="93" width="187" height="134.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="187" id="OOu-FP-pI7"/>
+                                    <constraint firstAttribute="height" constant="134.5" id="dWb-ap-EH0"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="jiM-kV-3Gw">
+                                <rect key="frame" x="30" y="242.5" width="260" height="165.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="パートナーに「すなお」な気持ちを伝えよう" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdU-KN-0fh">
+                                        <rect key="frame" x="20" y="0.0" width="220" height="100.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAQ-PI-ptC">
+                                        <rect key="frame" x="20" y="115.5" width="220" height="50"/>
+                                        <color key="backgroundColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="CvB-im-8kP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="アカウントを作成">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTopMoveUserCreateButton:" destination="otX-ll-A3u" eventType="touchUpInside" id="MrQ-TS-qY9"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="tdU-KN-0fh" firstAttribute="leading" secondItem="jiM-kV-3Gw" secondAttribute="leading" constant="20" id="OYL-Wn-zbX"/>
+                                    <constraint firstAttribute="trailing" secondItem="jAQ-PI-ptC" secondAttribute="trailing" constant="20" id="SOK-UC-abs"/>
+                                    <constraint firstItem="jAQ-PI-ptC" firstAttribute="leading" secondItem="jiM-kV-3Gw" secondAttribute="leading" constant="20" id="cTW-P6-1fi"/>
+                                    <constraint firstAttribute="trailing" secondItem="tdU-KN-0fh" secondAttribute="trailing" constant="20" id="kq9-s7-UnA"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="tbI-XP-jZt">
+                                <rect key="frame" x="9.5" y="523" width="301" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アカウントをお持ちの方は" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UXH-JC-73c">
+                                        <rect key="frame" x="0.0" y="0.0" width="147.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkk-KB-Hek">
+                                        <rect key="frame" x="168.5" y="0.0" width="62" height="30"/>
+                                        <state key="normal" title="ログイン">
+                                            <color key="titleColor" red="0.45098039220000002" green="0.77647058820000003" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTopMoveLoginButton:" destination="otX-ll-A3u" eventType="touchUpInside" id="Fxg-0Q-GSz"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="してね！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nq7-WL-8w0">
+                                        <rect key="frame" x="251.5" y="0.0" width="49.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3Mf-QU-tVb" firstAttribute="bottom" secondItem="tbI-XP-jZt" secondAttribute="bottom" constant="15" id="2YT-hN-EYb"/>
+                            <constraint firstItem="OYh-xu-dUC" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="Hrb-1Q-wGO"/>
+                            <constraint firstItem="u3w-I2-1aC" firstAttribute="top" secondItem="3Mf-QU-tVb" secondAttribute="top" constant="30" id="LWK-3m-DpL"/>
+                            <constraint firstItem="3Mf-QU-tVb" firstAttribute="trailing" secondItem="jiM-kV-3Gw" secondAttribute="trailing" constant="30" id="PTb-Qg-vgc"/>
+                            <constraint firstItem="u3w-I2-1aC" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="bkH-de-qN3"/>
+                            <constraint firstItem="OYh-xu-dUC" firstAttribute="top" secondItem="u3w-I2-1aC" secondAttribute="bottom" constant="15" id="em6-c0-Vt0"/>
+                            <constraint firstItem="jiM-kV-3Gw" firstAttribute="top" secondItem="OYh-xu-dUC" secondAttribute="bottom" constant="15" id="i2J-Vm-j7V"/>
+                            <constraint firstItem="jiM-kV-3Gw" firstAttribute="leading" secondItem="3Mf-QU-tVb" secondAttribute="leading" constant="30" id="oYb-2x-OVm"/>
+                            <constraint firstItem="tbI-XP-jZt" firstAttribute="centerX" secondItem="z6C-yh-TUW" secondAttribute="centerX" id="v1e-Fy-NoT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3Mf-QU-tVb"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uER-uB-cAb"/>
+                    <connections>
+                        <outlet property="moveUserCreateButton" destination="jAQ-PI-ptC" id="fGv-F3-IMi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7H1-42-KnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2000.8" y="65.217391304347828"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kXs-8O-wwE">
+            <objects>
+                <navigationController storyboardIdentifier="SelectRegisterOrLoginStoryboard" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Y31-Vt-7Mz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="of6-Tf-8D4">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MAb-4W-1CP">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="otX-ll-A3u" kind="relationship" relationship="rootViewController" id="c3U-Hc-cMG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Oe1-yN-oWP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1061.5999999999999" y="65.217391304347828"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Oshidori_icon" width="413.5" height="559.5"/>
+        <image name="Oshidori_logo" width="141" height="28"/>
+    </resources>
+</document>

@@ -37,23 +37,24 @@ class UserInfoService {
             return
         }
         userInfoRep.getUserInfo { (UserInformation) in
+            if let FCMToken = UserDefaults.standard.string(forKey: "FCMToken") {
+                UserInformation.FCMToken = FCMToken
+            }
             self.userInfoRep.update(UserInformation, completion: {
                 debugPrint("更新完了")
             })
         }
     }
     
-    func saveImage(image: UIImage?, completion: @escaping ((_ imageUrl: String?)->Void)){
+    func saveImage(image: UIImage?){
         guard let image = image else {
-            completion(nil)
             return
         }
-        userInfoRep.saveImage(image: image) { (imageUrl) in
-            guard let url = imageUrl else {
+        userInfoRep.saveImage(image: image) { (imageUrl, imageName) in
+            guard let url = imageUrl, let name = imageName else {
                 return
             }
-            EditUserInfoService.shared.updateImage(imageUrl: url)
-            completion(imageUrl)
+            EditUserInfoService.shared.updateImage(imageUrl: url, imageName: name)
         }
     }
     

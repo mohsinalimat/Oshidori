@@ -51,9 +51,8 @@ extension UIViewController {
     }
     
     func moveUserCreatePage() {
-        let storyboard = UIStoryboard(name: "RegistAuthUser", bundle: nil)
-        let VC = storyboard.instantiateViewController(withIdentifier: "RegistAuthUserStoryboard")
-        self.navigationController?.pushViewController(VC, animated: true)
+        let VC = UINavigationController(rootViewController: RegistAuthUserViewController.instantiate())
+        present(VC, animated: true, completion: nil)
     }
     
     func moveLoginPage() {
@@ -78,6 +77,7 @@ extension UIViewController {
     func moveUserEditPage() {
         let storyboard = UIStoryboard(name: "EditUserInfo", bundle: nil)
         let VC = storyboard.instantiateViewController(withIdentifier: "EditUserInfoStoryboard")
+        // TODO: タブバー が出ちゃう
         VC.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(VC, animated: true)
     }
