@@ -10,7 +10,7 @@ import UIKit
 import MessageKit
 import InputBarAccessoryView
 
-class MessageRoomViewController: MessagesViewController {
+final class MessageRoomViewController: MessagesViewController {
 
     // 会話の中身を記録する用　MessageKitで使うために必要
     var messageList: [Message] = []
@@ -50,6 +50,10 @@ class MessageRoomViewController: MessagesViewController {
         messageRoomService.messageId = messageId
         messageRoomService.getAllInfo(messageId: messageId) {
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 

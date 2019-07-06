@@ -16,7 +16,7 @@ protocol ReceiveMessageViewControllerDelegate: class {
     func reloadReceiveMessageTableView()
 }
 
-class ReceiveMessageViewController: UIViewController {
+final class ReceiveMessageViewController: UIViewController {
     
     // firebase関連
     let db = Firestore.firestore()
