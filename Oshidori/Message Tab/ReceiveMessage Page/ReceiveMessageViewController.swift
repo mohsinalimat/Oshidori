@@ -122,7 +122,9 @@ extension ReceiveMessageViewController {
         }
         self.getRoomUserInfo() {
             if !(userInfo.roomId.isEmpty) {
-                self.moveSendMessageButton.isHidden = false
+                DispatchQueue.main.async {
+                    self.moveSendMessageButton.isHidden = false
+                }
                 // firestoreからデータを取って、テーブルビューに反映
                 // ここでリフレッシュのメソッドを呼ぶ
                 self.getAndReload()
