@@ -17,6 +17,9 @@ final class TimelineViewController: UIViewController, UITableViewDataSource, UIT
   
     let timelineService = TimelineService.shared
     
+    @IBOutlet weak var advertisementView: UIView!
+    @IBOutlet weak var advertisementViewHeight: NSLayoutConstraint!
+    
     private let refreshCtl = UIRefreshControl()
     
     override func viewDidLoad() {
@@ -46,23 +49,41 @@ final class TimelineViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     override func viewDidLayoutSubviews(){
+        super .viewDidLayoutSubviews()
+        // viewDidLayoutSubviewsは何回も呼ばれるから、一回だけの処理にしておく。一回作ったらVoidを返すようになる
+        _ = initAdMobVeiwLayout
+    }
+    
+    private lazy var initAdMobVeiwLayout : Void = {
         //  広告インスタンス作成
         var admobView = GADBannerView()
         admobView = GADBannerView(adSize:kGADAdSizeBanner)
         
         //  広告位置設定
-        let safeArea = self.view.safeAreaInsets.bottom
-        admobView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - safeArea - admobView.frame.height)
-        admobView.frame.size = CGSize(width:self.view.frame.width, height:admobView.frame.height)
+        // let tabbarTop = tabba
+        let safeArea = view.safeAreaInsets.bottom
+        admobView.frame.origin = CGPoint(x:0, y:view.frame.size.height - safeArea - admobView.frame.height)
+        admobView.frame.size = CGSize(width:view.frame.width, height:admobView.frame.height)
+        
+        // advertisementViewHeightを、admobViewに合わせる
+        advertisementViewHeight.constant = admobView.frame.height
         
         //  広告ID設定
-        admobView.adUnitID = "ca-app-pub-7170969191214776/1140643009"
+//         admobView.adUnitID = "ca-app-pub-3940256099942544/2934735716" // テスト用
+        admobView.adUnitID = "ca-app-pub-7170969191214776/1140643009" // 本番用
         
         //  広告表示
         admobView.rootViewController = self
         admobView.load(GADRequest())
-        self.view.addSubview(admobView)
-    }
+        admobView.translatesAutoresizingMaskIntoConstraints = false
+        advertisementView.addSubview(admobView)
+        
+        // 制約がないと表示されない！！！
+        admobView.topAnchor.constraint(equalTo: advertisementView.topAnchor, constant: 0)
+        admobView.bottomAnchor.constraint(equalTo: advertisementView.bottomAnchor, constant: 0)
+        admobView.rightAnchor.constraint(equalTo: advertisementView.rightAnchor, constant: 0)
+        admobView.leftAnchor.constraint(equalTo: advertisementView.leftAnchor, constant: 0)
+    }()
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -114,6 +135,7 @@ final class TimelineViewController: UIViewController, UITableViewDataSource, UIT
 }
 
 extension TimelineViewController {
+    // ナビゲーションバーを閉じたり、戻したりする。
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.panGestureRecognizer.translation(in: scrollView).y < 0 {
             navigationController?.setNavigationBarHidden(true, animated: true)

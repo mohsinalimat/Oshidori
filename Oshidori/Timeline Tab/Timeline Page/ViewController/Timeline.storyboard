@@ -26,18 +26,30 @@
                                     <outlet property="delegate" destination="04n-Po-db9" id="fmw-1r-Vhu"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UTJ-6n-4gA">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="mCu-ed-daQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="UTJ-6n-4gA" firstAttribute="leading" secondItem="jzG-S4-mdj" secondAttribute="leading" id="6XA-ed-lVC"/>
                             <constraint firstItem="oVa-Jq-7Xa" firstAttribute="leading" secondItem="jzG-S4-mdj" secondAttribute="leading" id="8sz-Ud-1BE"/>
+                            <constraint firstItem="UTJ-6n-4gA" firstAttribute="trailing" secondItem="jzG-S4-mdj" secondAttribute="trailing" id="FSG-vB-42q"/>
                             <constraint firstItem="oVa-Jq-7Xa" firstAttribute="bottom" secondItem="jzG-S4-mdj" secondAttribute="bottom" id="SFs-8e-V8c"/>
                             <constraint firstItem="oVa-Jq-7Xa" firstAttribute="top" secondItem="jzG-S4-mdj" secondAttribute="top" id="hUT-Tq-Oqy"/>
                             <constraint firstItem="oVa-Jq-7Xa" firstAttribute="trailing" secondItem="jzG-S4-mdj" secondAttribute="trailing" id="mdk-cC-r6U"/>
+                            <constraint firstAttribute="bottom" secondItem="UTJ-6n-4gA" secondAttribute="bottom" id="ver-2F-gNI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jzG-S4-mdj"/>
                     </view>
                     <navigationItem key="navigationItem" title="みんなの手紙" id="fQI-E4-1k4"/>
                     <connections>
+                        <outlet property="advertisementView" destination="UTJ-6n-4gA" id="IhE-1Y-dJl"/>
+                        <outlet property="advertisementViewHeight" destination="mCu-ed-daQ" id="b90-tm-eG2"/>
                         <outlet property="timelineTableView" destination="oVa-Jq-7Xa" id="Xjs-2m-Qbj"/>
                     </connections>
                 </viewController>
