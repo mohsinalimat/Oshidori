@@ -24,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         changeTabBarUI()
+        
+        // Google Mobile Ads SDK を初期化。
+        GADMobileAds.sharedInstance().start()
+        
         // アプリを開いたらバッジを0にする
         UIApplication.shared.applicationIconBadgeNumber = AppDelegate.badgeCount
         // messaging を使う時に必要

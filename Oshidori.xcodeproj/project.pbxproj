@@ -392,6 +392,7 @@
 			isa = PBXGroup;
 			children = (
 				673E9B68227D3764004B0C91 /* Oshidori.entitlements */,
+				6732F27F224DB2F500011710 /* AppDelegate.swift */,
 				67A2D59F2276797E00755F0B /* Common */,
 				6723DEB2224F74CB00B3DF69 /* TabBarController */,
 				6733C2D022B4DB7900730500 /* Other Page */,
@@ -423,7 +424,6 @@
 		6733C2CC22B4DA9300730500 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6732F27F224DB2F500011710 /* AppDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
