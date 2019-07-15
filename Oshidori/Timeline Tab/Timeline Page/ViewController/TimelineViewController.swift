@@ -9,6 +9,7 @@
 import UIKit
 import DZNEmptyDataSet
 import Accounts
+import GoogleMobileAds
 
 final class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -42,6 +43,25 @@ final class TimelineViewController: UIViewController, UITableViewDataSource, UIT
         timelineService.loadTimelineMessage()
         // tableViewを選択不可にする
         timelineTableView.allowsSelection = false
+    }
+    
+    override func viewDidLayoutSubviews(){
+        //  広告インスタンス作成
+        var admobView = GADBannerView()
+        admobView = GADBannerView(adSize:kGADAdSizeBanner)
+        
+        //  広告位置設定
+        let safeArea = self.view.safeAreaInsets.bottom
+        admobView.frame.origin = CGPoint(x:0, y:self.view.frame.size.height - safeArea - admobView.frame.height)
+        admobView.frame.size = CGSize(width:self.view.frame.width, height:admobView.frame.height)
+        
+        //  広告ID設定
+        admobView.adUnitID = "ca-app-pub-7170969191214776/1140643009"
+        
+        //  広告表示
+        admobView.rootViewController = self
+        admobView.load(GADRequest())
+        self.view.addSubview(admobView)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
