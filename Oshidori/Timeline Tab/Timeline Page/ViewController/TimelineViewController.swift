@@ -68,18 +68,19 @@ final class TimelineViewController: UIViewController, UITableViewDataSource, UIT
         // advertisementViewHeightを、admobViewに合わせる
         advertisementViewHeight.constant = admobView.frame.height
         
-        //  広告ID設定
+//        //  広告ID設定
         #if DEBUG
-            // テスト用
+//            // テスト用
             admobView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         #else
-            // 本番用
+//            // 本番用
             admobView.adUnitID = "ca-app-pub-7170969191214776/1140643009"
         #endif
         
         //  広告表示
         admobView.rootViewController = self
-        admobView.load(GADRequest())
+        let request = GADRequest()
+        admobView.load(request)
         admobView.translatesAutoresizingMaskIntoConstraints = false
         advertisementView.addSubview(admobView)
         

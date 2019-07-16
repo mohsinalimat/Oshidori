@@ -34,6 +34,7 @@
 		6723DEC02254415C00B3DF69 /* SendMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723DEBF2254415C00B3DF69 /* SendMessageViewController.swift */; };
 		672B7D162286F674008FA9D1 /* AppDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672B7D152286F674008FA9D1 /* AppDescriptionViewController.swift */; };
 		672B7D192286F6A3008FA9D1 /* AppDescriptionViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 672B7D182286F6A3008FA9D1 /* AppDescriptionViewController.storyboard */; };
+		672EA6AB22DDB17500EC76E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 672EA6AA22DDB17500EC76E1 /* GoogleService-Info.plist */; };
 		6732EA53227AB35C00C4AF6C /* EditUserInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732EA52227AB35C00C4AF6C /* EditUserInfoService.swift */; };
 		6732EA59227BEA6100C4AF6C /* RoomFirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732EA58227BEA6100C4AF6C /* RoomFirestoreRepository.swift */; };
 		6732EA5B227BEAB700C4AF6C /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6732EA5A227BEAB700C4AF6C /* Room.swift */; };
@@ -64,7 +65,6 @@
 		67920DDC2264730500127083 /* ReadQRcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67920DDB2264730500127083 /* ReadQRcodeViewController.swift */; };
 		6797D471228C513F008FBA12 /* SendEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797D470228C513F008FBA12 /* SendEmailViewController.swift */; };
 		6797D473228C5152008FBA12 /* SendEmailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6797D472228C5152008FBA12 /* SendEmailViewController.storyboard */; };
-		6797D47A228FD6E6008FBA12 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6797D479228FD6E6008FBA12 /* GoogleService-Info.plist */; };
 		67A2D5AC2276807200755F0B /* EditUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5AB2276807200755F0B /* EditUserInfo.storyboard */; };
 		67A2D5AE2276809600755F0B /* RegistUserInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5AD2276809600755F0B /* RegistUserInfo.storyboard */; };
 		67A2D5B0227680FA00755F0B /* ReceiveMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67A2D5AF227680FA00755F0B /* ReceiveMessage.storyboard */; };
@@ -147,6 +147,7 @@
 		6723DEBF2254415C00B3DF69 /* SendMessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageViewController.swift; sourceTree = "<group>"; };
 		672B7D152286F674008FA9D1 /* AppDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDescriptionViewController.swift; sourceTree = "<group>"; };
 		672B7D182286F6A3008FA9D1 /* AppDescriptionViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppDescriptionViewController.storyboard; sourceTree = "<group>"; };
+		672EA6AA22DDB17500EC76E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6732EA52227AB35C00C4AF6C /* EditUserInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUserInfoService.swift; sourceTree = "<group>"; };
 		6732EA58227BEA6100C4AF6C /* RoomFirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomFirestoreRepository.swift; sourceTree = "<group>"; };
 		6732EA5A227BEAB700C4AF6C /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
@@ -184,7 +185,6 @@
 		67920DDB2264730500127083 /* ReadQRcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadQRcodeViewController.swift; sourceTree = "<group>"; };
 		6797D470228C513F008FBA12 /* SendEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendEmailViewController.swift; sourceTree = "<group>"; };
 		6797D472228C5152008FBA12 /* SendEmailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SendEmailViewController.storyboard; sourceTree = "<group>"; };
-		6797D479228FD6E6008FBA12 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		67A2D5AB2276807200755F0B /* EditUserInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditUserInfo.storyboard; sourceTree = "<group>"; };
 		67A2D5AD2276809600755F0B /* RegistUserInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistUserInfo.storyboard; sourceTree = "<group>"; };
 		67A2D5AF227680FA00755F0B /* ReceiveMessage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReceiveMessage.storyboard; sourceTree = "<group>"; };
@@ -574,7 +574,7 @@
 				6732F289224DB2F600011710 /* Assets.xcassets */,
 				6732F286224DB2F500011710 /* Oshidori.xcdatamodeld */,
 				6732F28E224DB2F600011710 /* Info.plist */,
-				6797D479228FD6E6008FBA12 /* GoogleService-Info.plist */,
+				672EA6AA22DDB17500EC76E1 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -863,6 +863,7 @@
 				67920DB522643E8500127083 /* ShowQRcode.storyboard in Resources */,
 				67C9E047225EB6DD00516B3D /* Timeline.storyboard in Resources */,
 				67C9E04D225EC20200516B3D /* TimelineMessageTableViewCellTableViewCell.xib in Resources */,
+				672EA6AB22DDB17500EC76E1 /* GoogleService-Info.plist in Resources */,
 				676AF05E2281532800BDB911 /* PartnerSettingViewController.storyboard in Resources */,
 				670A16AC226D76F8006C8F47 /* SelectRegisterOrLogin.storyboard in Resources */,
 				6732F28D224DB2F600011710 /* LaunchScreen.storyboard in Resources */,
@@ -879,7 +880,6 @@
 				67A2D5AE2276809600755F0B /* RegistUserInfo.storyboard in Resources */,
 				672B7D192286F6A3008FA9D1 /* AppDescriptionViewController.storyboard in Resources */,
 				67F0F9DB229A39EB00B6CBE3 /* TermOfServiceViewController.storyboard in Resources */,
-				6797D47A228FD6E6008FBA12 /* GoogleService-Info.plist in Resources */,
 				6732F28A224DB2F600011710 /* Assets.xcassets in Resources */,
 				6797D473228C5152008FBA12 /* SendEmailViewController.storyboard in Resources */,
 				6707D3DA225AE7B0007529FA /* ReceiveMessageTableViewCell.xib in Resources */,
